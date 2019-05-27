@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { LOGIN, LOGOUT, LOG_IN_ERROR } from '../types/auth'
-
-const baseUrl = 'http://192.168.1.68:5000/api/v1'
+import { baseUrl } from '../../apiUrl'
 
 export function login(email, password) {
   return async dispatch => {
