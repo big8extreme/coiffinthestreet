@@ -1,16 +1,20 @@
 import { LOGIN, LOGOUT, } from '../types/auth';
 
-const initialState = {
-  isConnected: false,
-  expire: 3600,
+const defaultStates = {
+  user: {
+    id: 0,
+    token: null,
+    isAdmin: false,
+    isConnected: false
+  }
 };
 
-export default function (state = initialState, action) {
+export default function (state = defaultStates, action) {
   switch (action.type) {
     case LOGIN:
-      return { ...state, isConnected: true, };
+      return { ...state, user: { ...action.payload.user, token: action.payload.token, isConnected: true } };
     case LOGOUT:
-      return { ...state, isConnected: false, };
+      return defaultStates;
     default:
       return state;
   }

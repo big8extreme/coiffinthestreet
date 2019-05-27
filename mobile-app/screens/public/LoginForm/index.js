@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { View, Text, Button } from 'react-native'
+import { Container, Header, Content, Form, Item, Input, Button, Text, Toast, Root } from 'native-base';
+import { StyleSheet, View } from 'react-native'
 import { connect } from 'react-redux'
 import { login } from '../../../store/actions/auth'
 
@@ -7,38 +8,64 @@ class LoginForm extends Component {
   static navigationOptions = {
     title: 'Connexion',
   };
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      email: '',
+      password: ''
+    }
+  }
+
+  loginUser = async () => {
+    const response = await this.props.login(this.state.email, this.state.password);
+    if (response.status === 'error') {
+      Toast.show({
+        text: 'Erreur de connexion',
+        buttonText: 'Ok'
+      })
+    }
+  }
+
   render() {
     const { navigate } = this.props.navigation;
-    if (this.props.auth.isConnected) {
+    const { auth } = this.props;
+    if (auth.user.isConnected) {
       setTimeout(() => {
         navigate('App', { name: 'John DOE' })
       }, 10)
     }
     return (
-      <View>
-        <Text> Hello in login form </Text>
-        {
-          this.props.auth.isConnected
-            ?
-            <View>
-              <Text>You're connected !</Text>
-              <Button
-                title="Go to profile screen"
-                onPress={() => {
-                  navigate('App', { name: 'John DOE' })
-                }}
-              />
-            </View>
-            :
+      <Root>
+        <Form style={styles.formContainer}>
+          <Item>
+            <Input
+              onChangeText={(value) => this.setState({ email: value })}
+              placeholder="Username" />
+          </Item>
+          <Item>
+            <Input
+              secureTextEntry
+              onChangeText={(value) => this.setState({ password: value })}
+              placeholder="Password" />
+          </Item>
+          <View style={styles.buttonContainer}>
             <Button
-              title="Click me to login"
-              onPress={() => this.props.login()}
-            />
-        }
-      </View>
+              onPress={() => this.loginUser()}
+            >
+              <Text>Se connecter</Text>
+            </Button>
+          </View>
+        </Form>
+      </Root>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  buttonContainer: { flex: 0, flexDirection: 'row', justifyContent: 'center', marginTop: 15 },
+  formContainer: { flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', paddingRight: 20 }
+})
 
 const mapStateToProps = (state) => ({
   auth: state.auth

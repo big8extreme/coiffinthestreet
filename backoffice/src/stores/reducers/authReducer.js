@@ -15,7 +15,7 @@ export default (state = defaultStates, action) => {
       return { ...state, user: { ...action.payload.user, token: action.payload.token, isConnected: true } };
 
     case LOG_OUT_USER:
-      return { ...defaultStates };
+      return defaultStates;
 
     default:
       return state;

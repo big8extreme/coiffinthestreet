@@ -9,7 +9,8 @@ export class Profile extends Component {
   };
   render() {
     const { navigate } = this.props.navigation;
-    if (!this.props.auth.isConnected) {
+    const { auth } = this.props;
+    if (!auth.user.isConnected) {
       setTimeout(() => {
         navigate('Auth')
       }, 10)
