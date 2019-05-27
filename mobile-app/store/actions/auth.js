@@ -6,6 +6,9 @@ const baseUrl = 'http://192.168.1.68:5000/api/v1'
 export function login(email, password) {
   return async dispatch => {
     function onSuccess(response) {
+      // set token as default header
+      axios.defaults.headers.common['Authorization'] = `bearer ${response.data.token}`;
+
       dispatch({ type: LOGIN, payload: response.data });
       return { response, status: 'success' };
     }
@@ -24,6 +27,7 @@ export function login(email, password) {
 };
 
 export function logout() {
+  axios.defaults.headers.common['Authorization'] = null;
   return {
     type: LOGOUT,
     payload: null
