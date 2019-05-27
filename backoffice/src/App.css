@@ -1,0 +1,15 @@
+ul {list-style: none;}
+
+.marged-top {
+  margin-top: 15px;
+}
+
+.form-group {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.full-widh {
+  width: 100%;
+}
