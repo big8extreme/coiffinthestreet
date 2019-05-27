@@ -2,7 +2,10 @@
 YARN is used to manage dependencies
 # Backend Node.js
 *requirements :*
+- yarn
+- node >= 8.11.3
 - sequelize-cli
+- mysql-server
 
 first run `yarn`
 add `.env` file at the root of project and add following lines
