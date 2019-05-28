@@ -1,4 +1,4 @@
-# Wavager Project
+# Coiff in the street Project
 YARN is used to manage dependencies
 # Backend Node.js
 *requirements :*
