@@ -8,7 +8,11 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     password: DataTypes.STRING,
     avatarUrl: DataTypes.STRING,
-    isAdmin: DataTypes.BOOLEAN
+    isAdmin: DataTypes.BOOLEAN,
+    isActive: DataTypes.BOOLEAN,
+    isBanned: DataTypes.BOOLEAN,
+    invitationCode: DataTypes.STRING,
+    job: DataTypes.STRING
   }, {
       hooks: {
         beforeCreate: (user, options) => {
@@ -19,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     });
   User.associate = function (models) {
-    // associations can be defined here
+    User.belongsToMany(models.User, { foreignKey: 'godFatherId', through: 'GodFather', as: 'childFather' });
   };
   return User;
 };
