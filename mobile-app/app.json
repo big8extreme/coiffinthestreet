@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "rn-redux-starter",
-    "slug": "rn-redux-starter",
+    "name": "coiff-in-the-street",
+    "slug": "coiff-in-the-street",
     "privacy": "public",
     "sdkVersion": "32.0.0",
     "platforms": [
