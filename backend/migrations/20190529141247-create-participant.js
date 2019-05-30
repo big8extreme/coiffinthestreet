@@ -10,6 +10,7 @@ module.exports = {
       },
       maraudeId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
           model: 'Maraudes',
           key: 'id'
