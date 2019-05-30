@@ -60,8 +60,6 @@ export class Admin extends Component {
             </Card>
           </div>
         </div>
-
-
       </React.Fragment>
     );
   }
