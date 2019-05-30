@@ -1,9 +1,7 @@
 
 import React, { Component } from 'react';
-import { Panel } from 'primereact/panel';
 import { TabView, TabPanel } from 'primereact/tabview';
 import { Fieldset } from 'primereact/fieldset';
-import { Message } from 'primereact/message';
 import { Button } from 'primereact/button';
 import MenuDemo from '../components/contents/Menu';
 

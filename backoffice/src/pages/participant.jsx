@@ -46,16 +46,6 @@ export default class Ficheuser extends Component {
   }
 
     render() {
-        const columns = [
-            {field: 'lastname', header: 'Nom'},
-            {field: 'firstname', header: 'Prenom'},
-            {field: 'father_code', header: 'ville'},
-            {field: 'mail', header: 'mail'}
-        ];
-
-        const dynamicColumns = columns.map((col,i) => {
-            return <Column key={col.field} field={col.field} header={col.header} />;
-        });
 
         return (
           <div className="layout-wrapper">

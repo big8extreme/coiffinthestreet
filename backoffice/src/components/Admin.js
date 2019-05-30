@@ -7,6 +7,7 @@ import {
   Card, CardHeader, CardBody,
   CardTitle, CardText
 } from 'reactstrap';
+import List from './Liste';
 
 
 export class Admin extends Component {
@@ -22,13 +23,13 @@ export class Admin extends Component {
             <MenuDemo />
           </div>
           <div className="layout-content">
-
+            <List />
             <div className="content-section introduction">
               <div className="feature-intro">
                 <div>
                   {/* // used to check if token is available */}
 
-                  <h1>IM IN ADMIN PANNEL</h1>
+                  <h3>IM IN ADMIN PANNEL</h3>
 
                   <button
                     onClick={() => {
@@ -50,7 +51,7 @@ export class Admin extends Component {
               <CardBody>
                 <CardTitle > Bloc notes</CardTitle>
                 <CardText>Comment garder le menu et la topbar apres le PrivateRoute??</CardText>
-            
+
                 <CardText>  ,onClick={() => this.props.logout()} } sur Sign Out</CardText>
                 <CardText>Tableau a verifier, Maraude, Coiffeur, Participant </CardText>
                 <CardText>Api a completer et a verifier </CardText>
@@ -58,6 +59,7 @@ export class Admin extends Component {
                 <CardText> </CardText>
               </CardBody>
             </Card>
+
           </div>
         </div>
       </React.Fragment>

@@ -46,17 +46,6 @@ export default class Fichemaraude extends Component {
   }
 
     render() {
-        const columns = [
-            {field: 'date', header: 'Creation'},
-            {field: 'start_at', header: 'Date'},
-            {field: 'place', header: 'Lieu'},
-            {field: 'author_id', header: 'Coiffeur'}
-        ];
-
-        const dynamicColumns = columns.map((col,i) => {
-            return <Column key={col.field} field={col.field} header={col.header} />;
-        });
-
         return (
             
           <div className="layout-wrapper">
