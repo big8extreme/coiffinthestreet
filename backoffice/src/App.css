@@ -56,3 +56,11 @@ ul {list-style: none;}
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 
 }
+
+.p-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -.5em;
+  margin-left: -.5em;
+  margin-top: -.5em;
+}

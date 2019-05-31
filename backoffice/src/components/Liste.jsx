@@ -44,8 +44,8 @@ const List = (props) => {
 				<div className="box-content bg-warning text-white">
 					<div className="statistics-box with-icon">
 						<i className="ico small fa fa-usd"></i>
-						<p className="text text-white">SALES</p>
-						<h2 className="counter">2,637</h2>
+						<p className="text text-white">	<i className="pi pi-fw pi-filter" ></i>PHOTOS</p>
+						<h2 className="counter">637</h2>
 					</div>
 				</div>
 

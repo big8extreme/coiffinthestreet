@@ -5,54 +5,32 @@ import { Button } from 'primereact/button';
 import { TabView, TabPanel } from 'primereact/tabview';
 import { Fieldset } from 'primereact/fieldset';
 import MenuDemo from '../components/contents/Menu';
-import Axios from 'axios';
-
-export default class Fichecoiffeur extends Component {
+import { CoiffService } from '../components/CoiffService';
 
 
+export default class Ficheconfig extends Component {
   constructor() {
     super();
     this.state = {
-      cars: []
     };
-
+    this.coiffservice = new CoiffService();
   }
+
 
   componentDidMount() {
-    Axios.get('/users')
-      .then(res => {
-        const cars = res.data;
-        this.setState({ cars });
-      })
+    this.coiffservice.getUsers().then(data => this.setState({ users: data }));
   }
-
 
   actionTemplate(rowData, column) {
     return <div>
-
-
       <Button type="button" icon="pi pi-search" className="p-button-success" style={{ marginRight: '.5em' }}></Button>
       <Button type="button" icon="pi pi-pencil" className="p-button-warning" style={{ marginRight: '.5em' }}></Button>
       <Button type="button" icon="pi pi-times" className="p-button-danger"></Button>
-
     </div>;
   }
 
   render() {
-    const columns = [
-      { field: 'lastname', header: 'Nom' },
-      { field: 'firstname', header: 'Prenom' },
-      { field: 'father_code', header: 'ville' },
-      { field: 'mail', header: 'mail' }
-    ];
-
-    const dynamicColumns = columns.map((col, i) => {
-      return <Column key={col.field} field={col.field} header={col.header} />;
-    });
-
     return (
-
-
       <div className="layout-wrapper">
         <div className="layout-topbar">
         </div>
@@ -74,15 +52,16 @@ export default class Fichecoiffeur extends Component {
               <TabPanel header="Derniers Inscrits">
                 <div>
                   <Fieldset legend="En cours">
+                    <p>Ajouter Validation, Fiche Update coiffeur, Lien vers Particpants, </p>
 
-
-                    <DataTable value={this.state.cars}>
-                      <Column field="lastname" header="Nom" />
-                      <Column field="firstname" header="Prenom" />
-                      <Column field="father_code" header="ville" />
-                      <Column field="mail" header="mail" />
+                    <DataTable value={this.state.users}>
+                      <Column field="id" header="Nom" />
+                      <Column field="firstName" header="Prenom" />
+                      <Column field="lastName" header="ville" />
+                      <Column field="email" header="mail" />
                       <Column body={this.actionTemplate} style={{ textAlign: 'center', width: '12em' }} />
                     </DataTable>
+
                   </Fieldset>
                 </div>
               </TabPanel>
@@ -91,16 +70,18 @@ export default class Fichecoiffeur extends Component {
               <TabPanel header="attente de validation">
                 <div>
                   <Fieldset legend="En cours">
+
+
+
+
+
+
+                    
                   </Fieldset>
                 </div>
               </TabPanel>
 
-              <TabPanel header="Coiffeurs bannis">
-                <div>
-                  <Fieldset legend="En cours">
-                  </Fieldset>
-                </div>
-              </TabPanel>
+         
 
 
             </TabView>

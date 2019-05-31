@@ -5,6 +5,7 @@ import {Button} from 'primereact/button';
 import { TabView, TabPanel } from 'primereact/tabview';
 import { Fieldset } from 'primereact/fieldset';
 import MenuDemo from '../components/contents/Menu';
+import { CoiffService } from '../components/CoiffService';
 
 
 export default class Fichemaraude extends Component {
@@ -13,27 +14,19 @@ export default class Fichemaraude extends Component {
     constructor() {
         super();
         this.state = {
-            cars: [
-                {
-                  date : "utile ou pas?",
-                  start_at: "lien hypertexte vers fiche update " ,
-                  place: "active",
-                  author_id: "id, relation table nom"
-                }, 
-                {
-               
-                }, 
-                {
-                
-                }
-              ]
         };
-        
+        this.coiffservice = new CoiffService(); 
     }
 
     componentDidMount() {
-       
+      this.coiffservice.getMaraudes().then(data => this.setState({ maraudes: data }));  
+    
+      console.log(this.state.maraudes)
+    
     }
+
+
+
     actionTemplate(rowData, column) {
       return <div>
         
@@ -75,13 +68,17 @@ export default class Fichemaraude extends Component {
                 <TabPanel header="Maraudes du mois">
               <div>
                 <Fieldset legend="En cours">
-
-                  
-                    <DataTable value={this.state.cars}>
-                        <Column field="date" header="Creation" />
-                        <Column field="start_at" header="Date" />
-                        <Column field="place" header="Lieu" />
-                        <Column field="author_id" header="Coiffeur" />
+<p> Date creation : utile ou pas? 
+  // Lien hypertexte vers fiche update 
+  // Nom du coiffeur (voir relation) 
+   //Nombre de particiant
+   // Bouton VALIDE MARAUDE</p>
+           
+                    <DataTable value={this.state.maraudes}>
+                        <Column field="userId" header="Creation" />
+                        <Column field="title" header="Date" />
+                        <Column field="city" header="Lieu" />
+                        <Column field="latitidue" header="Coiffeur" />
                         <Column body={this.actionTemplate} style={{textAlign:'center', width: '12em'}}/>
                     </DataTable>
                     </Fieldset>
@@ -96,7 +93,13 @@ export default class Fichemaraude extends Component {
               </div>
             </TabPanel>
 
-            <TabPanel header="Maraudes a venir">
+            <TabPanel header="Maraudes a venir//valider ?">
+              <div>
+                <Fieldset legend="En cours">
+                </Fieldset>
+              </div>
+            </TabPanel>
+            <TabPanel header="Photos en attente">
               <div>
                 <Fieldset legend="En cours">
                 </Fieldset>

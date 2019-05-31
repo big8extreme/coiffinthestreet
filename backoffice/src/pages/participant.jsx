@@ -5,6 +5,7 @@ import {Button} from 'primereact/button';
 import { TabView, TabPanel } from 'primereact/tabview';
 import { Fieldset } from 'primereact/fieldset';
 import MenuDemo from '../components/contents/Menu';
+import { CoiffService } from '../components/CoiffService';
 
 
 export default class Ficheuser extends Component {
@@ -13,40 +14,24 @@ export default class Ficheuser extends Component {
     constructor() {
         super();
         this.state = {
-            cars: [
-                {
-                  lastname : "utile ou pas?",
-                  firstname: "lien hypertexte vers fiche update " ,
-                  mail: "active",
-                  father_code: "ville  ?? et parrain?"
-                }, 
-                {
-               
-                }, 
-                {
-                
-                }
-              ]
         };
-        
+        this.coiffservice = new CoiffService();
     }
 
     componentDidMount() {
-       
-    }
+this.coiffservice.getParticipants().then(data => this.setState ({ participants : data}))
+  }
+
     actionTemplate(rowData, column) {
       return <div>
-        
-         
           <Button type="button" icon="pi pi-search" className="p-button-success" style={{marginRight: '.5em'}}></Button>
           <Button type="button" icon="pi pi-pencil" className="p-button-warning" style={{marginRight: '.5em'}}></Button>
           <Button type="button" icon="pi pi-times" className="p-button-danger"></Button>
-
       </div>;
   }
 
     render() {
-
+console.log(this.state.participants)
         return (
           <div className="layout-wrapper">
           <div className="layout-topbar">
@@ -71,11 +56,11 @@ export default class Ficheuser extends Component {
                 <Fieldset legend="En cours">
 
                   
-                    <DataTable value={this.state.cars}>
-                        <Column field="lastname" header="Nom" />
-                        <Column field="firstname" header="Prenom" />
-                        <Column field="father_code" header="ville" />
-                        <Column field="mail" header="mail" />
+                    <DataTable value={this.state.participants}>
+                        <Column field="maraudeId" header="Nom" />
+                        <Column field="email" header="Prenom" />
+                        <Column field="job" header="ville" />
+                        <Column field="createdAt" header="mail" />
                         <Column body={this.actionTemplate} style={{textAlign:'center', width: '12em'}}/>
                     </DataTable>
                     </Fieldset>
