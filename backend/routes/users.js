@@ -5,6 +5,12 @@ const userController = require('../controllers/usersController');
 
 /* GET users listing. */
 // Use header "Authorization": "bearer token-generated-by-signin"
-router.get('/', passport.authenticate('jwt', { session: false }), userController.index);
+//router.get('/', passport.authenticate('jwt', { session: false }), userController.index);
+
+router.get('/',  userController.index);
+
+router.get('/:id',  userController.show);
+
+router.post('/',  userController.create);
 
 module.exports = router;

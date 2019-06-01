@@ -6,6 +6,9 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
+var marauRouter = require('./routes/maraudes');
+var partiRouter = require('./routes/participants');
+
 
 const passport = require('passport');
 const { localAuthStrategy } = require('./routes/strategies/local');
@@ -29,4 +32,19 @@ jwtAuthStrategy;
 app.use('/', indexRouter);
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/users', usersRouter);
+app.use('/api/v1/maraudes', marauRouter);
+app.use('/api/v1/participants', partiRouter);
+
+
+
+
+
+
+
+
+
+
+
+
+
 module.exports = app;
