@@ -10,6 +10,7 @@ import {InputSwitch} from 'primereact/inputswitch';
 import {
   Link
 } from 'react-router-dom';
+import { Newcoiffeur } from '../components/contents/newcoiffeur';
 
 
 export default class Fichecoiffeur extends Component {
@@ -94,6 +95,13 @@ export default class Fichecoiffeur extends Component {
               <TabPanel header="Coiffeurs bannis">
                 <div>
                   <Fieldset legend="En cours">
+                  </Fieldset>
+                </div>
+              </TabPanel>
+              <TabPanel header="Ajouter">
+                <div>
+                  <Fieldset legend="En cours">
+                    <Newcoiffeur />
                   </Fieldset>
                 </div>
               </TabPanel>

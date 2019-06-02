@@ -10,6 +10,7 @@ import Api from '../pages/api';
 import Ficheparticipant from '../pages/participant';
 import Ficheconfig from '../pages/configuration';
 import { Newcoiffeur } from '../components/contents/newcoiffeur';
+import { Newmaraude } from '../components/contents/newmaraude';
 
 class AppRouter extends Component {
   render() {
@@ -24,6 +25,7 @@ class AppRouter extends Component {
         <PrivateRoute isAdmin={user.isAdmin} exact path='/api' component={Api} />
         <PrivateRoute isAdmin={user.isAdmin} exact path='/configuration' component={Ficheconfig} />
         <PrivateRoute isAdmin={user.isAdmin} exact path='/newusager' component={Newcoiffeur} />
+        <PrivateRoute isAdmin={user.isAdmin} exact path='/newmaraude' component={Newmaraude} />
       </Switch>
     );
   }

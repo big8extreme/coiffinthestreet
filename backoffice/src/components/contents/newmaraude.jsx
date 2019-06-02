@@ -3,28 +3,24 @@ import React, { Component } from 'react';
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import MenuDemo from './Menu';
-import { Dropdown } from 'primereact/dropdown';
 import { InputSwitch } from 'primereact/inputswitch';
 import { Form } from 'reactstrap';
 import axios from 'axios';
 
-export class Newcoiffeur extends Component {
+export class Newmaraude extends Component {
     constructor() {
         super();
         this.state = {
 
-            firstName: '',
-            lastName: '',
-            email: '',
-            password:'',
-            avatarUrl:'',
-            isAdmin: '',
-            isActive: '',
-            isBanned: '',
-            invitationCode:'',
-            job:'',
-            createdAt: '',
-            updatedAt: ''
+            userId: '',
+            title: '',
+            startAt: '',
+            endAt:'',
+            description:'',
+            isPublished: '',
+            longitude: '',
+            latitude: ''
+       
         };
         this.handleChange = this.handleChange.bind(this);
         this.submitForm = this.submitForm.bind(this);
@@ -37,24 +33,18 @@ export class Newcoiffeur extends Component {
     submitForm = event => {
         event.preventDefault();
 
-        const user = {
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
-            email: this.state.email,
-            password:this.state.password,
-            avatarUrl:this.state.avatarUrl,
-            isAdmin: this.state.isAdmin,
-            isActive: this.state.isActive,
-            isBanned: this.state.isBanned,
-            invitationCode:this.state.invitationCode,
-            job:this.state.job,
-            createdAt: this.state.createdAt,
-            updatedAt: this.state.updatedAt
-
-        };
-
+        const maraude = {
+            userId: this.state.userId,
+            title: this.state.title,
+            startAt: this.state.startAt,
+            endAt:this.state.endAt,
+            description:this.state.description,
+            isPublished: this.state.isPublished,
+            longitude: this.state.longitude,
+            latitude: this.state.latitude
+           };
        
-       axios.post(`http://localhost:3000/users`, { user })
+       axios.post(`http://localhost:3000/maraudes`, { maraude })
           .then(res => {
             console.log(res);
               console.log(res.data);
@@ -62,12 +52,6 @@ export class Newcoiffeur extends Component {
     }
 
     render() {
-
-        const jobSelectItems = [
-            { label: 'Coiffeur', value: 'Coiffeur' },
-            { label: 'Estheticienne', value: 'Estheticienne' },
-            { label: 'Photographe', value: 'Photographe' }
-        ];
 
 
         return (
@@ -81,9 +65,10 @@ export class Newcoiffeur extends Component {
                 <div className="layout-content">
                     <div className="content-section introduction">
                         <div className="feature-intro">
-                            <h1>Ajouter un nouveau Coiffeur</h1>
-
-                            <p>Sur select Job ajouter sur onchange un handle change? Reparation des bouton bouleen</p>
+                            <h1>Ajouter une maraude</h1>
+                            <p>    Absent du controleur  et du models:createdAt  updatedAt, probleme d'insertion Date  ALTER TABLE Maraudes MODIFY updatedAt datetime  NULL DEFAULT '1970-01-02';
+</p>
+                           
                         </div>
                     </div>
 
@@ -91,37 +76,45 @@ export class Newcoiffeur extends Component {
                         <div className="content-section implementation inputgrid-demo">
                             <div className="p-grid p-fluid">
 
+
+
                                 <Form onSubmit={this.submitForm}>
 
-                                    <div className="p-col-12 p-md-4">
+
+                               
+                                <div className="p-col-12 p-md-4">
                                         <div className="p-inputgroup">
-                                            <span className="p-inputgroup-addon">
-                                                <i className="pi pi-user"></i>
-                                            </span>
-                                            <InputText placeholder="email" name="email" value={this.state.email}  onChange={this.handleChange} />
+                                            <InputText placeholder="userId" name="userId" onChange={this.handleChange} />
                                         </div>
                                     </div>
 
                                     <div className="p-col-12 p-md-4">
                                         <div className="p-inputgroup">
-                                            <InputText placeholder="Mot de passe" name="Password" onChange={this.handleChange} />
+                                            <InputText placeholder="titre" name="titre" onChange={this.handleChange} />
+                                        </div>
+                                    </div>
+
+
+                                    <div className="p-col-12 p-md-4">
+                                        <div className="p-inputgroup">
+                                            <InputText placeholder="Date de demarrage" name="startAt" onChange={this.handleChange} />
                                         </div>
                                     </div>
 
                                     <div className="p-col-12 p-md-4">
                                         <div className="p-inputgroup">
-                                            <InputText placeholder="Nom"  name="firstName" value={this.state.firstName} onChange={this.handleChange} />
+                                            <InputText placeholder="Fin de l'evenement"  name="endAt" onChange={this.handleChange} />
                                         </div>
                                     </div>
 
                                     <div className="p-col-12 p-md-4">
                                         <div className="p-inputgroup">
-                                            <InputText placeholder="createdAt" name="createdAt" onChange={this.handleChange} />
+                                            <InputText placeholder="description" name="description" onChange={this.handleChange} />
                                         </div>
                                     </div>
                                     <div className="p-col-12 p-md-4">
                                         <div className="p-inputgroup">
-                                            <InputText placeholder="updatedAt" name="updatedAt" onChange={this.handleChange} />
+                                            <InputText placeholder="city" name="city" onChange={this.handleChange} />
                                         </div>
                                     </div>
 
@@ -131,36 +124,30 @@ export class Newcoiffeur extends Component {
                                         </div>
                                     </div>
 
-                                    <div className="p-col-12 p-md-4">
-                                        <div className="p-inputgroup">
-                                            <InputText placeholder="Avatar" name="avatarUrl" onChange={this.handleChange} />
-                                        </div>
-                                    </div>
-
                                     <div className="p-col-4 p-md-4">
-                                        <div>Admin<InputSwitch onLabel="Yes" name="isAdmin" onChange={this.handleChange} /></div>
-                                    </div>
-                                    <div className="p-col-4 p-md-4">
-                                        <div>isActive<InputSwitch onLabel="Yes" name="isActive" onChange={this.handleChange} /></div>
-                                    </div>
-
-                                    <div className="p-col-12 p-md-4">
-                                        <div className="p-inputgroup">
-                                            <InputText placeholder="Parrain" name="godFatherId" onChange={this.handleChange} />
-                                        </div>
+                                        <div>isPublished<InputSwitch onLabel="Yes" name="isPublished" onChange={this.handleChange} /></div>
                                     </div>
 
 
-                                    <div className="p-col-12 p-md-4">
-                                        <Dropdown value={this.state.job} name="job" options={jobSelectItems} onChange={(e) => { this.setState({ job: e.value }) }} placeholder="Select a Job" />
-                                    </div>
 
 
                                     <div className="p-col-12 p-md-4">
                                         <div className="p-inputgroup">
-                                            <InputText placeholder="Code Filleul" name="invitationCode" />
+                                            <InputText placeholder="longitude" name="longitude" onChange={this.handleChange} />
                                         </div>
                                     </div>
+
+                                    <div className="p-col-12 p-md-4">
+                                        <div className="p-inputgroup">
+                                            <InputText placeholder="latitude" name="latitude" onChange={this.handleChange} />
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                 
 
 
                                     <div>

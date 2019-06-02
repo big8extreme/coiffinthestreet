@@ -6,7 +6,9 @@ import { TabView, TabPanel } from 'primereact/tabview';
 import { Fieldset } from 'primereact/fieldset';
 import MenuDemo from '../components/contents/Menu';
 import { CoiffService } from '../components/CoiffService';
-
+import {
+  Link
+} from 'react-router-dom';
 
 export default class Fichemaraude extends Component {
 
@@ -20,7 +22,6 @@ export default class Fichemaraude extends Component {
 
     componentDidMount() {
       this.coiffservice.getMaraudes().then(data => this.setState({ maraudes: data }));  
-    
       console.log(this.state.maraudes)
     
     }
@@ -32,7 +33,7 @@ export default class Fichemaraude extends Component {
         
          
           <Button type="button" icon="pi pi-search" className="p-button-success" style={{marginRight: '.5em'}}></Button>
-          <Button type="button" icon="pi pi-pencil" className="p-button-warning" style={{marginRight: '.5em'}}></Button>
+          <Link to={'/newmaraude'}><Button type="button" icon="pi pi-pencil" className="p-button-warning" style={{ marginRight: '.5em' }}></Button></Link>
           <Button type="button" icon="pi pi-times" className="p-button-danger"></Button>
 
       </div>;

@@ -32,7 +32,7 @@ import {Menu} from 'primereact/menu';
                 {
                     label: 'Account',
                     items: [{label: 'Configuration', icon: 'pi pi-fw pi-cog',url: './configuration' },
-                            {label: 'Sign Out', icon: 'pi pi-fw pi-power-off'} ]
+                            {label: 'Sign Out', icon: 'pi pi-fw pi-power-off', url: './index.html'} ]
                 }
             ]
         };

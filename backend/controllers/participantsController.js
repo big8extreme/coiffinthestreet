@@ -22,6 +22,7 @@ module.exports = {
       isValidate:req.body.isValidate,
       email:req.body.email,
       job:req.body.job
+
        })
     .then((participant) => res.json({ participant}))
     .catch((error) => res.status(500).json({error}));
