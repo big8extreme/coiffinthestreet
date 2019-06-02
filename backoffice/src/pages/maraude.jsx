@@ -16,6 +16,9 @@ export default class Fichemaraude extends Component {
     constructor() {
         super();
         this.state = {
+
+
+          
         };
         this.coiffservice = new CoiffService(); 
     }
@@ -38,6 +41,13 @@ export default class Fichemaraude extends Component {
 
       </div>;
   }
+
+  actionValid(rowData, column) {
+    return <div>
+<Button type="button" icon="pi pi-key" className="p-button-" style={{marginRight: '.5em'}}></Button>
+    </div>;
+  }
+
 
     render() {
         return (
@@ -81,6 +91,7 @@ export default class Fichemaraude extends Component {
                         <Column field="city" header="Lieu" />
                         <Column field="latitidue" header="Coiffeur" />
                         <Column body={this.actionTemplate} style={{textAlign:'center', width: '12em'}}/>
+                        <Column body={this.actionValid} style={{ textAlign: 'center', width: '5em' }}  header="Participant"/>
                     </DataTable>
                     </Fieldset>
               </div>

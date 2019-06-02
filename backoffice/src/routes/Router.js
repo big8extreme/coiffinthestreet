@@ -11,6 +11,7 @@ import Ficheparticipant from '../pages/participant';
 import Ficheconfig from '../pages/configuration';
 import { Newcoiffeur } from '../components/contents/newcoiffeur';
 import { Newmaraude } from '../components/contents/newmaraude';
+import { Newparticipant } from '../components/contents/newparticipant';
 
 class AppRouter extends Component {
   render() {
@@ -20,12 +21,13 @@ class AppRouter extends Component {
         <Route exact path='/' component={LoginForm} />
         <PrivateRoute isAdmin={user.isAdmin} exact path='/admin' component={Admin} />
         <PrivateRoute isAdmin={user.isAdmin} exact path='/maraudes' component={Fichemaraude} />
-        <PrivateRoute isAdmin={user.isAdmin} exact path='/coiffeurs' component={Fichecoiffeur} />
+        <PrivateRoute isAdmin={user.isAdmin} exact path='/users' component={Fichecoiffeur} />
         <PrivateRoute isAdmin={user.isAdmin} exact path='/participants' component={Ficheparticipant} />
         <PrivateRoute isAdmin={user.isAdmin} exact path='/api' component={Api} />
         <PrivateRoute isAdmin={user.isAdmin} exact path='/configuration' component={Ficheconfig} />
         <PrivateRoute isAdmin={user.isAdmin} exact path='/newusager' component={Newcoiffeur} />
         <PrivateRoute isAdmin={user.isAdmin} exact path='/newmaraude' component={Newmaraude} />
+        <PrivateRoute isAdmin={user.isAdmin} exact path='/newparticipant' component={Newparticipant} />
       </Switch>
     );
   }

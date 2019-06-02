@@ -30,15 +30,14 @@ export class Newcoiffeur extends Component {
             updatedAt: '',
             value: ''
         };
-        this.handleChange = this.handleChange.bind(this);
+      //  this.handleChange = this.handleChange.bind(this);
         this.submitForm = this.submitForm.bind(this);
     }
 
-    handleChange = e => this.setState({
+    handleChan44ge = e => this.setState({
         [e.target.name]: e.target.value
     })
     submitForm = event => {
-        event.preventDefault();
 
         const user = {
             firstName: this.state.firstName,
@@ -55,18 +54,22 @@ export class Newcoiffeur extends Component {
             updatedAt: this.state.updatedAt
         };
 
-        axios.post('http://localhost:3000/users', {
+        axios.post('http://localhost:3000/users', { user }, {
             headers: { Authorization: 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqb2huLWRvZUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE1NTkyMzY2Mjh9.6jcK8-WPUqcpmdwnf3nbTAhmYWeNddEeYJeIoQyF9rs' }
-        }, { user }
+        }
         )
-            .then(res => {
-                console.log(res);
-                console.log(res.data);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+            event.preventDefault();
+
     }
+
+
+    handleChange = e => this.setState({ [e.target.name]: e.target.value });
 
     render() {
 
@@ -121,7 +124,7 @@ export class Newcoiffeur extends Component {
 
                                     <div className="p-col-12 p-md-4">
                                         <div className="p-inputgroup">
-                                            <InputText placeholder="Mot de passe" name="password" type="text" onChange={this.handleChange} />
+                                            <InputText placeholder="Mot de passe" name="password"  value={this.state.password} type="text" onChange={this.handleChange} />
                                         </div>
                                     </div>
 
@@ -174,9 +177,10 @@ export class Newcoiffeur extends Component {
                                         <Button type="submit" value="Envoyer" >Submit</Button>
                                     </div>
                                 </Form>
+
                             </div>
                         </div>
-                   </div>
+                    </div>
                 </div>
             </div>
 

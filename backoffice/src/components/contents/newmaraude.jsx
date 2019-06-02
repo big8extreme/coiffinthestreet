@@ -11,7 +11,7 @@ export class Newmaraude extends Component {
     constructor() {
         super();
         this.state = {
-
+            maraude:'',
             userId: '',
             title: '',
             startAt: '',
@@ -44,7 +44,7 @@ export class Newmaraude extends Component {
             latitude: this.state.latitude
            };
        
-       axios.post(`http://localhost:3000/maraudes`, { maraude })
+       axios.post('http://localhost:3000/maraudes', { maraude })
           .then(res => {
             console.log(res);
               console.log(res.data);

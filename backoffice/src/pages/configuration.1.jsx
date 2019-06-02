@@ -6,7 +6,7 @@ import { TabView, TabPanel } from 'primereact/tabview';
 import { Fieldset } from 'primereact/fieldset';
 import MenuDemo from '../components/contents/Menu';
 import { CoiffService } from '../components/CoiffService';
-import {InputText} from 'primereact/inputtext';
+
 
 export default class Ficheconfig extends Component {
   constructor() {
@@ -53,43 +53,7 @@ export default class Ficheconfig extends Component {
                 <div>
                   <Fieldset legend="En cours">
 
-
-                  <div>
-            
-                <div className="content-section implementation">
-                    <h3>Filtering</h3>
-                    <div className="p-grid p-fluid">
-                        <div className="p-col-12 p-md-4">
-                            <InputText keyfilter="int" placeholder="Integers"/>
-                        </div>
-                        <div className="p-col-12 p-md-4">
-                            <InputText keyfilter="num" placeholder="Numbers"/>
-                        </div>
-                        <div className="p-col-12 p-md-4">
-                            <InputText keyfilter="money" placeholder="Money"/>
-                        </div>
-                        <div className="p-col-12 p-md-4">
-                            <InputText keyfilter="hex" placeholder="Hex"/>
-                        </div>
-                        <div className="p-col-12 p-md-4">
-                            <InputText keyfilter="alpha" placeholder="Alphabetic"/>
-                        </div>
-                        <div className="p-col-12 p-md-4">
-                            <InputText keyfilter="alphanum" placeholder="Alphanumberic"/>
-                        </div>
-                        <div className="p-col-12 p-md-4">
-                            <InputText keyfilter={/^[^<>*!]+$/} placeholder="Block < > * !"/>
-                        </div>
-                        <div className="p-col-12 p-md-4">
-                            <InputText keyfilter={/[^\s]/} placeholder="Block space key"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-
+              
                   </Fieldset>
                                 </div>
               </TabPanel>

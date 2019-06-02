@@ -11,7 +11,7 @@ import {Menu} from 'primereact/menu';
                     label: 'GENERAL',
                     items: [{label: 'Home', icon: 'pi pi-fw pi-home', url: './'},
                     {label: 'Maraude', icon: 'pi pi-fw pi-calendar', url: './maraudes'},
-                      {label: 'Coiffeur', icon: 'pi pi-fw pi-user', url: './coiffeurs'},
+                      {label: 'Coiffeur', icon: 'pi pi-fw pi-user', url: './users'},
                       {label:'Participant',icon:'pi pi-fw pi-users',url: './participants'}
                 
                 ]
