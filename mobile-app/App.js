@@ -6,7 +6,8 @@ import persistor from './store/persistor';
 import StackNavigator from './navigation/StackNavigator';
 import { Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
-import { Text } from 'react-native'
+import { Text } from 'react-native';
+
 
 export default class App extends React.Component {
   constructor(props) {
