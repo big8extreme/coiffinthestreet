@@ -8,11 +8,11 @@ const participantController = require('../controllers/participantsController');
 //router.get('/', passport.authenticate('jwt', { session: false }), participantController.index);
 
 
-router.get('/',  participantController.index);
+router.get('/',passport.authenticate('jwt', { session: false }),   participantController.index);
 
-router.get('/:id',  participantController.show);
+router.get('/:id', passport.authenticate('jwt', { session: false }),  participantController.show);
 
-router.post('/',  participantController.create);
+router.post('/',passport.authenticate('jwt', { session: false }),   participantController.create);
 
 
 module.exports = router;

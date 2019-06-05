@@ -7,11 +7,11 @@ const maraudeController = require('../controllers/maraudesController');
 // Use header "Authorization": "bearer token-generated-by-signin"
 router.get('/', passport.authenticate('jwt', { session: false }), maraudeController.index);
 
-router.get('/',  maraudeController.index);
+router.get('/', passport.authenticate('jwt', { session: false }),  maraudeController.index);
 
-router.get('/:id',  maraudeController.show);
+router.get('/:id',passport.authenticate('jwt', { session: false }),   maraudeController.show);
 
-router.post('/',  maraudeController.create);
+router.post('/', passport.authenticate('jwt', { session: false }),  maraudeController.create);
 
 
 module.exports = router;
