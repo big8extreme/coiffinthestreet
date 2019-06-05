@@ -5,6 +5,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var maraudesRouter = require('./routes/maraudes');
 var authRouter = require('./routes/auth');
 
 const passport = require('passport');
@@ -29,4 +30,6 @@ jwtAuthStrategy;
 app.use('/', indexRouter);
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/users', usersRouter);
+app.use('/api/v1/maraudes', maraudesRouter);
+
 module.exports = app;
