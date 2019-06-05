@@ -13,13 +13,19 @@ import { Newcoiffeur } from '../components/contents/newcoiffeur';
 import { Newmaraude } from '../components/contents/newmaraude';
 import { Newparticipant } from '../components/contents/newparticipant';
 
-class AppRouter extends Component {
+class AppRouterannexe extends Component {
   render() {
-    const { user } = this.props.authentification;
+
     return (
       <Switch>
-        <Route exact path='/' component={LoginForm} />
-        <PrivateRoute isAdmin={user.isAdmin} path='/admin' component={Admin} />
+        <Route exact path='/admin/maraudes' component={Fichemaraude} />
+        <Route exact path='/admin/users' component={Fichecoiffeur} />
+        <Route exact path='/admin/participants' component={Ficheparticipant} />
+        <Route exact path='/admin/api' component={Api} />
+        <Route exact path='/admin/configuration' component={Ficheconfig} />
+        <Route exact path='/admin/newusager' component={Newcoiffeur} />
+        <Route exact path='/admin/newmaraude' component={Newmaraude} />
+        <Route exact path='/admin/newparticipant' component={Newparticipant} />
       </Switch>
     );
   }
@@ -34,4 +40,4 @@ const mapDispatchToProps = {
 };
 
 // @ts-ignore
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AppRouter));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AppRouterannexe));

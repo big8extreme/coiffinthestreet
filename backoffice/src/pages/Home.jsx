@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 import List from '../components/contents/Liste';
-import Code from '../components/contents/Code';
+
 
 
 export default class Home extends Component {
@@ -13,8 +13,7 @@ export default class Home extends Component {
 
       <React.Fragment>
 
-        <List />
-        <Code />
+       
 
       </React.Fragment>
 
