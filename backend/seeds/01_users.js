@@ -24,7 +24,7 @@ for(let i = 2; i < 11; i++){
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
     email: faker.internet.email(),
-    password: faker.internet.password(),
+    password: 'test1234',
     avatarUrl: faker.image.avatar(),
     isAdmin: false,
     isActive: true,
