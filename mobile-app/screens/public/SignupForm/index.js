@@ -1,22 +1,37 @@
 import React, { Component } from 'react';
-import { Text, ScrollView, Image } from 'react-native';
+import { Text, ScrollView, TouchableOpacity, Image, } from 'react-native';
 import { Avatar } from 'react-native-elements';
-import { Input, Item, Button, Icon } from 'native-base';
+import { Input, Item, Form } from 'native-base';
 import { ImagePicker, Permissions } from 'expo';
 
 
 
+
+
 export default class SignupForm extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state = {         
-                avatar: null,
-                password:true,
-                
+        this.state = {
+            avatar: null,
+            password: '',
+            email:''
+
+
         }
     }
-    
-    
+
+
+    isValid = () => {
+       const {email, password} = this.state
+       return email && password
+    }
+
+    handleChange = e => {
+        const { value, name } = e.target;
+        this.setState({ [name]: value });
+      };
+
+
     pickFromGallery = async () => {
         const permissions = Permissions.CAMERA_ROLL;
         const { status } = await Permissions.askAsync(permissions)
@@ -28,12 +43,14 @@ export default class SignupForm extends Component {
             console.log(permissions, 'SUCCESS', image);
             console.log("ENTER HERERERERREREREREERREERRE", permissions, 'SUCCESS', image);
             console.log("ENTER IMAGESSSSS", image);
-            this.setState({avatar: image})
+            this.setState({ avatar: image })
         }
     }
 
+
+
     render() {
-      
+
         return (
             <ScrollView style={style.scrollview}>
 
@@ -44,13 +61,14 @@ export default class SignupForm extends Component {
                     showEditButton
                     size="large"
                     source={this.state.avatar}
-                    />          
+                />
 
-                
+
                 <Text style={style.text}>Nom</Text>
                 <Item
                     regular
-                    style={style.input}>
+                    style={style.input}
+                >
                     <Input />
                 </Item>
 
@@ -71,24 +89,36 @@ export default class SignupForm extends Component {
                 <Text style={style.text}>E-mail</Text>
                 <Item
                     regular
-                    style={style.input}>
-                    <Input />
+                    style={style.input}
+                    value={this.state.email}
+                    name='email'
+                    onChange={this.handleChange}
+                >
+                    <Input
+                   
+                    />
                 </Item>
 
                 <Text style={style.text}>Mot de passe</Text>
                 <Item
                     regular
-                    style={style.input}>
+                    style={style.input}
                    
-                    <Input secureTextEntry={true} />
-                    
+                    value={this.state.password}
+                    name='password'
+                    onChange={this.handleChange}
+
+                >
+                    <Input
+                        secureTextEntry={true}
+                    />
                 </Item>
 
                 <Text style={style.text}>Confirmer le mot de passe</Text>
                 <Item
                     regular
                     style={style.input}>
-                    <Input secureTextEntry={true}/>
+                    <Input secureTextEntry={true} />
                 </Item>
 
                 <Text style={style.text}>Ville</Text>
@@ -97,34 +127,22 @@ export default class SignupForm extends Component {
                     style={style.input}>
                     <Input />
                 </Item>
-                <Button block
-                    style={{ 
-                    backgroundColor: '#112249', 
-                    width:270,
-                    marginBottom:20,
-                    justifyContent:'center' }}>
-                    <Text style={{ color: 'white' }}>Valider</Text>
-                </Button>
-                <Button block
-                    style={{ backgroundColor: '#D73A3A' }}>
-                    <Text style={{ color: 'white' }}>Supprimer mon compte</Text>
-                </Button>
+
+
+                <TouchableOpacity
+                disabled={!this.state.isValid}>
+                    <Image source={require('../../../assets/Btn_Valider.png')}
+                        style={style.BtnValidate}
+                        disabled={!this.state.isValid}
+                    />
+                </TouchableOpacity>
                 
-    </ScrollView>
+            </ScrollView>
         )
     }
 }
-_pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      allowsEditing: true,
-      aspect: [4, 3],
-    });
-    console.log(result);
 
-    if (!result.cancelled) {
-      this.setState({ image: result.uri });
-    }
-}
+
 
 const style = {
     title: {
@@ -135,7 +153,7 @@ const style = {
         textAlign: 'center'
     },
     input: {
-        borderWidth: 2,
+        borderWidth: 1,
         borderColor: '#FDC500',
         marginBottom: 10,
         marginLeft: 10,
@@ -152,5 +170,13 @@ const style = {
     },
     scrollview: {
         paddingTop: 20
+    },
+    BtnValidate: {
+        marginTop: 30
+    },
+    BtnDelete: {
+        marginBottom: 30,
+        marginTop: 20
+
     }
 }

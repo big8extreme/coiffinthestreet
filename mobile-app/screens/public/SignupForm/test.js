@@ -1,48 +1,46 @@
-import React from 'react';
-import { Button,View } from 'react-native';
-import { ImagePicker, Permissions } from 'expo';
+import React, { Component } from 'react';
+import { Modal, Text, TouchableHighlight, View, Alert } from 'react-native';
 
+export class ModalExample extends Component {
+    state = {
+        modalVisible: false,
+    };
 
-
-export default class ImagePickerExample extends React.Component {
-
-    pickFromGallery = async () => {
-        const permissions = Permissions.CAMERA_ROLL;
-        const { status } = await Permissions.askAsync(permissions)
-        console.log(permissions, status);
-        if (status === 'granted') {
-            let image = await ImagePicker.launchImageLibraryAsync({
-                mediaTypes: 'Images',
-            }).catch(error => console.log(permissions, { error }));
-            console.log(permissions, 'SUCCESS', image);
-        }
-    }
-    
-    pickFromCamera = async () => {
-        const permissions = Permissions.CAMERA;
-        const { status } = await Permissions.askAsync(permissions);
-
-        console.log(permissions, status);
-        if (status === 'granted') {
-            let image = await ImagePicker.launchCameraAsync({
-                mediaTypes: 'Images',
-            }).catch(error => console.log(permissions, { error }));
-            console.log(permissions, 'SUCCESS', image);
-        }
+    setModalVisible(visible) {
+        this.setState({ modalVisible: visible });
     }
 
     render() {
-
         return (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <Button
-                    title="Pick an image from camera roll"
-                    onPress={this.pickFromGallery}
-                />
+            <View style={{ marginTop: 22 }}>
+                <Modal
+                    animationType="slide"
+                    transparent={false}
+                    visible={this.state.modalVisible}
+                    onRequestClose={() => {
+                        Alert.alert('Modal has been closed.');
+                    }}>
+                    <View style={{ marginTop: 22 }}>
+                        <View>
+                            <Text>Hello World!</Text>
 
+                            <TouchableHighlight
+                                onPress={() => {
+                                    this.setModalVisible(!this.state.modalVisible);
+                                }}>
+                                <Text>Hide Modal</Text>
+                            </TouchableHighlight>
+                        </View>
+                    </View>
+                </Modal>
+
+                <TouchableHighlight
+                    onPress={() => {
+                        this.setModalVisible(true);
+                    }}>
+                    <Text>Show Modal</Text>
+                </TouchableHighlight>
             </View>
         );
     }
-
-
 }
