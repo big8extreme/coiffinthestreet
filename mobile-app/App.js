@@ -6,8 +6,8 @@ import persistor from './store/persistor';
 import StackNavigator from './navigation/StackNavigator';
 import { Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
-import { Text, SafeAreaView } from 'react-native'
-
+import { Text } from 'react-native';
+import { SafeAreaView } from 'react-navigation';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -34,7 +34,7 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <SafeAreaView style={{ flex: 1 }}>
+          <SafeAreaView style={{ flex: 1 }} forceInset={{ bottom: 'never' }}>
             <StackNavigator />
           </SafeAreaView>
         </PersistGate>
