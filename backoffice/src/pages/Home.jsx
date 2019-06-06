@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
-import '../App.css';
-import List from '../components/contents/Liste';
+
+import Flexbutton from '../components/Liste';
+
 
 
 
 export default class Home extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
-
       <React.Fragment>
-
-       
-
+        <div>
+          <Flexbutton />
+        </div>
       </React.Fragment>
 
     );

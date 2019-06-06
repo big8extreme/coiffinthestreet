@@ -1,26 +1,32 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { logout } from '../stores/actions/auth';
-import Axios from 'axios';
 import MenuDemo from './contents/Menu';
-
-import {
-  Card, CardHeader, CardBody,
-  CardTitle, CardText
-} from 'reactstrap';
-import List from './Liste';
 import Routerannexe from '../routes/Routerannexe';
-
 
 export class Admin extends Component {
   render() {
     return (
 
       <React.Fragment>
-<MenuDemo />
-<Routerannexe />
 
-      </React.Fragment>
+        <div className="layout-wrapper">
+
+          <div className="layout-topbar">
+          </div>
+
+          <div className="layout-sidebar">
+            <MenuDemo />
+          </div>
+
+          <div className="layout-content">
+          <Routerannexe />
+          <div className="layout-footer">
+          </div>
+        </div>
+       
+        </div>
+      </React.Fragment >
     );
   }
 }

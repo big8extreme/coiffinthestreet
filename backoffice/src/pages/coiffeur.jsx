@@ -4,14 +4,12 @@ import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 import { TabView, TabPanel } from 'primereact/tabview';
 import { Fieldset } from 'primereact/fieldset';
-import MenuDemo from '../components/contents/Menu';
 import { CoiffService } from '../components/CoiffService';
 import {InputSwitch} from 'primereact/inputswitch';
 import {
   Link
 } from 'react-router-dom';
 import { Newcoiffeur } from '../components/contents/newcoiffeur';
-
 
 export default class Fichecoiffeur extends Component {
   constructor() {
@@ -22,17 +20,15 @@ export default class Fichecoiffeur extends Component {
     this.coiffservice = new CoiffService();
   }
 
-
   componentDidMount() {
     this.coiffservice.getUsers().then(data => this.setState({ users: data }));
-
   }
 
   actionTemplate(rowData, column) {
     return <div>
       <Button type="button" icon="pi pi-search" className="p-button-success" style={{ marginRight: '.5em' }}></Button>
 
-    <Link to={'/newusager/'}><Button type="button" icon="pi pi-pencil" className="p-button-warning" style={{ marginRight: '.5em' }}></Button></Link>
+    <Link to={'/admin/newusager/'}><Button type="button" icon="pi pi-pencil" className="p-button-warning" style={{ marginRight: '.5em' }}></Button></Link>
       <Button type="button" icon="pi pi-times" className="p-button-danger"></Button>
     </div>;
   }
@@ -45,18 +41,9 @@ export default class Fichecoiffeur extends Component {
   }
 
   render() {
-
     return (
-
-      <div className="layout-wrapper">
-        <div className="layout-topbar">
-        </div>
-        <div className="layout-sidebar">
-          <MenuDemo />
-        </div>
-
-        <div className="layout-content">
-
+    
+     <div>
           <div className="content-section introduction">
             <div className="feature-intro">
               <h1>Les Coiffeurs</h1>
@@ -79,11 +66,9 @@ export default class Fichecoiffeur extends Component {
                       <Column body={this.actionTemplate} style={{ textAlign: 'center', width: '12em' }}  header="action" />
                       <Column body={this.actionValid} style={{ textAlign: 'center', width: '5em' }}  header="actif"/>
                     </DataTable>
-
                   </Fieldset>
                 </div>
               </TabPanel>
-
 
               <TabPanel header="attente de validation">
                 <div>
@@ -100,19 +85,15 @@ export default class Fichecoiffeur extends Component {
               </TabPanel>
               <TabPanel header="Ajouter">
                 <div>
-                  <Fieldset legend="En cours">
+                  <Fieldset legend="Remplir les champs suivants">
                     <Newcoiffeur />
                   </Fieldset>
                 </div>
               </TabPanel>
-    
-
-
-            </TabView>
+             </TabView>
           </div>
-
-        </div>
-      </div>
+          </div>
+   
     );
   }
 }
