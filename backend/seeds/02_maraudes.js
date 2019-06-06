@@ -143,8 +143,46 @@ Maraude.create({
   description: faker.lorem.sentence(),
   city: 'Marseille',
   isPublished: true,
-  longitude: '5.367508',
-  latitude: '43.240201',
+  longitude: '5.362921',
+  latitude: '43.233866',
+  photos: [
+    { url: faker.image.imageUrl() },
+    { url: faker.image.imageUrl() },
+    { url: faker.image.imageUrl() },
+  ]
+}, { include: ['photos'] })
+  .then((maraude) => { console.log(maraude); })
+  .catch((error) => { console.log(error); });
+
+Maraude.create({
+  userId: 9,
+  title: 'Maraude no 9',
+  startAt: new Date(),
+  endAt: new Date(),
+  description: faker.lorem.sentence(),
+  city: 'Marseille',
+  isPublished: true,
+  longitude: '5.389244',
+  latitude: '43.334752',
+  photos: [
+    { url: faker.image.imageUrl() },
+    { url: faker.image.imageUrl() },
+    { url: faker.image.imageUrl() },
+  ]
+}, { include: ['photos'] })
+  .then((maraude) => { console.log(maraude); })
+  .catch((error) => { console.log(error); });
+
+Maraude.create({
+  userId: 10,
+  title: 'Maraude no 10',
+  startAt: new Date(),
+  endAt: new Date(),
+  description: faker.lorem.sentence(),
+  city: 'Marseille',
+  isPublished: true,
+  longitude: '5.41259',
+  latitude: '43.337499',
   photos: [
     { url: faker.image.imageUrl() },
     { url: faker.image.imageUrl() },

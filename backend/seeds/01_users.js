@@ -19,123 +19,21 @@ User.create({
   })
   .catch((err) => console.log(err));
 
-  // faker users //
-
-User.create({
-  firstName: faker.name.firstName(),
-  lastName: faker.name.lastName(),
-  email: faker.internet.email(),
-  password: faker.internet.password(),
-  avatarUrl: faker.image.avatar(),
-  isAdmin: true,
-  isActive: true,
-  isBanned: false,
-  invitationCode: 'hdh98',
-  job: 'coiffeur'
-})
-  .then((user) => {
-    console.log('User created !', user);
+for(let i = 2; i < 11; i++){
+  User.create({
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    email: faker.internet.email(),
+    password: faker.internet.password(),
+    avatarUrl: faker.image.avatar(),
+    isAdmin: false,
+    isActive: true,
+    isBanned: false,
+    invitationCode: faker.lorem.word(),
+    job: 'coiffeur'
   })
-  .catch((err) => console.log(err));
-
-User.create({
-  firstName: faker.name.firstName(),
-  lastName: faker.name.lastName(),
-  email: faker.internet.email(),
-  password: faker.internet.password(),
-  avatarUrl: faker.image.avatar(),
-  isAdmin: true,
-  isActive: true,
-  isBanned: false,
-  invitationCode: 'stb63',
-  job: 'coiffeur'
-})
-  .then((user) => {
-    console.log('User created !', user);
-  })
-  .catch((err) => console.log(err));
-
-User.create({
-  firstName: faker.name.firstName(),
-  lastName: faker.name.lastName(),
-  email: faker.internet.email(),
-  password: faker.internet.password(),
-  avatarUrl: faker.image.avatar(),
-  isAdmin: true,
-  isActive: true,
-  isBanned: false,
-  invitationCode: 'ebo74',
-  job: 'coiffeur'
-})
-  .then((user) => {
-    console.log('User created !', user);
-  })
-  .catch((err) => console.log(err));
-
-User.create({
-  firstName: faker.name.firstName(),
-  lastName: faker.name.lastName(),
-  email: faker.internet.email(),
-  password: faker.internet.password(),
-  avatarUrl: faker.image.avatar(),
-  isAdmin: true,
-  isActive: true,
-  isBanned: false,
-  invitationCode: 'hdr10',
-  job: 'coiffeur'
-})
-  .then((user) => {
-    console.log('User created !', user);
-  })
-  .catch((err) => console.log(err));
-
-User.create({
-  firstName: faker.name.firstName(),
-  lastName: faker.name.lastName(),
-  email: faker.internet.email(),
-  password: faker.internet.password(),
-  avatarUrl: faker.image.avatar(),
-  isAdmin: true,
-  isActive: true,
-  isBanned: false,
-  invitationCode: 'bep47',
-  job: 'coiffeur'
-})
-  .then((user) => {
-    console.log('User created !', user);
-  })
-  .catch((err) => console.log(err));
-
-User.create({
-  firstName: faker.name.firstName(),
-  lastName: faker.name.lastName(),
-  email: faker.internet.email(),
-  password: faker.internet.password(),
-  avatarUrl: faker.image.avatar(),
-  isAdmin: true,
-  isActive: true,
-  isBanned: false,
-  invitationCode: 'map03',
-  job: 'coiffeur'
-})
-  .then((user) => {
-    console.log('User created !', user);
-  })
-  .catch((err) => console.log(err));
-
-User.create({
-  firstName: faker.name.firstName(),
-  lastName: faker.name.lastName(),
-  email: faker.internet.email(),
-  password: faker.internet.password(),
-  avatarUrl: faker.image.avatar(),
-  isAdmin: true,
-  isActive: true,
-  isBanned: false,
-  invitationCode: 'abo59',
-  job: 'coiffeur'
-})
-  .then((user) => {
-    console.log('User created !', user);
-  })
-  .catch((err) => console.log(err));
+    .then((user) => {
+      console.log('User created !', user);
+    })
+    .catch((err) => console.log(err));
+}
