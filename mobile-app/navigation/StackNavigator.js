@@ -1,15 +1,19 @@
-import { createSwitchNavigator, createStackNavigator, createAppContainer } from 'react-navigation';
-import LoginForm from '../screens/public/LoginForm'
-import Profile from '../screens/connected/Profile'
-//import MaraudeCreationForm from '../screen/connected/MaraudeCreationForm'
+import {
+  createSwitchNavigator,
+  createStackNavigator,
+  createAppContainer,
+} from "react-navigation";
+import BottomTabNav from './bottomTabNavigator'
+import LoginForm from "../screens/public/LoginForm";
+import Profile from "../screens/connected/Profile";
 
 const AppStack = createStackNavigator(
   {
     Profile: { screen: Profile }
   },
   {
-    initialRouteName: 'Profile'
-  }
+    initialRouteName: "Profile"
+  },
 );
 
 const AuthStack = createStackNavigator(
@@ -17,27 +21,19 @@ const AuthStack = createStackNavigator(
     Login: { screen: LoginForm }
   },
   {
-    initialRouteName: 'Login'
+    initialRouteName: "Login"
   }
 );
-/*
-const MaraudeCreationFormStack = createStackNavigator(
-  {
-    MaraudeCreationForm: { screen: MaraudeCreationForm }
-  },
-  {
-    initialRouteName: 'MaraudeCreationForm'
-  }
-);
-*/
 
-export default createAppContainer(createSwitchNavigator(
-  {
-    App: AppStack,
-    Auth: AuthStack,
-    //MaraudeCreationForm: MaraudeCreationFormStack,
-  },
-  {
-    initialRouteName: 'Auth',
-  }
-));
+export default createAppContainer(
+  createSwitchNavigator(
+    {
+      Tab: BottomTabNav,
+      App: AppStack,
+      Auth: AuthStack,
+    },
+    {
+      initialRouteName: "Tab"
+    }
+  )
+);
