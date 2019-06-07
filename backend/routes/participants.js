@@ -1,18 +1,15 @@
 var express = require('express');
 var router = express.Router();
-const passport = require('passport');
-const participantController = require('../controllers/participantsController');
+const participantsController = require('../controllers/participantsController');
 
-/* GET users listing. */
-// Use header "Authorization": "bearer token-generated-by-signin"
-//router.get('/', passport.authenticate('jwt', { session: false }), participantController.index);
+router.get('/', participantsController.index);
 
+router.get('/:id', participantsController.show);
 
-router.get('/',passport.authenticate('jwt', { session: false }),   participantController.index);
+router.post('/', participantsController.create);
 
-router.get('/:id', passport.authenticate('jwt', { session: false }),  participantController.show);
+router.put('/:id', participantsController.update);
 
-router.post('/',passport.authenticate('jwt', { session: false }),   participantController.create);
-
+router.delete('/:id', participantsController.delete);
 
 module.exports = router;

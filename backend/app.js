@@ -7,8 +7,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var maraudesRouter = require('./routes/maraudes');
 var authRouter = require('./routes/auth');
-var marauRouter = require('./routes/maraudes');
-var partiRouter = require('./routes/participants');
+var participantsRouter = require('./routes/participants');
 
 
 const passport = require('passport');
@@ -34,6 +33,5 @@ app.use('/', indexRouter);
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/maraudes', maraudesRouter);
-
-app.use('/api/v1/participants', partiRouter);
+app.use('/api/v1/participants', participantsRouter);
 module.exports = app;

@@ -1,13 +1,13 @@
-import React from 'react';
-import store from './store';
-import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
-import persistor from './store/persistor';
-import StackNavigator from './navigation/StackNavigator';
-import { Font } from 'expo';
-import { Ionicons } from '@expo/vector-icons';
-import { Text } from 'react-native';
-import { SafeAreaView } from 'react-navigation';
+import React from "react";
+import store from "./store";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import persistor from "./store/persistor";
+import StackNavigator from "./navigation/StackNavigator";
+import { Font } from "expo";
+import { Ionicons } from "@expo/vector-icons";
+import { Text } from "native-base";
+import { SafeAreaView } from "react-navigation";
 
 export default class App extends React.Component {
   constructor(props) {
