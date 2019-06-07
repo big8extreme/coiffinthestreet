@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Growl} from 'primereact/growl';
 import {FileUpload} from 'primereact/fileupload';;
 
-export class FileUploadDemo extends Component {
+export class Hairdresseravatar extends Component {
         
     constructor() {
         super();

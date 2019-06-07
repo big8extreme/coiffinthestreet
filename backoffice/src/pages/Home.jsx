@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-
-import Flexbutton from '../components/Liste';
+import Navpanel from '../components/navpanel';
 
 
 
@@ -8,12 +7,11 @@ import Flexbutton from '../components/Liste';
 export default class Home extends Component {
   render() {
     return (
-      <React.Fragment>
+   
         <div>
-          <Flexbutton />
+          <Navpanel />
         </div>
-      </React.Fragment>
-
+ 
     );
   }
 }

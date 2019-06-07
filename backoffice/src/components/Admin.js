@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { logout } from '../stores/actions/auth';
-import MenuDemo from './contents/Menu';
+import MenuLeft from './contents/menuleft';
 import Routerannexe from '../routes/Routerannexe';
 
 export class Admin extends Component {
@@ -16,13 +16,14 @@ export class Admin extends Component {
           </div>
 
           <div className="layout-sidebar">
-            <MenuDemo />
+            <MenuLeft />
           </div>
 
           <div className="layout-content">
           <Routerannexe />
           <div className="layout-footer">
           </div>
+          
         </div>
        
         </div>

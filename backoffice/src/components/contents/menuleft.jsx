@@ -5,7 +5,7 @@ import { logout } from '../../stores/actions/auth';
 import { withRouter } from 'react-router-dom';
 
 
-export class MenuDemo extends React.Component {
+export class MenuLeft extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -62,4 +62,4 @@ const mapDispatchToProps = {
 };
 
 // @ts-ignore
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MenuDemo));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MenuLeft));

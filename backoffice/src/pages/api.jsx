@@ -3,19 +3,11 @@ import React, { Component } from 'react';
 import { TabView, TabPanel } from 'primereact/tabview';
 import { Fieldset } from 'primereact/fieldset';
 import { Button } from 'primereact/button';
-import MenuDemo from '../components/contents/Menu';
+
 
 export default class Api extends Component {
   render() {
     return (
-
-      <div className="layout-wrapper">
-        <div className="layout-topbar">
-        </div>
-        <div className="layout-sidebar">
-          <MenuDemo />
-        </div>
-        <div className="layout-content">
 
           <div>
             <div className="content-section introduction">
@@ -174,8 +166,7 @@ export default class Api extends Component {
 
             </div>
           </div>
-        </div>
-      </div>
+    
     )
   }
 }

@@ -6,9 +6,9 @@ import { Dropdown } from 'primereact/dropdown';
 import { InputSwitch } from 'primereact/inputswitch';
 import { Form } from 'reactstrap';
 import axios from 'axios';
-import { FileUploadDemo } from './newcoiffeurpicture';
+import { Hairdresseravatar } from './hairdresseravatar';
 
-export class Newcoiffeur extends Component {
+export class Hairdressernew extends Component {
 
     constructor(props) {
         super(props);
@@ -137,7 +137,7 @@ export class Newcoiffeur extends Component {
 
                         <div>
                             <div className="p-col-6 p-md-4">
-                                <FileUploadDemo />
+                                <Hairdresseravatar />
                             </div>
                         </div>
 

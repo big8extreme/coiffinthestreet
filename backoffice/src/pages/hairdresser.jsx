@@ -9,9 +9,9 @@ import {InputSwitch} from 'primereact/inputswitch';
 import {
   Link
 } from 'react-router-dom';
-import { Newcoiffeur } from '../components/contents/newcoiffeur';
+import { Hairdressernew } from '../components/contents/hairdressernew';
 
-export default class Fichecoiffeur extends Component {
+export default class Hairdresser extends Component {
   constructor() {
     super();
     this.state = {
@@ -28,7 +28,7 @@ export default class Fichecoiffeur extends Component {
     return <div>
       <Button type="button" icon="pi pi-search" className="p-button-success" style={{ marginRight: '.5em' }}></Button>
 
-    <Link to={'/admin/newusager/'}><Button type="button" icon="pi pi-pencil" className="p-button-warning" style={{ marginRight: '.5em' }}></Button></Link>
+    <Link to={'/admin/usernew/'}><Button type="button" icon="pi pi-pencil" className="p-button-warning" style={{ marginRight: '.5em' }}></Button></Link>
       <Button type="button" icon="pi pi-times" className="p-button-danger"></Button>
     </div>;
   }
@@ -83,10 +83,10 @@ export default class Fichecoiffeur extends Component {
                   </Fieldset>
                 </div>
               </TabPanel>
-              <TabPanel header="Ajouter">
+              <TabPanel id="4" header="Ajouter">
                 <div>
                   <Fieldset legend="Remplir les champs suivants">
-                    <Newcoiffeur />
+                    <Hairdressernew />
                   </Fieldset>
                 </div>
               </TabPanel>
