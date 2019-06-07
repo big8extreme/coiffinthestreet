@@ -9,7 +9,6 @@ import { Ionicons } from "@expo/vector-icons";
 import { Text } from "native-base";
 import { SafeAreaView } from "react-navigation";
 
-
 export default class App extends React.Component {
   constructor(props) {
     super(props);
