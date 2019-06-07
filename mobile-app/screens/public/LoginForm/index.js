@@ -39,6 +39,7 @@ class LoginForm extends Component {
         <View style={styles.backgroundApp}>
           <View style={styles.flexCenterImg}>
             <Image
+              // @ts-ignore
               source={require('./Logo_light.png')}
             />
           </View>
@@ -55,7 +56,8 @@ class LoginForm extends Component {
           <View style={styles.flexCenterImg}>
             <TouchableOpacity onPress={() => this.loginUser()}>
               <Image style={styles.button}
-                source={require('./connect.png')} 
+                // @ts-ignore
+                source={require('./connect.png')}
               />
             </TouchableOpacity>
           </View>
