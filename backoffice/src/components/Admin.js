@@ -1,31 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { logout } from '../stores/actions/auth';
-import MenuLeft from './contents/menuleft';
-import Routerannexe from '../routes/Routerannexe';
+import MenuLeft from './contents/MenuLeft';
+import AdminRouter from '../routes/AdminRouter';
 
 export class Admin extends Component {
   render() {
     return (
-
       <React.Fragment>
-
         <div className="layout-wrapper">
-
           <div className="layout-topbar">
           </div>
-
           <div className="layout-sidebar">
             <MenuLeft />
           </div>
-
           <div className="layout-content">
-          <Routerannexe />
-          <div className="layout-footer">
+            <AdminRouter />
+            <div className="layout-footer">
+            </div>
           </div>
-          
-        </div>
-       
         </div>
       </React.Fragment >
     );

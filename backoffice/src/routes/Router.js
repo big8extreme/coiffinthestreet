@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import LoginForm from '../components/Auth/LoginForm';
 import PrivateRoute from './PrivateRoute';
 
-
 class AppRouter extends Component {
   render() {
     const { user } = this.props.authentification;

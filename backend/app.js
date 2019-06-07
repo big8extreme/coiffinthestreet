@@ -9,7 +9,6 @@ var maraudesRouter = require('./routes/maraudes');
 var authRouter = require('./routes/auth');
 var participantsRouter = require('./routes/participants');
 
-
 const passport = require('passport');
 const { localAuthStrategy } = require('./routes/strategies/local');
 const { jwtAuthStrategy } = require('./routes/strategies/jwt');
