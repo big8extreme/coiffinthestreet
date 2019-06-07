@@ -3,17 +3,33 @@ const User = models.User;
 const Picture = models.Picture;
 const Maraude = models.Maraude;
 
-// Create User
+// Create User (godFather)
 User.create({
-  firstName: 'Tartanpion',
+  firstName: 'Parrain',
   lastName: 'DELEPAMPA',
   email: 'taattatata@gmail.com',
+  password: 'test1234',
+  avatarUrl: 'www.google/image1.png',
+  isAdmin: false,
+  isActive: true,
+  isBanned: false,
+  invitationCode: 'abcd',
+  job: 'coiffeur'
+})
+  .then((user) => { console.log(user); })
+  .catch((error) => { console.log(error); });
+
+// Create other User (childFather)
+User.create({
+  firstName: 'Filleul',
+  lastName: 'DOE',
+  email: 'filleul@gmail.com',
   password: 'test1234',
   avatarUrl: 'www.google/image2.png',
   isAdmin: false,
   isActive: true,
   isBanned: false,
-  invitationCode: 'kfdndkjfndjkfdn',
+  invitationCode: 'efgh',
   job: 'coiffeur'
 })
   .then((user) => { console.log(user); })
@@ -63,9 +79,29 @@ Maraude.findByPk(1, { include: ['photos'] })
   .catch((error) => { console.log(error); });
 
 // Find user by firstname and associate it childFather
-User.findOne({ where: { firstname: 'tartanpion' } })
+User.findOne({ where: { firstname: 'Parrain' } })
   .then((user) => {
-    user.setChildFather(4)
+    user.setChildFathers([2])
+      .then((user) => { console.log(user); })
+      .catch((error) => { console.log(error); });
+
+  })
+  .catch((error) => { console.log(error); });
+
+// Get gotFather of a  given user
+User.findOne({ where: { firstname: 'Fieul' } })
+  .then((user) => {
+    user.getGodFather()
+      .then((user) => { console.log(user); })
+      .catch((error) => { console.log(error); });
+
+  })
+  .catch((error) => { console.log(error); });
+
+// Get childFather on a given user
+User.findOne({ where: { firstname: 'Parain' } })
+  .then((user) => {
+    user.getChildFathers()
       .then((user) => { console.log(user); })
       .catch((error) => { console.log(error); });
 

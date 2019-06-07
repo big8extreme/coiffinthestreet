@@ -13,7 +13,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Maraude.associate = function (models) {
     Maraude.belongsTo(models.User, { foreignKey: 'userId', as: 'author' });
-    Maraude.hasMany(models.Picture, { as: 'photos' });
+    Maraude.hasMany(models.Picture, { as: 'photos', onDelete: 'CASCADE', hooks: true });
+    Maraude.hasMany(models.Participant, { as: 'participants', onDelete: 'CASCADE', hooks: true });
   };
   return Maraude;
 };

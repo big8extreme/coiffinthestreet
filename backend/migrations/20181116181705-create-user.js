@@ -26,6 +26,14 @@ module.exports = {
       isAdmin: {
         type: Sequelize.BOOLEAN
       },
+      godFatherId: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: {
+          model: 'Users',
+          key: 'id'
+        }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
