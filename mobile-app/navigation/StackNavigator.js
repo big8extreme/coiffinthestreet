@@ -1,17 +1,11 @@
-import React from 'react';
 import {
   createSwitchNavigator,
   createStackNavigator,
   createAppContainer,
-  createBottomTabNavigator
 } from "react-navigation";
+import BottomTabNav from './bottomTabNavigator'
 import LoginForm from "../screens/public/LoginForm";
 import Profile from "../screens/connected/Profile";
-import MapMaraudes from "../screens/connected/MapMaraudes";
-import FeedMaraudes from "../screens/connected/FeedMaraudes";
-import ListMaraudes from "../screens/connected/ListMaraudes";
-import Menu from "../screens/connected/MenuDrawer";
-import Icon from "react-native-vector-icons/Ionicons";
 
 const TabNavFooter = createBottomTabNavigator({
     Map: {
@@ -71,9 +65,9 @@ const AuthStack = createStackNavigator(
 export default createAppContainer(
   createSwitchNavigator(
     {
+      Tab: BottomTabNav,
       App: AppStack,
       Auth: AuthStack,
-      Tab: TabNavFooter
     },
     {
       initialRouteName: "Tab"

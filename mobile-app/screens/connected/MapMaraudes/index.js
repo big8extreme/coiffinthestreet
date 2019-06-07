@@ -12,17 +12,11 @@ import {
   Badge
 } from "native-base";
 import { connect } from "react-redux";
-import { logout } from "../../../store/actions/auth";
 
 export class MapMaraudes extends Component {
   render() {
     const { navigate } = this.props.navigation;
     const { auth } = this.props;
-    if (!auth.user.isConnected) {
-      setTimeout(() => {
-        navigate("Auth");
-      }, 10);
-    }
 
     return (
       <Container>
@@ -44,7 +38,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  logout
 };
 
 // @ts-ignore

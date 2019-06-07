@@ -35,11 +35,9 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <SafeAreaView
-            style={{ backgroundColor: "#F6F6F6" }}
-            forceInset={{ bottom: "never" }}
-          />
-          <StackNavigator />
+          <SafeAreaView style={{ flex: 1 }} forceInset={{ bottom: 'never' }}>
+            <StackNavigator />
+          </SafeAreaView>
         </PersistGate>
       </Provider>
     );
