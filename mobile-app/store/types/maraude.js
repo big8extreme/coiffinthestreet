@@ -1,0 +1,8 @@
+export const FETCH_MARAUDES = 'FETCH_MARAUDES';
+export const FETCH_MARAUDE = 'FETCH_MARAUDE';
+export const UPDATE_MARAUDE = 'UPDATE_MARAUDE';
+export const DELETE_MARAUDE = 'DELETE_MARAUDE';
+export const CREATE_MARAUDE = 'CREATE_MARAUDE';
+
+// Errors
+export const ERROR_ON_MARAUDE = 'ERROR_ON_MARAUDE';
