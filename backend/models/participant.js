@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     job: DataTypes.STRING
   }, {});
   Participant.associate = function (models) {
-    Participant.belongsTo(models.Maraude, { foreignKey: 'maraudeId', as: 'maraude' });
+    Participant.belongsTo(models.Maraude, { foreignKey: 'maraudeId', as: 'maraude', onDelete: 'SET NULL', hooks: true });
   };
   return Participant;
 };
