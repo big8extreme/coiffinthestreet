@@ -1,15 +1,11 @@
 import React, { Component } from 'react'
 import { ScrollView, Text } from 'react-native'
 import { Content, Form, Item, Input, Button } from 'native-base'
-import baseUrl from '../../../apiUrl'
-import Axios from 'axios'
 
-export default class MaraudeCreationForm extends Component {
-  componentDidMount = async () => {
-    Axios.post(`${baseUrl}/maraudes`)
-    .then((response) => { console.log(response); })
-    .catch((error) => { console.log(error); });
-  }
+import { connect } from 'react-redux'
+import {fetchMaraudes} from '../../../../store/actions/maraudes'
+
+export class index extends Component {
 
   render() {
     return (
@@ -51,17 +47,32 @@ export default class MaraudeCreationForm extends Component {
               <Input style={{ borderRadius: 10, marginBottom: 15, fontSize: 12, borderColor: '#FDC500', borderWidth: 2 }}
                 placeholder="Ville" />
             </Item>
+            {/*
+            //This Button serves to test the connection between frontend and api
+            //It must be replace after dev & before production
             <Button 
-            title="Créer la maraude"
-            onPress={() => this.props.logout()}
-            />
+            onPress={() => this.props.fetchMaraudes()}
+            ><Text>Crear la maraude</Text></Button>
+            */}
           </Form>
         </Content>
       </ScrollView>
     )
   }
 }
+
+const mapStateToProps = (state) => ({
+  ...state
+})
+
+const mapDispatchToProps = {
+  fetchMaraudes
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(index)
+
 /*
+Temporary code, will be delete before production
 const style = {
   input: {
     borderColor: '#FDC500', borderWidth: 2
