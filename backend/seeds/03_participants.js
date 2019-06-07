@@ -2,74 +2,16 @@ const models = require('../models');
 const Participant = models.Participant;
 const faker = require('faker');
 
-Participant.create({
-  maraudeId: 1,
-  isValidate: true,
-  email: faker.internet.email(),
-  job: 'coiffeur'
-})
-  .then((participant) => { console.log(participant); })
-  .catch((error) => { console.log(error); });
+const activities = ['coiffeur', 'estheticien', 'photographe'];
 
-Participant.create({
-  maraudeId: 2,
-  isValidate: true,
-  email: faker.internet.email(),
-  job: 'coiffeur'
-})
-  .then((participant) => { console.log(participant); })
-  .catch((error) => { console.log(error); });
-
-Participant.create({
-  maraudeId: 3,
-  isValidate: true,
-  email: faker.internet.email(),
-  job: 'coiffeur'
-})
-  .then((participant) => { console.log(participant); })
-  .catch((error) => { console.log(error); });
-
-Participant.create({
-  maraudeId: 4,
-  isValidate: true,
-  email: faker.internet.email(),
-  job: 'coiffeur'
-})
-  .then((participant) => { console.log(participant); })
-  .catch((error) => { console.log(error); });
-
-Participant.create({
-  maraudeId: 5,
-  isValidate: true,
-  email: faker.internet.email(),
-  job: 'coiffeur'
-})
-  .then((participant) => { console.log(participant); })
-  .catch((error) => { console.log(error); });
-
-Participant.create({
-  maraudeId: 6,
-  isValidate: true,
-  email: faker.internet.email(),
-  job: 'coiffeur'
-})
-  .then((participant) => { console.log(participant); })
-  .catch((error) => { console.log(error); });
-
-Participant.create({
-  maraudeId: 7,
-  isValidate: true,
-  email: faker.internet.email(),
-  job: 'coiffeur'
-})
-  .then((participant) => { console.log(participant); })
-  .catch((error) => { console.log(error); });
-
-Participant.create({
-  maraudeId: 8,
-  isValidate: true,
-  email: faker.internet.email(),
-  job: 'coiffeur'
-})
-  .then((participant) => { console.log(participant); })
-  .catch((error) => { console.log(error); });
+for(let i = 1; i < 11; i++){
+  
+  Participant.create({
+    maraudeId: 2,
+    isValidate: true,
+    email: faker.internet.email(),
+    job: activities[Math.floor(Math.random()*activities.length)]
+  })
+    .then((participant) => { console.log(participant); })
+    .catch((error) => { console.log(error); });
+}
