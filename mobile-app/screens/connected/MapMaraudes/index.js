@@ -12,6 +12,7 @@ import {
   Badge
 } from "native-base";
 import { connect } from "react-redux";
+import MapMarker from "./MapMarker";
 
 export class MapMaraudes extends Component {
   render() {
@@ -28,6 +29,7 @@ export class MapMaraudes extends Component {
           </Body>
           <Right />
         </Header>
+        <MapMarker navigation={{navigate}} />
       </Container>
     );
   }
