@@ -7,10 +7,12 @@ const userController = require('../controllers/usersController');
 // Use header "Authorization": "bearer token-generated-by-signin"
 //router.get('/', passport.authenticate('jwt', { session: false }), userController.index);
 
-router.get('/',passport.authenticate('jwt', { session: false }),   userController.index);
+router.get('/', passport.authenticate('jwt', { session: false }), userController.index);
 
-router.get('/:id', passport.authenticate('jwt', { session: false }),  userController.show);
+router.get('/:id', passport.authenticate('jwt', { session: false }), userController.show);
 
-router.post('/', passport.authenticate('jwt', { session: false }),  userController.create);
+router.post('/', passport.authenticate('jwt', { session: false }), userController.create);
+
+// NE PAS TOUCHER HAFID S'OCCUPE DE FINIR
 
 module.exports = router;
