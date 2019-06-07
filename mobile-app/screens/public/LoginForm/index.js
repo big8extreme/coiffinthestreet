@@ -10,7 +10,6 @@ class LoginForm extends Component {
   };
   constructor(props) {
     super(props)
-
     this.state = {
       email: '',
       password: ''
@@ -68,7 +67,7 @@ class LoginForm extends Component {
 
 const styles = StyleSheet.create({
   backgroundApp: {
-    backgroundColor: '#3F3F3F', flex: 1,
+    backgroundColor: '#4E4E4E', flex: 1,
   },
 
   flexCenterImg: {
