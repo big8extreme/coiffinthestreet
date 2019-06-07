@@ -13,7 +13,7 @@ const AppStack = createStackNavigator(
 );
 const AuthStack = createStackNavigator(
   {
-    Login: { screen: Connexion }
+    Login: { screen: LoginForm }
   },
   {
     initialRouteName: 'Login'
