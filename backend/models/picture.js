@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     maraudeId: DataTypes.INTEGER,
   }, {});
   Picture.associate = function (models) {
-    Picture.belongsTo(models.Maraude, { foreignKey: 'maraudeId', as: 'maraude' });
+    Picture.belongsTo(models.Maraude, { foreignKey: 'maraudeId', as: 'maraude', onDelete: 'SET NULL', hooks: true });
   };
   return Picture;
 };

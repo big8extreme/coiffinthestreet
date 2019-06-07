@@ -12,7 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     isActive: DataTypes.BOOLEAN,
     isBanned: DataTypes.BOOLEAN,
     invitationCode: DataTypes.STRING,
-    job: DataTypes.STRING
+    job: DataTypes.STRING,
+    godFatherId: DataTypes.INTEGER,
   }, {
       hooks: {
         beforeCreate: (user, options) => {
@@ -23,7 +24,9 @@ module.exports = (sequelize, DataTypes) => {
       }
     });
   User.associate = function (models) {
-    User.belongsToMany(models.User, { foreignKey: 'godFatherId', through: 'GodFather', as: 'childFather' });
+    User.belongsTo(models.User, { foreignKey: 'godFatherId', as: 'godFather' });
+    User.hasMany(models.User, { foreignKey: 'godFatherId', as: 'childFathers' });
+    User.hasMany(models.Maraude, { as: 'maraudes'});
   };
   return User;
 };
