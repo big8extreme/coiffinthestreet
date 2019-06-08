@@ -1,6 +1,8 @@
 import { createSwitchNavigator, createStackNavigator, createAppContainer } from 'react-navigation';
 import LoginForm from '../screens/public/LoginForm'
 import Profile from '../screens/connected/Profile'
+import Contact from '../screens/connected/Profile/contact';
+
 
 const AppStack = createStackNavigator(
   {
@@ -12,7 +14,7 @@ const AppStack = createStackNavigator(
 );
 const AuthStack = createStackNavigator(
   {
-    Login: { screen: LoginForm }
+    Login: { screen: Contact }
   },
   {
     initialRouteName: 'Login'
