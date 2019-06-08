@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Dashboard from '../pages/Dashboard';
 import UserPanel from '../pages/UserPanel';
 
-class Routerannexe extends Component {
+class AdminRouter extends Component {
   render() {
 
     return (
@@ -25,4 +25,4 @@ const mapDispatchToProps = {
 };
 
 // @ts-ignore
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Routerannexe));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AdminRouter));
