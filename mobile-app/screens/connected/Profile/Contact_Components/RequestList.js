@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import { Platform, StyleSheet, FlatList, Text, View, Alert } from "react-native";
+import { StyleSheet, FlatList, Text, View, Alert } from "react-native";
 
 export default class RequestList extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             FlatListItems: [
                 { key: 'Problème technique' },
@@ -13,13 +12,11 @@ export default class RequestList extends Component {
             ]
         };
     }
-
     FlatListItemSeparator = () => {
         return (
             <View style={{ height: 1, width: "100%", backgroundColor: "#607D8B" }} />
         );
     };
-
     GetItem(item) {
         Alert.alert("Vous avez sélectionné " + item);
     }
@@ -41,17 +38,15 @@ export default class RequestList extends Component {
     }
 }
 
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-  
     },
     RequestTitle: {
         fontSize: 18,
         color: '#F1F0C7',
-        margin: 10,
+        margin: 11,
         fontWeight: 'bold',
         fontFamily: 'Georgia',
     },
@@ -62,10 +57,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         padding: 10,
         width: '90%',
-        
-        
-
-
+        marginLeft: 11,
     },
     item: {
         padding: 10,
