@@ -8,12 +8,12 @@ import { Form } from 'reactstrap';
 import axios from 'axios';
 import { Useravatar } from './useravatar';
 
-export class Usernew extends Component {
+export class Userupdate extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            firstName: '',
+            firstName: 'PAULINE',
             lastName: '',
             email: '',
             password: '',

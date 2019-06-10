@@ -12,7 +12,7 @@ class AdminRouter extends Component {
       <Switch>
         <Route exact path='/admin' component={Dashboard} />
         <Route exact path='/admin/users' component={UserPanel} />
-        <Route exact path='/admin/users/:id' component={Userdel} />
+        <Route exact path='/admin/usersup/:id' component={Userdel} />
       </Switch>
     );
   }

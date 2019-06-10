@@ -5,7 +5,6 @@ import { Button } from 'primereact/button';
 import { Fieldset } from 'primereact/fieldset';
 import { UsersService } from './usersService';
 import { InputSwitch } from 'primereact/inputswitch';
-import axios from 'axios';
 import {
   Link
 } from 'react-router-dom';
@@ -25,42 +24,38 @@ export default class UserList extends Component {
 
   actionTemplate(rowData, column) {
     return <div>
-       <Button type="button" icon="pi pi-search" className="p-button-success" style={{ marginRight: '.5em' }}></Button>
-      <Link to={'/admin/users/'+rowData.id}><Button type="button" icon="pi pi-pencil" className="p-button-warning" placeholder={rowData.id} style={{ marginRight: '.5em' }}></Button></Link>
-       <Button type="button" icon="pi pi-times" className="p-button-danger" onClick={() => this.handleClick(rowData.id)}  > </Button>
-        </div>;
+      <Link to={'/admin/usermod/' + rowData.id}><Button type="button" icon="pi pi-search" className="p-button-success" style={{ marginRight: '.5em' }}></Button></Link>
+      <Button type="button" icon="pi pi-pencil" className="p-button-warning" onClick={() => this.handleClick(rowData.isAdmin)} style={{ marginRight: '.5em' }} > </Button>
+      <Link to={'/admin/usersup/' + rowData.id}><Button type="button" icon="pi pi-times" className="p-button-danger" ></Button></Link>
+
+    </div>;
+  }
+  //deleted soit pas link axios soit par component???
+  handleClick(dd) {
+    console.log(dd);
+    return <div>
+      <Userdel selecUser={dd} />
+    </div>;
   }
 
-handleClick(dd){
-  return <div>
-  <Userdel selecUser={dd} />
-</div>;
-} 
-
-handleClock(dd){
-  return <div>
-  <Userdel selecUser={dd} />
-  </div>;
-} 
-
-actionValid(rowData, column) {
+  actionValid(rowData, column) {
     return <div>
-      <InputSwitch onLabel="Yes" />
+      <InputSwitch checked={rowData.isAdmin} />
     </div>;
   }
 
   render() {
     return (
       <div>
-          
+
         <Fieldset legend="En cours">
           <p>Fiche Update coiffeur, Lien vers Particpants, </p>
           <DataTable value={this.state.users}>
             <Column field="lastName" header="Nom" />
             <Column field="firstName" header="Prenom" />
-            <Column field="id" header="Ville"  />
+            <Column field="id" header="Ville" />
             <Column field="email" header="mail" />
-           <Column body={this.actionTemplate.bind(this)} style={{ textAlign: 'center', width: '12em' }} header="action" />
+            <Column body={this.actionTemplate.bind(this)} style={{ textAlign: 'center', width: '12em' }} header="action" />
             <Column body={this.actionValid} style={{ textAlign: 'center', width: '5em' }} header="actif" />
           </DataTable>
         </Fieldset>

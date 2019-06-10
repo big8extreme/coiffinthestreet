@@ -3,6 +3,7 @@ import { TabView, TabPanel } from 'primereact/tabview';
 import UserList from '../components/contents/users/userlist';
 import { Usernew } from '../components/contents/users/usernew';
 import { Fieldset } from 'primereact/fieldset';
+import { Userupdate } from '../components/contents/users/userupdate';
 export default class UserPanel extends Component {
   render() {
     return (
@@ -33,12 +34,19 @@ export default class UserPanel extends Component {
               </div>
             </TabPanel>
             <TabPanel id="4" header="Ajouter">
-                <div>
-                  <Fieldset legend="Remplir les champs suivants">
-                    <Usernew/>
-                  </Fieldset>
-                </div>
-              </TabPanel>
+              <div>
+                <Fieldset legend="Remplir les champs suivants">
+                  <Usernew />
+                </Fieldset>
+              </div>
+            </TabPanel>
+            <TabPanel id="4" header="Modifier">
+              <div>
+                <Fieldset legend="Remplir les champs suivants">
+                  <Userupdate />
+                </Fieldset>
+              </div>
+            </TabPanel>
           </TabView>
         </div>
       </div>
