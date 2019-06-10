@@ -17,14 +17,8 @@ export class UsersService {
       body: JSON.stringify([
         role_id
       ])}
-    
-    
-    
-    
-    )
+        )
   .then(res => res.data.users);
   }
-
-
 }
 
