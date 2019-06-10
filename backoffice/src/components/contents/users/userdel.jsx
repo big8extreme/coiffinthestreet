@@ -32,7 +32,6 @@ export class Userdel extends Component {
 
     render() {
         const userId = this.props.match.params.id;
-        console.log("render"+userId)
         const footer = (
             <div>
                 <Button label="Yes" icon="pi pi-check"  onClick={() => this.delUsers(userId)} />

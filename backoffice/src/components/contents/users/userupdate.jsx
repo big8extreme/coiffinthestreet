@@ -7,14 +7,16 @@ import { InputSwitch } from 'primereact/inputswitch';
 import { Form } from 'reactstrap';
 import axios from 'axios';
 import { Useravatar } from './useravatar';
+import { UsersService } from './usersService';
 
 export class Userupdate extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            firstName: 'PAULINE',
-            lastName: '',
+            userId:this.props.match.params.id ,
+            firstName: '',
+            lastName:'',
             email: '',
             password: '',
             avatarUrl: '',
@@ -27,6 +29,13 @@ export class Userupdate extends Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.submitForm = this.submitForm.bind(this);
+        this.userservice = new UsersService();
+        //const userId = this.props.match.params.id;
+    }
+  
+    componentDidMount() {
+      this.userservice.getUser(this.state.userId).then(data => this.setState({ users: data }));
+  
     }
 
     handleChange = e => this.setState({
@@ -54,6 +63,8 @@ export class Userupdate extends Component {
             { label: 'Estheticienne', value: 'Estheticienne' },
             { label: 'Photographe', value: 'Photographe' }
         ];
+      
+     
         return (
             <div>
                 <div className="content-section implementation inputgrid-demo">

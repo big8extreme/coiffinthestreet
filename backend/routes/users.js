@@ -9,7 +9,7 @@ const userController = require('../controllers/usersController');
 
 router.get('/', passport.authenticate('jwt', { session: false }), userController.index);
 
-//router.get('/:id', passport.authenticate('jwt', { session: false }), userController.show);
+router.get('/:id', passport.authenticate('jwt', { session: false }), userController.show);
 
 router.post('/', passport.authenticate('jwt', { session: false }), userController.create);
 

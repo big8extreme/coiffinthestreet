@@ -4,8 +4,15 @@ import UserList from '../components/contents/users/userlist';
 import { Usernew } from '../components/contents/users/usernew';
 import { Fieldset } from 'primereact/fieldset';
 import { Userupdate } from '../components/contents/users/userupdate';
+
 export default class UserPanel extends Component {
+  constructor() {
+    super();
+    this.state = {
+        };
+  }
   render() {
+  
     return (
       <div>
         <div className="content-section introduction">
@@ -17,7 +24,7 @@ export default class UserPanel extends Component {
         </div>
 
         <div className="content-section implementation">
-          <TabView>
+          <TabView >
             <TabPanel header="Tous les Utilisateurs">
               <UserList />
             </TabPanel>
