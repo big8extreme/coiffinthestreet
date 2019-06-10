@@ -3,6 +3,7 @@ import { View, Text, Button } from 'react-native'
 import { connect } from 'react-redux'
 import { logout } from '../../../store/actions/auth'
 
+
 export class Profile extends Component {
   static navigationOptions = {
     title: 'Profile',
@@ -23,6 +24,7 @@ export class Profile extends Component {
           onPress={() => this.props.logout()}
         />
       </View>
+     
     )
   }
 }
