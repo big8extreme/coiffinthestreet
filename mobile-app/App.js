@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from "react";
 import store from "./store";
 import { Provider } from "react-redux";
@@ -8,7 +9,6 @@ import { Font } from "expo";
 import { Ionicons } from "@expo/vector-icons";
 import { Text } from "native-base";
 import { SafeAreaView } from "react-navigation";
-
 
 export default class App extends React.Component {
   constructor(props) {

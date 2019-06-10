@@ -11,7 +11,7 @@ class AppRouter extends Component {
     return (
       <Switch>
         <Route exact path='/' component={LoginForm} />
-        <PrivateRoute isAdmin={user.isAdmin} exact path='/admin' component={Admin} />
+        <PrivateRoute isAdmin={user.isAdmin} path='/admin' component={Admin} />
       </Switch>
     );
   }
