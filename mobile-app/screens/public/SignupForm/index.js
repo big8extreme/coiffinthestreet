@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Text, ScrollView, TouchableOpacity, Image, } from 'react-native';
-import { Avatar } from 'react-native-elements';
-import { Input, Item, Form } from 'native-base';
+import { Text, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { Avatar, CheckBox } from 'react-native-elements';
+import { Input, Item, Container } from 'native-base';
 import { ImagePicker, Permissions } from 'expo';
+
 
 
 
@@ -14,22 +15,24 @@ export default class SignupForm extends Component {
         this.state = {
             avatar: null,
             password: '',
-            email:''
-
+            email: '',
+            one: false,
+            two: false,
 
         }
+
+    }
+    setDate(newDate) {
+        this.setState({ chosenDate: newDate })
     }
 
-
-    isValid = () => {
-       const {email, password} = this.state
-       return email && password
+    onePressed() {
+        this.setState({ one: true, two: false })
+    }
+    twoPressed() {
+        this.setState({ one: false, two: true })
     }
 
-    handleChange = e => {
-        const { value, name } = e.target;
-        this.setState({ [name]: value });
-      };
 
 
     pickFromGallery = async () => {
@@ -40,9 +43,6 @@ export default class SignupForm extends Component {
             let image = await ImagePicker.launchImageLibraryAsync({
                 mediaTypes: 'Images',
             }).catch(error => console.log(permissions, { error }));
-            console.log(permissions, 'SUCCESS', image);
-            console.log("ENTER HERERERERREREREREERREERRE", permissions, 'SUCCESS', image);
-            console.log("ENTER IMAGESSSSS", image);
             this.setState({ avatar: image })
         }
     }
@@ -64,7 +64,7 @@ export default class SignupForm extends Component {
                 />
 
 
-                <Text style={style.text}>Nom</Text>
+                <Text style={style.text}>Nom *</Text>
                 <Item
                     regular
                     style={style.input}
@@ -72,56 +72,82 @@ export default class SignupForm extends Component {
                     <Input />
                 </Item>
 
-                <Text style={style.text}>Prénom</Text>
+                <Text style={style.text}>Prénom *</Text>
                 <Item
                     regular
                     style={style.input}>
                     <Input />
                 </Item>
 
-                <Text style={style.text}>Age</Text>
+                <Text style={style.text}>Pseudo *</Text>
                 <Item
                     regular
                     style={style.input}>
                     <Input />
                 </Item>
 
-                <Text style={style.text}>E-mail</Text>
+                <Text style={style.text}>Code de parrainage *</Text>
+                <Container style={style.container}>
+                    <CheckBox
+                        checked={this.state.one}
+                        onPress={() => this.onePressed()}
+                        checkedColor='#FDC500'
+                        textStyle={{
+                            fontFamily: 'Georgia'
+                        }} />
+                    <Text>Oui</Text>
+                </Container>
+
+
+                <Container style={style.container}>
+                    <CheckBox
+                        checked={this.state.two}
+                        onPress={() => this.twoPressed()}
+                        checkedColor='#FDC500'
+                        textStyle={{
+                            fontFamily: 'Georgia'
+                        }} />
+                    <Text>Non, je n'ai pas de parrain</Text>
+                </Container>
+
+                <Text style={style.text}>Entrez votre code de parrainage *</Text>
+                <Item
+                    regular
+                    style={style.input}
+                >
+                    <Input />
+                </Item>
+
+                <Text style={style.text}>E-mail *</Text>
                 <Item
                     regular
                     style={style.input}
                     value={this.state.email}
                     name='email'
-                    onChange={this.handleChange}
                 >
-                    <Input
-                   
-                    />
+                    <Input />
                 </Item>
 
-                <Text style={style.text}>Mot de passe</Text>
+                <Text style={style.text}>Mot de passe *</Text>
                 <Item
                     regular
                     style={style.input}
-                   
                     value={this.state.password}
                     name='password'
-                    onChange={this.handleChange}
-
-                >
+                    onChange={this.handleChange}>
                     <Input
                         secureTextEntry={true}
                     />
                 </Item>
 
-                <Text style={style.text}>Confirmer le mot de passe</Text>
+                <Text style={style.text}>Confirmer le mot de passe *</Text>
                 <Item
                     regular
                     style={style.input}>
                     <Input secureTextEntry={true} />
                 </Item>
 
-                <Text style={style.text}>Ville</Text>
+                <Text style={style.text}>Ville *</Text>
                 <Item
                     regular
                     style={style.input}>
@@ -129,14 +155,13 @@ export default class SignupForm extends Component {
                 </Item>
 
 
-                <TouchableOpacity
-                disabled={!this.state.isValid}>
+                <TouchableOpacity>
                     <Image source={require('../../../assets/Btn_Valider.png')}
                         style={style.BtnValidate}
-                        disabled={!this.state.isValid}
+                        type="submit"
                     />
                 </TouchableOpacity>
-                
+
             </ScrollView>
         )
     }
@@ -166,7 +191,8 @@ const style = {
         textAlign: 'left',
         marginLeft: 10,
         marginBottom: 5,
-        marginTop: 15
+        marginTop: 15,
+        fontWeight:'bold'
     },
     scrollview: {
         paddingTop: 20
@@ -177,6 +203,11 @@ const style = {
     BtnDelete: {
         marginBottom: 30,
         marginTop: 20
-
+    },
+    container: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        height: 60,
     }
 }

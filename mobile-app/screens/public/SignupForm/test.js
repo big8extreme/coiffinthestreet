@@ -1,46 +1,39 @@
 import React, { Component } from 'react';
-import { Modal, Text, TouchableHighlight, View, Alert } from 'react-native';
-
-export class ModalExample extends Component {
-    state = {
-        modalVisible: false,
-    };
-
-    setModalVisible(visible) {
-        this.setState({ modalVisible: visible });
-    }
-
-    render() {
-        return (
-            <View style={{ marginTop: 22 }}>
-                <Modal
-                    animationType="slide"
-                    transparent={false}
-                    visible={this.state.modalVisible}
-                    onRequestClose={() => {
-                        Alert.alert('Modal has been closed.');
-                    }}>
-                    <View style={{ marginTop: 22 }}>
-                        <View>
-                            <Text>Hello World!</Text>
-
-                            <TouchableHighlight
-                                onPress={() => {
-                                    this.setModalVisible(!this.state.modalVisible);
-                                }}>
-                                <Text>Hide Modal</Text>
-                            </TouchableHighlight>
-                        </View>
-                    </View>
-                </Modal>
-
-                <TouchableHighlight
-                    onPress={() => {
-                        this.setModalVisible(true);
-                    }}>
-                    <Text>Show Modal</Text>
-                </TouchableHighlight>
-            </View>
-        );
-    }
+import { Container, Header, Content, DatePicker, Text } from 'native-base';
+export default class DatePickerExample extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { chosenDate: new Date() };
+    this.setDate = this.setDate.bind(this);
+  }
+  setDate(newDate) {
+    this.setState({ chosenDate: newDate });
+  }
+  render() {
+    return (
+      <Container>
+       
+       
+          <DatePicker
+            defaultDate={new Date(2018, 4, 4)}
+            minimumDate={new Date(2018, 1, 1)}
+            maximumDate={new Date(2018, 12, 31)}
+            locale={"en"}
+            timeZoneOffsetInMinutes={undefined}
+            modalTransparent={false}
+            animationType={"fade"}
+            androidMode={"default"}
+            placeHolderText="Select date"
+            textStyle={{ color: "green" }}
+            placeHolderTextStyle={{ color: "#d3d3d3" }}
+            onDateChange={this.setDate}
+            disabled={false}
+            />
+            <Text>
+              Date de naissance *: {this.state.chosenDate.toString().substr(4, 12)}
+            </Text>
+       
+      </Container>
+    );
+  }
 }
