@@ -2,7 +2,6 @@ import axios from 'axios';
 
 export class UsersService {
 
-
   getUsers() {
     return axios
       .get('http://localhost:3000/users', {
@@ -17,8 +16,9 @@ export class UsersService {
         headers: { Authorization: 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqb2huLWRvZUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE1NTkyMzY2Mjh9.6jcK8-WPUqcpmdwnf3nbTAhmYWeNddEeYJeIoQyF9rs' }
       })
       .then(res => {
-        console.log(res);
-        console.log(res.data.users);
+      //  console.log(res);
+    console.log(res.data.user);
+        return res.data.user;
       })
       .catch((error) => {
         console.log(error);

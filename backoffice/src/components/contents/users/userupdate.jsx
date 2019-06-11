@@ -14,7 +14,7 @@ export class Userupdate extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            userId:this.props.match.params.id ,
+           // userId:this.match.params.id ,
             firstName: '',
             lastName:'',
             email: '',
@@ -25,17 +25,24 @@ export class Userupdate extends Component {
             isBanned: false,
             invitationCode: '',
             job: '',
-            value: ''
+            value: '',
         };
         this.handleChange = this.handleChange.bind(this);
         this.submitForm = this.submitForm.bind(this);
         this.userservice = new UsersService();
-        //const userId = this.props.match.params.id;
+        this.userId = this.props.match.params.id;
     }
   
     componentDidMount() {
-      this.userservice.getUser(this.state.userId).then(data => this.setState({ users: data }));
-  
+      this.userservice.getUser(this.userId).then((data) => {
+        //   this.setState({ user: data })
+          this.setState({ 
+              email: data.email,
+              firstName: data.firstName,
+              lastName: data.lastName
+             })
+    } );
+      console.log('okkkkkk'+this.userId)
     }
 
     handleChange = e => this.setState({
@@ -67,6 +74,8 @@ export class Userupdate extends Component {
      
         return (
             <div>
+
+                <h1>{JSON.stringify(this.state.user)}</h1>
                 <div className="content-section implementation inputgrid-demo">
                     <Form onSubmit={this.submitForm}>
 
