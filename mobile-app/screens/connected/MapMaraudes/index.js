@@ -14,10 +14,17 @@ import {
 import { connect } from "react-redux";
 
 export class MapMaraudes extends Component {
+  static navigationOptions = {
+    title: 'Profile',
+  };
   render() {
     const { navigate } = this.props.navigation;
     const { auth } = this.props;
-
+    if (!auth.user.isConnected) {
+      setTimeout(() => {
+        navigate('Auth')
+      }, 10)
+    }
     return (
       <Container>
         <Header noShadow>
@@ -28,6 +35,10 @@ export class MapMaraudes extends Component {
           </Body>
           <Right />
         </Header>
+        <Button
+          title="Click me to logout"
+          onPress={() => this.props.logout()}
+        />
       </Container>
     );
   }
