@@ -7,6 +7,8 @@ import { InputSwitch } from 'primereact/inputswitch';
 import { Form } from 'reactstrap';
 import axios from 'axios';
 import { Useravatar } from './useravatar';
+import { Growl } from 'primereact/growl';
+import { FileUpload } from 'primereact/fileupload';
 
 export class Usernew extends Component {
 
@@ -27,6 +29,21 @@ export class Usernew extends Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.submitForm = this.submitForm.bind(this);
+        this.onUpload = this.onUpload.bind(this);
+    }
+
+
+
+
+
+
+    onUpload(event) {
+        this.growl.show({ severity: 'info', summary: 'Success', detail: 'File Uploaded' });
+           const data = new FormData()
+   data.append('file', this.state.selectedFile)
+   console.log('eeeeeeeeeeeeeeeeeeeeeeeeee'+this.state.id)
+   axios.post("http://localhost:3000/upload", data, { 
+    })
     }
 
     handleChange = e => this.setState({
@@ -54,10 +71,11 @@ export class Usernew extends Component {
             { label: 'Estheticienne', value: 'Estheticienne' },
             { label: 'Photographe', value: 'Photographe' }
         ];
+        console.log(this.state)
         return (
             <div>
                 <div className="content-section implementation inputgrid-demo">
-                    <Form onSubmit={this.submitForm}>
+                    <Form onSubmit={this.submitForm} >
 
                         <div className="p-grid p-fluid">
                             <div className="p-col-4 p-md-4">
@@ -127,9 +145,17 @@ export class Usernew extends Component {
 
                         <div>
                             <div className="p-col-12 p-md-4">
-                                <Useravatar />
+                               <p>Useravatar</p>
                             </div>
                         </div>
+
+                        <div className="content-section implementation">
+                    <p>avatarUrltest</p>
+                    <FileUpload type="file"  name="avatafrUrl" value="{this.state.avatahhrUrl}"  url="./upload.php" onUpload={this.onUpload}
+                        multiple={true} accept="image/*" maxFileSize={1000000} />
+                    <Growl ref={(el) => { this.growl = el; }}></Growl>
+                    <input type="file" name="avatarUrl" value={this.state.avatarUrl} onChange={this.onUpload}/>
+                </div>
 
                         <div className="p-grid p-fluid">
                             <div className="p-col-12 p-md-4" >

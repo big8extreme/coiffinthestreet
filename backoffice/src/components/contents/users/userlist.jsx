@@ -54,7 +54,7 @@ export default class UserList extends Component {
             <Column field="lastName" header="Nom" />
             <Column field="firstName" header="Prenom" />
             <Column field="id" header="Ville" />
-            <Column field="email" header="mail" />
+            <Column field="avatarUrl" header="avatarUrl" />
             <Column body={this.actionTemplate.bind(this)} style={{ textAlign: 'center', width: '12em' }} header="action" />
             <Column body={this.actionValid} style={{ textAlign: 'center', width: '5em' }} header="actif" />
           </DataTable>

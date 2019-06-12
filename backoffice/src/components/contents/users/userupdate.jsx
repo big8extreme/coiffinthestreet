@@ -35,12 +35,12 @@ export class Userupdate extends Component {
   
     componentDidMount() {
       this.userservice.getUser(this.userId).then((data) => {
-        //   this.setState({ user: data })
-          this.setState({ 
-              email: data.email,
-              firstName: data.firstName,
-              lastName: data.lastName
-             })
+      this.setState({ user: data })
+        //   this.setState({ 
+        //       email: data.email,
+        //       firstName: data.firstName,
+        //       lastName: data.lastName
+        //      })
     } );
       console.log('okkkkkk'+this.userId)
     }
