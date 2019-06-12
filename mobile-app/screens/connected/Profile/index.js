@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, Button } from 'react-native'
 import { connect } from 'react-redux'
 import { logout } from '../../../store/actions/auth'
-import SignupForm from '../../public/SignupForm';
+import MyForm from '../../public/SignupForm/MyForm';
 
 export class Profile extends Component {
   static navigationOptions = {
@@ -18,7 +18,7 @@ export class Profile extends Component {
     }
     return (
       <View>
-       <SignupForm/>
+       <MyForm/>
       </View>
     )
   }
