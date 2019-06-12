@@ -8,15 +8,6 @@ export class FeedMaraudes extends Component {
     const { auth } = this.props;
     return (
       <Container>
-        <Header noShadow>
-          <Left>
-          </Left>
-          <Body>
-            <Title>Acutalités des Maraudes</Title>
-          </Body>
-          <Right>
-          </Right>
-        </Header>
       </Container>
     );
   }
