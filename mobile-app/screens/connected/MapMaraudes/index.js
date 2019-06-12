@@ -12,6 +12,7 @@ import {
   Badge
 } from "native-base";
 import { connect } from "react-redux";
+import MapMarker from "./MapMarker";
 
 export class MapMaraudes extends Component {
   static navigationOptions = {
@@ -35,10 +36,14 @@ export class MapMaraudes extends Component {
           </Body>
           <Right />
         </Header>
+<<<<<<< HEAD
         <Button
           title="Click me to logout"
           onPress={() => this.props.logout()}
         />
+=======
+        <MapMarker navigation={{navigate}} />
+>>>>>>> cdc9dc6e92de7f9f0b4361690e924641989143e9
       </Container>
     );
   }
