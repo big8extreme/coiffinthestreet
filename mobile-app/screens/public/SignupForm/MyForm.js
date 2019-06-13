@@ -6,7 +6,7 @@ import { CheckBox } from 'react-native-elements';
 import InputField from './InputField';
 import AvatarUpload from './Avatar';
 import DatePicker from './DatePicker';
-import {Svg } from 'expo';
+import ValidateButton from './ValidateButton';
 
 const required = value => (value ? undefined : 'This is a required field.');
 const email = value => value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,5}$/i.test(value) ? 'Please provide a valid email address.' : undefined;
@@ -163,11 +163,9 @@ export default class MyForm extends Component {
                 </Form>
 
                 <TouchableOpacity onPress={this.submitForm.bind(this)}>
-                    <Image source={require('../../../assets/BTN Primary.svg')}
-                        type="submit"
-                        style={style.validateButton}
-                    />
+                <ValidateButton/> 
                 </TouchableOpacity>
+                
 
             </ScrollView>
         );
