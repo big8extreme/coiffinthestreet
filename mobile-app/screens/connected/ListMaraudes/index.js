@@ -30,6 +30,12 @@ export class ListMaraudes extends Component {
         </Header>
         <CardMaraude />
       </React.Fragment>
+      <Container>
+        <View style={{ height: 65 }}>
+        <HeaderListMaraudes />
+        </View>
+        <CardMaraude />
+      </Container>
     );
   }
 }
