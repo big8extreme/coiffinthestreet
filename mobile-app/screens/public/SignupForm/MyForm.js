@@ -26,15 +26,17 @@ export default class MyForm extends Component {
             password: null,
             confirmPassword: null,
             one: false,
-            two: false
+            two: false,
+            itemChecked: false,
+            code: ''
         }
     }
 
 
-    
     onePressed() {
         this.setState({ one: true, two: false })
     }
+
     twoPressed() {
         this.setState({ one: false, two: true })
     }
@@ -57,15 +59,20 @@ export default class MyForm extends Component {
     }
 
     render() {
+
         return (
+
             <ScrollView>
+
                 <AvatarUpload />
+
                 <Form
                     ref={(ref) => this.myForm = ref}
                     validate={true}
                     submit={this.submitSuccess.bind(this)}
                     failed={this.submitFailed.bind(this)}
                     errors={this.state.errors}
+                    style={{marginTop:30}}
                 >
                     <Text style={style.inputText}>Nom *</Text>
                     <Field
@@ -88,6 +95,7 @@ export default class MyForm extends Component {
                         onChangeText={(val) => this.setState({ firstname: val })}
                         customStyle={style.field}
                     />
+
                     <Text style={style.inputText}>Pseudo</Text>
                     <Field
                         required
@@ -98,7 +106,9 @@ export default class MyForm extends Component {
                         onChangeText={(val) => this.setState({ pseudo: val })}
                         customStyle={style.field}
                     />
+
                     <DatePicker />
+
                     <Text style={style.inputText}>E-mail *</Text>
                     <Field
                         required
@@ -109,9 +119,9 @@ export default class MyForm extends Component {
                         onChangeText={(val) => this.setState({ email: val })}
                         customStyle={style.field}
                     />
+
                     <Text style={style.inputText}>Mot de passe *</Text>
                     <Input
-                        
                         validations={required}
                         name="password"
                         secureTextEntry={true}
@@ -119,6 +129,7 @@ export default class MyForm extends Component {
                         onChangeText={(val) => this.setState({ password: val })}
                         style={style.field}
                     />
+
                     <Text style={style.inputText}>Confirmer le mot de passe *</Text>
                     <Input
                         required
@@ -130,11 +141,12 @@ export default class MyForm extends Component {
                         onChangeText={(val) => this.setState({ confirmPassword: val })}
                         style={style.field}
                     />
+
                     <Text style={style.inputText}>Code de parrainage *</Text>
                     <Container style={style.container}>
                         <CheckBox
                             checked={this.state.one}
-                            onPress={() => this.onePressed()}
+                            onPress={() => { this.onePressed(); { alert('Entrez votre code de parrainage') } }}
                             checkedColor='#FDC500'
                         />
                         <Text style={{ fontFamily: 'Georgia' }}>Oui</Text>
@@ -147,25 +159,24 @@ export default class MyForm extends Component {
                         />
                         <Text style={{ fontFamily: 'Georgia' }}>Non, je n'ai pas de parrain</Text>
                     </Container>
-                    <Text style={style.inputText}>Entrez votre code de parrainage</Text>
-                    <Input
+                    <Text style={style.inputText}>Entrez votre code de parrainage *</Text>
+                    <Field
                         required
                         component={InputField}
                         validations={[required]}
-                        name="confirmPassword"
+                        name="code"
                         secureTextEntry={true}
-                        value={this.state.confirmPassword}
-                        onChangeText={(val) => this.setState({ confirmPassword: val })}
-                        style={style.field}
+                        value={this.state.code}
+                        onChangeText={(val) => this.setState({ code: val })}
+                        customStyle={style.field}
                     />
-                    
-
                 </Form>
 
                 <TouchableOpacity onPress={this.submitForm.bind(this)}>
-                <ValidateButton/> 
+                    <Text style={style.buttonText}>Valider</Text>
+                    <ValidateButton />
                 </TouchableOpacity>
-                
+
 
             </ScrollView>
         );
@@ -180,15 +191,15 @@ const style = {
         width: 300,
         borderRadius: 5,
         marginLeft: 10,
-        paddingLeft:5,
-        fontSize:18
+        paddingLeft: 5,
+        fontSize: 18
     },
     inputText: {
         fontFamily: 'Georgia',
         fontWeight: 'bold',
         marginLeft: 10,
         marginBottom: 5,
-        marginTop: 15
+        marginTop: 25
     },
     container: {
         display: 'flex',
@@ -196,7 +207,13 @@ const style = {
         alignItems: 'center',
         height: 50,
     },
-    validateButton:{
-        marginTop:50
+    buttonText: {
+        marginTop: 82,
+        marginLeft: 120,
+        position: 'absolute',
+        fontFamily: 'Sedgwick',
+        fontSize: 30,
+        zIndex: 900,
+        color: '#FDC500'
     }
 }

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { LOGIN, LOGOUT, LOG_IN_ERROR } from '../types/auth'
-import { baseUrl } from '../../apiUrl'
+import { baseUrlApi } from '../../apiUrl'
 
 export function login(email, password) {
   return async dispatch => {
@@ -16,7 +16,7 @@ export function login(email, password) {
       return { error, status: 'error' };
     }
     try {
-      const response = await axios.post(`${baseUrl}/auth/signin`, { email, password });
+      const response = await axios.post(`${baseUrlApi}/auth/signin`, { email, password });
       return onSuccess(response);
     }
     catch (err) {

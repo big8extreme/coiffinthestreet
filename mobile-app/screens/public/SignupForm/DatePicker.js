@@ -73,7 +73,7 @@ const style = {
         textAlign: 'left',
         marginLeft: 10,
         marginBottom: 5,
-        marginTop: 15,
+        marginTop: 25,
         fontWeight: 'bold'
     }
 }

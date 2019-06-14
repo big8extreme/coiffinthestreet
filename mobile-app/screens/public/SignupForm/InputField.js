@@ -2,17 +2,17 @@ import React from 'react';
 import { TextInput, Text, View, Input } from 'react-native';
 
 const InputField = ({
-    name,           // field name - required
+    name,
     customStyle,
-    onChangeText,   // event
-    value,          // field value
+    onChangeText,
+    value,
     disabled,
     placeholder,
-    errors,         // this array prop is automatically passed down to this component from <Form />
+    errors,
 }) => {
     return (
         <View>
-            
+
             <TextInput
                 value={value && value}
                 onChangeText={onChangeText ? (val) => onChangeText(val) : null}
@@ -21,13 +21,13 @@ const InputField = ({
                 style={customStyle ? customStyle : {}}
             />
 
-        
-            
+
+
 
 
             {errors && errors.length > 0 && errors.map((item, index) =>
                 item.field === name && item.error ?
-                    <Text style={{ color: 'red', paddingLeft:10 }}>
+                    <Text style={{ color: 'red', paddingLeft: 10 }}>
                         {item.error}
                     </Text>
                     : <View />

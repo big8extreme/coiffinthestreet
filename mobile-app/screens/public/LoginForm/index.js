@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Container, Header, Content, Form, Item, Input, Button, Text, Toast, Root } from 'native-base';
-import { StyleSheet, View } from 'react-native'
+import { Toast, Root } from 'native-base';
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux'
 import { login } from '../../../store/actions/auth'
 
@@ -10,7 +10,6 @@ class LoginForm extends Component {
   };
   constructor(props) {
     super(props)
-
     this.state = {
       email: '',
       password: ''
@@ -37,35 +36,75 @@ class LoginForm extends Component {
     }
     return (
       <Root>
-        <Form style={styles.formContainer}>
-          <Item>
-            <Input
-              onChangeText={(value) => this.setState({ email: value })}
-              placeholder="Username" />
-          </Item>
-          <Item>
-            <Input
-              secureTextEntry
-              onChangeText={(value) => this.setState({ password: value })}
-              placeholder="Password" />
-          </Item>
-          <View style={styles.buttonContainer}>
-            <Button
-              onPress={() => this.loginUser()}
-            >
-              <Text>Se connecter</Text>
-            </Button>
+        <View style={styles.backgroundApp}>
+          <View style={styles.flexCenterImg}>
+            <Image
+              // @ts-ignore
+              source={require('./Logo_light.png')}
+            />
           </View>
-        </Form>
+          <View style={styles.flexCenter}>
+            <Text style={styles.whiteTextLabel}>Email :</Text>
+            <View style={styles.yellowBorder}>
+              <TextInput onChangeText={(value) => this.setState({ email: value })} placeholder='Entrez votre email'></TextInput>
+            </View>
+            <Text style={styles.whiteTextLabel}>Mot de passe :</Text>
+            <View style={styles.yellowBorder}>
+              <TextInput onChangeText={(value) => this.setState({ password: value })} placeholder='******' secureTextEntry={true}></TextInput>
+            </View>
+          </View>
+          <View style={styles.flexCenterImg}>
+            <TouchableOpacity onPress={() => this.loginUser()}>
+              <Image style={styles.button}
+                // @ts-ignore
+                source={require('./connect.png')}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
       </Root>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  buttonContainer: { flex: 0, flexDirection: 'row', justifyContent: 'center', marginTop: 15 },
-  formContainer: { flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', paddingRight: 20 }
-})
+  backgroundApp: {
+    backgroundColor: '#4E4E4E', flex: 1,
+  },
+
+  flexCenterImg: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginBottom: 30,
+  },
+
+  flexCenter: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'stretch',
+    marginTop: 20,
+    marginLeft: 20,
+    marginRight: 20,
+  },
+
+  whiteTextLabel: {
+    color: 'white',
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'left',
+    marginBottom: 20,
+
+  },
+
+  yellowBorder: {
+    borderBottomColor: '#FDC500',
+    borderBottomWidth: 3,
+    marginBottom: 30,
+  },
+  button: {
+    marginTop: 60,
+  },
+});
 
 const mapStateToProps = (state) => ({
   auth: state.auth

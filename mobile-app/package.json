@@ -11,7 +11,8 @@
     "expo": "^32.0.0",
     "moment": "^2.24.0",
     "native-base": "^2.12.1",
-    "react": "16.5.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-elements": "^1.1.0",
     "react-native-image-picker": "^0.28.1",
@@ -25,7 +26,8 @@
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
-    "babel-preset-expo": "^5.0.0"
+    "babel-preset-expo": "^5.0.0",
+    "schedule": "^0.4.0"
   },
   "private": true
 }
