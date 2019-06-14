@@ -33,4 +33,5 @@ app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/maraudes', maraudesRouter);
 app.use('/api/v1/participants', participantsRouter);
+
 module.exports = app;

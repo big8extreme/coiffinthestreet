@@ -14,6 +14,50 @@ module.exports = {
       .catch((error) => res.status(500).json({ error }));
   },
 
+  update: function (req, res, next) {
+  User.findByPk(req.params.id)
+  .then((user) => {
+    user.update({
+
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      password: req.body.password,
+      avatarUrl: req.body.avatarUrl,
+      isAdmin: req.body.isAdmin,
+      isActive: req.body.isActive,
+      isBanned: req.body.isBanned,
+      invitationCode: req.body.invitationCode,
+      job: req.body.job,
+      createdAt: req.body.createdAt,
+      updatedAt: req.body.updatedAt
+
+    })
+      .then((updatedUser) => {res.json({ user: updatedUser  });})
+      .catch((error) => res.status(500).json({ error }))
+    })
+  },
+
+  create: function (req, res, next) {
+    User.create({
+
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      password: req.body.password,
+      avatarUrl: req.body.avatarUrl,
+      isAdmin: req.body.isAdmin,
+      isActive: req.body.isActive,
+      isBanned: req.body.isBanned,
+      invitationCode: req.body.invitationCode,
+      job: req.body.job,
+      createdAt: req.body.createdAt,
+      updatedAt: req.body.updatedAt
+
+    })
+      .then((user) => res.json({ user }))
+      .catch((error) => res.status(500).json({ error }));
+  },
 
   create: function (req, res, next) {
     User.create({

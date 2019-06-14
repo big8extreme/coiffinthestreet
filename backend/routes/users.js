@@ -13,7 +13,7 @@ router.get('/:id', passport.authenticate('jwt', { session: false }), userControl
 
 router.post('/', passport.authenticate('jwt', { session: false }), userController.create);
 
-//router.put('/:id', passport.authenticate('jwt', { session: false }), userController.update);
+router.put('/:id', passport.authenticate('jwt', { session: false }), userController.update);
 
 router.delete('/:id', passport.authenticate('jwt', { session: false }), userController.delete);
 
