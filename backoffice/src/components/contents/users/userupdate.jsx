@@ -14,9 +14,9 @@ export class Userupdate extends Component {
     constructor(props) {
         super(props);
         this.state = {
-           // userId:this.match.params.id ,
+            userId: '',
             firstName: '',
-            lastName:'',
+            lastName: '',
             email: '',
             password: '',
             avatarUrl: '',
@@ -24,36 +24,40 @@ export class Userupdate extends Component {
             isActive: false,
             isBanned: false,
             invitationCode: '',
-            job: '',
-            value: '',
+            job: ''
+
         };
         this.handleChange = this.handleChange.bind(this);
         this.submitForm = this.submitForm.bind(this);
         this.userservice = new UsersService();
         this.userId = this.props.match.params.id;
     }
-  
+
     componentDidMount() {
-      this.userservice.getUser(this.userId).then((data) => {
-      this.setState({ user: data })
-        //   this.setState({ 
-        //       email: data.email,
-        //       firstName: data.firstName,
-        //       lastName: data.lastName
-        //      })
-    } );
-      console.log('okkkkkk'+this.userId)
+        this.userservice.getUser(this.userId).then((data) => {
+            this.setState({
+                firstName: data.firstName,
+                lastName: data.lastName,
+                email: data.email,
+                password: data.password,
+                avatarUrl: data.avatarUrl,
+                isAdmin: data.isAdmin,
+                isActive: data.isActive,
+                isBanned: data.isBanned,
+                invitationCode: data.invitationCode,
+                job: data.job
+            })
+        });
     }
 
     handleChange = e => this.setState({
         [e.target.name]: e.target.value
     })
+
     submitForm = event => {
         event.preventDefault();
-
         const user = { ...this.state }
-
-        axios.post('http://localhost:3000/users', { ...user }, { headers: { Authorization: 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqb2huLWRvZUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE1NTkyMzY2Mjh9.6jcK8-WPUqcpmdwnf3nbTAhmYWeNddEeYJeIoQyF9rs' } }
+        axios.put(`http://localhost:3000/users/${this.userId}`, { ...user }, { headers: { Authorization: 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqb2huLWRvZUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE1NTkyMzY2Mjh9.6jcK8-WPUqcpmdwnf3nbTAhmYWeNddEeYJeIoQyF9rs' } }
         )
             .then(res => {
                 console.log(res);
@@ -70,8 +74,7 @@ export class Userupdate extends Component {
             { label: 'Estheticienne', value: 'Estheticienne' },
             { label: 'Photographe', value: 'Photographe' }
         ];
-      
-     
+
         return (
             <div>
 
@@ -156,9 +159,6 @@ export class Userupdate extends Component {
                                 <Button type="submit" value="Envoyer" >Submit</Button>
                             </div>
                         </div>
-
-
-
                     </Form>
                 </div>
             </div>

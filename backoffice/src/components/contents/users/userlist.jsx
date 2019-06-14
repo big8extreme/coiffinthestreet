@@ -24,9 +24,9 @@ export default class UserList extends Component {
 
   actionTemplate(rowData, column) {
     return <div>
-      <Link to={'/admin/usermod/' + rowData.id}><Button type="button" icon="pi pi-search" className="p-button-success" style={{ marginRight: '.5em' }}></Button></Link>
-      <Button type="button" icon="pi pi-pencil" className="p-button-warning" onClick={() => this.handleClick(rowData.isAdmin)} style={{ marginRight: '.5em' }} > </Button>
-      <Link to={'/admin/usersup/' + rowData.id}><Button type="button" icon="pi pi-times" className="p-button-danger" ></Button></Link>
+      <Button type="button" icon="pi pi-search" className="p-button-success" onClick={() => this.handleClick(rowData.isAdmin)} style={{ marginRight: '.5em' }} > </Button>
+      <Link to={'/admin/usermod/' + rowData.id}><Button type="button" icon="pi pi-pencil" className="p-button-warning" style={{ marginRight: '.5em' }}></Button></Link>
+        <Link to={'/admin/usersup/' + rowData.id}><Button type="button" icon="pi pi-times" className="p-button-danger" ></Button></Link>
 
     </div>;
   }
@@ -54,7 +54,6 @@ export default class UserList extends Component {
             <Column field="lastName" header="Nom" />
             <Column field="firstName" header="Prenom" />
             <Column field="id" header="Ville" />
-            <Column field="avatarUrl" header="avatarUrl" />
             <Column body={this.actionTemplate.bind(this)} style={{ textAlign: 'center', width: '12em' }} header="action" />
             <Column body={this.actionValid} style={{ textAlign: 'center', width: '5em' }} header="actif" />
           </DataTable>
