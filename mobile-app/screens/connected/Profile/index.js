@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { logout } from '../../../store/actions/auth'
 
 
+
 export class Profile extends Component {
   static navigationOptions = {
     title: 'Profile',
@@ -18,11 +19,13 @@ export class Profile extends Component {
     }
     return (
       <View>
+       <View>
         <Text> Hello and welcome into profile view </Text>
         <Button
           title="Click me to logout"
           onPress={() => this.props.logout()}
         />
+      </View>
       </View>
      
     )
