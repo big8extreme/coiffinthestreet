@@ -42,6 +42,5 @@ export class Userdel extends Component {
             <Dialog header="Suppression" visible={this.state.visible} style={{ width: '50vw' }} footer={footer} onHide={this.onHide} >
                 Voulez vous vraiment supprimer l'utilisateur  {this.props.userId} ? </Dialog>
         )
-
     }
 }

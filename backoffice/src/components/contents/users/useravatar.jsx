@@ -10,15 +10,15 @@ export class Useravatar extends Component {
     }
 
     onUpload(event) {
-        this.growl.show({ severity: 'info', summary: 'Success', detail: 'File Uploaded' });
+        this.growl.show({ severity: 'info', summary: 'Success', detail: 'avatarUrl' });
     }
-
+    
     render() {
         return (
             <div>
                 <div className="content-section implementation">
                     <p>avatarUrl</p>
-                    <FileUpload name="avatarUrl" url="./upload.php" onUpload={this.onUpload}
+                    <FileUpload name="avatarUrl" url="http://localhost:3000/uploads/avatars" onUpload={this.onUpload}
                         multiple={true} accept="image/*" maxFileSize={1000000} />
                     <Growl ref={(el) => { this.growl = el; }}></Growl>
                 </div>
