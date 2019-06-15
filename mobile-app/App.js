@@ -23,7 +23,7 @@ export default class App extends React.Component {
     await Font.loadAsync({
       Roboto: require("native-base/Fonts/Roboto.ttf"),
       Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
-      Sedgwick: require("./fonts/SedgwickAveDisplay-Regular.ttf"),
+      Sedgwick: require('./assets/font/SedgwickAveDisplay-Regular.ttf'),
       ...Ionicons.font
     });
     this.setState({ loading: false });
