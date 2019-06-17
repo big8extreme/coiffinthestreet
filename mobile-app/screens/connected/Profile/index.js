@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { View, Text, Button } from 'react-native'
 import { connect } from 'react-redux'
 import { logout } from '../../../store/actions/auth'
-
 import MyForm from '../../public/SignupForm/MyForm';
 
 
