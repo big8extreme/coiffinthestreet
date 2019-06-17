@@ -57,7 +57,8 @@ export class Usernew extends Component {
        uploadHandler = () => {
          const formData = new FormData()
          formData.append('avatar', this.state.avatarUrl,  this.state.avatarUrl.name );
-         axios.post('./uploads/avatars', formData,   
+         formData.append('firstname', 'John' );
+         axios.post('/auth/signup', formData,   
           {onUploadProgress: progressEvent => {
                console.log(progressEvent.loaded / progressEvent.total)
              } 
