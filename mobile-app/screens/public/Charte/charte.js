@@ -27,22 +27,11 @@ export default class Charte extends Component {
         return (
             <View style={styles.backgroundApp}>
                 <Text style={styles.Titletext}>Charte d'utilisateur</Text>
-
+                
                 <Text style={styles.textCharte}>
                     {/* {JSON.stringify(this.state)} */}
                     {this.state.text}
-                    Une charte de réseau c’est un tout en un qui comprend :
-
-Une carte d’identité fidèle qui décrit le réseau, sa raison sociale, le profil des membres, la couverture géographique.
-EXEMPLE :
-
-Courants Porteurs est un réseau, à vocation régionale, d’entrepreneurs : chefs d’entreprise, créateurs...
-Un ordre de mission : qui définit les missions du réseau, ses objectifs en termes quantitatifs et qualitatifs. Pour First Services, il s’agit d’aider les donneurs d’ordres à trouver les meilleurs prestataires prêts à répondre à leurs besoins. Quant à Courants Porteurs, son objectif est de regrouper les compétences pour répondre à des appels d’offres.
-Un règlement intérieur : qui détermine les principes et une éthique de collaboration, les droits et les devoirs des membres. Par exemple, ne pas démarcher en direct le client d’un autre adhérent ou encore choisir ses prestataires de service en priorité au sein du réseau. Le règlement peut aussi répertorier les modalités de participation : cotisation, réunions, plannings…
-Un document juridique : si votre réseau est formel, il doit pouvoir produire ses statuts.
-EXEMPLE :
-VDN est un GIE (Groupement d’Intérêt Economique), Les 7 sens une SARL, Le Club des créateurs d’entreprises une association Loi 1901.
-Un document de recrutement : qui intègre une fiche de renseignements d’adhérent (motivation de son adhésion, appartenance à d’autres réseaux) et un formulaire d’adhésion qui a valeur de contrat.
+                    ipsum dolor sit amet, consectetur adipiscing elit. Curabitur venenatis placerat leo, et porta nunc finibus sed. Curabitur non nisi sollicitudin, imperdiet quam et, rhoncus enim. Donec nec imperdiet metus, quis elementum lacus. Nam dolor est, eleifend ut vestibulum nec, lobortis sed mauris. Phasellus sed laoreet purus, sed luctus turpis. Nullam sit amet volutpat nulla. Nulla molestie, tortor vitae commodo maximus, orci sapien mattis nunc, nec sodales velit lectus vel est. Curabitur dapibus sapien placerat pretium consectetur. Quisque nunc turpis, interdum vel consequat id, elementum quis libero.
                 </Text>
             </View>
         )
