@@ -3,7 +3,6 @@ import { createBottomTabNavigator } from "react-navigation";
 import MapMaraudes from "../screens/connected/MapMaraudes";
 import FeedMaraudes from "../screens/connected/FeedMaraudes";
 import ListMaraudes from "../screens/connected/ListMaraudes";
-import Menu from "../screens/connected/MenuDrawer";
 import Icon from "react-native-vector-icons/Ionicons";
 
 const TabNavFooter = createBottomTabNavigator({
