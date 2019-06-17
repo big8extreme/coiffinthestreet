@@ -7,7 +7,7 @@ import BottomTabNav from './bottomTabNavigator'
 import LoginForm from "../screens/public/LoginForm";
 import Profile from "../screens/connected/Profile";
 import Contact from "../screens/connected/Profile/Contact_Components/contact";
-
+import drawerMenu from './drawerNavigator'
 
 const AppStack = createStackNavigator(
   {
@@ -34,9 +34,10 @@ export default createAppContainer(
       Tab: BottomTabNav,
       App: AppStack,
       Auth: AuthStack,
+      drawerMenu: drawerMenu
     },
     {
-      initialRouteName: "Tab"
+      initialRouteName: "drawerMenu"
     }
   )
 );

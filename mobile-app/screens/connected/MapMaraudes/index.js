@@ -20,12 +20,6 @@ export class MapMaraudes extends Component {
   };
   render() {
     const { navigate } = this.props.navigation;
-    const { auth } = this.props;
-    if (!auth.user.isConnected) {
-      setTimeout(() => {
-        navigate('Auth')
-      }, 10)
-    }
     return (
       <Container>
         <MapMarker navigation={{navigate}} />

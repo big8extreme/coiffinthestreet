@@ -26,10 +26,12 @@ const TabNavFooter = createBottomTabNavigator({
     },
   },
   Menu: {
-    screen: Menu,
-    navigationOptions: {
-      tabBarIcon: ({ tintColor }) => <Icon name="ios-more" size={30} color={tintColor} />
-    },
+    screen: MapMaraudes,
+    navigationOptions: ({navigation}) => {
+      return {
+        tabBarIcon: ({ tintColor }) => <Icon onPress={() => {navigation.toggleDrawer()}} name="ios-more" size={30} color={tintColor} />
+      }
+    }
   }
 },
   {
