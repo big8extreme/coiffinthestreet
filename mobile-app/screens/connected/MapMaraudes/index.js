@@ -28,14 +28,6 @@ export class MapMaraudes extends Component {
     }
     return (
       <Container>
-        <Header noShadow>
-          <Left>
-          </Left>
-          <Body>
-            <Title>Map des Maraudes</Title>
-          </Body>
-          <Right />
-        </Header>
         <MapMarker navigation={{navigate}} />
       </Container>
     );

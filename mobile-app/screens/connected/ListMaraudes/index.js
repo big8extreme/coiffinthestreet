@@ -1,6 +1,19 @@
 import React, { Component } from "react";
-import { Container, Header, Left, Body, Right, Button, Title, Text, Icon } from 'native-base';
+import {
+  Container,
+  Header,
+  Left,
+  Body,
+  Right,
+  Button,
+  Title,
+  Text,
+  Icon,
+  View
+} from "native-base";
 import { connect } from "react-redux";
+import HeaderListMaraudes from "./HeaderListMaraudes";
+import CardMaraude from "./CardMaraude";
 
 export class ListMaraudes extends Component {
   render() {
@@ -8,20 +21,10 @@ export class ListMaraudes extends Component {
     const { auth } = this.props;
     return (
       <Container>
-        <Header noShadow>
-          <Left>
-            <Button transparent>
-              <Icon
-                name='arrow-back'
-                onPress={() => navigate("Map")} />
-            </Button>
-          </Left>
-          <Body>
-            <Title>Liste des Maraudes</Title>
-          </Body>
-          <Right>
-          </Right>
-        </Header>
+        <View style={{ height: 65 }}>
+        <HeaderListMaraudes />
+        </View>
+        <CardMaraude />
       </Container>
     );
   }
@@ -31,8 +34,7 @@ const mapStateToProps = state => ({
   ...state
 });
 
-const mapDispatchToProps = {
-};
+const mapDispatchToProps = {};
 
 // @ts-ignore
 export default connect(

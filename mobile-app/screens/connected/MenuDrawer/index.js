@@ -8,20 +8,6 @@ export class MenuDrawer extends Component {
     const { auth } = this.props;
     return (
       <Container>
-        <Header noShadow>
-          <Left>
-            <Button transparent>
-              <Icon
-                name='arrow-back'
-                onPress={() => navigate("List")} />
-            </Button>
-          </Left>
-          <Body>
-            <Title>Menu des Maraudes</Title>
-          </Body>
-          <Right>
-          </Right>
-        </Header>
       </Container>
     );
   }
