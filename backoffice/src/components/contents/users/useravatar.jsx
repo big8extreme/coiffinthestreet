@@ -18,7 +18,7 @@ export class Useravatar extends Component {
             <div>
                 <div className="content-section implementation">
                     <p>avatarUrl</p>
-                    <FileUpload name="avatarUrl" url="http://localhost:3000/uploads/avatars" onUpload={this.onUpload}
+                    <FileUpload name="avatarUrl" url="http://localhost:5000/uploads/avatars" onUpload={this.onUpload}
                         multiple={true} accept="image/*" maxFileSize={1000000} />
                     <Growl ref={(el) => { this.growl = el; }}></Growl>
                 </div>

@@ -4,7 +4,6 @@ import { Button } from 'primereact/button';
 import axios from 'axios';
 
 export class Userdel extends Component {
-
     constructor() {
         super();
         this.state = { visible: true,

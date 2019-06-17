@@ -39,8 +39,7 @@ export class Usernew extends Component {
 
         const user = { ...this.state }
 
-        axios.post('http://localhost:3000/users', { ...user }, { headers: { Authorization: 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqb2huLWRvZUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE1NTkyMzY2Mjh9.6jcK8-WPUqcpmdwnf3nbTAhmYWeNddEeYJeIoQyF9rs' } }
-        )
+        axios.post('http://localhost:3000/users', { ...user } )
             .then(res => {
                 console.log(res);
                 console.log(res.data);
@@ -57,8 +56,8 @@ export class Usernew extends Component {
        
        uploadHandler = () => {
          const formData = new FormData()
-         formData.append('myFile', this.state.avatarUrl,  this.state.avatarUrl.name );
-         axios.post('./uploads', formData,   
+         formData.append('avatar', this.state.avatarUrl,  this.state.avatarUrl.name );
+         axios.post('./uploads/avatars', formData,   
           {onUploadProgress: progressEvent => {
                console.log(progressEvent.loaded / progressEvent.total)
              } 

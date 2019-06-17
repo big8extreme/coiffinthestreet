@@ -35,18 +35,7 @@ export class Userupdate extends Component {
 
     componentDidMount() {
         this.userservice.getUser(this.userId).then((data) => {
-            this.setState({
-                firstName: data.firstName,
-                lastName: data.lastName,
-                email: data.email,
-                password: data.password,
-                avatarUrl: data.avatarUrl,
-                isAdmin: data.isAdmin,
-                isActive: data.isActive,
-                isBanned: data.isBanned,
-                invitationCode: data.invitationCode,
-                job: data.job
-            })
+            this.setState({...data})
         });
     }
 
@@ -57,7 +46,7 @@ export class Userupdate extends Component {
     submitForm = event => {
         event.preventDefault();
         const user = { ...this.state }
-        axios.put(`http://localhost:3000/users/${this.userId}`, { ...user }, { headers: { Authorization: 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqb2huLWRvZUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE1NTkyMzY2Mjh9.6jcK8-WPUqcpmdwnf3nbTAhmYWeNddEeYJeIoQyF9rs' } }
+        axios.put(`http://localhost:3000/users/${this.userId}`
         )
             .then(res => {
                 console.log(res);
