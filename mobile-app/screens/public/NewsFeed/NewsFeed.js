@@ -7,7 +7,7 @@ export default class NewsFeed extends Component {
     render() {
         return (
             <LinearGradient
-                    colors={['#4c669f', '#3b5998', '#192f6a']}
+                    colors={['#131517', '#2D2D2D', '#454545']}
                     style={{ padding: 15, alignItems: 'center'}}>
             <View style={{alignItems: 'center', justifyContent: 'center', height:100 }}>
                 
