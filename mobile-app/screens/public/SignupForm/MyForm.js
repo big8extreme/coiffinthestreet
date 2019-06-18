@@ -72,7 +72,7 @@ export default class MyForm extends Component {
                     submit={this.submitSuccess.bind(this)}
                     failed={this.submitFailed.bind(this)}
                     errors={this.state.errors}
-                    style={{marginTop:30}}
+                    style={{ marginTop: 30, justifyContent: 'center' }}
                 >
                     <Text style={style.inputText}>Nom *</Text>
                     <Field
@@ -185,16 +185,14 @@ const style = {
         borderColor: '#FDC500',
         height: 60,
         borderWidth: 1,
-        width: 300,
+        width: '90%',
         borderRadius: 5,
-        marginLeft: 10,
         paddingLeft: 5,
         fontSize: 18
     },
     inputText: {
         fontFamily: 'Georgia',
         fontWeight: 'bold',
-        marginLeft: 10,
         marginBottom: 5,
         marginTop: 25
     },

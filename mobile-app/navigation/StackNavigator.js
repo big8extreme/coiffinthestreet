@@ -7,7 +7,8 @@ import BottomTabNav from './bottomTabNavigator'
 import LoginForm from "../screens/public/LoginForm";
 import Profile from "../screens/connected/Profile";
 import Contact from "../screens/connected/Profile/Contact_Components/contact";
-
+import Discover from '../screens/public/Discover/discover'
+import SignupForm from '../screens/public/SignupForm/MyForm'
 
 const AppStack = createStackNavigator(
   {
@@ -21,10 +22,12 @@ const AppStack = createStackNavigator(
 
 const AuthStack = createStackNavigator(
   {
-    Login: { screen: LoginForm }
+    Login: { screen: LoginForm },
+    Signup: { screen: SignupForm },
+    Discover: { screen: Discover },
   },
   {
-    initialRouteName: "Login"
+    initialRouteName: "Discover"
   }
 );
 
@@ -36,7 +39,7 @@ export default createAppContainer(
       Auth: AuthStack,
     },
     {
-      initialRouteName: "Tab"
+      initialRouteName: "Auth"
     }
   )
 );
