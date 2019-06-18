@@ -9,6 +9,7 @@ import Profile from "../screens/connected/Profile";
 import Contact from "../screens/connected/Profile/Contact_Components/contact";
 
 
+
 const AppStack = createStackNavigator(
   {
     Profile: { screen: Profile },
@@ -34,6 +35,7 @@ export default createAppContainer(
       Tab: BottomTabNav,
       App: AppStack,
       Auth: AuthStack,
+      
     },
     {
       initialRouteName: "App"
