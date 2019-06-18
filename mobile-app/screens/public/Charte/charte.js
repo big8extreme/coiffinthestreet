@@ -1,42 +1,49 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, Text } from 'react-native';
 import Axios from 'axios';
+import { Provider } from 'react-redux';
+import store from '../../../store';
+import { connect } from 'react-redux'
+import { fetchConfigs } from '../../../store/actions/config'
 
-export default class Charte extends Component {
+export class charte extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            text: "test"
+            keyWord: null
         };
     }
-
     componentDidMount() {
-        // Axios.get('http://192.168.1.109:5000/api/v1/users/')
-        Axios.get('http://192.168.1.109:5000/api/v1/users', {
-            headers: { 'Authorization': 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqb2huLWRvZUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE1NTkyMzY2Mjh9.6jcK8-WPUqcpmdwnf3nbTAhmYWeNddEeYJeIoQyF9rs' }
-        })
-            .then(res => {
-                this.setState({ text: res.data });
-            })
-            .catch(error => {
-                this.setState({ error: error });
-            });
+        this.props.fetchConfigs();
+
     }
+
+    // static propTypes = {
+    //     prop: PropTypes
+    // }
 
     render() {
         return (
-            <View style={styles.backgroundApp}>
-                <Text style={styles.Titletext}>Charte d'utilisateur</Text>
-                
-                <Text style={styles.textCharte}>
-                    {/* {JSON.stringify(this.state)} */}
-                    {this.state.text}
-                    ipsum dolor sit amet, consectetur adipiscing elit. Curabitur venenatis placerat leo, et porta nunc finibus sed. Curabitur non nisi sollicitudin, imperdiet quam et, rhoncus enim. Donec nec imperdiet metus, quis elementum lacus. Nam dolor est, eleifend ut vestibulum nec, lobortis sed mauris. Phasellus sed laoreet purus, sed luctus turpis. Nullam sit amet volutpat nulla. Nulla molestie, tortor vitae commodo maximus, orci sapien mattis nunc, nec sodales velit lectus vel est. Curabitur dapibus sapien placerat pretium consectetur. Quisque nunc turpis, interdum vel consequat id, elementum quis libero.
-                </Text>
-            </View>
-        )
+            <Provider store={store}>
+                <View style={styles.backgroundApp}>
+                    <Text style={styles.Titletext}>Charte d'utilisateur</Text>
+                    <Text style={styles.textCharte}>{this.props.config.charte}</Text>
+                </View>
+            </Provider>
+        );
     }
 }
+
+const mapStateToProps = (state) => ({
+    config: state.config.currentConfig
+})
+
+const mapDispatchToProps = {
+    fetchConfigs
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(charte);
 
 const styles = StyleSheet.create({
     backgroundApp: {

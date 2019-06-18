@@ -7,6 +7,7 @@ import BottomTabNav from './bottomTabNavigator'
 import LoginForm from "../screens/public/LoginForm";
 import Profile from "../screens/connected/Profile";
 import Contact from "../screens/connected/Profile/Contact_Components/contact";
+import Charte from "../screens/public/Charte/charte";
 
 
 const AppStack = createStackNavigator(
@@ -21,7 +22,7 @@ const AppStack = createStackNavigator(
 
 const AuthStack = createStackNavigator(
   {
-    Login: { screen: LoginForm }
+    Login: { screen: Charte }
   },
   {
     initialRouteName: "Login"
