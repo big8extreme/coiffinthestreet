@@ -172,10 +172,7 @@ export default class MyForm extends Component {
                     />
                 </Form>
 
-                <TouchableOpacity onPress={this.submitForm.bind(this)}>
-                    <Text style={style.buttonText}>Valider</Text>
-                    <ValidateButton />
-                </TouchableOpacity>
+                <ValidateButton onPress={this.submitForm.bind(this)} label="Valider" />
 
 
             </ScrollView>
