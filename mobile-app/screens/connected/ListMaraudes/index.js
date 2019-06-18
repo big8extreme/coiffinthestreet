@@ -16,7 +16,7 @@ import {
 import { StyleSheet, Image, ScrollView } from "react-native";
 import { connect } from "react-redux";
 import HeaderListMaraudes from "./HeaderListMaraudes";
-import CardMaraude from "./CardMaraude";
+import CardsMaraudes from "./CardsMaraudes";
 
 export class ListMaraudes extends Component {
   render() {
@@ -28,14 +28,8 @@ export class ListMaraudes extends Component {
         <Header style={{ backgroundColor: "#FFF", borderBottomWidth: 0, height: 80 }}>
         <HeaderListMaraudes />
         </Header>
-        <CardMaraude />
+        <CardsMaraudes />
       </React.Fragment>
-      <Container>
-        <View style={{ height: 65 }}>
-        <HeaderListMaraudes />
-        </View>
-        <CardMaraude />
-      </Container>
     );
   }
 }
@@ -44,7 +38,9 @@ const mapStateToProps = state => ({
   ...state
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+
+};
 
 // @ts-ignore
 export default connect(

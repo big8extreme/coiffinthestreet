@@ -68,3 +68,4 @@ export default class HeaderListMaraudes extends Component {
       </View>
     );
   }
+}
