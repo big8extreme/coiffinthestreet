@@ -6,17 +6,14 @@ import { CheckBox } from 'react-native-elements';
 import InputField from './InputField';
 import AvatarUpload from './Avatar';
 import DatePicker from './DatePicker';
-import ValidateButton from './ValidateButton';
+import ValidateButton from '../../../components/ValidateButton';
 
 const required = value => (value ? undefined : 'This is a required field.');
 const email = value => value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,5}$/i.test(value) ? 'Please provide a valid email address.' : undefined;
 
-
-
-
 export default class MyForm extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             errors: [],
             email: '',
@@ -171,10 +168,7 @@ export default class MyForm extends Component {
                         customStyle={style.field}
                     />
                 </Form>
-
                 <ValidateButton onPress={this.submitForm.bind(this)} label="Valider" />
-
-
             </ScrollView>
         );
     }
