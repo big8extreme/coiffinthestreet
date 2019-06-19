@@ -65,7 +65,7 @@ export default class UserPanel extends Component {
         </Fieldset>
       </div>
     </TabPanel>
-)
+  )
   renderUserUpdate = () => (
     <TabPanel id="4" header="Modifier">
       <div>

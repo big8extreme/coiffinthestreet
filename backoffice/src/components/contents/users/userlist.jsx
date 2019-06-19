@@ -8,32 +8,30 @@ import { InputSwitch } from 'primereact/inputswitch';
 import {
   Link
 } from 'react-router-dom';
-import {connect } from 'react-redux';
-import {fetchUsers} from '../../../stores/actions/user';
+import { connect } from 'react-redux';
+import { fetchUsers } from '../../../stores/actions/user';
 
 class UserList extends Component {
- 
- 
-componentDidMount(){
 
-  this.props.fetchUsers();
-}
 
+  componentDidMount() {
+
+    this.props.fetchUsers();
+  }
 
 
   render() {
     console.log('from users', this.props);
     return (
-     <div></div>
+      <div></div>
     );
   }
 }
 const mapStateToProps = (state) => ({
-...state
+  ...state
 });
 
 const mapDispatchToProps = {
-fetchUsers
-
+  fetchUsers
 };
 export default connect(mapStateToProps, mapDispatchToProps)(UserList);
