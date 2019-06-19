@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
-import authReducer from './auth'
+import authReducer from './auth';
+import photosReducer from '../reducers/photos'
 
 export default combineReducers({
-  auth: authReducer
+  photos: photosReducer
 });
