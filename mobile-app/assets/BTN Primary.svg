@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="302px" height="79px" viewBox="0 0 302 79" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.1 (78136) - https://sketchapp.com -->
+    <title>BTN Primary</title>
+    <desc>Created with Sketch.</desc>
+    <g id="globalCoiffin'" stroke="none" stroke-width="1" fill="#FDC500" fill-rule="evenodd">
+        <g id="Guidelines-v2.0" transform="translate(-60.000000, -3115.000000)" fill="#112249" stroke="#FFFFFF" stroke-width="7">
+            <g id="Guidelines" transform="translate(0.000000, 259.000000)">
+                <g id="BTN-Primary" transform="translate(58.000000, 2856.000000)">
+                    <path d="M43.2791592,3.5 C40.0544477,3.5 37.1074306,5.32478241 35.6701474,8.21147275 L11.5481664,56.6589108 C10.9922563,57.7754201 10.6888692,59.0005889 10.6595302,60.2474924 C10.5491032,64.9406138 14.2641111,68.8346591 18.9572325,68.945086 L287.216538,75.2571015 C291.432985,75.3563125 295.084493,72.3487197 295.795003,68.1913844 L305.153668,13.4319309 C305.234511,12.9589056 305.27515,12.4798838 305.27515,12 C305.27515,7.30557963 301.46957,3.5 296.77515,3.5 L43.2791592,3.5 Z" id="Rectangle" transform="translate(155.500000, 39.500000) scale(-1, -1) translate(-155.500000, -39.500000) "></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

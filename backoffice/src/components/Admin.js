@@ -1,25 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { logout } from '../stores/actions/auth';
-import Axios from 'axios';
+import MenuLeft from './contents/MenuLeft';
+import AdminRouter from '../routes/AdminRouter';
 
 export class Admin extends Component {
   render() {
     return (
-      <div>
-        {/* // used to check if token is available */}
-        <button
-          onClick={() => {
-            Axios.get('/users')
-              .then(res => console.log(res))
-              .catch(err => console.log(err));
-          }}
-        >FETCH USERS</button>
-        <h1>IM IN ADMIN PANNEL</h1>
-        <button
-          onClick={() => this.props.logout()}
-        >SIGN OUT</button>
-      </div>
+      <React.Fragment>
+        <div className="layout-wrapper">
+          <div className="layout-topbar">
+          </div>
+          <div className="layout-sidebar">
+            <MenuLeft />
+          </div>
+          <div className="layout-content">
+            <AdminRouter />
+            <div className="layout-footer">
+            </div>
+          </div>
+        </div>
+      </React.Fragment >
     );
   }
 }

@@ -7,6 +7,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var maraudesRouter = require('./routes/maraudes');
 var authRouter = require('./routes/auth');
+var participantsRouter = require('./routes/participants');
+var configsRouter = require('./routes/configs');
 
 const passport = require('passport');
 const { localAuthStrategy } = require('./routes/strategies/local');
@@ -31,5 +33,6 @@ app.use('/', indexRouter);
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/maraudes', maraudesRouter);
-
+app.use('/api/v1/participants', participantsRouter);
+app.use('/api/v1/configs', configsRouter);
 module.exports = app;
