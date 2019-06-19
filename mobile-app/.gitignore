@@ -5,8 +5,4 @@ npm-debug.*
 *.p12
 *.key
 *.mobileprovision
-<<<<<<< HEAD
 yarn-error.log
-=======
-yarn-error.log
->>>>>>> 02f2e2ebde2d2c10c62aa7bb4789ce851f576a4a

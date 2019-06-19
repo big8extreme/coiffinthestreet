@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, ScrollView, Image, StyleSheet, Dimensions, Text } from 'react-native';
 import { Constants } from 'expo';
 
+
 const { width } = Dimensions.get('window');
 const height = width * 0.9
 
@@ -10,6 +11,8 @@ class Carousel extends Component {
         const { images } = this.props;
         if (images && images.length) {
             return (
+
+               
                 <View
                     style={styles.scrollContainer}
                 >

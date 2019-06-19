@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { ScrollView, Image, Text } from 'react-native';
 import { LinearGradient } from 'expo';
 import SliderMauraude from './SliderMauraude';
+import CardsPhotosMaraude from './CardsPhotosMaraude';
 
 
 
@@ -19,10 +20,8 @@ export default class NewsFeed extends Component {
 
                     <Image source={require('../../../assets/Logo_light.png')} style={style.logo} />
                     <Text style={style.text}>Retrouvez-nous avec #coiffinthestreet !</Text>
-                    <SliderMauraude/>
-                    <SliderMauraude/>
-                    <SliderMauraude/>
-                    <SliderMauraude/>
+                    <CardsPhotosMaraude/>
+                    
 
                 </ScrollView>
 
@@ -44,6 +43,7 @@ const style = {
         justifyContent: 'center',
         alignItems: 'center',
         paddingTop: 20,
+        flex:1
     },
     logo: {
         marginLeft: 15
