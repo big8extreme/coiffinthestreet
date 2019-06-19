@@ -5,7 +5,7 @@ import { Button } from 'primereact/button';
 import { Fieldset } from 'primereact/fieldset';
 import { InputSwitch } from 'primereact/inputswitch';
 import { connect } from 'react-redux';
-import { fetchUsers } from '../../../stores/actions/user';
+import { fetchUsers, deleteUser } from '../../../stores/actions/user';
 import {
   Link
 } from 'react-router-dom';
@@ -31,11 +31,14 @@ class UserList extends Component {
         this.toggleModal();
       }} style={{ marginRight: '.5em' }} > </Button>
 
+      <Button icon="pi pi-times" className="p-button-danger" onClick={() => {
+        this.props.deleteUser(rowData.id)
+        this.props.fetchUsers();
+      }}
+        style={{ marginRight: '.5em' }} > </Button>
+
+
     </div>;
-  }
-  //deleted soit pas link axios soit par component???
-  handleClick(dd) {
-    console.log(dd);
   }
 
   actionValid(rowData, column) {
@@ -73,16 +76,13 @@ class UserList extends Component {
   }
 }
 
-
-
-
-
 const mapStateToProps = (state) => ({
   users: state.user.users
 });
 
 const mapDispatchToProps = {
-  fetchUsers
+  fetchUsers,
+  deleteUser
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserList);

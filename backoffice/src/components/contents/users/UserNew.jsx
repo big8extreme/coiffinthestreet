@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import { InputText } from 'primereact/inputtext';
 import { Dialog } from 'primereact/dialog';
@@ -34,7 +33,7 @@ class UserNew extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.props.selectedUser && this.props.selectedUser.id != this.state.user.id) {
+   if (this.props.selectedUser && this.props.selectedUser.id != this.state.user.id) {
       this.setState({ user: this.props.selectedUser });
     }
   }
@@ -43,14 +42,14 @@ class UserNew extends Component {
   handleUserStateChange = async (field, value) => {
     await this.setState({ ...this.state, user: { ...this.state.user, [field]: value } });
     this.checkValidity();
-  }
+    }
 
   checkValidity = () => {
     return !(this.state.user.password === this.state.user.passwordConfirmation);
   }
 
   render() {
-    console.log('HERERERERER', this.state);
+
     const jobSelectItems = [
       { label: 'Coiffeur', value: 'Coiffeur' },
       { label: 'Estheticienne', value: 'Estheticienne' },
@@ -58,7 +57,9 @@ class UserNew extends Component {
     ];
     const actionLabel = this.state.onCreate ? 'Créer' : 'Modifier';
     return (
-      <Dialog visible={this.props.isOpen} onHide={this.props.closeModal} modal>
+
+
+      <Dialog header="Ajour/Modification" style={{ width: '50vw' }} visible={this.props.isOpen} onHide={this.props.closeModal}>
         <div>
           <div className="content-section implementation inputgrid-demo">
             <Form >
@@ -70,13 +71,7 @@ class UserNew extends Component {
                     </span>
                     <InputText placeholder="email" name="email" value={this.state.user.email} onChange={(event) => this.handleUserStateChange('email', event.target.value)} />
                   </div>
-                  <div className="p-inputgroup">
-                    <span className="p-inputgroup-addon">
-                      <i className="pi pi-user"></i>
-                    </span>
-                    <input type="file" onChange={(e) => this.setState({ ...this.state, user: { ...this.state.user, avatar: e.target.files[0] } })} />
                   </div>
-                </div>
                 <div className="p-col-4 p-md-4">
                   <div className="p-inputgroup">
                     <InputText placeholder="Mot de passe" name="password" type="text" onChange={(event) => this.handleUserStateChange('password', event.target.value)} />
@@ -104,12 +99,19 @@ class UserNew extends Component {
                     <Dropdown value={this.state.user.job} name="job" options={jobSelectItems} onChange={(event) => this.handleUserStateChange('job', event.target.value)} placeholder="Select a Job" />
                   </div></div>
               </div>
+
               <div className="p-grid p-fluid">
-                <div className="p-col-4 p-md-4">
+                <div className="p-col-6 p-md-4">
                   <div className="p-inputgroup">
                     <InputText placeholder="Parrain" name="godFatherId" onChange={(event) => this.handleUserStateChange('godFatherId', event.target.value)} />
                   </div>
                 </div>
+                <div className="p-col-6 p-md-4">
+                <div className="p-inputgroup">
+                 
+                    <input type="file" onChange={(e) => this.setState({ ...this.state, user: { ...this.state.user, avatar: e.target.files[0] } })} />
+                  </div>
+                  </div>
               </div>
               <div className="p-grid p-fluid">
                 <div className="p-col-4 p-md-4">
@@ -122,8 +124,8 @@ class UserNew extends Component {
                 </div>
               </div>
               <div className="p-grid p-fluid">
-                <div className="p-col-12 p-md-4" >
-                  <Button disabled={this.checkValidity()} label={actionLabel} onClick={async (event) => {
+                <div className="p-col-6 p-md-4" >
+                     <Button icon="pi pi-check" disabled={this.checkValidity()} label={actionLabel} onClick={async (event) => {
                     event.preventDefault();
                     if (this.state.onCreate) {
                       await this.props.createUser(this.state.user);
@@ -133,11 +135,17 @@ class UserNew extends Component {
                     }
                   }} />
                 </div>
+                <div className="p-col-6 p-md-4" >
+                  <Button label="Annuler" icon="pi pi-times" onClick={this.props.closeModal} className="p-button-secondary" />
+                </div>
               </div>
+
             </Form>
           </div>
         </div>
-      </Dialog>
+        <div>
+
+        </div> </Dialog>
     );
   }
 }
@@ -148,6 +156,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   createUser
+  
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserNew);
