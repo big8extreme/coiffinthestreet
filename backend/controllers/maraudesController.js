@@ -3,13 +3,13 @@ const Maraude = models.Maraude;
 
 module.exports = {
   index: function (req, res, next) {
-    Maraude.findAll()
+    Maraude.findAll({include:['photos']})
       .then((maraudes) => { res.json({ maraudes }); })
       .catch((error) => res.status(500).json({ error }));
   },
 
   show: function (req, res, next) {
-    Maraude.findByPk(req.params.id)
+    Maraude.findByPk(req.params.id, {include:['photos']})
       .then((maraude) => { res.json({ maraude }); })
       .catch((error) => res.status(500).json({ error }));
   },
