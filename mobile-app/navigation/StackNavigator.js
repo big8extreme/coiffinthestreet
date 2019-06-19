@@ -11,7 +11,7 @@ import Charte from "../screens/public/Charte/charte";
 import Discover from '../screens/public/Discover/discover'
 import SignupForm from '../screens/public/SignupForm/MyForm'
 import drawerMenu from './drawerNavigator'
-import Participation from '../screens/public/ParticipationForm/Participation'
+import Participation from '../screens/public/Participation/Participation'
 
 const AppStack = createStackNavigator(
   {
@@ -20,7 +20,7 @@ const AppStack = createStackNavigator(
     Participation: { screen: Participation },
   },
   {
-    initialRouteName: "Participation",
+    initialRouteName: "Profile",
     navigationOptions: { header: null },
   },
 );
@@ -49,7 +49,7 @@ export default createAppContainer(
       drawerMenu: drawerMenu
     },
     {
-      initialRouteName: "App"
+      initialRouteName: "Auth"
     }
   )
 );

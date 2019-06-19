@@ -3,7 +3,7 @@ import { Text, TouchableOpacity, Image, ScrollView, View } from 'react-native';
 import { Input, Container, } from 'native-base';
 import { Form, Field } from 'react-native-validate-form';
 import { CheckBox } from 'react-native-elements';
-import InputField from './InputField';
+import InputField from '../SignupForm/InputField';
 import AvatarUpload from './Avatar';
 import DatePicker from './DatePicker';
 import ValidateButton from '../../../components/ValidateButton';
