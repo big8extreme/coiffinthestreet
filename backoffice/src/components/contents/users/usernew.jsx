@@ -1,178 +1,153 @@
 
 import React, { Component } from 'react';
-import { InputText } from "primereact/inputtext";
-import { Button } from "primereact/button";
+import { InputText } from 'primereact/inputtext';
+import { Dialog } from 'primereact/dialog';
+import { Button } from 'primereact/button';
 import { Dropdown } from 'primereact/dropdown';
 import { InputSwitch } from 'primereact/inputswitch';
 import { Form } from 'reactstrap';
-import axios from 'axios';
-import { Useravatar } from './useravatar';
-import { Growl } from 'primereact/growl';
-import { FileUpload } from 'primereact/fileupload';
+import { connect } from 'react-redux';
+import { createUser } from '../../../stores/actions/user';
 
-export class Usernew extends Component {
+const defaultUser = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+  passwordConfirmation: '',
+  avatarUrl: '',
+  isAdmin: false,
+  isActive: false,
+  isBanned: false,
+  job: '',
+  value: '',
+  avatar: {}
+};
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            firstName: '',
-            lastName: '',
-            email: '',
-            password: '',
-            avatarUrl: '',
-            isAdmin: false,
-            isActive: false,
-            isBanned: false,
-            invitationCode: '',
-            job: '',
-            value: ''
-        };
-        this.handleChange = this.handleChange.bind(this);
-        this.submitForm = this.submitForm.bind(this);
+class UserNew extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: defaultUser,
+      onCreate: true,
+    };
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.selectedUser && this.props.selectedUser.id != this.state.user.id) {
+      this.setState({ user: this.props.selectedUser });
     }
-
-    handleChange = e => this.setState({
-        [e.target.name]: e.target.value
-    })
-    submitForm = event => {
-        event.preventDefault();
-
-        const user = { ...this.state }
-
-        axios.post('http://localhost:3000/users', { ...user } )
-            .then(res => {
-                console.log(res);
-                console.log(res.data);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }
-
-    fileChangedHandler = event => {
-        // console.log(event.target);
-         this.setState({ avatarUrl: event.target.files[0] })
-       }
-       
-       uploadHandler = () => {
-         const formData = new FormData()
-         formData.append('avatar', this.state.avatarUrl,  this.state.avatarUrl.name );
-         formData.append('firstname', 'John' );
-         axios.post('/auth/signup', formData,   
-          {onUploadProgress: progressEvent => {
-               console.log(progressEvent.loaded / progressEvent.total)
-             } 
-         })
-           .then(res =>{
-             console.log(res);
-         });
-           }
+  }
 
 
-    render() {
-        const jobSelectItems = [
-            { label: 'Coiffeur', value: 'Coiffeur' },
-            { label: 'Estheticienne', value: 'Estheticienne' },
-            { label: 'Photographe', value: 'Photographe' }
-        ];
-        console.log(this.state)
-        return (
-            <div>
-                <div className="content-section implementation inputgrid-demo">
-                    <Form onSubmit={this.submitForm} >
+  handleUserStateChange = async (field, value) => {
+    await this.setState({ ...this.state, user: { ...this.state.user, [field]: value } });
+    this.checkValidity();
+  }
 
-                        <div className="p-grid p-fluid">
-                            <div className="p-col-4 p-md-4">
-                                <div className="p-inputgroup">
-                                    <span className="p-inputgroup-addon">
-                                        <i className="pi pi-user"></i>
-                                    </span>
-                                    <InputText placeholder="email" name="email" value={this.state.email} onChange={this.handleChange} />
-                                </div>
-                            </div>
-                            <div className="p-col-4 p-md-4">
-                                <div className="p-inputgroup">
-                                    <InputText placeholder="Mot de passe" name="password" type="text" onChange={this.handleChange} />
-                                </div>
-                            </div>
-                            <div className="p-col-4 p-md-4">
-                                <div className="p-inputgroup">
-                                    <InputText placeholder="RE Mot de passe" name="password2" type="text" onChange={this.handleChange} />
-                                </div>
-                            </div>
-                        </div>
+  checkValidity = () => {
+    return !(this.state.user.password === this.state.user.passwordConfirmation);
+  }
 
-                        <div className="p-grid p-fluid">
-                            <div className="p-col-4 p-md-4">
-                                <div className="p-inputgroup">
-                                    <InputText placeholder="Nom" name="firstName" value={this.state.firstName} onChange={this.handleChange} />
-                                </div>
-                            </div>
-                            <div className="p-col-4 p-md-4">
-                                <div className="p-inputgroup">
-                                    <InputText placeholder="Prenom" name="lastName" value={this.state.lastName} onChange={this.handleChange} />
-                                </div>
-                            </div>
-                            <div className="p-col-4 p-md-4">
-                                <div className="p-inputgroup">
-                                    <Dropdown value={this.state.job} name="job" options={jobSelectItems} onChange={(e) => { this.setState({ job: e.value }) }} placeholder="Select a Job" />
-                                </div></div>
-                        </div>
-
-                        <div className="p-grid p-fluid">
-                            <div className="p-col-4 p-md-4">
-                                <div className="p-inputgroup">
-                                    <InputText placeholder="Parrain" name="godFatherId" onChange={this.handleChange} />
-                                </div>
-                            </div>
-                            <div className="p-col-4 p-md-4">
-                                <div className="p-inputgroup">
-                                    <InputText placeholder="Code Filleul" value={this.state.invitationCode} name="invitationCode" onChange={this.handleChange} />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="p-grid p-fluid">
-                            <div className="p-col-4 p-md-4">
-                                <p>isAdmin</p>
-                                <InputSwitch name="isAdmin" value={this.state.isAdmin} checked={this.state.isAdmin} onChange={(e) => this.setState({ isAdmin: e.target.value })} />
-                            </div>
-                            <div className="p-col-4 p-md-4">
-                                <p>isActive</p>
-                                <InputSwitch name="isActive" value={this.state.isActive} checked={this.state.isActive} onChange={(e) => this.setState({ isActive: e.target.value })} />
-                            </div>
-                            <div className="p-col-4 p-md-4">
-                                <p>isBanned</p>
-                                <InputSwitch name="isBanned" value={this.state.isBanned} checked={this.state.isBanned} onChange={(e) => this.setState({ isBanned: e.target.value })} />
-                            </div>
-                        </div>
-
-                        <div>
-                            <div className="p-col-12 p-md-4">
-                                <Useravatar />
-                            </div>
-                        </div>
-
-                        <div className="p-col-12 p-md-4">
-                            <div className="content-section implementation">
-                  <input type="file"  onChange={this.fileChangedHandler} />
-<button onClick={this.uploadHandler} >Uploade</button>
-                            </div>
-                        </div>
-
-
-                        <div className="p-grid p-fluid">
-                            <div className="p-col-12 p-md-4" >
-                                <Button type="submit" value="Envoyer" >Submit</Button>
-                            </div>
-                        </div>
-
-
-
-                    </Form>
+  render() {
+    console.log('HERERERERER', this.state);
+    const jobSelectItems = [
+      { label: 'Coiffeur', value: 'Coiffeur' },
+      { label: 'Estheticienne', value: 'Estheticienne' },
+      { label: 'Photographe', value: 'Photographe' }
+    ];
+    const actionLabel = this.state.onCreate ? 'Créer' : 'Modifier';
+    return (
+      <Dialog visible={this.props.isOpen} onHide={this.props.closeModal} modal>
+        <div>
+          <div className="content-section implementation inputgrid-demo">
+            <Form >
+              <div className="p-grid p-fluid">
+                <div className="p-col-4 p-md-4">
+                  <div className="p-inputgroup">
+                    <span className="p-inputgroup-addon">
+                      <i className="pi pi-user"></i>
+                    </span>
+                    <InputText placeholder="email" name="email" value={this.state.user.email} onChange={(event) => this.handleUserStateChange('email', event.target.value)} />
+                  </div>
+                  <div className="p-inputgroup">
+                    <span className="p-inputgroup-addon">
+                      <i className="pi pi-user"></i>
+                    </span>
+                    <input type="file" onChange={(e) => this.setState({ ...this.state, user: { ...this.state.user, avatar: e.target.files[0] } })} />
+                  </div>
                 </div>
-            </div>
-
-        );
-    }
+                <div className="p-col-4 p-md-4">
+                  <div className="p-inputgroup">
+                    <InputText placeholder="Mot de passe" name="password" type="text" onChange={(event) => this.handleUserStateChange('password', event.target.value)} />
+                  </div>
+                </div>
+                <div className="p-col-4 p-md-4">
+                  <div className="p-inputgroup">
+                    <InputText placeholder="RE Mot de passe" name="passwordConfirmation" type="text" onChange={(event) => this.handleUserStateChange('passwordConfirmation', event.target.value)} />
+                  </div>
+                </div>
+              </div>
+              <div className="p-grid p-fluid">
+                <div className="p-col-4 p-md-4">
+                  <div className="p-inputgroup">
+                    <InputText placeholder="Nom" name="firstName" value={this.state.user.firstName} onChange={(event) => this.handleUserStateChange('firstName', event.target.value)} />
+                  </div>
+                </div>
+                <div className="p-col-4 p-md-4">
+                  <div className="p-inputgroup">
+                    <InputText placeholder="Prenom" name="lastName" value={this.state.user.lastName} onChange={(event) => this.handleUserStateChange('lastName', event.target.value)} />
+                  </div>
+                </div>
+                <div className="p-col-4 p-md-4">
+                  <div className="p-inputgroup">
+                    <Dropdown value={this.state.user.job} name="job" options={jobSelectItems} onChange={(event) => this.handleUserStateChange('job', event.target.value)} placeholder="Select a Job" />
+                  </div></div>
+              </div>
+              <div className="p-grid p-fluid">
+                <div className="p-col-4 p-md-4">
+                  <div className="p-inputgroup">
+                    <InputText placeholder="Parrain" name="godFatherId" onChange={(event) => this.handleUserStateChange('godFatherId', event.target.value)} />
+                  </div>
+                </div>
+              </div>
+              <div className="p-grid p-fluid">
+                <div className="p-col-4 p-md-4">
+                  <p>isAdmin</p>
+                  <InputSwitch name="isAdmin" value={this.state.user.isAdmin} checked={this.state.user.isAdmin} onChange={(event) => this.handleUserStateChange('isAdmin', event.target.value)} />
+                </div>
+                <div className="p-col-4 p-md-4">
+                  <p>isActive</p>
+                  <InputSwitch name="isActive" value={this.state.user.isActive} checked={this.state.user.isActive} onChange={(event) => this.handleUserStateChange('isActive', event.target.value)} />
+                </div>
+              </div>
+              <div className="p-grid p-fluid">
+                <div className="p-col-12 p-md-4" >
+                  <Button disabled={this.checkValidity()} label={actionLabel} onClick={async (event) => {
+                    event.preventDefault();
+                    if (this.state.onCreate) {
+                      await this.props.createUser(this.state.user);
+                      this.props.closeModal();
+                    } else {
+                      return this.props.createUser;
+                    }
+                  }} />
+                </div>
+              </div>
+            </Form>
+          </div>
+        </div>
+      </Dialog>
+    );
+  }
 }
+
+const mapStateToProps = (state) => ({
+  ...state
+});
+
+const mapDispatchToProps = {
+  createUser
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserNew);
