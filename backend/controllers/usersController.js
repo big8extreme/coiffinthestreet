@@ -74,9 +74,6 @@ module.exports = {
       .catch((error) => res.status(500).json({ error }));
   }
 
-
-  // NE PAS TOUCHER HAFID S'OCCUPE DE FINIR
-
 };
 
 
