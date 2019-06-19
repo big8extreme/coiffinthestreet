@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, Text } from 'react-native';
-import Axios from 'axios';
 import { Provider } from 'react-redux';
 import store from '../../../store';
 import { connect } from 'react-redux'
