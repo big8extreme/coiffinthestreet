@@ -1,9 +1,12 @@
-import React from "react";
-import { StyleSheet, TouchableOpacity, Image, ScrollView } from "react-native";
-import { Text, View, Icon, Button } from "native-base";
+import React from 'react'
+import { StyleSheet } from "react-native";
+import { Text, View, Icon } from "native-base";
+import moment from "moment";
+import { Svg } from "expo";
+import ValidateButton from '../../../components/ValidateButton';
 
-const CardMaraude = () => (
-  <ScrollView>
+export default function CardMaraude({ maraude }) {
+  return (
     <View style={styles.shadow}>
       <Icon
         style={{
@@ -11,7 +14,7 @@ const CardMaraude = () => (
           fontSize: 25,
           position: "absolute",
           paddingTop: 20,
-          paddingLeft: 30
+          paddingLeft: 80
         }}
         name="ios-pin"
       />
@@ -20,45 +23,46 @@ const CardMaraude = () => (
           fontSize: 20,
           color: "#112249",
           fontWeight: "bold",
-          fontFamily: "Georgia",
           textAlign: "center",
           padding: 10
         }}
       >
-        Quartier du vieux port
+        {maraude.title}
       </Text>
       <Text
         style={{
           fontSize: 14,
           paddingTop: 18,
-          paddingBottom: 18,
-          paddingLeft: 20,
-          paddingRight: 20
+          paddingBottom: 18
         }}
       >
         <Text
           style={{
             fontSize: 14,
-            color: "#929292",
             textTransform: "uppercase",
             fontFamily: "Georgia"
           }}
         >
-          Le :{" "}
+          <Text style={{ color: "#929292" }}>Le :</Text>
+          <Text>{moment(maraude.startAt).format("DD/MM/YYYY")}</Text>
+          <Text
+            style={{
+              color: "#929292",
+              marginRight: 30,
+              marginLeft: 30
+            }}
+          >
+            à
+                </Text>
+          <Text>{moment(maraude.startAt).format("HH[h]mm")}</Text>
         </Text>
-        <Text style={{ fontFamily: "Georgia" }}>07/11</Text>
         <Text
           style={{
             fontSize: 14,
             color: "#929292",
-            textTransform: "uppercase",
-            fontFamily: "Georgia"
+            textTransform: "uppercase"
           }}
-        >
-          {" "}
-          à{" "}
-        </Text>
-        <Text style={{ fontFamily: "Georgia" }}>17h30</Text>
+        />
       </Text>
       <Text
         style={{
@@ -69,208 +73,21 @@ const CardMaraude = () => (
           paddingRight: 20
         }}
       >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
+        {maraude.description}
       </Text>
-      <View style={{ flex: 1, justifyContent: "center", paddingTop: 40 }}>
-        <Image
-          source={require("../../../assets/btn.png")}
-          style={{ marginTop: 15, marginLeft: 22 }}
-        />
-        <Text
-          style={{
-            flex: 1,
-            position: "absolute",
-            color: "white",
-            fontFamily: "Sedgwick",
-            fontSize: 18,
-            paddingTop: 60,
-            paddingLeft: 85
-          }}
-        >
-          Je souhaite participer
-        </Text>
-      </View>
-    </View>
-    <View style={styles.shadow}>
-      <Icon
+      <View
         style={{
-          color: "#E6E6E6",
-          fontSize: 25,
-          position: "absolute",
-          paddingTop: 20,
-          paddingLeft: 30
+          flex: 1,
+          justifyContent: "center",
+          paddingTop: 40
         }}
-        name="ios-pin"
       />
-      <Text
-        style={{
-          fontSize: 20,
-          color: "#112249",
-          fontWeight: "bold",
-          fontFamily: "Georgia",
-          textAlign: "center",
-          padding: 10
-        }}
-      >
-        Quartier du vieux port
-      </Text>
-      <Text
-        style={{
-          fontSize: 14,
-          paddingTop: 18,
-          paddingBottom: 18,
-          paddingLeft: 20,
-          paddingRight: 20
-        }}
-      >
-        <Text
-          style={{
-            fontSize: 14,
-            color: "#929292",
-            textTransform: "uppercase",
-            fontFamily: "Georgia"
-          }}
-        >
-          Le :{" "}
-        </Text>
-        <Text style={{ fontFamily: "Georgia" }}>07/11</Text>
-        <Text
-          style={{
-            fontSize: 14,
-            color: "#929292",
-            textTransform: "uppercase",
-            fontFamily: "Georgia"
-          }}
-        >
-          {" "}
-          à{" "}
-        </Text>
-        <Text style={{ fontFamily: "Georgia" }}>17h30</Text>
-      </Text>
-      <Text
-        style={{
-          fontSize: 14,
-          color: "#929292",
-          fontStyle: "italic",
-          paddingLeft: 20,
-          paddingRight: 20
-        }}
-      >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
-      </Text>
-      <View style={{ flex: 1, justifyContent: "center", paddingTop: 40 }}>
-        <Image
-          source={require("../../../assets/btn.png")}
-          style={{ marginTop: 15, marginLeft: 22 }}
-        />
-        <Text
-          style={{
-            flex: 1,
-            position: "absolute",
-            color: "white",
-            fontFamily: "Sedgwick",
-            fontSize: 18,
-            paddingTop: 60,
-            paddingLeft: 85
-          }}
-        >
-          Je souhaite participer
-        </Text>
+      <View>
+        <ValidateButton label="test" />
       </View>
     </View>
-    <View style={styles.shadow}>
-      <Icon
-        style={{
-          color: "#E6E6E6",
-          fontSize: 25,
-          position: "absolute",
-          paddingTop: 20,
-          paddingLeft: 30
-        }}
-        name="ios-pin"
-      />
-      <Text
-        style={{
-          fontSize: 20,
-          color: "#112249",
-          fontWeight: "bold",
-          fontFamily: "Georgia",
-          textAlign: "center",
-          padding: 10
-        }}
-      >
-        Quartier du vieux port
-      </Text>
-      <Text
-        style={{
-          fontSize: 14,
-          paddingTop: 18,
-          paddingBottom: 18,
-          paddingLeft: 20,
-          paddingRight: 20
-        }}
-      >
-        <Text
-          style={{
-            fontSize: 14,
-            color: "#929292",
-            textTransform: "uppercase",
-            fontFamily: "Georgia"
-          }}
-        >
-          Le :{" "}
-        </Text>
-        <Text style={{ fontFamily: "Georgia" }}>07/11</Text>
-        <Text
-          style={{
-            fontSize: 14,
-            color: "#929292",
-            textTransform: "uppercase",
-            fontFamily: "Georgia"
-          }}
-        >
-          {" "}
-          à{" "}
-        </Text>
-        <Text style={{ fontFamily: "Georgia" }}>17h30</Text>
-      </Text>
-      <Text
-        style={{
-          fontSize: 14,
-          color: "#929292",
-          fontStyle: "italic",
-          paddingLeft: 20,
-          paddingRight: 20
-        }}
-      >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
-      </Text>
-      <View style={{ flex: 1, justifyContent: "center", paddingTop: 40 }}>
-        <Image
-          source={require("../../../assets/btn.png")}
-          style={{ marginTop: 15, marginLeft: 22 }}
-        />
-        <Text
-          style={{
-            flex: 1,
-            position: "absolute",
-            color: "white",
-            fontFamily: "Sedgwick",
-            fontSize: 18,
-            paddingTop: 60,
-            paddingLeft: 85
-          }}
-        >
-          Je souhaite participer
-        </Text>
-      </View>
-    </View>
-  </ScrollView>
-);
-export default CardMaraude;
+  )
+}
 
 const styles = StyleSheet.create({
   shadow: {
@@ -280,7 +97,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFF",
     borderRadius: 7,
     padding: 10,
-    height: 210,
+    height: 'auto',
     marginBottom: 40,
     shadowOffset: {
       width: 0,
