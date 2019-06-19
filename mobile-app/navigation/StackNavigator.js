@@ -6,13 +6,15 @@ import {
 import BottomTabNav from './bottomTabNavigator'
 import LoginForm from "../screens/public/LoginForm";
 import Profile from "../screens/connected/Profile";
+import MaraudeCreationForm from "../screens/connected/Maraudes/MaraudeCreationForm";
 
 const AppStack = createStackNavigator(
   {
-    Profile: { screen: Profile }
+    Profile: { screen: Profile },
+    MaraudeForm: { screen: MaraudeCreationForm }
   },
   {
-    initialRouteName: "Profile"
+    initialRouteName: "MaraudeForm"
   },
 );
 
@@ -33,7 +35,7 @@ export default createAppContainer(
       Auth: AuthStack,
     },
     {
-      initialRouteName: "Tab"
+      initialRouteName: "App"
     }
   )
 );

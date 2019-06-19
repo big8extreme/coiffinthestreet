@@ -4,13 +4,13 @@ const Maraude = models.Maraude;
 module.exports = {
   index: function (req, res, next) {
     Maraude.findAll()
-      .then((maraudes) => { res.json({maraudes})})
+      .then((maraudes) => { res.json({maraudes}); })
       .catch((error) =>  res.status(500).json({error}));
   },
 
   show: function (req, res, next) {
     Maraude.findByPk(req.params.id)
-      .then((maraude) => { res.json({maraude});})
+      .then((maraude) => { res.json({maraude}); })
       .catch((error) =>  res.status(500).json({error}));
   },
 
@@ -27,7 +27,7 @@ module.exports = {
       longitude: req.body.longitude,
       latitude: req.body.latitude
     })
-      .then((maraude) => { res.json({maraude});})
+      .then((maraude) => { res.json({maraude}); })
       .catch((error) => res.status(500).json({error}));
   },
 
@@ -45,7 +45,7 @@ module.exports = {
           longitude: req.body.longitude,
           latitude: req.body.latitude
         })
-          .then((updatedMaraude) => { res.json({updatedMaraude});})
+          .then((updatedMaraude) => { res.json({updatedMaraude}); })
           .catch((error) => res.status(500).json({error})); 
       })
       .catch((error) =>  res.status(500).json({error}));
@@ -61,3 +61,4 @@ module.exports = {
       .catch((error) =>  res.status(500).json({error}));
   },
 };
+
