@@ -11,7 +11,7 @@ import Charte from "../screens/public/Charte/charte";
 import Discover from '../screens/public/Discover/discover'
 import SignupForm from '../screens/public/SignupForm/MyForm'
 import drawerMenu from './drawerNavigator'
-import Participation from '../screens/public/Participation/Participation'
+import Participation from '../screens/public/Participation'
 
 const AppStack = createStackNavigator(
   {
@@ -30,9 +30,10 @@ const AuthStack = createStackNavigator(
     Login: { screen: LoginForm },
     Signup: { screen: SignupForm },
     Discover: { screen: Discover },
+    Participation: { screen: Participation }
   },
   {
-    initialRouteName: "Discover",
+    initialRouteName: "Login",
     headerMode: 'none',
     navigationOptions: {
       headerVisible: false,
