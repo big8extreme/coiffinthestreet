@@ -6,7 +6,7 @@ import { Dropdown } from 'primereact/dropdown';
 import { InputSwitch } from 'primereact/inputswitch';
 import { Form } from 'reactstrap';
 import { connect } from 'react-redux';
-import { createUser } from '../../../stores/actions/user';
+import { createUser, updateUser } from '../../../stores/actions/user';
 
 const defaultUser = {
   firstName: '',
@@ -28,21 +28,24 @@ class UserNew extends Component {
     super(props);
     this.state = {
       user: defaultUser,
-      onCreate: true,
+      userId: ''
     };
   }
 
   componentDidUpdate(prevProps, prevState) {
-   if (this.props.selectedUser && this.props.selectedUser.id != this.state.user.id) {
-      this.setState({ user: this.props.selectedUser });
+    if(this.state.user.id === undefined && !this.props.onCreate){
+      this.setState({ user: this.props.selectedUser, onCreate: false });
     }
+    else if (prevProps.onCreate !== this.props.onCreate && this.props.onCreate) {
+      this.setState({...this.state, onCreate: true, user: {...defaultUser}})
+    } 
   }
 
 
   handleUserStateChange = async (field, value) => {
-    await this.setState({ ...this.state, user: { ...this.state.user, [field]: value } });
-    this.checkValidity();
-    }
+    await this.setState({ ...this.state, user: {...this.state.user,[field]: value}});
+    //this.checkValidity();
+  }
 
   checkValidity = () => {
     return !(this.state.user.password === this.state.user.passwordConfirmation);
@@ -55,11 +58,17 @@ class UserNew extends Component {
       { label: 'Estheticienne', value: 'Estheticienne' },
       { label: 'Photographe', value: 'Photographe' }
     ];
-    const actionLabel = this.state.onCreate ? 'Créer' : 'Modifier';
+    const actionLabel = this.props.onCreate ? 'Créer' : 'Modifier';   
+
     return (
 
 
-      <Dialog header="Ajour/Modification" style={{ width: '50vw' }} visible={this.props.isOpen} onHide={this.props.closeModal}>
+      <Dialog header="Ajour/Modification" style={{ width: '50vw' }} visible={this.props.isOpen} onHide={() => 
+        {
+          this.props.closeModal();
+          this.setState({...this.state, user: { ...defaultUser }, onCreate: true})
+        }
+      }>
         <div>
           <div className="content-section implementation inputgrid-demo">
             <Form >
@@ -71,7 +80,7 @@ class UserNew extends Component {
                     </span>
                     <InputText placeholder="email" name="email" value={this.state.user.email} onChange={(event) => this.handleUserStateChange('email', event.target.value)} />
                   </div>
-                  </div>
+                </div>
                 <div className="p-col-4 p-md-4">
                   <div className="p-inputgroup">
                     <InputText placeholder="Mot de passe" name="password" type="text" onChange={(event) => this.handleUserStateChange('password', event.target.value)} />
@@ -107,11 +116,11 @@ class UserNew extends Component {
                   </div>
                 </div>
                 <div className="p-col-6 p-md-4">
-                <div className="p-inputgroup">
-                 
+                  <div className="p-inputgroup">
+
                     <input type="file" onChange={(e) => this.setState({ ...this.state, user: { ...this.state.user, avatar: e.target.files[0] } })} />
                   </div>
-                  </div>
+                </div>
               </div>
               <div className="p-grid p-fluid">
                 <div className="p-col-4 p-md-4">
@@ -125,13 +134,16 @@ class UserNew extends Component {
               </div>
               <div className="p-grid p-fluid">
                 <div className="p-col-6 p-md-4" >
-                     <Button icon="pi pi-check" disabled={this.checkValidity()} label={actionLabel} onClick={async (event) => {
+                  <Button icon="pi pi-check" disabled={this.checkValidity()} label={actionLabel} onClick={async (event) => {
                     event.preventDefault();
-                    if (this.state.onCreate) {
+                    if (this.props.onCreate) {
                       await this.props.createUser(this.state.user);
                       this.props.closeModal();
+                      this.setState({...this.state, user: {...defaultUser}})
                     } else {
-                      return this.props.createUser;
+                      this.props.updateUser(this.state.user, this.state.user.id);
+                      this.props.closeModal();
+                      this.setState({...this.state, user: {...defaultUser}})
                     }
                   }} />
                 </div>
@@ -155,8 +167,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  createUser
-  
+  createUser,
+  updateUser
+
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserNew);

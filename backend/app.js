@@ -34,9 +34,5 @@ app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/maraudes', maraudesRouter);
 app.use('/api/v1/participants', participantsRouter);
-<<<<<<< HEAD
 app.use('/api/v1/configs', configsRouter);
-=======
-
->>>>>>> dev
 module.exports = app;

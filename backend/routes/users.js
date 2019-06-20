@@ -3,7 +3,6 @@ var router = express.Router();
 const passport = require('passport');
 const userController = require('../controllers/usersController');
 
-<<<<<<< HEAD
 const multer = require('multer');
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -12,13 +11,7 @@ const storage = multer.diskStorage({
   filename: function (req, file, cb) {
     cb(null, file.originalname);
   }
-=======
- router.get('/', passport.authenticate('jwt', { session: false }), function (req, res, next) {
-  // router.get('/', function (req, res, next) {
-  res.send('Hello wilders');
->>>>>>> 3bc3e28a9d533fb7f7945868a22d8cdffc39261e
-=======
->>>>>>> dev
+
 });
 const upload = multer({ storage: storage });
 

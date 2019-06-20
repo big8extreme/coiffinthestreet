@@ -22,9 +22,9 @@ export const fetchUsers = () => {
 
 export const createUser = (userData) => {
   return async function (dispatch, getState) {
-
     function onSuccess(response) {
       dispatch({ type: CREATE_USER, payload: response.data.user });
+      dispatch(fetchUsers())
     }
     function onError(err) {
       console.log('ERROR WHILE CREATE USER', err);
@@ -49,14 +49,54 @@ export const createUser = (userData) => {
   };
 };
 
+
+
+
+
+export const updateUser = (userData, userId) => {
+  return async function (dispatch, getState) {
+
+    function onSuccess(response) {
+      console.log('success WHILE update USER', response);
+      dispatch(fetchUsers())
+    }
+    function onError(err) {
+      console.log('ERROR WHILE update USER', err);
+    }
+    try {
+        const response = await  axios.put(`/users/${userId}`,{...userData}, { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
+        onSuccess(response);
+      }
+    catch (err) {
+      onError(err);
+    }
+  };
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export const deleteUser = (userId) => {
   return async function (dispatch, getState) {
 
     function onSuccess(response) {
-      console.log('success WHILE CREATE USER', response);
+      console.log('success WHILE delete USER', response);
+      dispatch(fetchUsers())
     }
     function onError(err) {
-      console.log('ERROR WHILE CREATE USER', err);
+      console.log('ERROR WHILE delete USER', err);
     }
     try {
         const response = await  axios.delete(`/users/${userId}`, { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
