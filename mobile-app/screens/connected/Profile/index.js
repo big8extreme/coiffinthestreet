@@ -19,15 +19,15 @@ export class Profile extends Component {
     }
     return (
       <View>
-       <View>
-        <Text> Hello and welcome into profile view </Text>
-        <Button
-          title="Click me to logout"
-          onPress={() => this.props.logout()}
-        />
+        <View>
+          <Text> Hello and welcome into profile view </Text>
+          <Button
+            title="Click me to logout"
+            onPress={() => this.props.logout()}
+          />
+        </View>
       </View>
-      </View>
-     
+
     )
   }
 }
