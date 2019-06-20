@@ -50,7 +50,7 @@ export class Configs extends Component {
                     </div>
                     <div className="row">
                         <div className="col-6" >
-                            <p className="space-text">Texte de la Charte</p>
+                            <p className="space-text">Charte</p>
                             <InputTextarea className="space-area" name="charte" rows={10} cols={60} value={this.state.charte} onChange={this.handleChange} />
                         </div>
                         <div className="col-6">
