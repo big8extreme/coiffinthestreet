@@ -17,7 +17,11 @@ module.exports = {
             maraudeId: req.body.maraudeId,
             isValidate: req.body.isValidate,
             email: req.body.email,
-            job: req.body.job
+            job: req.body.job,
+            lastName: req.body.lastName,
+            firstName: req.body.firstName,
+            city: req.body.city,
+            age: req.body.age
         })
             .then((participant) => { res.json({ participant }); })
             .catch((error) => res.status(500).json({ error }));
@@ -29,7 +33,11 @@ module.exports = {
                     maraudeId: req.body.maraudeId,
                     isValidate: req.body.isValidate,
                     email: req.body.email,
-                    job: req.body.job
+                    job: req.body.job,
+                    lastName: req.body.lastName,
+                    firstName: req.body.firstName,
+                    city: req.body.city,
+                    age: req.body.age
                 })
                     .then((updatedParticipant) => { res.json({ participant: updatedParticipant }); })
                     .catch((error) => res.status(500).json({ error }));
