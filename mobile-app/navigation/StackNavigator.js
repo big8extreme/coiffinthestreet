@@ -34,7 +34,7 @@ const AuthStack = createStackNavigator(
 
   },
   {
-    initialRouteName: "BottomTabNav",
+    initialRouteName: "Discover",
     headerMode: 'none',
     navigationOptions: {
       headerVisible: false,
