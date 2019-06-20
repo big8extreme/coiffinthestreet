@@ -4,8 +4,7 @@ import { Input, Container, } from 'native-base';
 import { Form, Field } from 'react-native-validate-form';
 import { CheckBox } from 'react-native-elements';
 import InputField from '../SignupForm/InputField';
-import AvatarUpload from './Avatar';
-import DatePicker from './DatePicker';
+import DatePicker from '../SignupForm/DatePicker';
 import ValidateButton from '../../../components/ValidateButton';
 import RequestProfession from './RequestProfession';
 
@@ -18,11 +17,9 @@ export default class ParticipForm extends Component {
         this.state = {
             errors: [],
             email: '',
-            pseudo: '',
-            name: '',
+            city: '',
+            lastname: '',
             firstname: '',
-            password: null,
-            confirmPassword: null,
             one: false,
             two: false,
             itemChecked: false,
@@ -38,7 +35,7 @@ export default class ParticipForm extends Component {
     }
 
     submitForm() {
-        let submitResults = this.myForm.validate();
+        let submitResults = this.ParticipForm.validate();
         let errors = [];
         submitResults.forEach(item => {
             errors.push({ field: item.fieldName, error: item.error });
@@ -60,7 +57,6 @@ export default class ParticipForm extends Component {
 
             <ScrollView>
 
-
                 <Form
                     ref={(ref) => this.myForm = ref}
                     validate={true}
@@ -74,9 +70,9 @@ export default class ParticipForm extends Component {
                         required
                         component={InputField}
                         validations={[required]}
-                        name="name"
-                        value={this.state.name}
-                        onChangeText={(val) => this.setState({ name: val })}
+                        name="lastname"
+                        value={this.state.lastname}
+                        onChangeText={(val) => this.setState({ lastname: val })}
                         customStyle={style.field}
                     />
                     <Text style={style.inputText}>Prénom *</Text>
@@ -108,9 +104,9 @@ export default class ParticipForm extends Component {
                         required
                         component={InputField}
                         validations={[required]}
-                        name="firstname"
-                        value={this.state.firstname}
-                        onChangeText={(val) => this.setState({ firstname: val })}
+                        name="city"
+                        value={this.state.city}
+                        onChangeText={(val) => this.setState({ city: val })}
                         customStyle={style.field}
                     />
                 </Form>

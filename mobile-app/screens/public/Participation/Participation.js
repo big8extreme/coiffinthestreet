@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
-import FormList from './FormList'
+// import FormList from './FormList'
 import ParticipForm from './ParticipForm';
 
 export default class Participation extends Component {
