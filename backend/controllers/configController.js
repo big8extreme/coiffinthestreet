@@ -4,7 +4,7 @@ const Config = models.Config;
 module.exports = {
     index: function (req, res, next) {
         Config.findAll()
-            .then((configs) => { res.json({ configs:  configs[0]}); })
+            .then((configs) => { res.json({ configs: configs[0] }); })
             .catch((error) => res.status(500).json({ error }));
     },
 
