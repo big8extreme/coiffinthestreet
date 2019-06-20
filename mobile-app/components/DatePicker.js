@@ -19,6 +19,7 @@ export default class DatePicker extends Component {
             isVisible: false,
             chosenDate: moment(datetime).format('DD/ MM/ YYYY')
         })
+        this.props.onChange(datetime)
     }
 
     hidePicker = () => {
@@ -36,8 +37,8 @@ export default class DatePicker extends Component {
     render() {
         return (
             <View>
-                <Text style={style.birthText}>Date de naissance *</Text>
-                <View style={style.datePicker}>
+                <Text style={style.birthText}>Date de la Maraude</Text>
+                <View style={{...style.datePicker, ...this.props.style}}>
                     <TouchableOpacity onPress={this.showPicker}>
                         <Text style={style.dateText}>{this.state.chosenDate}</Text>
                     </TouchableOpacity>
