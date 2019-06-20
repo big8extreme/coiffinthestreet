@@ -2,15 +2,15 @@ import {
   createSwitchNavigator,
   createStackNavigator,
   createAppContainer,
-} from "react-navigation";
+} from "react-navigation"
 import BottomTabNav from './bottomTabNavigator'
 import LoginForm from "../screens/public/LoginForm";
 import Profile from "../screens/connected/Profile";
-import Contact from "../screens/connected/Profile/Contact_Components/contact";
-import Charte from "../screens/public/Charte/charte";
 import Discover from '../screens/public/Discover/discover'
 import SignupForm from '../screens/public/SignupForm/MyForm'
-import drawerMenu from './drawerNavigator'
+import DrawerMenu from './drawerNavigator'
+import Charte from '../screens/public/Charte/charte'
+import Contact from '../screens/connected/Profile/Contact'
 
 const AppStack = createStackNavigator(
   {
@@ -28,9 +28,13 @@ const AuthStack = createStackNavigator(
     Login: { screen: LoginForm },
     Signup: { screen: SignupForm },
     Discover: { screen: Discover },
+    drawerMenu: { screen: DrawerMenu },
+    BottomTabNav: { screen: BottomTabNav },
+    Charte: { screen: Charte },
+
   },
   {
-    initialRouteName: "Discover",
+    initialRouteName: "BottomTabNav",
     headerMode: 'none',
     navigationOptions: {
       headerVisible: false,
@@ -44,7 +48,7 @@ export default createAppContainer(
       Tab: BottomTabNav,
       App: AppStack,
       Auth: AuthStack,
-      drawerMenu: drawerMenu
+      DrawerMenu: DrawerMenu
     },
     {
       initialRouteName: "Auth"
