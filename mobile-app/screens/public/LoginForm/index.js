@@ -3,7 +3,6 @@ import { Toast, Root } from 'native-base';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux'
 import { login } from '../../../store/actions/auth'
-import { fetchMaraudes } from '../../../store/actions/maraude'
 
 class LoginForm extends Component {
   static navigationOptions = {
@@ -57,7 +56,7 @@ class LoginForm extends Component {
             </View>
           </View>
           <View style={styles.flexCenterImg}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => this.loginUser()}>
               <Image style={styles.button}
                 // @ts-ignore
                 source={require('./connect.png')}
@@ -110,12 +109,11 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => ({
-  ...state
+  auth: state.auth
 })
 
 const mapDispatchToProps = {
-  login,
-  fetchMaraudes
+  login
 }
 
 // @ts-ignore
