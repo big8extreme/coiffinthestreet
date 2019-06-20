@@ -17,7 +17,5 @@ const styles = StyleSheet.create({
     main_container: {
         flex: 1,
         backgroundColor: 'white',
-        // justifyContent: 'space-around',
-        // alignItems: 'center',
     },
 })

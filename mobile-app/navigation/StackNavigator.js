@@ -33,7 +33,7 @@ const AuthStack = createStackNavigator(
     Participation: { screen: Participation }
   },
   {
-    initialRouteName: "Login",
+    initialRouteName: "Discover",
     headerMode: 'none',
     navigationOptions: {
       headerVisible: false,
