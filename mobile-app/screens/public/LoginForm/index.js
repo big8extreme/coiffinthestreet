@@ -24,6 +24,8 @@ class LoginForm extends Component {
         text: 'Erreur de connexion',
         buttonText: 'Ok'
       })
+    } else if (response.status === 'success') {
+      this.props.navigation.navigate('App')
     }
   }
 

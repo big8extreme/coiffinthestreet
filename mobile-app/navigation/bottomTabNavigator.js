@@ -1,9 +1,8 @@
 import React from 'react';
-import { createBottomTabNavigator } from "react-navigation";
+import { createBottomTabNavigator, DrawerActions } from "react-navigation";
 import MapMaraudes from "../screens/connected/MapMaraudes";
 import FeedMaraudes from "../screens/connected/FeedMaraudes";
 import ListMaraudes from "../screens/connected/ListMaraudes";
-import Menu from "../screens/connected/MenuDrawer";
 import Icon from "react-native-vector-icons/Ionicons";
 
 const TabNavFooter = createBottomTabNavigator({
@@ -26,10 +25,12 @@ const TabNavFooter = createBottomTabNavigator({
     },
   },
   Menu: {
-    screen: Menu,
-    navigationOptions: {
-      tabBarIcon: ({ tintColor }) => <Icon name="ios-more" size={30} color={tintColor} />
-    },
+    screen: MapMaraudes,
+    navigationOptions: ({ navigation }) => {
+      return {
+        tabBarIcon: ({ tintColor }) => <Icon onPress={() => { navigation.dispatch(DrawerActions.openDrawer()) }} name="ios-more" size={30} color={tintColor} />
+      }
+    }
   }
 },
   {
