@@ -12,14 +12,6 @@ import {
 } from 'react-router-dom';
 import Usernew from './UserNew';
 
-
-const defaultActive = {
-  isActive: false
-};
-
-
-
-
 class UserList extends Component {
   constructor(props) {
     super(props);
@@ -27,8 +19,7 @@ class UserList extends Component {
       modal: false,
       selectedUser: null,
       onCreate: true,
-      active: defaultActive,
-      userId: ''
+      checked1: false
     };
   }
 
@@ -53,18 +44,10 @@ class UserList extends Component {
 
   actionValid(rowData, column) {
     return <div>
-      <InputSwitch checked={rowData.isActive} onClick={() => { this.changeStatus() }} />
-      debugger
-      <InputSwitch name="isActive" value={rowData.isActive} checked={rowData.isActive} onChange={(event) => this.handleUserStateChange('isActive', this.state.active)} />
+      <InputSwitch checked={rowData.isActive} onClick={() => {this.changeStatus()}} />
+
     </div>;
   }
-
-  handleUserStateChange = async (field, value) => {
-  //  await this.setState({ ...this.state, active: { ...this.state.active, [field]: value } });
-    //this.checkValidity();
-  }
-
-
 
   toggleModal = (onCreate) => {
     this.setState({ modal: !this.state.modal, onCreate });
