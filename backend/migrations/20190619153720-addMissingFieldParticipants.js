@@ -3,8 +3,10 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return Promise.all([
-      queryInterface.addColumn('Participants','name', Sequelize.TEXT),
-      queryInterface.addColumn('Participants', Sequelize.TEXT),
+      queryInterface.addColumn('Participants','lastName', Sequelize.TEXT),
+      queryInterface.addColumn('Participants', 'firstName', Sequelize.TEXT),
+      queryInterface.addColumn('Participants','city', Sequelize.TEXT),
+      queryInterface.addColumn('Participants','age', Sequelize.INT),
     ])
     /*
       Add altering commands here.
@@ -17,8 +19,10 @@ module.exports = {
 
   down: (queryInterface, Sequelize) => {
     return Promise.all([
-      queryInterface.removeColumn('Participants','name' ),
-      queryInterface.removeColumn('Participants', )
+      queryInterface.removeColumn('Participants','lastName'),
+      queryInterface.removeColumn('Participants','fistName'),
+      queryInterface.removeColumn('Participants','city'),
+      queryInterface.removeColumn('Participants','age' ),
     ])
     /*
       Add reverting commands here.
