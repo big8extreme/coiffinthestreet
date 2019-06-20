@@ -48,3 +48,22 @@ export const createUser = (userData) => {
     }
   };
 };
+
+export const deleteUser = (userId) => {
+  return async function (dispatch, getState) {
+
+    function onSuccess(response) {
+      console.log('success WHILE CREATE USER', response);
+    }
+    function onError(err) {
+      console.log('ERROR WHILE CREATE USER', err);
+    }
+    try {
+        const response = await  axios.delete(`/users/${userId}`, { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
+        onSuccess(response);
+      }
+    catch (err) {
+      onError(err);
+    }
+  };
+};

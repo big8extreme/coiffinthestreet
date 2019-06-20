@@ -31,6 +31,13 @@ class UserList extends Component {
         this.toggleModal();
       }} style={{ marginRight: '.5em' }} > </Button>
 
+      <Button icon="pi pi-times" className="p-button-danger" onClick={() => {
+        this.props.deleteUser(rowData.id)
+        this.props.fetchUsers();
+      }}
+        style={{ marginRight: '.5em' }} > </Button>
+
+
     </div>;
   }
   //deleted soit pas link axios soit par component???
@@ -74,15 +81,13 @@ class UserList extends Component {
 }
 
 
-
-
-
 const mapStateToProps = (state) => ({
   users: state.user.users
 });
 
 const mapDispatchToProps = {
-  fetchUsers
+  fetchUsers,
+  deleteUser
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserList);

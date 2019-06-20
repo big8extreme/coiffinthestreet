@@ -17,6 +17,8 @@ const storage = multer.diskStorage({
   // router.get('/', function (req, res, next) {
   res.send('Hello wilders');
 >>>>>>> 3bc3e28a9d533fb7f7945868a22d8cdffc39261e
+=======
+>>>>>>> dev
 });
 const upload = multer({ storage: storage });
 
