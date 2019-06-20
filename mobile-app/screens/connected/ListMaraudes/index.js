@@ -1,28 +1,35 @@
 import React, { Component } from "react";
-import { Container, Header, Left, Body, Right, Button, Title, Text, Icon } from 'native-base';
+import {
+  Container,
+  Header,
+  Left,
+  Body,
+  Right,
+  Button,
+  Title,
+  Text,
+  Icon,
+  View,
+  Item,
+  Input
+} from "native-base";
+import { StyleSheet, Image, ScrollView } from "react-native";
 import { connect } from "react-redux";
+import HeaderListMaraudes from "./HeaderListMaraudes";
+import CardsMaraudes from "./CardsMaraudes";
 
 export class ListMaraudes extends Component {
   render() {
     const { navigate } = this.props.navigation;
     const { auth } = this.props;
+    console.log(this.state);
     return (
-      <Container>
-        <Header noShadow>
-          <Left>
-            <Button transparent>
-              <Icon
-                name='arrow-back'
-                onPress={() => navigate("Map")} />
-            </Button>
-          </Left>
-          <Body>
-            <Title>Liste des Maraudes</Title>
-          </Body>
-          <Right>
-          </Right>
+      <React.Fragment>
+        <Header style={{ backgroundColor: "#FFF", borderBottomWidth: 0, height: 80 }}>
+        <HeaderListMaraudes />
         </Header>
-      </Container>
+        <CardsMaraudes />
+      </React.Fragment>
     );
   }
 }
@@ -32,6 +39,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
+
 };
 
 // @ts-ignore

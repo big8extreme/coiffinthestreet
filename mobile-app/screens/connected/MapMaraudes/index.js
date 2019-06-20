@@ -15,20 +15,13 @@ import { connect } from "react-redux";
 import MapMarker from "./MapMarker";
 
 export class MapMaraudes extends Component {
+  static navigationOptions = {
+    title: 'Profile',
+  };
   render() {
     const { navigate } = this.props.navigation;
-    const { auth } = this.props;
-
     return (
       <Container>
-        <Header noShadow>
-          <Left>
-          </Left>
-          <Body>
-            <Title>Map des Maraudes</Title>
-          </Body>
-          <Right />
-        </Header>
         <MapMarker navigation={{navigate}} />
       </Container>
     );

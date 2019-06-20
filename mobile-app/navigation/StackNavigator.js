@@ -6,23 +6,35 @@ import {
 import BottomTabNav from './bottomTabNavigator'
 import LoginForm from "../screens/public/LoginForm";
 import Profile from "../screens/connected/Profile";
-
+import Contact from "../screens/connected/Profile/Contact_Components/contact";
+import Charte from "../screens/public/Charte/charte";
+import Discover from '../screens/public/Discover/discover'
+import SignupForm from '../screens/public/SignupForm/MyForm'
+import drawerMenu from './drawerNavigator'
 
 const AppStack = createStackNavigator(
   {
-    Profile: { screen: Profile }
+    Profile: { screen: Profile },
+    Contact: { screen: Contact },
   },
   {
-    initialRouteName: "Profile"
+    initialRouteName: "Profile",
+    navigationOptions: { header: null },
   },
 );
 
 const AuthStack = createStackNavigator(
   {
-    Login: { screen: LoginForm }
+    Login: { screen: LoginForm },
+    Signup: { screen: SignupForm },
+    Discover: { screen: Discover },
   },
   {
-    initialRouteName: "Login"
+    initialRouteName: "Discover",
+    headerMode: 'none',
+    navigationOptions: {
+      headerVisible: false,
+    }
   }
 );
 
@@ -32,9 +44,10 @@ export default createAppContainer(
       Tab: BottomTabNav,
       App: AppStack,
       Auth: AuthStack,
+      drawerMenu: drawerMenu
     },
     {
-      initialRouteName: "Tab"
+      initialRouteName: "Auth"
     }
   )
 );
