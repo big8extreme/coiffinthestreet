@@ -11,6 +11,9 @@ module.exports = {
       cgu: {
         type: Sequelize.TEXT
       },
+      charte: {
+        type: Sequelize.TEXT
+      },
       email: {
         type: Sequelize.STRING
       },
