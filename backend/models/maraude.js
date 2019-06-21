@@ -8,8 +8,8 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.TEXT,
     city: DataTypes.STRING,
     isPublished: DataTypes.BOOLEAN,
-    longitude: DataTypes.STRING,
-    latitude: DataTypes.STRING
+    longitude: DataTypes.DECIMAL(11, 2),
+    latitude: DataTypes.DECIMAL(11, 2)
   }, {});
   Maraude.associate = function (models) {
     Maraude.belongsTo(models.User, { foreignKey: 'userId', as: 'author' });

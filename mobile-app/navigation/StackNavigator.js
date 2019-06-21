@@ -4,8 +4,8 @@ import {
   createAppContainer,
 } from "react-navigation"
 import BottomTabNav from './bottomTabNavigator'
-import LoginForm from "../screens/public/LoginForm"
-import Profile from "../screens/connected/Profile"
+import LoginForm from "../screens/public/LoginForm";
+import Profile from "../screens/connected/Profile";
 import Discover from '../screens/public/Discover/discover'
 import SignupForm from '../screens/public/SignupForm/MyForm'
 import DrawerMenu from './drawerNavigator'
@@ -31,7 +31,7 @@ const AuthStack = createStackNavigator(
     drawerMenu: { screen: DrawerMenu },
     BottomTabNav: { screen: BottomTabNav },
     Charte: { screen: Charte },
-    
+
   },
   {
     initialRouteName: "Discover",

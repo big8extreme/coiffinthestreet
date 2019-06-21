@@ -35,10 +35,10 @@ module.exports = {
         type: Sequelize.BOOLEAN
       },
       longitude: {
-        type: Sequelize.STRING
+        type: Sequelize.DECIMAL(11, 2)
       },
       latitude: {
-        type: Sequelize.STRING
+        type: Sequelize.DECIMAL(11, 2)
       },
       createdAt: {
         allowNull: false,
