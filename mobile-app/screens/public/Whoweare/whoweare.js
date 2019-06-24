@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Text } from 'react-native';
-import Axios from 'axios';
-import { Provider } from 'react-redux';
-import store from '../../../store';
+import { StyleSheet, View, Text, Image } from 'react-native';
+import { Card } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { fetchConfigs } from '../../../store/actions/config'
 
@@ -17,19 +15,41 @@ export class Whoweare extends Component {
         this.props.fetchConfigs();
 
     }
-
-    // static propTypes = {
-    //     prop: PropTypes
-    // }
-
     render() {
+        const users = [
+            {
+                name: 'brynn',
+                avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg'
+            },
+
+        ]
         return (
-            <Provider store={store}>
+            <React.Fragment>
                 <View style={styles.backgroundApp}>
                     <Text style={styles.Titletext}>Qui Sommes Nous</Text>
-      
+
                 </View>
-            </Provider>
+                <Card title="CARD WITH DIVIDER">
+                    {
+                        users.map((u, i) => {
+                            return (
+                                <View key={i} style={styles.user}>
+                                    <Image
+                                        style={styles.image}
+                                        resizeMode="cover"
+                                        source={{ uri: u.avatar }} />
+                                    <Text style={styles.name}>{u.name}</Text>
+                                </View>
+                            );
+                        })
+                    }
+                </Card>
+                <Card title='HELLO WORLD' >
+                    <Text style={{ marginBottom: 10 }}>
+                        The idea with React Native Elements is more about component structure than actual design.
+                    </Text>
+                </Card>
+            </React.Fragment>
         );
     }
 }
@@ -57,5 +77,10 @@ const styles = StyleSheet.create({
         fontSize: 35,
         fontFamily: "Sedgwick",
     },
+    image: {
+        height: 120,
+        width: 220,
+        padding: 5,
+    }
 
 });
