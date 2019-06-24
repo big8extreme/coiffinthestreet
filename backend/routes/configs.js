@@ -7,13 +7,6 @@ const configsController = require('../controllers/configController')
 // Use header "Authorization": "bearer token-generated-by-signin"
 router.get('/', configsController.index);
 
-router.get('/:id', configsController.show);
-
-router.post('/', configsController.create);
-
-router.put('/:id', configsController.update);
-
-router.delete('/:id', configsController.delete);
-
+router.put('/', configsController.update);
 
 module.exports = router;

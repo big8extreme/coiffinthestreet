@@ -36,10 +36,12 @@ const TabNavFooter = createBottomTabNavigator({
   {
     initialRouteName: "List",
     tabBarOptions: {
-      activeBackgroundColor: "#2D2D2D",
-      inactiveBackgroundColor: "#2D2D2D",
       activeTintColor: "#FDC500",
-      showLabel: false
+      showLabel: false,
+      style: {
+        backgroundColor: "#2D2D2D",
+        padding: 10
+      }
     },
   },
 );
