@@ -12,7 +12,7 @@ import DrawerMenu from './drawerNavigator'
 import Charte from '../screens/public/Charte/charte'
 import Whoweare from '../screens/public/Whoweare/whoweare'
 import Contact from '../screens/connected/Profile/Contact'
-import LegalMention from "../screens/connected/LegalMention";
+import LegalMentions from "../screens/connected/LegalMention";
 
 const AppStack = createStackNavigator(
   {
@@ -34,7 +34,7 @@ const AuthStack = createStackNavigator(
     BottomTabNav: { screen: BottomTabNav },
     Charte: { screen: Charte },
     Whoweare: { screen: Whoweare },
-    LegalMention: { screen: LegalMention}
+    LegalMentions: { screen: LegalMentions },
 
   },
   {
