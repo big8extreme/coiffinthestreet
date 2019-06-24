@@ -12,6 +12,7 @@ import DrawerMenu from './drawerNavigator'
 import Charte from '../screens/public/Charte/charte'
 import Whoweare from '../screens/public/Whoweare/whoweare'
 import Contact from '../screens/connected/Profile/Contact'
+import TermsOfService from "../screens/connected/TermsOfService";
 import LegalMentions from "../screens/connected/LegalMention";
 
 const AppStack = createStackNavigator(
@@ -33,6 +34,7 @@ const AuthStack = createStackNavigator(
     drawerMenu: { screen: DrawerMenu },
     BottomTabNav: { screen: BottomTabNav },
     Charte: { screen: Charte },
+    CGU: { screen: TermsOfService},
     Whoweare: { screen: Whoweare },
     LegalMentions: { screen: LegalMentions },
 

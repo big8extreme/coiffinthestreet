@@ -8,7 +8,8 @@ import store from '../store'
 import Charte from '../screens/public/Charte/charte'
 import Whoweare from '../screens/public/Whoweare/whoweare'
 import Contact from '../screens/connected/Profile/Contact'
-import { LegalMentions } from '../screens/connected/LegalMention';
+import TermsOfService from '../screens/connected/TermsOfService/index'
+import LegalMentions from '../screens/connected/LegalMention';
 
 const { width } = Dimensions.get('screen')
 
@@ -112,13 +113,13 @@ export default createDrawerNavigator({
     }
   },
   CGU: {
-    screen: BottomTabNavigator,
+    screen: TermsOfService,
     navigationOptions: ({ navigation }) => {
       return {
         title: "Conditions générales d'utilisation",
         drawerLabel: () => {
           return <View style={styles.view}>
-            <TouchableOpacity style={styles.flex}>
+            <TouchableOpacity onPress={() => navigation.navigate('CGU')} style={styles.flex}>
               <Icon name="ios-list-box" size={25} style={styles.icon} />
               <Text style={styles.text}>Conditions générales d'utilisation</Text>
             </TouchableOpacity>
