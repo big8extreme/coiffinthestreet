@@ -31,10 +31,9 @@ const AuthStack = createStackNavigator(
     drawerMenu: { screen: DrawerMenu },
     BottomTabNav: { screen: BottomTabNav },
     Charte: { screen: Charte },
-
   },
   {
-    initialRouteName: "Discover",
+    initialRouteName: "BottomTabNav",
     headerMode: 'none',
     navigationOptions: {
       headerVisible: false,
