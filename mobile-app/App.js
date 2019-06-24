@@ -23,7 +23,7 @@ export default class App extends React.Component {
     await Font.loadAsync({
       Roboto: require("native-base/Fonts/Roboto.ttf"),
       Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
-      Sedgwick: require('./assets/font/SedgwickAveDisplay-Regular.ttf'),
+      Sedgwick: require('./assets/fonts/SedgwickAveDisplay-Regular.ttf'),
       ...Ionicons.font
     });
     this.setState({ loading: false });
@@ -36,9 +36,8 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <SafeAreaView style={{ flex: 1, backgroundColor: '#FAFAFA' }} forceInset={{ bottom: 'never' }}>
-            <StackNavigator />
-          </SafeAreaView>
+          <SafeAreaView style={{ flex: 0, backgroundColor: '#FBFBFB' }} />
+            <StackNavigator style={{ flex: 1, backgroundColor:'red', height: 10}} />
         </PersistGate>
       </Provider>
     );
