@@ -42,7 +42,7 @@ const mapDispatchToProps = {
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(charte);
+export default connect(mapStateToProps, mapDispatchToProps)(LegalMentions);
 
 const styles = StyleSheet.create({
   backgroundApp: {

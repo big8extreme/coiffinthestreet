@@ -8,6 +8,7 @@ import store from '../store'
 import Charte from '../screens/public/Charte/charte'
 import Whoweare from '../screens/public/Whoweare/whoweare'
 import Contact from '../screens/connected/Profile/Contact'
+import { LegalMentions } from '../screens/connected/LegalMention';
 
 const { width } = Dimensions.get('screen')
 
@@ -127,13 +128,13 @@ export default createDrawerNavigator({
     }
   },
   Legals: {
-    screen: BottomTabNavigator,
+    screen: LegalMentions,
     navigationOptions: ({ navigation }) => {
       return {
         title: "Mentions légales",
         drawerLabel: () => {
           return <View style={styles.view}>
-            <TouchableOpacity style={styles.flex}>
+            <TouchableOpacity onPress={() => navigation.navigate('LegalMentions')} style={styles.flex}>
               <Icon name="ios-book" size={25} style={styles.icon} />
               <Text style={styles.text}>Mentions légales</Text>
             </TouchableOpacity>
