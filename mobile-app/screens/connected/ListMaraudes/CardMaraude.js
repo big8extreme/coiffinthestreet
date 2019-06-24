@@ -72,8 +72,4 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     shadowOpacity: 0.7
   }
-<<<<<<< HEAD
 });
-=======
-});
->>>>>>> b4b348b49ed4e4376eb276b3c316632f51736fdf
