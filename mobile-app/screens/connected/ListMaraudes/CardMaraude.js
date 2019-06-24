@@ -14,7 +14,7 @@ export default function CardMaraude({ maraude }) {
           fontSize: 25,
           position: "absolute",
           paddingTop: 20,
-          paddingLeft: 80
+          paddingLeft: 40
         }}
         name="ios-pin"
       />
@@ -23,14 +23,14 @@ export default function CardMaraude({ maraude }) {
           fontSize: 20,
           color: "#112249",
           fontWeight: "bold",
-          textAlign: "center",
-          padding: 10
+          paddingTop: 10,
+          paddingLeft: 60
         }}
       >
         {maraude.title}
       </Text>
-      <Text>
-          <Text style={{ color: "#929292" }}>Le :</Text>  <Text>{moment(maraude.startAt).format("DD/MM/YYYY")}</Text>  <Text>à</Text>  <Text>{moment(maraude.startAt).format("HH[h]mm")}</Text>
+      <Text style={{ paddingTop: 20, paddingBottom: 20, paddingLeft: 30 }}>
+          <Text style={{ color: "#929292", textTransform: 'uppercase', fontSize: 14 }}>Le :</Text>  <Text style={{ fontWeight: 'bold', fontSize: 14 }}>{moment(maraude.startAt).format("DD/MM/YYYY")}</Text>  <Text style={{ color: "#929292", textTransform: 'uppercase', fontSize: 14 }}>à</Text>  <Text style={{ fontWeight: 'bold', fontSize: 14 }}>{moment(maraude.startAt).format("HH[h]mm")}</Text>
           </Text>
       <View>
       <Text
@@ -38,15 +38,18 @@ export default function CardMaraude({ maraude }) {
           fontSize: 14,
           color: "#929292",
           fontStyle: "italic",
-          paddingLeft: 20,
-          paddingRight: 20
+          paddingLeft: 30,
+          paddingRight: 30,
+          paddingBottom: 60
         }}
       >
         {maraude.description}
       </Text>
       </View>
       <View>
-        <ValidateButton label="test" />
+        <ValidateButton 
+        label="Je souhaite participer"
+       />
       </View>
     </View>
   )
@@ -61,7 +64,7 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     padding: 10,
     height: 'auto',
-    marginBottom: 40,
+    marginBottom: 60,
     shadowOffset: {
       width: 0,
       height: 7

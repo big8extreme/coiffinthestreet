@@ -44,10 +44,13 @@ export default createAppContainer(
       Tab: BottomTabNav,
       App: AppStack,
       Auth: AuthStack,
-      drawerMenu: drawerMenu
+      drawerMenu: drawerMenu,
     },
     {
-      initialRouteName: "Auth"
+      initialRouteName: "Tab"
+    },
+    {
+    headerMode: 'none',
     }
   )
 );
