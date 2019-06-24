@@ -11,6 +11,7 @@ import SignupForm from '../screens/public/SignupForm/MyForm'
 import DrawerMenu from './drawerNavigator'
 import Charte from '../screens/public/Charte/charte'
 import Contact from '../screens/connected/Profile/Contact'
+import TermsOfService from "../screens/connected/TermsOfService";
 
 const AppStack = createStackNavigator(
   {
@@ -31,6 +32,7 @@ const AuthStack = createStackNavigator(
     drawerMenu: { screen: DrawerMenu },
     BottomTabNav: { screen: BottomTabNav },
     Charte: { screen: Charte },
+    CGU: { screen: TermsOfService}
 
   },
   {

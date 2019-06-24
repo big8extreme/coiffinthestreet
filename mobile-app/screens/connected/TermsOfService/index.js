@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, ScrollView, View, Text } from 'react-native';
+import Axios from 'axios';
 import { Provider } from 'react-redux';
 import store from '../../../store';
 import { connect } from 'react-redux'
@@ -26,7 +27,9 @@ export class TermsOfService extends Component {
       <Provider store={store}>
         <View style={styles.backgroundApp}>
           <Text style={styles.Titletext}>CONDITIONS GENERALES D'UTILISATION</Text>
-          <Text style={styles.textCgu}>{this.props.config.CGU}</Text>
+          <ScrollView>
+            <Text style={styles.textCgu}>{this.props.config.cgu}</Text>
+          </ScrollView>
         </View>
       </Provider>
     );
@@ -42,7 +45,7 @@ const mapDispatchToProps = {
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(charte);
+export default connect(mapStateToProps, mapDispatchToProps)(TermsOfService);
 
 const styles = StyleSheet.create({
   backgroundApp: {
@@ -54,6 +57,7 @@ const styles = StyleSheet.create({
   Titletext: {
     color: 'white',
     fontSize: 35,
+    marginTop: 20,
     fontFamily: "Sedgwick",
     textAlign: "center"
   },
@@ -64,6 +68,6 @@ const styles = StyleSheet.create({
     marginLeft: 25,
     marginBottom: 15,
     marginTop: 15,
-    textAlign: 'justify',
+    textAlign: 'center',
   },
 });
