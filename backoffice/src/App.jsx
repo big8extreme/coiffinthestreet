@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.scss';
-
 import Router from './routes/Router';
 
-function App() {
-  return (
-    <Router />
-  );
+export default class App extends Component {
+  render() {
+    return (
+      <Router />
+    );
+  }
 }
-
-export default App;

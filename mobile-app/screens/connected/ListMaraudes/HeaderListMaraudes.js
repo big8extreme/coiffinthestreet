@@ -1,9 +1,12 @@
 import React, { Component } from "react";
-import { View, StatusBar, StyleSheet } from "react-native";
+import { View, StatusBar, StyleSheet, ScrollView } from "react-native";
 import { Text, Header, Item, Input, Button, Form } from "native-base";
 import Icon from "react-native-vector-icons/Ionicons";
 
 export default class HeaderListMaraudes extends Component {
+   static navigationOptions = {
+    header: null,
+  };
   constructor() {
     super();
     this.state = {
@@ -20,7 +23,8 @@ export default class HeaderListMaraudes extends Component {
   };
   render() {
     return (
-      <View style={{ flex: 1, flexDirection: 'row', marginTop: 10, marginLeft: 15, marginRight: 15 }}>
+      <View style={{ paddingTop: 10, paddingLeft: 15, paddingRight: 15, backgroundColor: '#FBFBFB', height: 60 }}>
+        <View style={{ flex: 1, flexDirection: 'row' }}>
         <View
           searchBar
           rounded
@@ -31,7 +35,7 @@ export default class HeaderListMaraudes extends Component {
           {!this.state.status ? (
             <Item
               style={{
-                backgroundColor: "white",
+                backgroundColor: "#FBFBFB",
               }}
             >
               <Input
@@ -46,8 +50,8 @@ export default class HeaderListMaraudes extends Component {
           ) : (
             <Text
               style={{
-                fontFamily: "Georgia",
-                fontSize: 20,
+                fontFamily: "Roboto",
+                fontSize: 15,
                 textTransform: "uppercase",
                 color: "#929292",
                 paddingBottom: 3
@@ -55,8 +59,8 @@ export default class HeaderListMaraudes extends Component {
             >
               Liste des maraudes à {"\n"}
               <Text style={{
-                fontFamily: "Georgia",
-                fontSize: 20,
+                fontFamily: "Roboto",
+                fontSize: 15,
               }}>Marseille</Text>
             </Text>
           )}
@@ -64,7 +68,7 @@ export default class HeaderListMaraudes extends Component {
           <View style={{flex: 1, width: 50, height: 50}}>
           <Icon name="ios-search" style={{ flex: 1, fontSize: 25, textAlign: 'right', paddingTop: 8 }} onPress={this.ShowHideTextComponentView} />
           </View>
-
+          </View>
       </View>
     );
   }
