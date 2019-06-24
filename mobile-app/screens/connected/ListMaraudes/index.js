@@ -25,10 +25,10 @@ export class ListMaraudes extends Component {
     console.log(this.state);
     return (
       <React.Fragment>
-        <Header style={{ backgroundColor: "#FFF", borderBottomWidth: 0, height: 80 }}>
         <HeaderListMaraudes />
-        </Header>
+        <View>
         <CardsMaraudes />
+        </View>
       </React.Fragment>
     );
   }

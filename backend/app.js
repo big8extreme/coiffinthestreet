@@ -35,4 +35,5 @@ app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/maraudes', maraudesRouter);
 app.use('/api/v1/participants', participantsRouter);
 app.use('/api/v1/configs', configsRouter);
+
 module.exports = app;
