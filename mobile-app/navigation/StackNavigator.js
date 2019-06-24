@@ -10,6 +10,7 @@ import Discover from '../screens/public/Discover/discover'
 import SignupForm from '../screens/public/SignupForm/MyForm'
 import DrawerMenu from './drawerNavigator'
 import Charte from '../screens/public/Charte/charte'
+import Whoweare from '../screens/public/Whoweare/whoweare'
 import Contact from '../screens/connected/Profile/Contact'
 import TermsOfService from "../screens/connected/TermsOfService";
 
@@ -32,7 +33,8 @@ const AuthStack = createStackNavigator(
     drawerMenu: { screen: DrawerMenu },
     BottomTabNav: { screen: BottomTabNav },
     Charte: { screen: Charte },
-    CGU: { screen: TermsOfService}
+    CGU: { screen: TermsOfService},
+    Whoweare: { screen: Whoweare },
 
   },
   {

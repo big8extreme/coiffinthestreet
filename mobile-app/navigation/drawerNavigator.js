@@ -6,6 +6,7 @@ import BottomTabNavigator from './bottomTabNavigator'
 import LoginForm from '../screens/public/LoginForm'
 import store from '../store'
 import Charte from '../screens/public/Charte/charte'
+import Whoweare from '../screens/public/Whoweare/whoweare'
 import Contact from '../screens/connected/Profile/Contact'
 import TermsOfService from '../screens/connected/TermsOfService/index'
 
@@ -95,13 +96,13 @@ export default createDrawerNavigator({
     }
   },
   WhoWeAre: {
-    screen: BottomTabNavigator,
+    screen: Whoweare,
     navigationOptions: ({ navigation }) => {
       return {
         title: "Qui sommes nous ?",
         drawerLabel: () => {
           return <View style={styles.view}>
-            <TouchableOpacity  style={styles.flex}>
+            <TouchableOpacity onPress={() => navigation.navigate('Whoweare')} style={styles.flex}>
               <Icon name="ios-information-circle" size={25} style={styles.icon} />
               <Text style={styles.text}>Qui sommes nous ?</Text>
             </TouchableOpacity>
