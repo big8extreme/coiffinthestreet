@@ -10,6 +10,7 @@ import Discover from '../screens/public/Discover/discover'
 import SignupForm from '../screens/public/SignupForm/MyForm'
 import DrawerMenu from './drawerNavigator'
 import Charte from '../screens/public/Charte/charte'
+import Whoweare from '../screens/public/Whoweare/whoweare'
 import Contact from '../screens/connected/Profile/Contact'
 
 const AppStack = createStackNavigator(
@@ -31,6 +32,7 @@ const AuthStack = createStackNavigator(
     drawerMenu: { screen: DrawerMenu },
     BottomTabNav: { screen: BottomTabNav },
     Charte: { screen: Charte },
+    Whoweare: { screen: Whoweare },
 
   },
   {
