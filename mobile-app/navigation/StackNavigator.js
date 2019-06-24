@@ -13,6 +13,7 @@ import Charte from '../screens/public/Charte/charte'
 import Whoweare from '../screens/public/Whoweare/whoweare'
 import Contact from '../screens/connected/Profile/Contact'
 import TermsOfService from "../screens/connected/TermsOfService";
+import LegalMentions from "../screens/connected/LegalMention";
 
 const AppStack = createStackNavigator(
   {
@@ -35,6 +36,7 @@ const AuthStack = createStackNavigator(
     Charte: { screen: Charte },
     CGU: { screen: TermsOfService},
     Whoweare: { screen: Whoweare },
+    LegalMentions: { screen: LegalMentions },
 
   },
   {
