@@ -35,8 +35,4 @@ app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/maraudes', maraudesRouter);
 app.use('/api/v1/participants', participantsRouter);
 app.use('/api/v1/configs', configsRouter);
-<<<<<<< HEAD
-=======
-
->>>>>>> 6c05dc517e3887bf223cc397a9da33238022e516
 module.exports = app;
