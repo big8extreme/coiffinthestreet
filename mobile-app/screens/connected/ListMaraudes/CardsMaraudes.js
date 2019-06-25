@@ -8,6 +8,7 @@ import { View } from "native-base";
 
 class CardsMaraudes extends Component {
   constructor(props) {
+    console.log('constructor CardsMaraudes')
     super(props);
     this.state = {
       maraudes: []

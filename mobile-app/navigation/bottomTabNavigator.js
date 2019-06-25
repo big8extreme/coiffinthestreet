@@ -1,5 +1,5 @@
 import React from 'react';
-import { createBottomTabNavigator, DrawerActions } from "react-navigation";
+import { createBottomTabNavigator, DrawerActions, BottomTabBar } from "react-navigation";
 import MapMaraudes from "../screens/connected/MapMaraudes";
 import FeedMaraudes from "../screens/connected/FeedMaraudes";
 import ListMaraudes from "../screens/connected/ListMaraudes";
@@ -25,10 +25,10 @@ const TabNavFooter = createBottomTabNavigator({
     },
   },
   Menu: {
-    screen: MapMaraudes,
+    screen: ListMaraudes,
     navigationOptions: ({ navigation }) => {
       return {
-        tabBarIcon: ({ tintColor }) => <Icon onPress={() => { navigation.dispatch(DrawerActions.openDrawer()) }} name="ios-menu" size={30} color={tintColor} />
+        tabBarIcon: ({ tintColor }) => <Icon onPress={() => { console.log('onPress BottomTab'); navigation.dispatch(DrawerActions.openDrawer()) }} name="ios-menu" size={30} color={tintColor} />
       }
     }
   }

@@ -3,14 +3,14 @@ import { connect } from "react-redux";
 import { Text, Badge } from "native-base";
 import { MapView } from "expo";
 import MapToolTip from "./MapToolTip";
-import { fetchMaraudes, showMaraude } from '../../../store/actions/maraude';
+import { fetchMaraudes } from '../../../store/actions/maraude';
 
 class MapMarker extends Component {
   constructor(props) {
+    console.log('constructor mapMaraudes')
     super(props);
     this.state = {
-      maraudes: [],
-      maraudeId: null
+      maraudes: []
     };
   }
   componentDidMount() {
@@ -32,8 +32,8 @@ class MapMarker extends Component {
               return  <MapView.Marker 
                           key={index}
                           coordinate={{
-                            latitude: maraude.latitude,
-                            longitude:maraude.longitude
+                            latitude: parseFloat(maraude.latitude),
+                            longitude: parseFloat(maraude.longitude)
                           }}
                           title={maraude.title}
                           description={maraude.description}
@@ -42,7 +42,7 @@ class MapMarker extends Component {
                           <Text>{maraude.id}</Text>
                         </Badge>
                         <MapView.Callout tooltip style={{ width: 200 }}>
-                          <MapToolTip navigation={{navigate}}/>
+                          <MapToolTip navigation={{navigate}} maraude={maraude}/>
                         </MapView.Callout>
                       </MapView.Marker>;
             })
@@ -57,8 +57,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  fetchMaraudes,
-  showMaraude
+  fetchMaraudes
 };
 
 // @ts-ignore

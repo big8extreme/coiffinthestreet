@@ -49,7 +49,7 @@ export default function CardMaraude({ maraude }) {
       <View>
         <ValidateButton 
         label="Je souhaite participer"
-       />
+      />
       </View>
     </View>
   )
