@@ -7,7 +7,6 @@ import { fetchMaraudes } from '../../../store/actions/maraude';
 
 class MapMarker extends Component {
   constructor(props) {
-    console.log('constructor mapMaraudes')
     super(props);
     this.state = {
       maraudes: []
