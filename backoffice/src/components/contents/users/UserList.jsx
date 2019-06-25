@@ -6,22 +6,12 @@ import { Button } from 'primereact/button';
 import { Fieldset } from 'primereact/fieldset';
 import { InputSwitch } from 'primereact/inputswitch';
 import { connect } from 'react-redux';
-import { fetchUsers, deleteUser } from '../../../stores/actions/user';
-import {
-  Link
-} from 'react-router-dom';
+import { fetchUsers, deleteUser,updateUserStatut } from '../../../stores/actions/user';
 import Usernew from './UserNew';
-<<<<<<< HEAD
-=======
-
 
 const defaultActive = {
   isActive: false
 };
-
-
-
->>>>>>> b646d2c10c3f9e9f13adc9783ca46bc9b18e67e0
 
 class UserList extends Component {
   constructor(props) {
@@ -33,6 +23,8 @@ class UserList extends Component {
       active: defaultActive,
       userId: ''
     };
+    this.handleUserStateChange=this.handleUserStateChange.bind(this);
+    this.actionValid=this.actionValid.bind(this);
   }
 
   componentDidMount() {
@@ -56,18 +48,15 @@ class UserList extends Component {
 
   actionValid(rowData, column) {
     return <div>
-      <InputSwitch checked={rowData.isActive} onClick={() => { this.changeStatus() }} />
-      debugger
-      <InputSwitch name="isActive" value={rowData.isActive} checked={rowData.isActive} onChange={(event) => this.handleUserStateChange('isActive', this.state.active)} />
+    <InputSwitch name="isActive" value={rowData.isActive} checked={rowData.isActive} onChange={(event) => this.handleUserStateChange('isActive', rowData)} /> 
     </div>;
   }
 
-  handleUserStateChange = async (field, value) => {
-  //  await this.setState({ ...this.state, active: { ...this.state.active, [field]: value } });
-    //this.checkValidity();
+  handleUserStateChange = async (field, rowData) => {
+    rowData.isActive = !rowData.isActive;
+    await this.setState( {isActive:rowData.isActive});
+    await this.props.updateUserStatut({isActive:rowData.isActive},rowData.id );
   }
-
-
 
   toggleModal = (onCreate) => {
     this.setState({ modal: !this.state.modal, onCreate });
@@ -80,28 +69,6 @@ class UserList extends Component {
   render() {
     return (
       <div>
-<<<<<<< HEAD
-                <TabView >
-   <TabPanel header="Tous les Utilisateurs">
-        <Fieldset legend="En cours">
-          <p>Fiche Update coiffeur, Lien vers Particpants, </p>
-          <button onClick={() => this.toggleModal(true)}>Creer</button>
-          <DataTable value={this.props.users}>
-            <Column field="lastName" header="Nom" />
-            <Column field="firstName" header="Prenom" />
-            <Column field="id" header="Ville" />
-            <Column body={this.actionTemplate.bind(this)} style={{ textAlign: 'center', width: '12em' }} header="action" />
-            <Column body={this.actionValid} style={{ textAlign: 'center', width: '5em' }} header="actif" />
-          </DataTable>
-          <Usernew onCreate={this.state.onCreate} isOpen={this.state.modal} closeModal={this.closeModal} selectedUser={this.state.selectedUser} />
-        </Fieldset>
-        </TabPanel>
-     
-        <TabPanel   onToggle={() => this.toggleModal(true)} header="Ajouter"> 
-    </TabPanel>
-       
-               </TabView>
-=======
         <TabView >
           <TabPanel header="Tous les Utilisateurs">
 
@@ -121,7 +88,6 @@ class UserList extends Component {
           </TabPanel>
 
         </TabView>
->>>>>>> b646d2c10c3f9e9f13adc9783ca46bc9b18e67e0
       </div>
     );
   }
@@ -133,7 +99,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   fetchUsers,
-  deleteUser
+  deleteUser,
+  updateUserStatut
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserList);
