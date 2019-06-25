@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 import userReducer from './user';
 import authReducer from './authReducer';
+import configReducer from './config'
 
 
 export default combineReducers({
   authentification: authReducer,
-  user: userReducer
+  user: userReducer,
+  config: configReducer
 });
 

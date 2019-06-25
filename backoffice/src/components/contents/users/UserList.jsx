@@ -10,7 +10,7 @@ import { fetchUsers, deleteUser } from '../../../stores/actions/user';
 import {
   Link
 } from 'react-router-dom';
-import Usernew from './UserNew';
+import Usernew from './usernew';
 
 class UserList extends Component {
   constructor(props) {
