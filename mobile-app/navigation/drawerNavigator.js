@@ -172,6 +172,7 @@ export default createDrawerNavigator({
     drawerPosition: 'right',
     drawerBackgroundColor: "#2D2D2D",
     drawerWidth: Math.min(width) * 1,
+    navigationOptions: { header: null },
   })
 
 const styles = StyleSheet.create({
