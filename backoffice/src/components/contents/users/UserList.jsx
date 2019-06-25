@@ -10,7 +10,7 @@ import { fetchUsers, deleteUser } from '../../../stores/actions/user';
 import {
   Link
 } from 'react-router-dom';
-import Usernew from './usernew';
+import Usernew from './UserNew';
 
 class UserList extends Component {
   constructor(props) {
@@ -79,11 +79,7 @@ class UserList extends Component {
         <TabPanel   onToggle={() => this.toggleModal(true)} header="Ajouter"> 
     </TabPanel>
        
-       
-
-
-
-        </TabView>
+               </TabView>
       </div>
     );
   }
