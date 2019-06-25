@@ -1,5 +1,5 @@
 import React from 'react';
-import { createBottomTabNavigator, DrawerActions, BottomTabBar } from "react-navigation";
+import { createBottomTabNavigator, DrawerActions } from "react-navigation";
 import MapMaraudes from "../screens/connected/MapMaraudes";
 import FeedMaraudes from "../screens/connected/FeedMaraudes";
 import ListMaraudes from "../screens/connected/ListMaraudes";
