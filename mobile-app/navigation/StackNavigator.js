@@ -11,11 +11,12 @@ import SignupForm from '../screens/public/SignupForm/MyForm'
 import DrawerMenu from './drawerNavigator'
 import Charte from '../screens/public/Charte/charte'
 import Contact from '../screens/connected/Profile/Contact'
+import Participant from '../screens/public/Participant'
 
 const AppStack = createStackNavigator(
   {
     Profile: { screen: Profile },
-    Contact: { screen: Contact },
+    
   },
   {
     initialRouteName: "Profile",
@@ -31,10 +32,16 @@ const AuthStack = createStackNavigator(
     drawerMenu: { screen: DrawerMenu },
     BottomTabNav: { screen: BottomTabNav },
     Charte: { screen: Charte },
+    Participant: { screen: Participant},
+    Contact: { screen: Contact },
 
   },
   {
-    initialRouteName: "Discover",
+    // initialRouteName: "Discover",
+    initialRouteName: "Participant",
+    // initialRouteName: "Contact",
+    
+
     headerMode: 'none',
     navigationOptions: {
       headerVisible: false,

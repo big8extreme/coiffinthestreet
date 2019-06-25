@@ -10,7 +10,7 @@ export default class DatePicker extends Component {
         super(props);
         this.state = {
             isVisible: false,
-            chosenDate: '',
+            chosenDate: '23/03/1986',
         }
     }
 

@@ -1,14 +1,16 @@
 import { StyleSheet, FlatList, Text, View, Alert } from "react-native";
+import React, { Component } from 'react';
 
 export default class RequestProfession extends Component {
     constructor(props) {
         super(props);
         this.state = {
             FlatListItems: [
-                { key: 'Coiffeur' },
-                { key: 'Photographe' },
-                { key: 'Esthéticien(ne)' },
+            //     { key: 'Coiffeur' },
+                { key: 'Photographe' }
+            //    , { key: 'Esthéticien(ne)' },
             ]
+            
         };
     }
     FlatListItemSeparator = () => {

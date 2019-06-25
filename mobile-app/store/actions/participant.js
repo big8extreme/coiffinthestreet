@@ -6,13 +6,16 @@ import { FETCH_PARTICIPANTS, ERROR_ON_PARTICIPANTS, FETCH_PARTICIPANT, ERROR_ON_
 export function fetchParticipants(){
     return async function(dispatch, getState) {
         function onSuccess(response){
+            console.log('succesfetch : ' + response.data.participants)
             dispatch({ type: FETCH_PARTICIPANTS, payload: response.data.participants})
         }
         function onError(error){
+            console.log('error : ' + error)
+
             dispatch({ type: ERROR_ON_PARTICIPANTS, payload: error})
         }
         try{
-            const response = await axios.post(`${baseUrlApi}/participants/`, { ...participantFields }, {
+            const response = await axios.get(`${baseUrlApi}/participants/`,{
                 headers: { Authorization: `bearer ${getState().auth.user.token }` }
             })
             onSuccess(response)

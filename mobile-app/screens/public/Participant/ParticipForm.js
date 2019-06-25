@@ -16,10 +16,14 @@ export default class ParticipForm extends Component {
         super(props);
         this.state = {
             errors: [],
-            email: '',
-            city: '',
-            lastname: '',
-            firstname: '',
+            // email: '',
+            // city: '',
+            // lastname: '',
+            // firstname: '',
+            email: 'mickey@mimickeyville.com',
+            city: 'Bruxelles',
+            lastname: 'Milou',
+            firstname: 'Tintin',
             one: false,
             two: false,
             itemChecked: false,
@@ -27,6 +31,7 @@ export default class ParticipForm extends Component {
         }
     }
     onePressed() {
+        console.log('pressed')
         this.setState({ one: true, two: false })
     }
 
@@ -35,7 +40,9 @@ export default class ParticipForm extends Component {
     }
 
     submitForm() {
-        let submitResults = this.ParticipForm.validate();
+        console.log('submit')
+        let submitResults = this.ParticipForm.validate(console.log('results'));
+        console.log('validate')
         let errors = [];
         submitResults.forEach(item => {
             errors.push({ field: item.fieldName, error: item.error });
@@ -52,6 +59,7 @@ export default class ParticipForm extends Component {
     }
 
     render() {
+        console.log('render')
 
         return (
 
