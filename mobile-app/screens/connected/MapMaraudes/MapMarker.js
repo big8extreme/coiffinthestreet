@@ -1,39 +1,67 @@
 import React, { Component } from "react";
-import { View, StatusBar, StyleSheet } from "react-native";
-import { Text, Header, Item, Input, Button, Form, Badge } from "native-base";
+import { connect } from "react-redux";
+import { Text, Badge } from "native-base";
 import { MapView } from "expo";
 import MapToolTip from "./MapToolTip";
+import { fetchMaraudes } from '../../../store/actions/maraude';
 
-export default class MapMarker extends Component {
+class MapMarker extends Component {
+  constructor(props) {
+    console.log('constructor mapMaraudes')
+    super(props);
+    this.state = {
+      maraudes: []
+    };
+  }
+  componentDidMount() {
+    this.props.fetchMaraudes();
+  }
   render() {
     const { navigate } = this.props.navigation;
     return (
       <MapView
         style={{ flex: 1 }}
         initialRegion={{
-          latitude: 43.296482,
+          latitude: 43.296422,
           longitude: 5.36978,
           latitudeDelta: 0.0002,
           longitudeDelta: 0.4001
-        }}
-      >
-        <MapView.Marker
-          coordinate={{
-            latitude: 43.2961743,
-            longitude: 5.3699525
-          }}
-          title="Location"
-          description="I'm here !"
-          image={require("../../../assets/pin.png")}
-        >
-          <Badge style={{ marginTop: -11, marginLeft: 30 }}>
-            <Text>2</Text>
-          </Badge>
-          <MapView.Callout tooltip style={{ width: 200 }}>
-            <MapToolTip navigation={{navigate}}/>
-          </MapView.Callout>
-        </MapView.Marker>
+        }}>
+            {
+              this.props.maraude.maraudes.map((maraude, index) =>{
+              return  <MapView.Marker 
+                          key={index}
+                          coordinate={{
+                            latitude: parseFloat(maraude.latitude),
+                            longitude: parseFloat(maraude.longitude)
+                          }}
+                          title={maraude.title}
+                          description={maraude.description}
+                          image={require("../../../assets/pin.png")}>
+                        <Badge style={{ marginTop: -11, marginLeft: 30 }}>
+                          <Text>{maraude.id}</Text>
+                        </Badge>
+                        <MapView.Callout tooltip style={{ width: 200 }}>
+                          <MapToolTip navigation={{navigate}} maraude={maraude}/>
+                        </MapView.Callout>
+                      </MapView.Marker>;
+            })
+            }
       </MapView>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  ...state
+});
+
+const mapDispatchToProps = {
+  fetchMaraudes
+};
+
+// @ts-ignore
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MapMarker);

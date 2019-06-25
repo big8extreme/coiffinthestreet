@@ -1,37 +1,57 @@
-import React, { Component } from "react";
-import { StyleSheet, View, Text } from "react-native";
-import { Header, Left, Button, Icon } from "native-base";
-import { connect } from "react-redux";
-import { fetchConfigs } from "../../../store/actions/config";
+import React, { Component } from 'react'
+import { StyleSheet, View, Text, Image } from 'react-native';
+import { Card } from 'react-native-elements'
+import { connect } from 'react-redux'
+import { fetchConfigs } from '../../../store/actions/config'
 
 export class Whoweare extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      keyWord: null
-    };
-  }
-  componentDidMount() {
-    this.props.fetchConfigs();
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            keyWord: null
+        };
+    }
+    componentDidMount() {
+        this.props.fetchConfigs();
 
-  render() {
-    const { navigate } = this.props.navigation;
+    }
+    render() {
+        const users = [
+            {
+                name: 'brynn',
+                avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg'
+            },
 
-    return (
-      <View style={styles.backgroundApp}>
-        <Left iosBarStyle="light-content">
-          <Button transparent>
-            <Icon name="arrow-back" />
-          </Button>
-        </Left>
+        ]
+        return (
+            <React.Fragment>
+                <View style={styles.backgroundApp}>
+                    <Text style={styles.Titletext}>Qui Sommes Nous</Text>
 
-        <Text style={styles.Titletext}>
-          Qui Sommes Nous
-        </Text>
-      </View>
-    );
-  }
+                </View>
+                <Card title="CARD WITH DIVIDER">
+                    {
+                        users.map((u, i) => {
+                            return (
+                                <View key={i} style={styles.user}>
+                                    <Image
+                                        style={styles.image}
+                                        resizeMode="cover"
+                                        source={{ uri: u.avatar }} />
+                                    <Text style={styles.name}>{u.name}</Text>
+                                </View>
+                            );
+                        })
+                    }
+                </Card>
+                <Card title='HELLO WORLD' >
+                    <Text style={{ marginBottom: 10 }}>
+                        The idea with React Native Elements is more about component structure than actual design.
+                    </Text>
+                </Card>
+            </React.Fragment>
+        );
+    }
 }
 
 const mapStateToProps = state => ({});
@@ -60,5 +80,10 @@ const styles = StyleSheet.create({
     fontSize: 35,
     fontFamily: "Sedgwick",
     flex: 2
+  }
+  image: {
+     height: 120,
+     width: 220,
+     padding: 5,
   }
 });
