@@ -3,6 +3,9 @@ import { ScrollView, View, Text } from "react-native";
 import { fetchMaraudes } from "../../../store/actions/maraude";
 import { connect } from "react-redux";
 import PhotoMaraude from './PhotoMaraude';
+import {Container, Content} from 'native-base';
+
+
 
 class CardsPhotosMaraude extends Component {
   
@@ -11,34 +14,51 @@ class CardsPhotosMaraude extends Component {
     this.props.fetchMaraudes();
   }
   render() {
-    console.log("HEELELELELEL", JSON.stringify(this.props))
+  
     return (
       <ScrollView>
+      
+                    
         {
           this.props.maraude.maraudes.map((maraude) => {
-            return <View>
+            return <ScrollView 
+            horizontal
+            pagingEnabled
+            showsHorizontalScrollIndicator={false}>
               {
-                maraude.photos.map((photo, index) => {
+                maraude.photos.map((photo, index, title) => {
                   
                   return (
+                    
                     <PhotoMaraude 
-                    key={index} 
-                   
+                    key={index}                   
                     photo={photo}
+                    title={maraude.title}
+                    description={maraude.description}  
+                    city={maraude.city}  
+                    createdAt={maraude.createdAt}              
                     />
-
+              
                   );
                 })
               }
+                   
 
-            </View>
+             
+              
+            </ScrollView>
+            
           })
+          
         }
+       
         
       </ScrollView>
     )
   }
 }
+
+
 
 const mapStateToProps = state => ({
   ...state

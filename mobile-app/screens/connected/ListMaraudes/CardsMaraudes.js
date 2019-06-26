@@ -19,7 +19,7 @@ class CardsMaraudes extends Component {
 
   render() {
     return (
-      <ScrollView style={{ backgroundColor: "#FFF" }}>
+      <ScrollView >
         {this.props.maraude.maraudes.map((maraude, index) => {
           return (
             <CardMaraude key={index} maraude={maraude} />

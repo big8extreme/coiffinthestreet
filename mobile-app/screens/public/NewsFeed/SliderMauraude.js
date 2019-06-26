@@ -70,6 +70,9 @@ export default class App extends Component {
     }
 }
 
+
+
+
 const styles = {
     container: {
         flex: 1,
