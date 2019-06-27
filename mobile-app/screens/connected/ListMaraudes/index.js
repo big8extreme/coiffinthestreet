@@ -8,7 +8,6 @@ export class ListMaraudes extends Component {
   render() {
     const { navigate } = this.props.navigation;
     const { auth } = this.props;
-    console.log(this.state);
     return (
       <React.Fragment>
         <HeaderListMaraudes />
