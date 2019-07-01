@@ -3,6 +3,7 @@ import { ScrollView } from "react-native";
 import { fetchMaraudes, showMaraude } from "../../../store/actions/maraude";
 import { connect } from "react-redux";
 import CardMaraude from './CardMaraude';
+import { View } from "native-base";
 
 
 class CardsMaraudes extends Component {
@@ -19,10 +20,12 @@ class CardsMaraudes extends Component {
 
   render() {
     return (
-      <ScrollView >
+      <ScrollView style={{ backgroundColor: "#FBFBFB" }}>
         {this.props.maraude.maraudes.map((maraude, index) => {
           return (
-            <CardMaraude key={index} maraude={maraude} />
+            <View key={index}  style={{ backgroundColor: '#FBFBFB' }}>
+            <CardMaraude maraude={maraude} />
+            </View>
           );
         })}
       </ScrollView>

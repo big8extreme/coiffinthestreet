@@ -1,4 +1,5 @@
 const models = require('../models');
+const sequelize = require('sequelize');
 const Maraude = models.Maraude;
 
 module.exports = {
@@ -60,4 +61,16 @@ module.exports = {
       })
       .catch((error) => res.status(500).json({ error }));
   },
+  findByCoord: function (req, res, next) {
+    const { lat, lng, limit } = req.query;
+    Maraude.findAll({
+      attributes: ['id', 'title', [sequelize.literal('6371 * acos(cos(radians(' + lat + ')) * cos(radians(latitude)) * cos(radians(' + lng + ') - radians(longitude)) + sin(radians(' + lat + ')) * sin(radians(latitude)))'), 'distance']],
+      order: sequelize.col('distance'),
+      limit: parseInt(limit) || 10,
+    })
+      .then((places) => {
+        res.json({ places });
+      })
+      .catch((error) => { res.status(500).json({ error }); });
+  }
 };

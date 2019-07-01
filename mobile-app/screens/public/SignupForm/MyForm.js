@@ -146,7 +146,7 @@ export default class MyForm extends Component {
                             onPress={() => { this.onePressed(); { alert('Entrez votre code de parrainage') } }}
                             checkedColor='#FDC500'
                         />
-                        <Text style={{ fontFamily: 'Georgia' }}>Oui</Text>
+                        <Text style={{ fontFamily: 'Roboto' }}>Oui</Text>
                     </Container>
                     <Container style={style.container}>
                         <CheckBox
@@ -154,7 +154,7 @@ export default class MyForm extends Component {
                             onPress={() => this.twoPressed()}
                             checkedColor='#FDC500'
                         />
-                        <Text style={{ fontFamily: 'Georgia' }}>Non, je n'ai pas de parrain</Text>
+                        <Text style={{ fontFamily: 'Roboto' }}>Non, je n'ai pas de parrain</Text>
                     </Container>
                     <Text style={style.inputText}>Entrez votre code de parrainage *</Text>
                     <Field
@@ -185,7 +185,7 @@ const style = {
         fontSize: 18
     },
     inputText: {
-        fontFamily: 'Georgia',
+        fontFamily: 'Roboto',
         fontWeight: 'bold',
         marginBottom: 5,
         marginTop: 25

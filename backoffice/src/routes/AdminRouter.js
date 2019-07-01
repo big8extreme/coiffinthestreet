@@ -3,6 +3,7 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Dashboard from '../pages/Dashboard';
 import UserPanel from '../pages/UserPanel';
+import ConfigPage from '../pages/ConfigPage';
 
 class AdminRouter extends Component {
   render() {
@@ -11,6 +12,7 @@ class AdminRouter extends Component {
       <Switch>
         <Route exact path='/admin' component={Dashboard} />
         <Route exact path='/admin/users' component={UserPanel} />
+        <Route exact path='/admin/configs' component={ConfigPage} />
       </Switch>
     );
   }

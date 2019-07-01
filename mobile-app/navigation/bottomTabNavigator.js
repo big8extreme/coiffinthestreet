@@ -10,13 +10,13 @@ const TabNavFooter = createBottomTabNavigator({
   Map: {
     screen: MapMaraudes,
     navigationOptions: {
-      tabBarIcon: ({ tintColor }) => <Icon name="ios-pin" size={30} color={tintColor} />
+      tabBarIcon: ({ tintColor }) => <Icon name="ios-globe" size={30} color={tintColor} />
     },
   },
   List: {
     screen: ListMaraudes,
     navigationOptions: {
-      tabBarIcon: ({ tintColor }) => <Icon name="ios-calendar" size={30} color={tintColor} />
+      tabBarIcon: ({ tintColor }) => <Icon name="ios-list-box" size={30} color={tintColor} />
     },
   },
   Feed: {
@@ -26,21 +26,23 @@ const TabNavFooter = createBottomTabNavigator({
     },
   },
   Menu: {
-    screen: MapMaraudes,
+    screen: ListMaraudes,
     navigationOptions: ({ navigation }) => {
       return {
-        tabBarIcon: ({ tintColor }) => <Icon onPress={() => { navigation.dispatch(DrawerActions.openDrawer()) }} name="ios-more" size={30} color={tintColor} />
+        tabBarIcon: ({ tintColor }) => <Icon onPress={() => { console.log('onPress BottomTab'); navigation.dispatch(DrawerActions.openDrawer()) }} name="ios-menu" size={30} color={tintColor} />
       }
     }
   }
 },
   {
-    initialRouteName: "Map",
+    initialRouteName: "List",
     tabBarOptions: {
-      activeBackgroundColor: "#2D2D2D",
-      inactiveBackgroundColor: "#2D2D2D",
       activeTintColor: "#FDC500",
-      showLabel: false
+      showLabel: false,
+      style: {
+        backgroundColor: "#2D2D2D",
+        padding: 10
+      }
     },
   },
 );

@@ -37,7 +37,8 @@ const style = {
         color: 'white',
         fontFamily: 'Georgia',
         fontStyle: 'italic',
-        marginTop: 20
+        marginTop: 20,
+        textAlign:'center'
     },
     background: {
         justifyContent: 'center',
