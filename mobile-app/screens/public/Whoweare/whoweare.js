@@ -25,15 +25,27 @@ export class Whoweare extends Component {
         ]
         return (
             <React.Fragment>
+
+
+<View style={{flex: 1, flexDirection: 'row'}}>
+  <View style={{flex: 1}}>
+    <Text>4 Views 0 Comments</Text>
+  </View>
+  <View style={{flex: 1}}>
+    <Text style={{textAlign: 'right'}}>Solve This</Text>
+  </View>
+</View>
+
+
                 <View style={styles.backgroundApp}>
                     <Text style={styles.Titletext}>Qui Sommes Nous</Text>
 
-                </View>
+                </View >
                 <Card title="CARD WITH DIVIDER">
                     {
                         users.map((u, i) => {
                             return (
-                                <View key={i} style={styles.user}>
+                                <View key={i}>
                                     <Image
                                         style={styles.image}
                                         resizeMode="cover"
