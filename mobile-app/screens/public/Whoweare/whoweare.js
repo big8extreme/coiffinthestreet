@@ -1,98 +1,92 @@
-import React, { Component } from 'react'
-import { StyleSheet, View, Text, Image } from 'react-native';
-import { Card } from 'react-native-elements'
-import { connect } from 'react-redux'
-import { fetchConfigs } from '../../../store/actions/config'
-
-export class Whoweare extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            keyWord: null
-        };
+import * as React from 'react';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import FirstScreen from './FirstScreen';
+import SecondScreen from './SecondScreen';
+import ThirdScreen from './ThirdScreen';
+ 
+export default class Whoweare extends React.Component {
+  constructor(props) {
+    super(props);
+    //state to manage the screen visible at a time
+    this.state = { val: 1 };
+  }
+  renderElement() {
+    //You can add N number of Views here in if-else condition
+    if (this.state.val === 1) {
+      //Return the FirstScreen as a child to set in Parent View
+      return <FirstScreen />;
+    } else if (this.state.val === 2) {
+      //Return the SecondScreen as a child to set in Parent View
+      return <SecondScreen />;
+    } else {
+      //Return the ThirdScreen as a child to set in Parent View
+      return <ThirdScreen />;
     }
-    componentDidMount() {
-        this.props.fetchConfigs();
+  }
+  render() {
+    return (
+      <React.Fragment>
+      <View style={styles.container}>
+     <Text style={styles.Titletext}>Qui Sommes Nous</Text>
+        <View style={{ flexDirection: 'row' }}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => this.setState({ val: 1 })}>
+            <Text style={{ color: '#ffffff' }}>Fondateurs</Text>
+          </TouchableOpacity>
 
-    }
-    render() {
-        const users = [
-            {
-                name: 'brynn',
-                avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg'
-            },
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => this.setState({ val: 2 })}>
+            <Text style={{ color: '#ffffff' }}>Bénévoles</Text>
+          </TouchableOpacity>
 
-        ]
-        return (
-            <React.Fragment>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => this.setState({ val: 3 })}>
+            <Text style={{ color: '#ffffff' }}>Développeurs</Text>
+          </TouchableOpacity>
+        </View>
+ 
 
+        <Text style={styles.paragraph}>
+        LE DON DE SOI N'A PAS DE PRIX
+        </Text>
+ 
+        <View style={{ backgroundColor: '#ffffff' }}>
+          {this.renderElement()}
+        </View>
+      </View>
 
-<View style={{flex: 1, flexDirection: 'row'}}>
-  <View style={{flex: 1}}>
-    <Text>4 Views 0 Comments</Text>
-  </View>
-  <View style={{flex: 1}}>
-    <Text style={{textAlign: 'right'}}>Solve This</Text>
-  </View>
-</View>
-
-
-                <View style={styles.backgroundApp}>
-                    <Text style={styles.Titletext}>Qui Sommes Nous</Text>
-
-                </View >
-                <Card title="CARD WITH DIVIDER">
-                    {
-                        users.map((u, i) => {
-                            return (
-                                <View key={i}>
-                                    <Image
-                                        style={styles.image}
-                                        resizeMode="cover"
-                                        source={{ uri: u.avatar }} />
-                                    <Text style={styles.name}>{u.name}</Text>
-                                </View>
-                            );
-                        })
-                    }
-                </Card>
-                <Card title='HELLO WORLD' >
-                    <Text style={{ marginBottom: 10 }}>
-                        The idea with React Native Elements is more about component structure than actual design.
-                    </Text>
-                </Card>
-            </React.Fragment>
-        );
-    }
+      </React.Fragment>
+    );
+  }
 }
-
-const mapStateToProps = (state) => ({
-
-})
-
-const mapDispatchToProps = {
-    fetchConfigs
-
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Whoweare);
-
+ 
 const styles = StyleSheet.create({
-    backgroundApp: {
-        backgroundColor: '#4E4E4E', flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    Titletext: {
-        color: 'white',
-        fontSize: 35,
-        fontFamily: "Sedgwick",
-    },
-    image: {
-        height: 120,
-        width: 220,
-        padding: 5,
-    }
-
+  container: {
+    flex: 1,
+    backgroundColor: '#4E4E4E',
+    padding: 8,
+    marginTop: 30,
+  },
+  paragraph: {
+    margin: 24,
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  button: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: '#808080',
+    padding: 10,
+    margin: 2,
+  },
+Titletext: {
+    color: 'white',
+    fontSize: 35,
+    fontFamily: "Sedgwick",
+    textAlign: 'center',
+}
 });

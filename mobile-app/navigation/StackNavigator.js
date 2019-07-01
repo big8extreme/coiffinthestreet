@@ -29,7 +29,7 @@ const AuthStack = createStackNavigator(
   {
     Login: { screen: LoginForm },
     Signup: { screen: SignupForm },
-    Discover: { screen: Discover },
+    Discover: { screen: Whoweare },
     drawerMenu: { screen: DrawerMenu },
     BottomTabNav: { screen: BottomTabNav },
     Charte: { screen: Charte },
