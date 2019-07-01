@@ -54,6 +54,9 @@ class LoginForm extends Component {
             <View style={styles.yellowBorder}>
               <TextInput onChangeText={(value) => this.setState({ password: value })} placeholder='******' secureTextEntry={true}></TextInput>
             </View>
+            <TouchableOpacity onPress={() => navigate("forgetPassword")}>
+              <Text style={styles.whiteTextLabel} >Mot de passe oublié ?</Text>
+            </TouchableOpacity>
           </View>
           <View style={styles.flexCenterImg}>
             <TouchableOpacity onPress={() => this.loginUser()}>
@@ -95,7 +98,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'left',
     marginBottom: 20,
-
   },
 
   yellowBorder: {

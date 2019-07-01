@@ -14,6 +14,7 @@ import Whoweare from '../screens/public/Whoweare/whoweare'
 import Contact from '../screens/connected/Profile/Contact'
 import TermsOfService from "../screens/connected/TermsOfService";
 import LegalMentions from "../screens/connected/LegalMention";
+import forgetPassword from "../screens/public/LoginForm/forgetPassword/forgetPassword";
 
 const AppStack = createStackNavigator(
   {
@@ -29,6 +30,7 @@ const AppStack = createStackNavigator(
 const AuthStack = createStackNavigator(
   {
     Login: { screen: LoginForm },
+    forgetPassword: {screen: forgetPassword },
     Signup: { screen: SignupForm },
     Discover: { screen: Discover },
     drawerMenu: { screen: DrawerMenu },
@@ -40,7 +42,7 @@ const AuthStack = createStackNavigator(
 
   },
   {
-    initialRouteName: "Discover",
+    initialRouteName: "forgetPassword",
     headerMode: 'none',
     navigationOptions: {
       headerVisible: false,
