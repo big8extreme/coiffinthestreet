@@ -72,7 +72,7 @@ class UserList extends Component {
         <TabView >
           <TabPanel header="Tous les Utilisateurs">
 
-            <Fieldset legend="En cours">
+            <Fieldset legend="">
               <div style={{ padding: '15px' }} > <Button onClick={() => this.toggleModal(true)} label="Ajouter un Coiffeur" className="p-button-warning  float-right" icon="pi pi-power-off" />
               </div>
 

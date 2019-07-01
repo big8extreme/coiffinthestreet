@@ -27,7 +27,7 @@ export class MenuLeft extends React.Component {
 
         {
           label: 'Api',
-          items: [{ label: 'Documentation', icon: 'pi pi-fw pi-file', command: () => { props.history.push('/admin/api'); } }
+          items: [{ label: 'Documentation', icon: 'pi pi-fw pi-file', command: () => { props.history.push('/admin/docapi'); } }
           ]
         },
         {
