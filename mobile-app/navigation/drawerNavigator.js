@@ -10,6 +10,7 @@ import Whoweare from '../screens/public/Whoweare/whoweare'
 import Contact from '../screens/connected/Profile/Contact'
 import TermsOfService from '../screens/connected/TermsOfService/index'
 import LegalMentions from '../screens/connected/LegalMention';
+import { logout } from '../store/actions/auth'
 
 const { width } = Dimensions.get('screen')
 
@@ -52,7 +53,15 @@ export default createDrawerNavigator({
       return {
         title: "Se connecter",
         drawerLabel: () => {
-          return store.getState().auth.user.isConnected ? null :
+          return store.getState().auth.user.isConnected ? 
+          <View style={styles.view}>
+              <TouchableOpacity onPress={() => logout(navigation)} style={styles.flex}>
+                <Icon name="ios-cut" size={25} style={styles.icon} />
+                <Text style={styles.text}>Je suis coiffeur(se)</Text>
+                <Text style={{ color: 'white', fontStyle: 'italic' }}> se déconnecter</Text>
+              </TouchableOpacity>
+            </View>
+              :
             <View style={styles.view}>
               <TouchableOpacity onPress={() => navigation.navigate('Login')} style={styles.flex}>
                 <Icon name="ios-cut" size={25} style={styles.icon} />

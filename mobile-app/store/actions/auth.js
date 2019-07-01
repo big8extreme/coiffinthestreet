@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { LOGIN, LOGOUT, LOG_IN_ERROR } from '../types/auth'
 import { baseUrlApi } from '../../apiUrl'
+import { bindActionCreators } from 'redux'
+//const thunk = require('redux-thunk').default;
 
 export function login(email, password) {
   return async dispatch => {
@@ -25,10 +27,17 @@ export function login(email, password) {
   };
 };
 
-export function logout() {
-  axios.defaults.headers.common['Authorization'] = null;
-  return {
-    type: LOGOUT,
-    payload: null
+export function logout(navigator) {
+  console.log('outside async dispatch')
+  this.boundActions = bindActionCreators(logout, dispatch);
+
+  return async dispatch => {
+    console.log('inside async dispatch')
+    axios.defaults.headers.common['Authorization'] = null;
+    console.log('login out')
+    navigator.navigate('Discover');
+
+    dispatch({ type: LOGOUT, payload: null });
+    //return { response, status: 'success' };
   }
 };

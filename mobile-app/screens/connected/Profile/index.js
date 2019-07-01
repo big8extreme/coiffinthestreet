@@ -23,7 +23,9 @@ export class Profile extends Component {
           <Text> Hello and welcome into profile view </Text>
           <Button
             title="Click me to logout"
-            onPress={() => this.props.logout()}
+            onPress={() => 
+              {this.props.logout(this.props.navigation);
+            }}
           />
         </View>
       </View>

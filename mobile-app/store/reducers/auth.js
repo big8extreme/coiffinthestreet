@@ -14,7 +14,7 @@ export default function (state = defaultStates, action) {
     case LOGIN:
       return { ...state, user: { ...action.payload.user, token: action.payload.token, isConnected: true } };
     case LOGOUT:
-      return defaultStates;
+      return { ...state, user: null };
     default:
       return state;
   }
