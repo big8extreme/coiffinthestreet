@@ -41,7 +41,7 @@ export default class ParticipForm extends Component {
 
     submitForm() {
         console.log('submit')
-        let submitResults = this.ParticipForm.validate(console.log('results'));
+        let submitResults = this.ParticipForm.validate();
         console.log('validate')
         let errors = [];
         submitResults.forEach(item => {
@@ -66,7 +66,7 @@ export default class ParticipForm extends Component {
             <ScrollView>
 
                 <Form
-                    ref={(ref) => this.myForm = ref}
+                    ref={(ref) => this.ParticipForm = ref}
                     validate={true}
                     submit={this.submitSuccess.bind(this)}
                     failed={this.submitFailed.bind(this)}
