@@ -40,4 +40,12 @@ export function logout(navigator) {
     dispatch({ type: LOGOUT, payload: null });
     //return { response, status: 'success' };
   }
+  //redirect to default route (front)
+
+ //Backend : Check how to revoke jwt token ?
+ //Backend Create Route for logout
+
+
+ //return or dispatch ==> Send info to redux
+ //into redux ==> Clear storage
 };
