@@ -1,7 +1,8 @@
 import * as React from 'react';
-import {  View, StyleSheet, Image } from 'react-native';
+import {  StyleSheet, ScrollView,Image } from 'react-native';
 import { Card } from 'react-native-elements'
 import { ListItem } from 'react-native-elements'
+import { View } from 'native-base'
 export default class ThirdScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -11,41 +12,65 @@ export default class ThirdScreen extends React.Component {
   render() {
     const list = [
       {
-        name: 'Amy Farha',
-        avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-        subtitle: 'Vice President'
+        name: 'Djamel AMMOUR',
+        avatar_url: 'http://res.cloudinary.com/david-wcs/image/upload/v1556907444/vcz3fxawxwxscmu7t7gl.png',
+        subtitle: 'Développer web fullstack JS',
+        icon: 'mail'
       },
       {
-        name: 'Chris Jackson',
-        avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-        subtitle: 'Vice Chairman'
+        name: 'Hafid BENAMAR',
+        avatar_url: 'http://res.cloudinary.com/david-wcs/image/upload/v1557927153/auyjgpekylappihrymnt.png',
+        subtitle: 'Développer web fullstack JS',
+        icon: 'mail'
       },
       {
-        name: 'Amy Farha',
-        avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-        subtitle: 'Vice President'
+        name: 'Stephane URTH ',
+        avatar_url: 'http://res.cloudinary.com/david-wcs/image/upload/v1557925944/om4hgftns6vld2try9a1.png',
+        subtitle: 'Développer web fullstack JS',
+        icon: 'mail'
       },
       {
-        name: 'Chris Jackson',
-        avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-        subtitle: 'Vice Chairman'
+        name: 'Bastien ALESSANDRI',
+        avatar_url: 'http://res.cloudinary.com/david-wcs/image/upload/v1557849649/ddtt2fdh7tyzlkngfqax.png',
+        subtitle: 'Développer web fullstack JS',
+        icon: 'mail'
       },
       {
-        name: 'Amy Farha',
-        avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-        subtitle: 'Vice President'
+        name: 'Damien CASTELLO',
+        avatar_url: 'http://res.cloudinary.com/david-wcs/image/upload/v1557993798/glspwtmqdnpjtdigv0mm.png',
+        subtitle: 'Développer web fullstack JS',
+        icon: 'mail'
       },
       {
-        name: 'Chris Jackson',
-        avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-        subtitle: 'Vice Chairman'
+        name: 'Jérémy ORTUNO',
+        avatar_url: 'http://res.cloudinary.com/david-wcs/image/upload/v1557824538/qvxhlw7dfaz9g3ci5uib.png',
+        subtitle: 'Développer web fullstack JS',
+        icon: 'mail'
       },
+      {
+        name: 'Sarah CABRAL',
+        avatar_url: 'http://res.cloudinary.com/david-wcs/image/upload/v1557861070/qg6tzvbictdcdp1zu16h.png',
+        subtitle: 'Développer web fullstack JS',
+        icon: 'mail'
+      },
+      {
+        name: 'Radouane BOUKERCHE',
+        avatar_url: 'http://res.cloudinary.com/david-wcs/image/upload/v1557754105/ah89cp0vsrxtgioukxrm.png',
+        subtitle: 'Développer web fullstack JS',
+        icon: 'mail'
+      },
+
+   
+   
+
     ]
 
 
     return (
+
+     <ScrollView>
       <View style={styles.container}>
-   
+
 <Card title="Fondateurs" >
   {
   list.map((l, i) => (
@@ -54,11 +79,13 @@ export default class ThirdScreen extends React.Component {
       leftAvatar={{ source: { uri: l.avatar_url } }}
       title={l.name}
       subtitle={l.subtitle}
+      rightIcon={{ name: l.icon }}
     />
   ))
  }
 </Card>
      </View>
+     </ScrollView>
     );
   }
 }

@@ -30,18 +30,33 @@ export default class FirstScreen extends React.Component {
   render() {
     const list = [
       {
-        name: 'Amy Farha',
-        avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-        subtitle: 'Vice President',
+        name: 'Kevin Ortega',
+        avatar_url: 'https://img.aws.la-croix.com/2018/10/25/1200978629/kevinortegaok_0_729_731.jpg',
+        titled: 'President Fondateur',
+        subtitle: 'Coiffeur',
         icon: 'mail'
       },
       {
-        name: 'Chris Jackson',
-        avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-        subtitle: 'Vice Chairman',
-        icon: 'flight-takeoff'
+        name: 'Bayram Tayari',
+        avatar_url: 'https://media.licdn.com/dms/image/C4D03AQELNqIkI5N2DQ/profile-displayphoto-shrink_800_800/0?e=1567641600&v=beta&t=YSygg38Mv0YIfMUIldkIhjm4gMiYPPxTqVh276m7XD4',
+        titled: 'membres bienfaiteurs',
+        subtitle: 'Co fondateur ZeDayt',
+        icon: 'mail'
       },
-
+      {
+        name: 'Aurelien Mutin',
+        avatar_url: 'https://media.licdn.com/dms/image/C5603AQH86uUJaxHYoA/profile-displayphoto-shrink_800_800/0?e=1567641600&v=beta&t=_e0nLaVwQGVQbfqkZGDdSVNlQ9l-Vfr_3rMh27fKsIY',
+        titled: 'membres bienfaiteurs',
+        subtitle: 'Co fondateur ZeDayt',
+        icon: 'mail'
+      },
+      {
+        name: 'Hugo Averty',
+        avatar_url: 'https://media.licdn.com/dms/image/C5103AQG2UhyJGhHB8w/profile-displayphoto-shrink_800_800/0?e=1567641600&v=beta&t=tPmwZf_UzgM5x86cY85y31GlNfCypdjTzKLAKF4MX3M',
+        titled: 'membres bienfaiteurs',
+        subtitle: 'Co fondateur ZeDayt',
+        icon: 'mail'
+      },
     ]
     return (
       <React.Fragment>
@@ -54,7 +69,7 @@ export default class FirstScreen extends React.Component {
       key={i}
       leftAvatar={{ source: { uri: l.avatar_url } }}
       title={l.name}
-      subtitle={l.subtitle}  
+      subtitle={l.titled}  
       rightIcon={{ name: l.icon }}
     />
  
