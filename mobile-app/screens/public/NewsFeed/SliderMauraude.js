@@ -1,90 +1,63 @@
-import React, { Component } from 'react';
-import { View, ScrollView, Image, StyleSheet, Dimensions, Text } from 'react-native';
-import { Constants } from 'expo';
+import React, { Component } from 'react'
+import { AppRegistry, StyleSheet, Text, View, Image, ScrollView } from 'react-native'
 
+import Swiper from 'react-native-swiper';
 
-const { width } = Dimensions.get('window');
-const height = width * 0.9
-
-class Carousel extends Component {
-    render() {
-        const { images } = this.props;
-        if (images && images.length) {
-            return (
-
-               
-                <View
-                    style={styles.scrollContainer}
-                >
-                    <ScrollView
-                        horizontal
-                        pagingEnabled
-                        showsHorizontalScrollIndicator={false}
-                    >
-                        {images.map(image => (
-                            <Image style={styles.image} source={image.source} />
-                        ))}
-                        
-                    </ScrollView>
-                    
-                </View>
-            );
-        }
-        console.log('Please provide images');
-        return null;
-    }
-}
-
-export default class App extends Component {
-    render() {
-        const images = [
-            {
-                source: {
-                    uri: 'https://cdn.pixabay.com/photo/2017/05/19/07/34/teacup-2325722__340.jpg',
-                },
-            },
-            {
-                source: {
-                    uri: 'https://cdn.pixabay.com/photo/2017/05/02/22/43/mushroom-2279558__340.jpg',
-                },
-            },
-            {
-                source: {
-                    uri: 'https://cdn.pixabay.com/photo/2017/05/18/21/54/tower-bridge-2324875__340.jpg',
-                },
-            },
-            {
-                source: {
-                    uri: 'https://cdn.pixabay.com/photo/2017/05/16/21/24/gorilla-2318998__340.jpg',
-                },
-            },
-
-        ];
-
-        return (
-            <View style={styles.container}>
-                <Carousel images={images} />
-                <Text style={{color:'white'}}>blalblabakdksgjfkjzefr</Text>
-            </View>
-        );
-    }
-}
-
-
-
-
-const styles = {
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingTop: Constants.statusBarHeight,
+const styles = StyleSheet.create({
+    wrapper: {
+        marginBottom: 40
     },
-    scrollContainer: {
-        height,
+    slide1: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#9DD6EB'
+    },
+    slide2: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#97CAE5'
+    },
+    slide3: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#92BBD9'
+    },
+    text: {
+        color: '#fff',
+        fontSize: 30,
+        fontWeight: 'bold'
     },
     image: {
-        width,
-        height,
+        borderWidth: 1,
+        borderColor: 'black',
+        width: 300,
+        height: 300
     }
+})
+
+export default function SwiperComponent({ photo, title, startdAt, description, city }) {
+
+    return (
+        <Swiper style={styles.wrapper} showsButtons={true}>
+            <View
+                style={styles.slide1}
+            >
+                <Text style={styles.text}>{title}</Text>
+                <Text>{description}</Text>
+            </View>
+            <View style={styles.slide2}>
+                <Text style={styles.text}>{title}</Text>
+                <Text>{description}</Text>
+            </View>
+            <View style={styles.slide3}>
+                <Text style={styles.text}>And simple</Text>
+            </View>
+        </Swiper>
+    )
 }
+
+
+AppRegistry.registerComponent('myproject', () => SwiperComponent);

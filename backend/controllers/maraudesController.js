@@ -4,7 +4,14 @@ const Maraude = models.Maraude;
 
 module.exports = {
   index: function (req, res, next) {
-    Maraude.findAll({include:['photos']})
+    const { city,  } = req.query;
+ const query = {where: {
+}}
+
+if(req.query && req.query.city){
+  query.where.city = req.query.city;
+}
+   Maraude.findAll(query)
       .then((maraudes) => { res.json({ maraudes }); })
       .catch((error) => res.status(500).json({ error }));
   },

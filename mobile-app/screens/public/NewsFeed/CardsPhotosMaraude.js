@@ -3,6 +3,7 @@ import { ScrollView, View, Text } from "react-native";
 import { fetchMaraudes } from "../../../store/actions/maraude";
 import { connect } from "react-redux";
 import PhotoMaraude from './PhotoMaraude';
+import SliderMauraude from './SliderMauraude'
 import {Container, Content} from 'native-base';
 
 
@@ -16,9 +17,7 @@ class CardsPhotosMaraude extends Component {
   render() {
   
     return (
-      <ScrollView>
-      
-                    
+      <ScrollView>          
         {
           this.props.maraude.maraudes.map((maraude) => {
             return <ScrollView 
@@ -36,16 +35,13 @@ class CardsPhotosMaraude extends Component {
                     title={maraude.title}
                     description={maraude.description}  
                     city={maraude.city}  
-                    createdAt={maraude.createdAt}              
+                    createdAt={maraude.createdAt}  
+                    index={index}            
                     />
               
                   );
                 })
               }
-                   
-
-             
-              
             </ScrollView>
             
           })

@@ -1,100 +1,95 @@
 
 
 import React from 'react'
-import { Image, ScrollView, Text, View } from 'react-native';
+import { Image,  Text, View } from 'react-native';
 import maraude from '../../../store/reducers/maraude';
-import { Container, Content, Card, CardItem, Button, Icon, Left, Body } from 'native-base';
+import { Card, CardItem, Left, Body } from 'native-base';
 import moment from "moment";
 
 
 
 
-export default function PhotoMaraude({ photo, title, startdAt, description, city }) {
+
+export default function PhotoMaraude({ photo, title, startdAt, description, city, index }) {
+    
     return (
-
-        //         <View>
-        //             <Image
-        //                 source={{ uri: `${photo.url}` }}
-        //                 style={style.image}
-        //             />
-        //             <Text>{title}</Text>
-        //         </View>
-        //     )
-        // }
-
         <View>
-            <Card>
-                <CardItem>
-                    <Left>
-                        <Body>
-                            <Text style={style.maraudeTitle}>{title}</Text>
-                            <Text style={style.maraudeDate}>{`${city}${moment(maraude.startAt).format(", DD/ MM/ YYYY")}`}</Text>
 
-                        </Body>
-                    </Left>
+            <Card style={style.card}>
+                <CardItem style={style.cardItem}>
+                    <Body>
+                        <Left />
+                        <Image source={{ uri: `${photo.url}` }}
+                            style={style.image} />
+                    </Body>
                 </CardItem>
-
-                <CardItem cardBody>
-
-                    <Image source={{ uri: `${photo.url}` }}
-                        style={style.image} />
-                        
-                       
-                    
-
+                <CardItem style={style.cardItem}>
+                    <Body>
+                        <Left />
+                        <Text style={style.title}>{title}</Text>
+                        <Text>{`${city}${moment(maraude.startAt).format(" DD/ MM/ YYYY")}`}</Text>
+                        <Text style={style.description}>{description}</Text>
+                    </Body>
                 </CardItem>
-                <CardItem>
-                    <Left>
-                        <Body>
-                            <Text style={style.test}>{description}</Text>
-                           
-
-                        </Body>
-                    </Left>
-                </CardItem>
-
-                
-
             </Card>
-
-
-
-
-
-
-
-
-
         </View>
-
     )
 }
 
+
 const style = {
-    describeText: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between'
-    },
     maraudeTitle: {
-        fontSize: 20,
+        fontSize: 23,
+    },
+    description: {
+        fontSize: 23,
+    },
+    title: {
         fontWeight: 'bold',
+        fontSize: 23
     },
-    maraudeDate: {
-        marginLeft: 0
-    },
-    maraudeDescription: {
-        marginLeft: 0
-    },
-
     image: {
-        width: 400,
+        width: 300,
         height: 300,
-        // flex:1
     },
-    test: {
-        color: 'red',
-        fontSize: 30
-
+    card: {
+        marginBottom: 30,
+        borderRadius: 0, 
+        width:320, 
+        justifyContent:'center' ,
+        alignItems:'center'   
+    },
+    cardItem: {
+        display: 'flex',
+        width:320
     }
 }
+
+// const styles = StyleSheet.create({
+//     wrapper: {
+//         marginBottom:40
+//     },
+//     slide1: {
+//         flex: 1,
+//         justifyContent: 'center',
+//         alignItems: 'center',
+//         backgroundColor: '#9DD6EB'
+//     },
+//     slide2: {
+//         flex: 1,
+//         justifyContent: 'center',
+//         alignItems: 'center',
+//         backgroundColor: '#97CAE5'
+//     },
+//     slide3: {
+//         flex: 1,
+//         justifyContent: 'center',
+//         alignItems: 'center',
+//         backgroundColor: '#92BBD9'
+//     },
+//     text: {
+//         color: '#fff',
+//         fontSize: 30,
+//         fontWeight: 'bold'
+//     }
+// })
