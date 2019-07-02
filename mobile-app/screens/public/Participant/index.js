@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
-import {fetchParticipants, showParticipant} from '../../../store/actions/participant'
+import {fetchParticipants, showParticipant, createParticipant} from '../../../store/actions/participant'
 import ParticipForm from './ParticipForm';
 import { connect } from 'react-redux';
 
@@ -27,11 +27,7 @@ export class Participant extends Component {
         console.log('RRR')
         return (
             <ScrollView style={styles.main_container}>
-                {this.props.participant.participants.map((participant, index) => {
-                    return (
-                        <ParticipForm key={index} participant={participant} />
-                    );
-                    })}
+                <ParticipForm createParticipant={() => this.createParticipant()}/>
             </ScrollView>
         )
     }
@@ -50,7 +46,8 @@ const mapStateToProps =state => ({
 
 const mapDispatchToProps = {
     fetchParticipants,
-    showParticipant
+    showParticipant,
+    createParticipant
 };
 
 export default connect(
