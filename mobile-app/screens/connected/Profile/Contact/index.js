@@ -1,41 +1,38 @@
 
 import React, { Component } from 'react';
-import { StyleSheet, View, ScrollView } from 'react-native';
-import LogoContact from'./LogoContact';
-import RequestList from './RequestList';
+import { StyleSheet, View, ScrollView, Image } from 'react-native';
 import MessageTextInput from './MessageTextInput';
 import PickerTextAndItemStyleExample from './Dropdown';
+import ValidateButton from '../../../../components/ValidateButton';
 
 export default class Contact extends Component {
   render() {
     return (
-      <View style={styles.main_container}>
-        <ScrollView>
-          <LogoContact />
-          <PickerTextAndItemStyleExample/>
+
+      <ScrollView style={{ backgroundColor: '#2D2D2D', minHeight: '100%' }}>
+        <View style={styles.logo}>
+          <Image source={require('../../../../assets/Logo_light.png')} />
+        </View>
+        <React.Fragment>
+          <PickerTextAndItemStyleExample />
           <MessageTextInput />
-        </ScrollView>
-      </View>
+          <ValidateButton 
+          label="Envoyer"
+          style={{color:'yellow'}}
+          />
+        </React.Fragment>
+      </ScrollView>
+
+
     );
   }
 }
 
 const styles = StyleSheet.create({
-  main_container: {
-    flex: 1,
-    backgroundColor: '#2D2D2D',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-  },
   logo: {
-    flex: 3,
-    marginTop: 30,
-    marginBottom: 40,
-    alignItems: 'center'
+    alignSelf: 'center',
+    marginTop:30,
+    marginBottom:30
+
   },
-  img: {
-    height: 120,
-    width: 220,
-    padding: 5,
-  }
 })

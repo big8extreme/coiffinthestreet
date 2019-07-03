@@ -20,16 +20,14 @@ export default class PickerTextAndItemStyleExample extends Component {
                     <Form>
                         <Picker 
                             mode="dropdown"
-                            placeholder="Objet"
                             iosIcon={<Icon name="arrow-down" style={{color:'rgb(253,197,0)', marginLeft:0}}/>}
                             placeholder="Objet"
+                            placeholderStyle={{fontWeight:'bold', paddingLeft:14}}
                             textStyle={{ color: 'rgb(253,197,0)' }}
                             itemStyle={{
                                 backgroundColor: "white",
                                 marginLeft: 0,
-                                paddingLeft: 10,
-
-                               
+                                paddingLeft: 10,                          
                             }}
                             itemTextStyle={{ color:'black' }}
                             selectedValue={this.state.selected}
@@ -59,8 +57,8 @@ const style = {
         alignSelf:'center',
         marginTop:50,
         marginBottom:30,
-        fontWeight:900,
-        
+        fontSize:18,
+        fontWeight:'bold'      
     },
     
 }
