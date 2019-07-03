@@ -4,16 +4,20 @@ const Maraude = models.Maraude;
 
 module.exports = {
   index: function (req, res, next) {
-    const { city,  } = req.query;
+    const { city } = req.query;
  const query = {where: {
 }}
 
 if(req.query && req.query.city){
-  query.where.city = req.query.city;
+  query.where.city = req.query.city.toLowerCase();
 }
    Maraude.findAll(query)
-      .then((maraudes) => { res.json({ maraudes }); })
-      .catch((error) => res.status(500).json({ error }));
+      .then((maraudes) => { 
+        res.json({ maraudes });
+       })
+      .catch((error) => {
+        res.status(500).json({ error })
+      });
   },
 
   show: function (req, res, next) {

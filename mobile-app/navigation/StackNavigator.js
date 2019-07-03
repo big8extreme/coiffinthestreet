@@ -3,7 +3,7 @@ import {
   createStackNavigator,
   createAppContainer,
 } from "react-navigation"
-import BottomTabNav from './BottomTabNavigator'
+import BottomTabNav from './bottomTabNavigator'
 import LoginForm from "../screens/public/LoginForm";
 import Profile from "../screens/connected/Profile";
 import Discover from '../screens/public/Discover/discover'
@@ -12,7 +12,6 @@ import DrawerMenu from './drawerNavigator'
 import Charte from '../screens/public/Charte'
 import Whoweare from '../screens/public/Whoweare/whoweare'
 import Contact from '../screens/connected/Profile/Contact'
-import Sidebar from "../components/Sidebar";
 
 const AppStack = createStackNavigator(
   {
@@ -44,14 +43,13 @@ const AuthStack = createStackNavigator(
   }
 );
 
-
 export default createAppContainer(
   createSwitchNavigator(
     {
       Tab: BottomTabNav,
       App: AppStack,
       Auth: AuthStack,
-      DrawerMenu: DrawerMenu,
+      DrawerMenu: DrawerMenu
     },
     {
       initialRouteName: "Auth"

@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         color: '#F1F0C7',
-        fontFamily: 'Georgia',
+        fontFamily: 'Tino',
         margin: 11,
     },
     contactTextInput: {
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
         borderColor: '#FDC500',
         borderWidth: 2,
         borderRadius: 10,
-        fontFamily: 'Georgia',
+        fontFamily: 'Tino',
         marginBottom: 11
     },
     buttonSendMessage: {

@@ -24,6 +24,10 @@ export default class App extends React.Component {
       Roboto: require("native-base/Fonts/Roboto.ttf"),
       Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
       Sedgwick: require('./assets/fonts/SedgwickAveDisplay-Regular.ttf'),
+      Tino: require('./assets/fonts/Tinos-Regular.ttf'),
+      TinoBold: require('./assets/fonts/Tinos-Bold.ttf'),
+      TinoItalic: require('./assets/fonts/Tinos-Italic.ttf'),
+      TinoBoldItalic: require('./assets/fonts/Tinos-BoldItalic.ttf'),
       ...Ionicons.font
     });
     this.setState({ loading: false });

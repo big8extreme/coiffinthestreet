@@ -14,9 +14,9 @@ class CardsMaraudes extends Component {
     };
   }
 
-  componentDidMount() {
-    this.props.fetchMaraudes();
-  }
+  // componentDidMount() {
+  //   this.props.fetchMaraudes();
+  // }
 
   render() {
     return (

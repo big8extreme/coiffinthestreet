@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
         color: '#F1F0C7',
         margin: 11,
         fontWeight: 'bold',
-        fontFamily: 'Georgia',
+        fontFamily: 'Tino',
     },
     FlatList_container: {
         backgroundColor: 'white',
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     },
     item: {
         padding: 10,
-        fontFamily: 'Georgia',
+        fontFamily: 'Tino',
         height: 45,
     }
 });
