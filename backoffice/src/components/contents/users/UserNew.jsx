@@ -44,7 +44,7 @@ class UserNew extends Component {
 
   handleUserStateChange = async (field, value) => {
     await this.setState({ ...this.state, user: {...this.state.user,[field]: value}});
-    //this.checkValidity();
+
   }
 
   checkValidity = () => {
