@@ -17,7 +17,7 @@ if(req.query && req.query.city){
   },
 
   show: function (req, res, next) {
-    Maraude.findByPk(req.params.id)
+    Maraude.findByPk(req.params.id, {include:['photos']})
       .then((maraude) => { res.json({ maraude }); })
       .catch((error) => res.status(500).json({ error }));
   },

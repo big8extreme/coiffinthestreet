@@ -14,6 +14,7 @@ module.exports = {
       .catch((error) => res.status(500).json({ error }));
   },
 
+
   update: function (req, res, next) {
     User.findByPk(req.params.id)
       .then((user) => {

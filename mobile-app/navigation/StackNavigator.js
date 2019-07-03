@@ -2,17 +2,18 @@ import {
   createSwitchNavigator,
   createStackNavigator,
   createAppContainer,
-} from "react-navigation"
-import BottomTabNav from './BottomTabNavigator'
+} from "react-navigation";
+import BottomTabNav from './bottomTabNavigator';
 import LoginForm from "../screens/public/LoginForm";
 import Profile from "../screens/connected/Profile";
 import Discover from '../screens/public/Discover/discover'
 import SignupForm from '../screens/public/SignupForm/MyForm'
 import Participation from '../screens/public/Participation'
-import DrawerMenu from './DrawerNavigator'
+import DrawerMenu from './drawerNavigator';
 import Charte from '../screens/public/Charte'
 import Whoweare from '../screens/public/Whoweare/whoweare'
 import Contact from '../screens/connected/Profile/Contact'
+
 
 const AppStack = createStackNavigator(
   {
