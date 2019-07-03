@@ -124,8 +124,6 @@ body .p-menu {
   background-color: #fff;
 }
 
-
-
 .layout-content .content-section.introduction {
   background-color: #008fba;
   background-image: -webkit-linear-gradient(left,#008fba,#03c4e8);
@@ -134,15 +132,15 @@ body .p-menu {
   color: #fff;
 }
 
-
 .layout-footer {
   font-size: 14px;
   color: #84939f;
 }
-
 
 .p-grid {
      display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 10px;
 }
+
+
