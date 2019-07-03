@@ -67,6 +67,9 @@ class UserList extends Component {
   }
 
   render() {
+    let paginatorLeft = <Button icon="pi pi-refresh"/>;
+    let paginatorRight = <Button icon="pi pi-cloud-upload"/>;
+
     return (
       <div>
         <TabView >
@@ -76,7 +79,7 @@ class UserList extends Component {
               <div style={{ padding: '15px' }} > <Button onClick={() => this.toggleModal(true)} label="Ajouter un Coiffeur" className="p-button-warning  float-right" icon="pi pi-power-off" />
               </div>
 
-              <DataTable value={this.props.users}>
+              <DataTable value={this.props.users}   paginator={true}  rows={5} rowsPerPageOptions={[5,10,20]}>
                 <Column field="lastName" header="Nom" />
                 <Column field="firstName" header="Prenom" />
                 <Column field="id" header="Ville" />
@@ -89,6 +92,8 @@ class UserList extends Component {
 
         </TabView>
       </div>
+
+
     );
   }
 }
