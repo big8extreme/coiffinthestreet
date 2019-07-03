@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
-import { ScrollView, View, Text } from "react-native";
+import { ScrollView } from "react-native";
 import { fetchMaraudes } from "../../../store/actions/maraude";
 import { connect } from "react-redux";
 import PhotoMaraude from './PhotoMaraude';
-import SliderMauraude from './SliderMauraude'
-import {Container, Content} from 'native-base';
 
 
 

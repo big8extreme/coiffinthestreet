@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { ScrollView, Image, Text, View } from 'react-native';
 import { LinearGradient } from 'expo';
-import SliderMauraude from './SliderMauraude';
 import CardsPhotosMaraude from './CardsPhotosMaraude';
 
 
