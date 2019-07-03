@@ -67,9 +67,6 @@ class UserList extends Component {
   }
 
   render() {
-    let paginatorLeft = <Button icon="pi pi-refresh"/>;
-    let paginatorRight = <Button icon="pi pi-cloud-upload"/>;
-
     return (
       <div>
         <TabView >
