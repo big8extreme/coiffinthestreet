@@ -1,9 +1,10 @@
 import React from 'react';
 import { createBottomTabNavigator, DrawerActions } from "react-navigation";
 import MapMaraudes from "../screens/connected/MapMaraudes";
-import FeedMaraudes from "../screens/connected/FeedMaraudes";
+import NewsFeed from "../screens/public/NewsFeed/Index";
 import ListMaraudes from "../screens/connected/ListMaraudes";
 import Icon from "react-native-vector-icons/Ionicons";
+
 
 const TabNavFooter = createBottomTabNavigator({
   Map: {
@@ -19,7 +20,7 @@ const TabNavFooter = createBottomTabNavigator({
     },
   },
   Feed: {
-    screen: FeedMaraudes,
+    screen: NewsFeed,
     navigationOptions: {
       tabBarIcon: ({ tintColor }) => <Icon name="ios-images" size={30} color={tintColor} />
     },
