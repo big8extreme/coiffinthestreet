@@ -3,21 +3,22 @@ import {
   createStackNavigator,
   createAppContainer,
 } from "react-navigation"
-import BottomTabNav from './bottomTabNavigator'
+import BottomTabNav from './BottomTabNavigator'
 import LoginForm from "../screens/public/LoginForm";
 import Profile from "../screens/connected/Profile";
 import Discover from '../screens/public/Discover/discover'
 import SignupForm from '../screens/public/SignupForm/MyForm'
-import DrawerMenu from './drawerNavigator'
-import Charte from '../screens/public/Charte/charte'
+import Participation from '../screens/public/Participation'
+import DrawerMenu from './DrawerNavigator'
+import Charte from '../screens/public/Charte'
 import Whoweare from '../screens/public/Whoweare/whoweare'
 import Contact from '../screens/connected/Profile/Contact'
-import LegalMentions from "../screens/connected/LegalMention";
 
 const AppStack = createStackNavigator(
   {
     Profile: { screen: Profile },
     Contact: { screen: Contact },
+    Participation: { screen: Participation },
   },
   {
     initialRouteName: "Profile",
@@ -29,16 +30,15 @@ const AuthStack = createStackNavigator(
   {
     Login: { screen: LoginForm },
     Signup: { screen: SignupForm },
-    Discover: { screen: Whoweare },
+    Discover: { screen: Discover },
+    Participation: { screen: Participation },
     drawerMenu: { screen: DrawerMenu },
     BottomTabNav: { screen: BottomTabNav },
     Charte: { screen: Charte },
     Whoweare: { screen: Whoweare },
-    LegalMentions: { screen: LegalMentions },
-
   },
   {
-    initialRouteName: "Discover",
+    initialRouteName: "BottomTabNav",
     headerMode: 'none',
     navigationOptions: {
       headerVisible: false,
@@ -46,13 +46,14 @@ const AuthStack = createStackNavigator(
   }
 );
 
+
 export default createAppContainer(
   createSwitchNavigator(
     {
       Tab: BottomTabNav,
       App: AppStack,
       Auth: AuthStack,
-      DrawerMenu: DrawerMenu
+      DrawerMenu: DrawerMenu,
     },
     {
       initialRouteName: "Auth"
