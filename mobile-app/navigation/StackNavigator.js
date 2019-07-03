@@ -2,24 +2,24 @@ import {
   createSwitchNavigator,
   createStackNavigator,
   createAppContainer,
-} from "react-navigation"
-import BottomTabNav from './bottomTabNavigator'
+} from "react-navigation";
+import BottomTabNav from './bottomTabNavigator';
 import LoginForm from "../screens/public/LoginForm";
 import Profile from "../screens/connected/Profile";
 import Discover from '../screens/public/Discover/discover'
 import SignupForm from '../screens/public/SignupForm/MyForm'
-import DrawerMenu from './drawerNavigator'
-import Charte from '../screens/public/Charte/charte'
+import Participation from '../screens/public/Participation'
+import DrawerMenu from './drawerNavigator';
+import Charte from '../screens/public/Charte'
 import Whoweare from '../screens/public/Whoweare/whoweare'
 import Contact from '../screens/connected/Profile/Contact'
-import TermsOfService from "../screens/connected/TermsOfService";
-import LegalMentions from "../screens/connected/LegalMention";
 import forgetPassword from "../screens/public/LoginForm/forgetPassword/forgetPassword";
 
 const AppStack = createStackNavigator(
   {
     Profile: { screen: Profile },
     Contact: { screen: Contact },
+    Participation: { screen: Participation },
   },
   {
     initialRouteName: "Profile",
@@ -33,16 +33,14 @@ const AuthStack = createStackNavigator(
     forgetPassword: {screen: forgetPassword },
     Signup: { screen: SignupForm },
     Discover: { screen: Discover },
+    Participation: { screen: Participation },
     drawerMenu: { screen: DrawerMenu },
     BottomTabNav: { screen: BottomTabNav },
     Charte: { screen: Charte },
-    CGU: { screen: TermsOfService},
     Whoweare: { screen: Whoweare },
-    LegalMentions: { screen: LegalMentions },
-
   },
   {
-    initialRouteName: "forgetPassword",
+    initialRouteName: "BottomTabNav",
     headerMode: 'none',
     navigationOptions: {
       headerVisible: false,
@@ -50,13 +48,14 @@ const AuthStack = createStackNavigator(
   }
 );
 
+
 export default createAppContainer(
   createSwitchNavigator(
     {
       Tab: BottomTabNav,
       App: AppStack,
       Auth: AuthStack,
-      DrawerMenu: DrawerMenu
+      DrawerMenu: DrawerMenu,
     },
     {
       initialRouteName: "Auth"

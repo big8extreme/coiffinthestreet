@@ -1,20 +1,10 @@
 import React, { Component } from "react";
-import {
-  Container,
-  Header,
-  Left,
-  Body,
-  Right,
-  Button,
-  Title,
-  Text,
-  Icon,
-  Badge
-} from "native-base";
+import { Container } from "native-base";
 import { connect } from "react-redux";
 import MapMarker from "./MapMarker";
 
 export class MapMaraudes extends Component {
+  
   static navigationOptions = {
     title: 'Profile',
   };
@@ -33,6 +23,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
+  
 };
 
 // @ts-ignore

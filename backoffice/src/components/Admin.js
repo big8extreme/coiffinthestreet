@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { logout } from '../stores/actions/auth';
-import MenuLeft from './contents/menuleft';
+import MenuLeft from './contents/MenuLeft';
 import AdminRouter from '../routes/AdminRouter';
 
 export class Admin extends Component {

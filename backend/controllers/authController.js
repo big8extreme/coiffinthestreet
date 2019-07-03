@@ -27,11 +27,9 @@ module.exports = {
       isAdmin: req.body.isAdmin || false
     })
       .then((newUser) => {
-        const currentDate = new Date()
         const userDatas = {
           firstName: newUser.firstName,
           lastName: newUser.lastName,
-          current_year: currentDate.getFullYear(),
           compagny: 'Coiffinthestreet',
           adress_mail: 'Coiffla@hotmail.com'
         }

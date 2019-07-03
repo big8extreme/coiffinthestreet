@@ -54,33 +54,35 @@ export class Whoweare extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-
-})
+const mapStateToProps = state => ({});
 
 const mapDispatchToProps = {
     fetchConfigs
+};
 
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Whoweare);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Whoweare);
 
 const styles = StyleSheet.create({
     backgroundApp: {
-        backgroundColor: '#4E4E4E', flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
+        backgroundColor: "#4E4E4E",
+        flex: 1,
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        display: "flex",
     },
     Titletext: {
-        color: 'white',
+        color: "white",
         fontSize: 35,
         fontFamily: "Sedgwick",
+        flex: 2
     },
     image: {
         height: 120,
         width: 220,
         padding: 5,
     }
-
 });

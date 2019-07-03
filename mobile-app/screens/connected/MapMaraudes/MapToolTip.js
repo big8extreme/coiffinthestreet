@@ -1,37 +1,27 @@
-import React, { Component } from "react";
+import React from "react";
 import { TouchableOpacity } from 'react-native';
 import {
-  View,
-  List,
-  ListItem,
-  Text,
-  Left,
-  Right,
-  Icon,
-  Content,
-  Container,
-  Button
-} from "native-base";
+  View, Text } from "native-base";
+import moment from "moment";
 
-export default class MapToolTip extends Component {
-  render() {
-    const { navigate } = this.props.navigation;
+
+
+function MapToolTip({ maraude }) {
     return (
-      <View
-        style={{ backgroundColor: "#646464", paddingTop: 10, paddingBottom: 10, justifyContent: 'center', alignItems: 'center', borderRadius: 10 }}
-      >
+      <View style={{ backgroundColor: "#646464", padding:10, justifyContent: 'center', alignItems: 'center', borderRadius: 10 }}>
         <TouchableOpacity
-      onPress={() => {
-          navigate("List");
-        }}>
-        <Text style={{ fontSize: 15, color: '#FFF', paddingBottom: 5 }} onPress={() => {
-          navigate("List");
-        }}>Titre de la maraude</Text>
-        <Text style={{ fontSize: 15, color: '#FFF', paddingBottom: 5 }}>Organisateur de la maraude</Text>
-        <Text style={{ fontSize: 15, color: '#FFF', paddingBottom: 5 }}>Date et Heure</Text>
+          onPress={() => {
+              navigate("List");
+          }}>
+          <Text style={{ fontWeight:'bold', fontSize: 15, color: '#FFF', paddingBottom: 5 }} onPress={() => {
+            navigate("List");
+          }}>{maraude.title}</Text>
+          <Text style={{ fontSize: 15, color: '#FFF', paddingBottom: 5 }}>Organisateur de la maraude: {maraude.userId}</Text>
+          <Text style={{ fontSize: 15, color: '#FFF', paddingBottom: 5 }}>{maraude.description}</Text>
+          <Text style={{ fontSize: 15, color: '#FFF', paddingBottom: 5 }}>Le: {moment(maraude.startAt).format("DD/MM/YYYY")} à {moment(maraude.startAt).format("HH[h]mm")}</Text>  
         </TouchableOpacity>
-        </View>
+      </View>
     );
   }
-}
 
+export default MapToolTip;
