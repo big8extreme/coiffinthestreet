@@ -1,13 +1,14 @@
 import React, { Component } from "react";
-import { StyleSheet, View, TextInput, Image, TouchableOpacity, Alert, Text } from "react-native";
+import { StyleSheet, View, Image, TouchableOpacity, Alert, Text } from "react-native";
+import { Container, Content, Form, Textarea} from 'native-base';
 
 export default class MessageTextInput extends Component {
     constructor(props) {
         super(props);
-        this.message=''
+        this.message = ''
     }
     typedMessage(text) {
-        this.message= text
+        this.message = text
     }
     FloatingButtonEvent = () => {
         Alert.alert("Votre message " + this.message + " a été envoyé");
@@ -15,17 +16,17 @@ export default class MessageTextInput extends Component {
     render() {
         return (
             <View>
-                <View>
+                
                     <Text style={styles.contactTextTitle}>Message :</Text>
-                    <View style={styles.contactTextInput_container}>
-                        <TextInput
-                            style={styles.contactTextInput}
-                            numberOfLines={10}
-                            placeholder='Ecrire votre requête ici'
-                            onChangeText={(text) =>this.typedMessage(text)}
-                            underlineColorAndroid='transparent' />
-                    </View>
-                </View>
+                    <Container style={styles.form}>
+                        
+                        <Content >
+                            <Form >
+                                <Textarea rowSpan={5} placeholder="Tapez votre texte"capInsets={{left: 2, right: 2, bottom: 0, top: 0}} />
+                            </Form>
+                        </Content>
+                    </Container>
+                
                 <View>
                     <TouchableOpacity activeOpacity={0.5} onPress={this.FloatingButtonEvent} style={styles.TouchableOpacityStyle} >
                         <Image
@@ -38,27 +39,20 @@ export default class MessageTextInput extends Component {
     }
 }
 const styles = StyleSheet.create({
-    contactTextInput_container: {
-        flex: 2,
-        marginBottom: 11,
-        alignItems: 'center'
+    form:{
+        width:300,
+        height:200,
+        alignSelf:'center',
+        borderWidth:2,
+        borderColor:'rgb(253,197,0)',
+        borderRadius:5,
+        marginBottom:30,
     },
     contactTextTitle: {
         fontSize: 18,
         fontWeight: 'bold',
         color: '#F1F0C7',
-        fontFamily: 'Georgia',
         margin: 11,
-    },
-    contactTextInput: {
-        height: 200,
-        width: 300,
-        backgroundColor: 'white',
-        borderColor: '#FDC500',
-        borderWidth: 2,
-        borderRadius: 10,
-        fontFamily: 'Georgia',
-        marginBottom: 11
     },
     buttonSendMessage: {
         height: 79,

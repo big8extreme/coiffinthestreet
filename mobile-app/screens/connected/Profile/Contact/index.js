@@ -4,6 +4,7 @@ import { StyleSheet, View, ScrollView } from 'react-native';
 import LogoContact from'./LogoContact';
 import RequestList from './RequestList';
 import MessageTextInput from './MessageTextInput';
+import PickerTextAndItemStyleExample from './Dropdown';
 
 export default class Contact extends Component {
   render() {
@@ -11,7 +12,7 @@ export default class Contact extends Component {
       <View style={styles.main_container}>
         <ScrollView>
           <LogoContact />
-          <RequestList />
+          <PickerTextAndItemStyleExample/>
           <MessageTextInput />
         </ScrollView>
       </View>
@@ -22,7 +23,7 @@ export default class Contact extends Component {
 const styles = StyleSheet.create({
   main_container: {
     flex: 1,
-    backgroundColor: '#4E4E4E',
+    backgroundColor: '#2D2D2D',
     justifyContent: 'space-around',
     alignItems: 'center',
   },

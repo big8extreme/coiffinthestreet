@@ -5,7 +5,6 @@ import { baseUrlApi } from '../../apiUrl'
 export function fetchMaraudes(){
     return async function(dispatch, getState) {
         function onSuccess(response){
-            console.log(response.data.maraudes.length)
             dispatch({ type: FETCH_MARAUDES, payload: response.data.maraudes})
         }
         function onError(error){
