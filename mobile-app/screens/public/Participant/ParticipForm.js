@@ -60,8 +60,6 @@ export default class ParticipForm extends Component {
 
     handleTextChange = (event) => {
         this.setState({ [event.name]: event.value })
-        console.log('check the name', event.name)
-        console.log('check the value', event.value)
         console.log('check the states', this.state)
         let { errors } = this.state;
         if (errors.includes(event.name)) {
@@ -174,6 +172,7 @@ export default class ParticipForm extends Component {
                             placeholder="Adresse mail du participant"
                         />
                     </Item>
+                    {/*
                     <View style={{
         backgroundColor: 'white',
         borderWidth: 2,
