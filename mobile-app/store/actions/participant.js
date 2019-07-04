@@ -50,6 +50,9 @@ export function createParticipant(participantFields){
     return async function(dispatch, getState) {
         function onSuccess(response){
             dispatch({ type: CREATE_PARTICIPANT, payload: response.data.participant})
+
+                // return {status: 'success', participant: response.data.participant}
+
         }
         function onError(error){
             dispatch({ type: ERROR_ON_CREATE_PARTICIPANT, payload: error})

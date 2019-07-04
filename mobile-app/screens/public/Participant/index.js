@@ -27,7 +27,9 @@ export class Participant extends Component {
         console.log('RRR')
         return (
             <ScrollView style={styles.main_container}>
-                <ParticipForm createParticipant={() => this.createParticipant()}/>
+                <ParticipForm 
+                // createParticipant={() => this.createParticipant()}
+                />
             </ScrollView>
         )
     }
