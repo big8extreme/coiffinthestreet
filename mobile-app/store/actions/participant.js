@@ -47,20 +47,25 @@ export function showParticipant(participantId){
 }
 
 export function createParticipant(participantFields){
+    
     return async function(dispatch, getState) {
+        console.log('BEFORE dispatchcreateParticipant OK!')
         function onSuccess(response){
-            dispatch({ type: CREATE_PARTICIPANT, payload: response.data.participant})
-
-                // return {status: 'success', participant: response.data.participant}
+            console.log('responseDONE NOT OK?')
+            dispatch({ type: CREATE_PARTICIPANT, payload: response.data.participants})
+            console.log('AFTER dispatchcreateParticipant NOT OK ?')
+                // return {status: 'success', participants: response.data.participant}
 
         }
         function onError(error){
             dispatch({ type: ERROR_ON_CREATE_PARTICIPANT, payload: error})
         }
         try{
+            console.log('ON ERROR try OK!')
             const response = await axios.post(`${baseUrlApi}/participants/`, { ...participantFields }, {
                 headers: { Authorization: `bearer ${getState().auth.user.token }` }
             })
+            console.log('Before onSuccess NOT OK ?')
             onSuccess(response)
         }
         catch(err){

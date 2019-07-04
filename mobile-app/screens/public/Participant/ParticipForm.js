@@ -3,11 +3,10 @@ import { StyleSheet, FlatList, Text, View, Alert,TouchableOpacity, Image, Scroll
 import { Input, Container, Form, Item } from 'native-base';
 import {connect} from 'react-redux';
 import {createParticipant} from '../../../store/actions/participant';
-
 import ValidateButton from './ValidateButton';
-import RequestProfession from './RequestProfession';
 
-// const required = value => (value ? undefined : 'This is a required field.');
+
+const required = value => (value ? undefined : 'This is a required field.');
 // const email = value => value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,5}$/i.test(value) ? 'Please provide a valid email address.' : undefined;
 const requiredFields = ['email', 'city', 'lastname', 'firstname', 'job']
 
@@ -16,11 +15,11 @@ const defaultParticipant = {
     maraudeId: 2,
     isValidate: false,
     age: 34,
-    email: '',
-    city: '',
-    lastname: '',
-    firstname: '',
-    job:'',
+    email: 'ronddoudou@gig.ls',
+    city: 'Carlosville',
+    lastname: 'Dumbo',
+    firstname: 'Casimir',
+    job:'Coiffeur',
     FlatListItems: [
         { item: 'Coiffeur' },
         { item: 'Photographe' },
@@ -38,8 +37,9 @@ export class ParticipForm extends Component {
     }
 
     submitForm = () => {
+        return console.log('submitForm');
         let errors = [];
-        requiredFields.forEach((field) => {
+        requiredFields.forEach((field) => { console.log('AFTER Validation')
             if (this.state[field].length === 0) {
                 errors.push(field)
             }
@@ -55,9 +55,11 @@ export class ParticipForm extends Component {
         this.sendForm();
     }
 
+    
+    //send data to sendForm
     sendForm = async () => {
-        const response = await this.props.createParticipant(this.state);
-        console.log('sendForm',this.state)
+        const response = await this.props.createParticipant(...state);
+        console.log('sendForm',...state)
         if (response.status === 'error') {
             
         } else if (response.status === 'success') {
@@ -85,13 +87,6 @@ export class ParticipForm extends Component {
         Alert.alert("Vous avez sélectionné la profession " + `"${item}"`);
     }
 
-    // submitSuccess() {
-    //     console.log("Submit Success!");
-    // }
-
-    // submitFailed() {
-    //     console.log("Submit Failed!");
-    // }
 
     render() {
         console.log('render', this.state)
@@ -99,11 +94,6 @@ export class ParticipForm extends Component {
         return (
             <ScrollView>
                 <Form
-                    // ref={(ref) => this.ParticipForm = ref}
-                    // validate={true}
-                    // submit={this.submitSuccess.bind(this)}
-                    // failed={this.submitFailed.bind(this)}
-                    // errors={this.state.errors}
                     style={{ marginTop: 30, justifyContent: 'center' }}
                 >
                     <Text style={styles.text}>Nom *</Text>
@@ -157,7 +147,7 @@ export class ParticipForm extends Component {
                         />
                     </Item>
                 </Form>
-                <ValidateButton onPress={this.submitForm} label="Valider" />
+                <ValidateButton onPress={this.submitForm.bind(this)} label="Valider" />
             </ScrollView>
         );
     }
@@ -210,11 +200,14 @@ const styles = {
 
 
 const mapStateToProps = (state) => ({
-    ...state
+    auth: state.auth
 })
 
 const mapDispatchToProps = {
     createParticipant
+    
+    
+
 }
 
 // // @ts-ignore

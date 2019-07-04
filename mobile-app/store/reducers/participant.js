@@ -19,7 +19,7 @@ export default function (state = defaultStates, action) {
         case ERROR_ON_PARTICIPANT:
             return state;
         case CREATE_PARTICIPANT:
-            return { ...state };
+            return { ...state};
         case ERROR_ON_CREATE_PARTICIPANT:
             return state;
         default:
