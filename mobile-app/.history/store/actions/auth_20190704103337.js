@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { LOGIN, LOGOUT, LOG_IN_ERROR, LOG_OUT_ERROR } from '../types/auth'
+import { LOGIN, LOGOUT, LOG_IN_ERROR } from '../types/auth'
 import { baseUrlApi } from '../../apiUrl'
 import { bindActionCreators } from 'redux'
 //const thunk = require('redux-thunk').default;
@@ -7,7 +7,6 @@ import { bindActionCreators } from 'redux'
 export function login(email, password) {
   return async dispatch => {
     function onSuccess(response) {
-      console.log("success")
       // set token as default header
       axios.defaults.headers.common['Authorization'] = `bearer ${response.data.token}`;
 
@@ -15,8 +14,6 @@ export function login(email, password) {
       return { response, status: 'success' };
     }
     function onError(error) {
-            console.log("error")
-
       dispatch({ type: LOG_IN_ERROR, error });
       return { error, status: 'error' };
     }
@@ -30,10 +27,25 @@ export function login(email, password) {
   };
 };
 
-export function logout() {
-  axios.defaults.headers.common['Authorization'] = null;
-  return {
-    type: LOGOUT,
-    payload: null
+export function logout(navigator) {
+  console.log('outside async dispatch')
+  this.boundActions = bindActionCreators(logout, dispatch);
+
+  return async dispatch => {
+    console.log('inside async dispatch')
+    axios.defaults.headers.common['Authorization'] = null;
+    console.log('login out')
+    navigator.navigate('Discover');
+
+    dispatch({ type: LOGOUT, payload: null });
+    //return { response, status: 'success' };
   }
- };
+  //redirect to default route (front)
+
+ //Backend : Check how to revoke jwt token ?
+ //Backend Create Route for logout
+
+
+ //return or dispatch ==> Send info to redux
+ //into redux ==> Clear storage
+};

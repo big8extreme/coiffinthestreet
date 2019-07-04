@@ -53,10 +53,9 @@ export default createDrawerNavigator({
       return {
         title: "Se connecter",
         drawerLabel: () => {
-          return store.getState().auth.user && store.getState().auth.user.isConnected ? 
+          return store.getState().auth.user.isConnected ? 
           <View style={styles.view}>
-              {/* <TouchableOpacity onPress={() => logout(navigation)} style={styles.flex}> */}
-              <TouchableOpacity onPress={() => navigation.navigate('Profile')}  style={styles.flex}>
+              <TouchableOpacity onPress={() => logout(navigation)} style={styles.flex}>
                 <Icon name="ios-cut" size={25} style={styles.icon} />
                 <Text style={styles.text}>Je suis coiffeur(se)</Text>
                 <Text style={{ color: 'white', fontStyle: 'italic' }}> se déconnecter</Text>

@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT} from '../types/auth';
+import { LOGIN, LOGOUT, } from '../types/auth';
 
 const defaultStates = {
   user: {

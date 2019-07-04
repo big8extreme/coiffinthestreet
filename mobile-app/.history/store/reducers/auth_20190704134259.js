@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT} from '../types/auth';
+import { LOGIN, LOGOUT, } from '../types/auth';
 
 const defaultStates = {
   user: {
@@ -15,6 +15,8 @@ export default function (state = defaultStates, action) {
       return { ...state, user: { ...action.payload.user, token: action.payload.token, isConnected: true } };
     case LOGOUT:
       return { ...state, user: null };
+      case LOG_OUT_ERROR:
+      return state;
     default:
       return state;
   }

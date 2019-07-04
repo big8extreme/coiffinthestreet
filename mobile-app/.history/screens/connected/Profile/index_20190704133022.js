@@ -10,15 +10,23 @@ export class Profile extends Component {
     title: 'Profile',
   };
 
+  // submitLogout = async () =>{
+  //   const response = await this.props.logout(1);
+  //   console.log('response', response);
+  // }
+  submitLogout() {
+    console.log('submitlogout')
+    this.callLogout();
+  }
   callLogout = async () =>{
-    this.props.logout();
-    //this.props. navigation is undefined
-    this.props.navigation('Auth');
+    console.log('callLogout')
+    const response = await this.props.logout(1);
+    console.log('response', response);
   }
   render() {
     const { navigate } = this.props.navigation;
     const { auth } = this.props;
-    if (!auth.user || !auth.user.isConnected) {
+    if (!auth.user.isConnected) {
       setTimeout(() => {
         navigate('Auth')
       }, 10)
@@ -30,7 +38,7 @@ export class Profile extends Component {
           <Text> Hello and welcome into profile view </Text>
           <Button
             title="Click me to logout"
-            onPress={this.callLogout.bind(this)}
+            onPress={this.submitLogout.bind(this)}
           />
         </View>
       </View>
@@ -40,7 +48,8 @@ export class Profile extends Component {
 }
 
 const mapStateToProps = (state) => ({
-   auth : state.auth
+  // ...state
+  // auth : state.auth
 })
 
 const mapDispatchToProps = {

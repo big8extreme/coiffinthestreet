@@ -10,11 +10,7 @@ export class Profile extends Component {
     title: 'Profile',
   };
 
-  callLogout = async () =>{
-    this.props.logout();
-    //this.props. navigation is undefined
-    this.props.navigation('Auth');
-  }
+  
   render() {
     const { navigate } = this.props.navigation;
     const { auth } = this.props;
@@ -23,6 +19,11 @@ export class Profile extends Component {
         navigate('Auth')
       }, 10)
     }
+
+    callLogout = async () =>{
+      this.props.logout();
+      this.props.navigation('Auth');
+    }
     
     return (
       <View>
@@ -30,7 +31,7 @@ export class Profile extends Component {
           <Text> Hello and welcome into profile view </Text>
           <Button
             title="Click me to logout"
-            onPress={this.callLogout.bind(this)}
+            onPress={this.callLogout}
           />
         </View>
       </View>

@@ -12,7 +12,6 @@ export class Profile extends Component {
 
   callLogout = async () =>{
     this.props.logout();
-    //this.props. navigation is undefined
     this.props.navigation('Auth');
   }
   render() {

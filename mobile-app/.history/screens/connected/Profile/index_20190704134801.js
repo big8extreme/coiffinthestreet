@@ -11,14 +11,16 @@ export class Profile extends Component {
   };
 
   callLogout = async () =>{
-    this.props.logout();
-    //this.props. navigation is undefined
-    this.props.navigation('Auth');
+    //todo get user Id and add it as parameter. 
+    const response = await this.props.logout(1);
+    console.log('response', response);
+    //todo if error, display error
+    //else, redirect to defaut route
   }
   render() {
     const { navigate } = this.props.navigation;
     const { auth } = this.props;
-    if (!auth.user || !auth.user.isConnected) {
+    if (!auth.user.isConnected) {
       setTimeout(() => {
         navigate('Auth')
       }, 10)

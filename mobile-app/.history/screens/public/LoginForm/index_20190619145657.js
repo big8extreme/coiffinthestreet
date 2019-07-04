@@ -31,7 +31,7 @@ class LoginForm extends Component {
   render() {
     const { navigate } = this.props.navigation;
     const { auth } = this.props;
-    if (auth.user && auth.user.isConnected) {
+    if (auth.user.isConnected) {
       setTimeout(() => {
         navigate('App', { name: 'John DOE' })
       }, 10)

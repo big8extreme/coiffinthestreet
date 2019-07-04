@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, Button } from 'react-native'
 import { connect } from 'react-redux'
 import { logout } from '../../../store/actions/auth'
+import console = require('console');
 
 
 
@@ -10,15 +11,14 @@ export class Profile extends Component {
     title: 'Profile',
   };
 
-  callLogout = async () =>{
-    this.props.logout();
-    //this.props. navigation is undefined
-    this.props.navigation('Auth');
+  submitLogout = async () =>{
+    const response = await this.props.logout(this.props.navigation);
+    console.log('response', response)
   }
   render() {
     const { navigate } = this.props.navigation;
     const { auth } = this.props;
-    if (!auth.user || !auth.user.isConnected) {
+    if (!auth.user.isConnected) {
       setTimeout(() => {
         navigate('Auth')
       }, 10)
@@ -30,7 +30,9 @@ export class Profile extends Component {
           <Text> Hello and welcome into profile view </Text>
           <Button
             title="Click me to logout"
-            onPress={this.callLogout.bind(this)}
+            onPress={() => 
+              {this.props.logout(this.props.navigation);
+            }}
           />
         </View>
       </View>
@@ -40,7 +42,7 @@ export class Profile extends Component {
 }
 
 const mapStateToProps = (state) => ({
-   auth : state.auth
+  ...state
 })
 
 const mapDispatchToProps = {
