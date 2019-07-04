@@ -8,7 +8,7 @@ class ValidateButton extends React.Component {
     const { onPress, label } = this.props;
     const { navigate } = this.props.navigation;
     return (
-      <TouchableOpacity onPress={onPress} onPress={() => navigate('Signup')}>
+      <TouchableOpacity  onPress={() => navigate('Signup')}>
         <Svg
           height={100}
           width={400}
