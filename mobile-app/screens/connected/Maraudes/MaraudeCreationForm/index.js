@@ -4,7 +4,7 @@ import { Content, Form, Item, Input, Button } from 'native-base';
 import { connect } from 'react-redux'
 import DatePicker from '../../../../components/DatePicker'
 import TimePicker from '../../../../components/TimePicker'
-import { createMaraude } from '../../../../store/actions/maraudes'
+import { createMaraude } from '../../../../store/actions/maraude'
 
 const defaultMaraude = {
   title: '',
