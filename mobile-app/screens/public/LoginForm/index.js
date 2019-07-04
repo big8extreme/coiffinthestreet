@@ -3,6 +3,7 @@ import { Toast, Root } from 'native-base';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux'
 import { login } from '../../../store/actions/auth'
+import ConnectButton from '../../../components/ConnectButton';
 
 class LoginForm extends Component {
   static navigationOptions = {
@@ -41,7 +42,6 @@ class LoginForm extends Component {
         <View style={styles.backgroundApp}>
           <View style={styles.flexCenterImg}>
             <Image
-              // @ts-ignore
               source={require('./Logo_light.png')}
             />
           </View>
@@ -67,12 +67,17 @@ class LoginForm extends Component {
             </View>
           </View>
           <View style={styles.flexCenterImg}>
-            <TouchableOpacity onPress={() => this.loginUser()}>
+          <ConnectButton
+          label="Se connecter"
+          onPress={() => this.loginUser()}/>
+
+          
+            {/* <TouchableOpacity onPress={() => this.loginUser()}>
               <Image style={styles.button}
                 // @ts-ignore
                 source={require('./connect.png')}
               />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
         </View>
       </Root>
@@ -118,6 +123,10 @@ const styles = StyleSheet.create({
   // },
   textInput:{
     color:'#F1F0C7',
+  },
+  button:{
+    alignSelf:'center',
+    color:'red'
   }
 });
 

@@ -15,6 +15,7 @@ import Whoweare from '../screens/public/Whoweare/whoweare'
 import Contact from '../screens/connected/Profile/Contact'
 
 
+
 const AppStack = createStackNavigator(
   {
     Profile: { screen: Profile },
