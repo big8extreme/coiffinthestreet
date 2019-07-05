@@ -105,7 +105,7 @@ handleTextChange = (event) => {
             </Item>
 
             {
-              //This Button serves to test the connection between frontend and api
+              //TODO This Button serves to test the connection between frontend and api
               //It must be replace before production
             }
             <Button
