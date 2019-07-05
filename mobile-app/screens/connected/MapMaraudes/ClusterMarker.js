@@ -33,25 +33,12 @@ class ClusterMarker extends React.Component {
                 <Text style={{color: 'white'}}>{this.props.count}</Text>
             </Badge>
           </MapView.Marker>
-          <Modal style={[styles.modal, styles.modal2]} ref={"modal2"} swipeToClose={false}>
+          <Modal style={[styles.modal, styles.modal2]} ref={"modal2"} position={'center'} swipeToClose={false}>
             <Text style={{color: 'white', fontWeight: 'bold', fontSize: 20, paddingTop: 10, paddingBottom: 10}}>Liste des maraudes</Text>
             <ScrollView>
                 {this.props.markers.map((marker, index) => {
-                  return  <Text key={index} style={{ fontSize: 15, color: '#FFF', paddingBottom: 5 }}>{marker.title}</Text>
+                  return  <Text key={index} style={{ fontSize: 15, color: '#FFF', padding: 5, alignSelf: 'center' }}>{marker.title}</Text>
                 })}
-                <Text style={{ fontSize: 15, color: '#FFF', paddingBottom: 5 }}>gfhgfhghgjhgvjhgvjh</Text>
-                <Text style={{ fontSize: 15, color: '#FFF', paddingBottom: 5 }}>gfhgfhghgjhgvjhgvjh</Text>
-                <Text style={{ fontSize: 15, color: '#FFF', paddingBottom: 5 }}>gfhgfhghgjhgvjhgvjh</Text>
-                <Text style={{ fontSize: 15, color: '#FFF', paddingBottom: 5 }}>gfhgfhghgjhgvjhgvjh</Text>
-                <Text style={{ fontSize: 15, color: '#FFF', paddingBottom: 5 }}>gfhgfhghgjhgvjhgvjh</Text>
-                <Text style={{ fontSize: 15, color: '#FFF', paddingBottom: 5 }}>gfhgfhghgjhgvjhgvjh</Text>
-                <Text style={{ fontSize: 15, color: '#FFF', paddingBottom: 5 }}>gfhgfhghgjhgvjhgvjh</Text>
-                <Text style={{ fontSize: 15, color: '#FFF', paddingBottom: 5 }}>gfhgfhghgjhgvjhgvjh</Text>
-                <Text style={{ fontSize: 15, color: '#FFF', paddingBottom: 5 }}>gfhgfhghgjhgvjhgvjh</Text>
-                <Text style={{ fontSize: 15, color: '#FFF', paddingBottom: 5 }}>gfhgfhghgjhgvjhgvjh</Text>
-                <Text style={{ fontSize: 15, color: '#FFF', paddingBottom: 5 }}>gfhgfhghgjhgvjhgvjh</Text>
-                <Text style={{ fontSize: 15, color: '#FFF', paddingBottom: 5 }}>gfhgfhghgjhgvjhgvjh</Text>
-                <Text style={{ fontSize: 15, color: '#FFF', paddingBottom: 5 }}>gfhgfhghgjhgvjhgvjh</Text>
             </ScrollView>
             <Button secondary style={{alignSelf:'center', paddingLeft: 10, paddingRight: 10, margin: 10}} onPress={() => navigate('List')}>
               <Text style={{color: 'white'}} >Plus de détails</Text>
@@ -68,12 +55,10 @@ const styles = StyleSheet.create({
       paddingTop: 50,
       flex: 1
     },
-  
     modal: {
       justifyContent: 'center',
       alignItems: 'center'
     },
-  
     modal2: {
       height: 250,
       backgroundColor: 'rgba(0, 0, 0, 0.6)',
@@ -81,7 +66,6 @@ const styles = StyleSheet.create({
       borderRadius: 10,
       marginTop: 20,  
     },
-  
     btn: {
       margin: 10,
       backgroundColor: "#3B5998",
@@ -89,7 +73,6 @@ const styles = StyleSheet.create({
       padding: 10,
       borderRadius: 30,
     },
-  
     btnModal: {
       position: "absolute",
       top: 0,
