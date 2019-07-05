@@ -19,9 +19,8 @@ class ClusterMarker extends React.Component {
   }
   render() {
       const { navigate } = this.props.navigation;
-      var BContent = <Button onPress={() => this.setState({isOpen: false})} style={[styles.btn, styles.btnModal]}><Text>X</Text></Button>;
       return (
-        <View onClosed={() => this.setState({isOpen: false})}>
+        <View>
           <MapView.Marker 
             key={this.props.index}
             coordinate={{
@@ -34,7 +33,7 @@ class ClusterMarker extends React.Component {
                 <Text style={{color: 'white'}}>{this.props.count}</Text>
             </Badge>
           </MapView.Marker>
-          <Modal style={[styles.modal, styles.modal2]} ref={"modal2"} position={"center"} backdropContent={BContent}>
+          <Modal style={[styles.modal, styles.modal2]} ref={"modal2"} position={"center"}>
             <Text style={{color: 'white', fontWeight: 'bold', fontSize: 20, paddingTop: 10, paddingBottom: 10}}>Liste des maraudes</Text>
             <ScrollView>
                 {this.props.markers.map((marker, index) => {
@@ -67,8 +66,8 @@ const styles = StyleSheet.create({
       backgroundColor: 'rgba(0, 0, 0, 0.6)',
       width: '80%',
       borderRadius: 10,
-      marginTop: 20,
-      position:'absolute'    },
+      marginTop: 20,  
+    },
   
     btn: {
       margin: 10,

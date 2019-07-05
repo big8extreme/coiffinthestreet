@@ -7,7 +7,6 @@ import { getCluster } from "../../../utils/MapUtils";
 import MapToolTip from './MapToolTip';
 import ClusterMarker from './ClusterMarker';
 
-
 const Style = StyleSheet.create({
   container: {
     flex: 1,
@@ -54,20 +53,15 @@ class MapMarker extends React.Component {
   renderMarker = (marker, index) => {
     const key = index + marker.geometry.coordinates[0];
     const { navigate } = this.props.navigation;
-
     // If a cluster
     if (marker.properties.cluster) {
-      // console.log(marker.properties.point_count, marker.properties.data.length)
-      console.log(marker.properties.point_count);
       return (
         <ClusterMarker longitude={ marker.geometry.coordinates[0]} latitude={marker.geometry.coordinates[1]} count={marker.properties.point_count} key={index} markers={marker.properties.data} />
       );
     }
-
     const maraude = this.props.maraude.maraudes.filter((maraude) => {
       return maraude.id === marker.properties.id;
     })[0];
-
     // If a single marker
     return (
       <MapView.Marker 
@@ -92,7 +86,6 @@ class MapMarker extends React.Component {
     return (
       <View style={Style.container}>
         <MapView
-        // provider={MapView.PROVIDER_GOOGLE}
           style={Style.map}
           loadingIndicatorColor={"#ffbbbb"}
           loadingBackgroundColor={"#ffbbbb"}
