@@ -40,7 +40,6 @@ module.exports = {
   },
 
   create: function (req, res, next) {
-    console.log('LALALLALALALAL', req.body);
     User.create({
 
       firstName: req.body.firstName,

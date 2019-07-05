@@ -1,75 +1,74 @@
 import React, { Component } from "react";
 import { View, StatusBar, StyleSheet, ScrollView } from "react-native";
 import { Text, Header, Item, Input, Button, Form } from "native-base";
+import { SearchBar } from "react-native-elements";
 import Icon from "react-native-vector-icons/Ionicons";
+import { fetchMaraudes } from "../../../store/actions/maraude";
+import { connect } from "react-redux";
+import maraude from "../../../store/reducers/maraude";
+import axios from "axios";
+import CardMaraude from "./CardMaraude";
+import { baseUrlApi } from '../../../apiUrl';
 
-export default class HeaderListMaraudes extends Component {
-   static navigationOptions = {
+class HeaderListMaraudes extends Component {
+  static navigationOptions = {
     header: null,
   };
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      status: true
+      maraudes: [],
+      search: ""
     };
   }
 
-  ShowHideTextComponentView = () => {
-    if (this.state.status == true) {
-      this.setState({ status: false });
-    } else {
-      this.setState({ status: true });
-    }
+  componentDidMount() {
+    this.submitSearch();
+  }
+
+  updateSearch = search => {
+    this.setState({ search });
   };
+
+  submitSearch = () => {
+    axios.get(`${baseUrlApi}/maraudes`, { params: { city : 'Nice' }})
+     .then(function (response){ 
+      console.log(JSON.stringify({ maraudes: response.data.maraudes }));
+     })    
+     .catch(function (error) { 
+       console.log(JSON.stringify({ error }));
+     })
+   };
+
   render() {
     return (
-      <View style={{ paddingTop: 10, paddingLeft: 15, paddingRight: 15, backgroundColor: '#FBFBFB', height: 60 }}>
-        <View style={{ flex: 1, flexDirection: 'row' }}>
-        <View
-          searchBar
-          rounded
-          style={{
-            flex: 8
-          }}
-        >
-          {!this.state.status ? (
-            <Item
-              style={{
-                backgroundColor: "#FBFBFB",
-              }}
-            >
-              <Input
-                placeholder="Entrez votre ville"
-                style={{
-                  paddingLeft: 5,
-                  borderBottomColor: "#000",
-                  borderBottomWidth: 2
-                }}
-              />
-            </Item>
-          ) : (
-            <Text
-              style={{
-                fontFamily: "Roboto",
-                fontSize: 15,
-                textTransform: "uppercase",
-                color: "#929292",
-                paddingBottom: 3
-              }}
-            >
-              Liste des maraudes à {"\n"}
-              <Text style={{
-                fontFamily: "Roboto",
-                fontSize: 15,
-              }}>Marseille</Text>
-            </Text>
-          )}
-          </View>
-          <View style={{flex: 1, width: 50, height: 50}}>
-          <Icon name="ios-search" style={{ flex: 1, fontSize: 25, textAlign: 'right', paddingTop: 8 }} onPress={this.ShowHideTextComponentView} />
-          </View>
-          </View>
-      </View>
+      <React.Fragment>
+        <SearchBar 
+        ref="searchBar"
+          onChangeText={this.updateSearch}
+          value={this.state.search}
+          onSubmitEditing={this.submitSearch}
+          placeholder="Entrez votre ville"
+          rightIconContainerStyle={{paddingRight: 15}}
+          containerStyle={{backgroundColor: "#FBFBFB", borderBottomWidth: 0, borderTopWidth: 0}}
+          inputContainerStyle={{backgroundColor: "#FBFBFB"}}
+          inputStyle={{borderBottomWidth: 0}}
+        />
+      </React.Fragment>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  ...state
+});
+
+const mapDispatchToProps = {
+  fetchMaraudes
+};
+
+// @ts-ignore
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HeaderListMaraudes);

@@ -6,6 +6,7 @@ import ListMaraudes from "../screens/connected/ListMaraudes";
 import Icon from "react-native-vector-icons/Ionicons";
 
 
+
 const TabNavFooter = createBottomTabNavigator({
   Map: {
     screen: MapMaraudes,
@@ -29,13 +30,13 @@ const TabNavFooter = createBottomTabNavigator({
     screen: ListMaraudes,
     navigationOptions: ({ navigation }) => {
       return {
-        tabBarIcon: ({ tintColor }) => <Icon onPress={() => { console.log('onPress BottomTab'); navigation.dispatch(DrawerActions.openDrawer()) }} name="ios-menu" size={30} color={tintColor} />
+        tabBarIcon: ({ tintColor }) => <Icon onPress={() => { navigation.dispatch(DrawerActions.openDrawer()) }} name="ios-menu" size={30} color={tintColor} />
       }
     }
   }
 },
   {
-    initialRouteName: "List",
+    initialRouteName: "Map",
     tabBarOptions: {
       activeTintColor: "#FDC500",
       showLabel: false,

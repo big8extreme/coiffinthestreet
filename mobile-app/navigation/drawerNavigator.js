@@ -9,7 +9,7 @@ import Charte from '../screens/public/Charte'
 import Contact from '../screens/connected/Profile/Contact'
 import TermsOfService from '../screens/connected/TermsOfService/index'
 import LegalMentions from '../screens/connected/LegalMention';
-
+import Whoweare from '../screens/public/Whoweare/whoweare';
 const { width } = Dimensions.get('screen')
 
 export default createDrawerNavigator({
@@ -96,13 +96,13 @@ export default createDrawerNavigator({
     }
   },
   WhoWeAre: {
-    screen: BottomTabNavigator,
+    screen: Whoweare,
     navigationOptions: ({ navigation }) => {
       return {
         title: "Qui sommes nous ?",
         drawerLabel: () => {
           return <View style={styles.view}>
-            <TouchableOpacity style={styles.flex}>
+            <TouchableOpacity style={styles.flex} onPress={() => navigation.navigate('Whoweare')}>
               <Icon name="ios-information-circle" size={25} style={styles.icon} />
               <Text style={styles.text}>Qui sommes nous ?</Text>
             </TouchableOpacity>

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, Image, View, TextInput, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux'
+
 import { Text } from 'react-native';
 
 
@@ -43,7 +45,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-    fetchConfigs
+    
 
 }
 

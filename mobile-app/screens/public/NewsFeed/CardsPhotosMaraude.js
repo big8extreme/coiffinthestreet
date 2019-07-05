@@ -6,9 +6,9 @@ import PhotoMaraude from './PhotoMaraude';
 
 
 
-class CardsPhotosMaraude extends Component {
-  
 
+class CardsPhotosMaraude extends Component {
+ 
   componentDidMount() {
     this.props.fetchMaraudes();
   }
@@ -22,12 +22,17 @@ class CardsPhotosMaraude extends Component {
             horizontal
             pagingEnabled
             showsHorizontalScrollIndicator={false}>
+
               {
+                
                 maraude.photos.map((photo, index, title) => {
                   
                   return (
-                    
-                    <PhotoMaraude 
+                    <ScrollView 
+            horizontal
+            pagingEnabled
+            showsHorizontalScrollIndicator={false}>
+                    <PhotoMaraude
                     key={index}                   
                     photo={photo}
                     title={maraude.title}
@@ -36,7 +41,8 @@ class CardsPhotosMaraude extends Component {
                     createdAt={maraude.createdAt}  
                     index={index}            
                     />
-              
+                    
+                    </ScrollView>
                   );
                 })
               }
