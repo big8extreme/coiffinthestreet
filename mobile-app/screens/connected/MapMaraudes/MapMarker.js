@@ -6,7 +6,6 @@ import { MapView } from "expo";
 import { getCluster } from "../../../utils/MapUtils";
 import MapToolTip from './MapToolTip';
 import ClusterMarker from './ClusterMarker';
-// import SearchMap from './SearchMap';
 
 
 const Style = StyleSheet.create({
@@ -37,7 +36,6 @@ function maraudesToMarkers(maraudeArray) {
       properties : {
         id: maraude.id,
         title: maraude.title,
-        //description, city, country, adress
       }  
     }
     return marker
@@ -101,7 +99,6 @@ class MapMarker extends React.Component {
           region={region}
           onRegionChangeComplete={region => this.setState({ region })}
           image={require('../../../assets/pin.png')}>
-          {/* <SearchMap/> */}
           {cluster.markers.map((marker, index) => this.renderMarker(marker, index))}
         </MapView>
       </View>
