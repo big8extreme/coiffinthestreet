@@ -16,7 +16,8 @@ import Participant from '../screens/public/Participant'
 const AppStack = createStackNavigator(
   {
     Profile: { screen: Profile },
-    
+    Contact: { screen: Contact },
+    Participant: { screen: Participant},
   },
   {
     initialRouteName: "Profile",
