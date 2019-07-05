@@ -15,7 +15,7 @@ export function login(email, password) {
       return { response, status: 'success' };
     }
     function onError(error) {
-            console.log("error")
+      console.log("error")
 
       dispatch({ type: LOG_IN_ERROR, error });
       return { error, status: 'error' };
@@ -36,4 +36,4 @@ export function logout() {
     type: LOGOUT,
     payload: null
   }
- };
+};
