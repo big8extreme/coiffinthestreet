@@ -56,9 +56,7 @@ export class ParticipForm extends Component {
         this.sendForm();
     }
 
-    //send data to sendForm
     sendForm = async () => {
-        //...this.state au lieu de ...state
         const response = await this.props.createParticipant(...this.state);
         console.log('sendForm',...state)
         if (response.status === 'error') {

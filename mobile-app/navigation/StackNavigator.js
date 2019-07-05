@@ -21,6 +21,8 @@ const AppStack = createStackNavigator(
   {
     Profile: { screen: Profile },
     Contact: { screen: Contact },
+    Participant: { screen: Participant},
+    Contact: { screen: Contact },
     Participation: { screen: Participation },
   },
   {
