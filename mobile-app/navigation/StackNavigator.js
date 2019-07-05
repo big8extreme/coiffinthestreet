@@ -20,8 +20,7 @@ const AppStack = createStackNavigator(
     MaraudeForm: { screen: MaraudeCreationForm }
   },
   {
-    initialRouteName: "MaraudeForm",
-    //initialRouteName: "Profile",
+    initialRouteName: "Profile",
     navigationOptions: { header: null },
   },
 );
@@ -51,8 +50,8 @@ export default createAppContainer(
     },
     {
       //initialRouteName: "Tab"
-      initialRouteName: "App"
-      //initialRouteName: "Auth"
+      //initialRouteName: "App"
+      initialRouteName: "Auth"
     }
   )
 );
