@@ -37,9 +37,7 @@ const AuthStack = createStackNavigator(
 
   },
   {
-    // initialRouteName: "Discover",
-    initialRouteName: "Participant",
-    // initialRouteName: "Contact",
+    initialRouteName: "Discover",
     
 
     headerMode: 'none',
