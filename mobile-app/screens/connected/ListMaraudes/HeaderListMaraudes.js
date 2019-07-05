@@ -10,7 +10,7 @@ import axios from "axios";
 import CardMaraude from "./CardMaraude";
 import { baseUrlApi } from '../../../apiUrl';
 
-export default class HeaderListMaraudes extends Component {
+class HeaderListMaraudes extends Component {
   static navigationOptions = {
     header: null,
   };
