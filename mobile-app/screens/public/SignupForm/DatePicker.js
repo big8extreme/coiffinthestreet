@@ -69,6 +69,7 @@ const style = {
         marginLeft: 10
     },
     birthText: {
+        fontFamily: 'Roboto',
         textAlign: 'left',
         marginLeft: 10,
         marginBottom: 5,

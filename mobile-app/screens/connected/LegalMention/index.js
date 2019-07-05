@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, ScrollView, Text } from 'react-native';
 import Axios from 'axios';
 import { Provider } from 'react-redux';
 import store from '../../../store';
 import { connect } from 'react-redux'
 import { fetchConfigs } from '../../../store/actions/config'
 
-export class charte extends Component {
+export class LegalMentions extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -26,8 +26,10 @@ export class charte extends Component {
         return (
             <Provider store={store}>
                 <View style={styles.backgroundApp}>
-                    <Text style={styles.Titletext}>Charte d'utilisateur</Text>
-                    <Text style={styles.textCharte}>{this.props.config.charte}</Text>
+                    <Text style={styles.Titletext}>MENTIONS LEGALES</Text>
+                    <ScrollView>
+                      <Text style={styles.textLegal}>{this.props.config.legalMention}</Text>
+                    </ScrollView>
                 </View>
             </Provider>
         );
@@ -43,7 +45,7 @@ const mapDispatchToProps = {
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(charte);
+export default connect(mapStateToProps, mapDispatchToProps)(LegalMentions);
 
 const styles = StyleSheet.create({
     backgroundApp: {
@@ -55,14 +57,17 @@ const styles = StyleSheet.create({
     Titletext: {
         color: 'white',
         fontSize: 35,
+        marginTop: 20,
         fontFamily: "Sedgwick",
+        justifyContent: 'center',
     },
-    textCharte: {
+    textLegal: {
         color: 'white',
         fontSize: 15,
         marginRight: 15,
         marginLeft: 15,
         marginBottom: 15,
         marginTop: 15,
+        textAlign: 'center',
     },
 });

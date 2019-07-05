@@ -5,6 +5,7 @@ import { baseUrlApi } from '../../apiUrl'
 export function fetchMaraudes(){
     return async function(dispatch, getState) {
         function onSuccess(response){
+            console.log(response.data.maraudes.length)
             dispatch({ type: FETCH_MARAUDES, payload: response.data.maraudes})
         }
         function onError(error){
@@ -29,7 +30,7 @@ export function showMaraude(maraudeId){
         }
         function onError(error){
             dispatch({ type: ERROR_ON_MARAUDE, payload: error})
-        }
+        }   
         try{
             const response = await axios.get(`${baseUrlApi}/maraudes/${maraudeId}`, {
                 headers: { Authorization: `bearer ${getState().auth.user.token }` }

@@ -1,15 +1,23 @@
 const models = require('../models');
+const sequelize = require('sequelize');
 const Maraude = models.Maraude;
 
 module.exports = {
   index: function (req, res, next) {
-    Maraude.findAll()
+    const { city,  } = req.query;
+ const query = {where: {
+}}
+
+if(req.query && req.query.city){
+  query.where.city = req.query.city;
+}
+   Maraude.findAll(query)
       .then((maraudes) => { res.json({ maraudes }); })
       .catch((error) => res.status(500).json({ error }));
   },
 
   show: function (req, res, next) {
-    Maraude.findByPk(req.params.id)
+    Maraude.findByPk(req.params.id, {include:['photos']})
       .then((maraude) => { res.json({ maraude }); })
       .catch((error) => res.status(500).json({ error }));
   },
@@ -62,5 +70,17 @@ module.exports = {
       })
       .catch((error) => res.status(500).json({ error }));
   },
+  findByCoord: function (req, res, next) {
+    const { lat, lng, limit } = req.query;
+    Maraude.findAll({
+      attributes: ['id', 'title', [sequelize.literal('6371 * acos(cos(radians(' + lat + ')) * cos(radians(latitude)) * cos(radians(' + lng + ') - radians(longitude)) + sin(radians(' + lat + ')) * sin(radians(latitude)))'), 'distance']],
+      order: sequelize.col('distance'),
+      limit: parseInt(limit) || 10,
+    })
+      .then((places) => {
+        res.json({ places });
+      })
+      .catch((error) => { res.status(500).json({ error }); });
+  }
 };
 
