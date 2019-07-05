@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { Text } from 'react-native';
 
 
-export class forgetPassword extends Component {
+class forgetPassword extends Component {
     constructor(props) {
         super(props)
         this.state = {
