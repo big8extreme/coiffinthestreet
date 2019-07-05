@@ -16,6 +16,7 @@ import MapMaraudes from '../screens/connected/MapMaraudes';
 import ListMaraudes from '../screens/connected/ListMaraudes';
 import Participation from '../screens/public/Participation';
 
+
 const AppStack = createStackNavigator(
   {
     Profile: { screen: Profile },

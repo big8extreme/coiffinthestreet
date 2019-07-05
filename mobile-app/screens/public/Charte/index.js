@@ -37,7 +37,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Charte);
 
 const styles = StyleSheet.create({
     backgroundApp: {
-        backgroundColor: '#4E4E4E', flex: 1,
+        backgroundColor: '#2D2D2D', flex: 1,
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
