@@ -3,7 +3,7 @@ import { StyleSheet, FlatList, Text, View, Alert,TouchableOpacity, Image, Scroll
 import { Input, Container, Form, Item } from 'native-base';
 import {connect} from 'react-redux';
 import {createParticipant} from '../../../store/actions/participant';
-import ValidateButton from './ValidateButton';
+import ValidateButton from './../../../components/ValidateButton';
 
 
 const required = value => (value ? undefined : 'This is a required field.');
