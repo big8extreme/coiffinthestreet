@@ -6,6 +6,7 @@ import ListMaraudes from "../screens/connected/ListMaraudes";
 import Icon from "react-native-vector-icons/Ionicons";
 
 
+
 const TabNavFooter = createBottomTabNavigator({
   Map: {
     screen: MapMaraudes,

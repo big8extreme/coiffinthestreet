@@ -36,11 +36,7 @@ class ConnectButton extends React.Component {
         );
     }
 }
-const style = {
-    svg: {
-        color:'#2D2D2D'
-    }
-}
+
 
 
 

@@ -10,7 +10,7 @@ class CardsMaraudes extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      maraudes: []
+      maraudes: [],
     };
   }
 
