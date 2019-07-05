@@ -31,6 +31,7 @@ const AppStack = createStackNavigator(
 const AuthStack = createStackNavigator(
   {
     Login: { screen: LoginForm },
+    forgetPassword: {screen: forgetPassword },
     Signup: { screen: SignupForm },
     Discover: { screen: Discover },
     Participation: { screen: Participation },

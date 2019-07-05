@@ -66,6 +66,9 @@ class LoginForm extends Component {
               secureTextEntry={true}
               style={styles.textInput}/>
             </View>
+            <TouchableOpacity onPress={() => navigate("forgetPassword")}>
+              <Text style={styles.whiteTextLabel} >Mot de passe oublié ?</Text>
+            </TouchableOpacity>
           </View>
           <View style={styles.flexCenterImg}>
           <ConnectButton
@@ -102,7 +105,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'left',
     marginBottom: 20,
-
   },
 
   yellowBorder: {

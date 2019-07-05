@@ -9,4 +9,6 @@ router.get('/', configsController.index);
 
 router.put('/', configsController.update);
 
+router.post('/contact', configsController.contactAdmin)
+
 module.exports = router;
