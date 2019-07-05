@@ -1,89 +1,88 @@
-import React, { Component } from 'react'
-import { StyleSheet, View, Text, Image } from 'react-native';
-import { Card } from 'react-native-elements'
-import { connect } from 'react-redux'
-import { fetchConfigs } from '../../../store/actions/config'
+import * as React from 'react';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import FirstScreen from './FirstScreen';
+import SecondScreen from './SecondScreen';
+import ThirdScreen from './ThirdScreen';
 
-export class Whoweare extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            keyWord: null
-        };
+export default class Whoweare extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { val: 1 };
+  }
+  renderElement() {
+    if (this.state.val === 1) {
+      return <FirstScreen />;
+    } else if (this.state.val === 2) {
+      return <SecondScreen />;
+    } else {
+      return <ThirdScreen />;
     }
-    componentDidMount() {
-        this.props.fetchConfigs();
+  }
+  render() {
+    return (
+      <React.Fragment>
+        <View style={styles.container}>
+          <Text style={styles.Titletext}>Qui Sommes Nous</Text>
+          <View style={{ flexDirection: 'row' }}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => this.setState({ val: 1 })}>
+              <Text style={{ color: '#ffffff' }}>Fondateurs</Text>
+            </TouchableOpacity>
 
-    }
-    render() {
-        const users = [
-            {
-                name: 'brynn',
-                avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg'
-            },
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => this.setState({ val: 2 })}>
+              <Text style={{ color: '#ffffff' }}>Bénévoles</Text>
+            </TouchableOpacity>
 
-        ]
-        return (
-            <React.Fragment>
-                <View style={styles.backgroundApp}>
-                    <Text style={styles.Titletext}>Qui Sommes Nous</Text>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => this.setState({ val: 3 })}>
+              <Text style={{ color: '#ffffff' }}>Développeurs</Text>
+            </TouchableOpacity>
+          </View>
 
-                </View>
-                <Card title="CARD WITH DIVIDER">
-                    {
-                        users.map((u, i) => {
-                            return (
-                                <View key={i} style={styles.user}>
-                                    <Image
-                                        style={styles.image}
-                                        resizeMode="cover"
-                                        source={{ uri: u.avatar }} />
-                                    <Text style={styles.name}>{u.name}</Text>
-                                </View>
-                            );
-                        })
-                    }
-                </Card>
-                <Card title='HELLO WORLD' >
-                    <Text style={{ marginBottom: 10 }}>
-                        The idea with React Native Elements is more about component structure than actual design.
-                    </Text>
-                </Card>
-            </React.Fragment>
-        );
-    }
+          <Text style={styles.paragraph}>
+            LE DON DE SOI N'A PAS DE PRIX
+        </Text>
+
+          <View style={{ backgroundColor: '#ffffff' }}>
+            {this.renderElement()}
+          </View>
+        </View>
+
+      </React.Fragment>
+    );
+  }
 }
 
-const mapStateToProps = state => ({});
-
-const mapDispatchToProps = {
-  fetchConfigs
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Whoweare);
-
 const styles = StyleSheet.create({
-  backgroundApp: {
-    backgroundColor: "#4E4E4E",
+  container: {
     flex: 1,
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    display: "flex",
-    flex: 1
+    backgroundColor: '#4E4E4E',
+    padding: 8,
+    marginTop: 30,
+  },
+  paragraph: {
+    margin: 24,
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  button: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: '#808080',
+    padding: 10,
+    margin: 2,
   },
   Titletext: {
-    color: "white",
+    color: 'white',
     fontSize: 35,
     fontFamily: "Sedgwick",
-    flex: 2
-  }
-  image: {
-     height: 120,
-     width: 220,
-     padding: 5,
+    textAlign: 'center',
   }
 });
+
+

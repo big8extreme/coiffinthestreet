@@ -4,13 +4,24 @@ const Maraude = models.Maraude;
 
 module.exports = {
   index: function (req, res, next) {
-    const { city } = req.query;
- const query = {where: {
+    const { city  } = req.query;
+ const query = {
+  include:['photos'],
+   where: {
 }}
 
-if(req.query && req.query.city){
-  query.where.city = req.query.city.toLowerCase();
+if(city){
+  query.where.city = city;
 }
+   Maraude.findAll(query)
+      .then((maraudes) => { 
+        res.json({ maraudes });
+       })
+      .catch((error) => {
+        res.status(500).json({ error })
+      });
+  },
+  
    Maraude.findAll(query)
       .then((maraudes) => { 
         res.json({ maraudes });
@@ -21,7 +32,7 @@ if(req.query && req.query.city){
   },
 
   show: function (req, res, next) {
-    Maraude.findByPk(req.params.id)
+    Maraude.findByPk(req.params.id, {include:['photos']})
       .then((maraude) => { res.json({ maraude }); })
       .catch((error) => res.status(500).json({ error }));
   },

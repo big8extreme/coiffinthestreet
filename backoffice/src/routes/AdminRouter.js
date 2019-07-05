@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Dashboard from '../pages/Dashboard';
 import UserPanel from '../pages/UserPanel';
 import ConfigPage from '../pages/ConfigPage';
+import DocApi from '../pages/DocApi';
 
 class AdminRouter extends Component {
   render() {
@@ -13,6 +14,7 @@ class AdminRouter extends Component {
         <Route exact path='/admin' component={Dashboard} />
         <Route exact path='/admin/users' component={UserPanel} />
         <Route exact path='/admin/configs' component={ConfigPage} />
+        <Route exact path='/admin/docapi' component={DocApi} />
       </Switch>
     );
   }

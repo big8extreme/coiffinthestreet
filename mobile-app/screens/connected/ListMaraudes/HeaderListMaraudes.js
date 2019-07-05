@@ -8,11 +8,11 @@ import { connect } from "react-redux";
 import maraude from "../../../store/reducers/maraude";
 import axios from "axios";
 import CardMaraude from "./CardMaraude";
+import { baseUrlApi } from '../../../apiUrl';
 
-
-class HeaderListMaraudes extends Component {
+export default class HeaderListMaraudes extends Component {
   static navigationOptions = {
-    header: null
+    header: null,
   };
   constructor(props) {
     super(props);
@@ -30,20 +30,8 @@ class HeaderListMaraudes extends Component {
     this.setState({ search });
   };
 
-  // console avec la maraude filtrée
- 
-  // submitSearch = () => {
-  //  axios.get("http://192.168.0.16:5000/api/v1/maraudes", { params: { city : 'Nice' }})
-  //   .then((response) => { 
-  //     console.log(JSON.stringify({maraudes:response.data.maraudes}))
-  //   })    
-  //   .catch((error) => { 
-  //     console.log(JSON.stringify({ error }));
-  //   })
-  // };
-
   submitSearch = () => {
-    axios.get("http://192.168.0.16:5000/api/v1/maraudes", { params: { city : 'Nice' }})
+    axios.get(`${baseUrlApi}/maraudes`, { params: { city : 'Nice' }})
      .then(function (response){ 
       console.log(JSON.stringify({ maraudes: response.data.maraudes }));
      })    
