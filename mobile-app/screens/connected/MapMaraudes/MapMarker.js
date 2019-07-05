@@ -19,12 +19,12 @@ const Style = StyleSheet.create({
   }
 });
 
-const INITIAL_POSITION = {
-  latitude: 43.3,
-  longitude: 5.4,
-  latitudeDelta: 0.5,
-  longitudeDelta: 0.5
-}
+// const INITIAL_POSITION = {
+//   latitude: 43.3,
+//   longitude: 5.4,
+//   latitudeDelta: 0.5,
+//   longitudeDelta: 0.5
+// }
 
 function maraudesToMarkers(maraudeArray) {
   const markers = maraudeArray.map((maraude) => {
@@ -44,7 +44,7 @@ function maraudesToMarkers(maraudeArray) {
 
 class MapMarker extends React.Component {
   state = {
-    region: INITIAL_POSITION
+    // region: INITIAL_POSITION
   };
   componentDidMount() {
     this.props.fetchMaraudes();
@@ -84,10 +84,11 @@ class MapMarker extends React.Component {
     return (
       <View style={Style.container}>
         <MapView
+          showsUserLocation={true}  
           style={Style.map}
           loadingIndicatorColor={"#ffbbbb"}
           loadingBackgroundColor={"#ffbbbb"}
-          region={region}
+          // region={region}
           onRegionChangeComplete={region => this.setState({ region })}
           image={require('../../../assets/pin.png')}>
           {cluster.markers.map((marker, index) => this.renderMarker(marker, index))}
