@@ -1,10 +1,13 @@
 import axios from 'axios';
-import { LOGIN, LOGOUT, LOG_IN_ERROR } from '../types/auth'
+import { LOGIN, LOGOUT, LOG_IN_ERROR, LOG_OUT_ERROR } from '../types/auth'
 import { baseUrlApi } from '../../apiUrl'
+import { bindActionCreators } from 'redux'
+//const thunk = require('redux-thunk').default;
 
 export function login(email, password) {
   return async dispatch => {
     function onSuccess(response) {
+      console.log("success")
       // set token as default header
       axios.defaults.headers.common['Authorization'] = `bearer ${response.data.token}`;
 
@@ -12,6 +15,8 @@ export function login(email, password) {
       return { response, status: 'success' };
     }
     function onError(error) {
+      console.log("error")
+
       dispatch({ type: LOG_IN_ERROR, error });
       return { error, status: 'error' };
     }
