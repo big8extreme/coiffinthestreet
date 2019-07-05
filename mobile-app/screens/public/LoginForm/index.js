@@ -70,14 +70,6 @@ class LoginForm extends Component {
           <ConnectButton
           label="Se connecter"
           onPress={() => this.loginUser()}/>
-
-          
-            {/* <TouchableOpacity onPress={() => this.loginUser()}>
-              <Image style={styles.button}
-                // @ts-ignore
-                source={require('./connect.png')}
-              />
-            </TouchableOpacity> */}
           </View>
         </View>
       </Root>
@@ -118,9 +110,6 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     paddingBottom:20,
   },
-  // button: {
-  //   marginTop: 60,
-  // },
   textInput:{
     color:'#F1F0C7',
   },
