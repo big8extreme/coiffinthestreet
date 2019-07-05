@@ -29,7 +29,7 @@ export function showMaraude(maraudeId){
         }
         function onError(error){
             dispatch({ type: ERROR_ON_MARAUDE, payload: error})
-        }
+        }   
         try{
             const response = await axios.get(`${baseUrlApi}/maraudes/${maraudeId}`, {
                 headers: { Authorization: `bearer ${getState().auth.user.token }` }

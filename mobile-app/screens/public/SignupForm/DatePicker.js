@@ -69,7 +69,7 @@ const style = {
         marginLeft: 10
     },
     birthText: {
-        fontFamily: 'Georgia',
+        fontFamily: 'Roboto',
         textAlign: 'left',
         marginLeft: 10,
         marginBottom: 5,

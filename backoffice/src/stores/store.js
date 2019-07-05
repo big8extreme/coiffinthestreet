@@ -8,6 +8,7 @@ import allReducer from './reducers';
 const persistConfig = {
   key: 'XxXxX-XxXxX-XxXxX',
   storage: LocalStorage,
+  whitelist: ['authentification']
 };
 
 const persistedReducer = persistReducer(persistConfig, allReducer);

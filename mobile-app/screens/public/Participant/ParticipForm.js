@@ -31,7 +31,10 @@ export class ParticipForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            ...defaultParticipant
+            ...defaultParticipant,
+            required,
+            email
+
         }
     }
 
