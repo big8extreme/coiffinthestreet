@@ -25,7 +25,7 @@ const AppStack = createStackNavigator(
     MaraudeForm: { screen: MaraudeCreationForm }
   },
   {
-    initialRouteName: "Profile",
+    initialRouteName: "MaraudeCreationForm",
     navigationOptions: { header: null },
   },
 );
