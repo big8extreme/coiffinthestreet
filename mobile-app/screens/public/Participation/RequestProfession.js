@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { StyleSheet, FlatList, Text, View, Alert } from "react-native";
 
-export default class RequestList extends Component {
+export default class RequestProfession extends Component {
     constructor(props) {
         super(props);
         this.state = {
             FlatListItems: [
-                { key: 'Problème technique' },
-                { key: 'Problème avec un participant' },
-                { key: 'Autre' },
+                { key: 'Coiffeur' },
+                { key: 'Photographe' },
+                { key: 'Esthéticien(ne)' },
             ]
         };
     }
@@ -24,7 +24,7 @@ export default class RequestList extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.RequestTitle}>Nature de la requête</Text>
+                <Text style={styles.RequestTitle}>Profession :</Text>
                 
                 <View style={styles.FlatList_container} >
                     <FlatList
@@ -45,10 +45,9 @@ const styles = StyleSheet.create({
     },
     RequestTitle: {
         fontSize: 18,
-        color: '#F1F0C7',
         margin: 11,
         fontWeight: 'bold',
-        fontFamily: 'Tino',
+        fontFamily: 'Georgia',
     },
     FlatList_container: {
         backgroundColor: 'white',
@@ -61,7 +60,8 @@ const styles = StyleSheet.create({
     },
     item: {
         padding: 10,
-        fontFamily: 'Tino',
+        fontFamily: 'Georgia',
         height: 45,
     }
 });
+

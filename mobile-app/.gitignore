@@ -8,3 +8,4 @@ npm-debug.*
 yarn-error.log
 .history/*
 apiUrl.js
+yarn.lock

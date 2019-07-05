@@ -6,7 +6,7 @@ import logger from 'redux-logger';
 import allReducer from './reducers';
 
 const persistConfig = {
-  key: 'XxXxX-XxXxX-XxXxX',
+  key: 'XxXxX-XxXxX-XxX',
   storage: LocalStorage,
 }
 
@@ -14,6 +14,5 @@ const persistedReducer = persistReducer(persistConfig, allReducer)
 
 export default createStore(
   persistedReducer,
-  applyMiddleware(thunk)
-  // applyMiddleware(thunk, logger)
+  applyMiddleware(thunk /*, logger*/)
 );

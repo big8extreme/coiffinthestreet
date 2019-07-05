@@ -20,13 +20,16 @@
     "react-native-image-picker": "^0.28.1",
     "react-native-linear-gradient": "^2.5.4",
     "react-native-modal-datetime-picker": "^7.4.2",
+    "react-native-modalbox": "^1.7.1",
     "react-native-validate-form": "^1.1.3",
+    "react-native-web-swiper": "^1.15.1",
     "react-navigation": "^3.9.2",
     "react-redux": "6.0.1",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-persist": "^5.10.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "supercluster": "6.0.1"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0",

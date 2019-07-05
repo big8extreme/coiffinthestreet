@@ -2,17 +2,24 @@ import { FETCH_MARAUDES, ERROR_ON_MARAUDES, FETCH_MARAUDE, ERROR_ON_MARAUDE, CRE
 import axios from 'axios'
 import { baseUrlApi } from '../../apiUrl'
 
-export function fetchMaraudes(){
+
+export function fetchMaraudes(params){
+    if(!params){
+        params = {};
+    }
     return async function(dispatch, getState) {
         function onSuccess(response){
+            console.log(response.data.maraudes)
             dispatch({ type: FETCH_MARAUDES, payload: response.data.maraudes})
+
         }
         function onError(error){
             dispatch({ type: ERROR_ON_MARAUDES, payload: error})
         }
         try{
             const response = await axios.get(`${baseUrlApi}/maraudes`, {
-                headers: { Authorization: `bearer ${getState().auth.user.token }` }
+                headers: { Authorization: `bearer ${getState().auth.user.token }` },
+                params: params
             })
             onSuccess(response)
         }
