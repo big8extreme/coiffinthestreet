@@ -13,14 +13,13 @@ export function getCluster(places, region) {
             return {
                 id: props.id,
                 title: props.title,
-                //description, city, country, adress
             }
         },
         reduce: (clusterProps, pointProps) => {
+            //FIXME potential error on SuperCluster library
                 if(!clusterProps.data){
                     clusterProps.data = [];
                 }
-                // console.log("REDUCE " , clusterProps.data.length)
             clusterProps.data.push(pointProps) 
         }
     });
@@ -38,7 +37,8 @@ export function getCluster(places, region) {
             getZoomLevel(region.longitudeDelta)
         );
     } catch (e) {
-        console.debug("failed to create cluster", e);
+        //TODO manage error
+        // console.debug("failed to create cluster", e);
     }
     return {
         markers,

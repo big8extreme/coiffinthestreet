@@ -53,7 +53,6 @@ class MapMarker extends React.Component {
   renderMarker = (marker, index) => {
     const key = index + marker.geometry.coordinates[0];
     const { navigate } = this.props.navigation;
-    // If a cluster
     if (marker.properties.cluster) {
       return (
         <ClusterMarker longitude={ marker.geometry.coordinates[0]} latitude={marker.geometry.coordinates[1]} count={marker.properties.point_count} key={index} markers={marker.properties.data} />
@@ -62,7 +61,6 @@ class MapMarker extends React.Component {
     const maraude = this.props.maraude.maraudes.filter((maraude) => {
       return maraude.id === marker.properties.id;
     })[0];
-    // If a single marker
     return (
       <MapView.Marker 
         key={key}
