@@ -1,28 +1,15 @@
 import React, { Component } from "react";
-import {
-  Container,
-  Header,
-  Left,
-  Body,
-  Right,
-  Button,
-  Title,
-  Text,
-  Icon,
-  View,
-  Item,
-  Input
-} from "native-base";
-import { StyleSheet, Image, ScrollView } from "react-native";
+import { View } from "native-base";
+import { fetchMaraudes } from "../../../store/actions/maraude";
 import { connect } from "react-redux";
 import HeaderListMaraudes from "./HeaderListMaraudes";
 import CardsMaraudes from "./CardsMaraudes";
+
 
 export class ListMaraudes extends Component {
   render() {
     const { navigate } = this.props.navigation;
     const { auth } = this.props;
-    console.log(this.state);
     return (
       <React.Fragment>
         <HeaderListMaraudes />
@@ -39,10 +26,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
+fetchMaraudes
+}
 
-};
-
-// @ts-ignore
 export default connect(
   mapStateToProps,
   mapDispatchToProps

@@ -5,12 +5,11 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import BottomTabNavigator from './bottomTabNavigator'
 import LoginForm from '../screens/public/LoginForm'
 import store from '../store'
-import Charte from '../screens/public/Charte/charte'
-import Whoweare from '../screens/public/Whoweare/whoweare'
+import Charte from '../screens/public/Charte'
 import Contact from '../screens/connected/Profile/Contact'
 import TermsOfService from '../screens/connected/TermsOfService/index'
 import LegalMentions from '../screens/connected/LegalMention';
-
+import Whoweare from '../screens/public/Whoweare/whoweare';
 const { width } = Dimensions.get('screen')
 
 export default createDrawerNavigator({
@@ -103,7 +102,7 @@ export default createDrawerNavigator({
         title: "Qui sommes nous ?",
         drawerLabel: () => {
           return <View style={styles.view}>
-            <TouchableOpacity onPress={() => navigation.navigate('Whoweare')} style={styles.flex}>
+            <TouchableOpacity style={styles.flex} onPress={() => navigation.navigate('Whoweare')}>
               <Icon name="ios-information-circle" size={25} style={styles.icon} />
               <Text style={styles.text}>Qui sommes nous ?</Text>
             </TouchableOpacity>
@@ -172,6 +171,7 @@ export default createDrawerNavigator({
     drawerPosition: 'right',
     drawerBackgroundColor: "#2D2D2D",
     drawerWidth: Math.min(width) * 1,
+    navigationOptions: { header: null },
   })
 
 const styles = StyleSheet.create({

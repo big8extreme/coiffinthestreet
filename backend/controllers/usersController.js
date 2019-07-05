@@ -14,6 +14,7 @@ module.exports = {
       .catch((error) => res.status(500).json({ error }));
   },
 
+
   update: function (req, res, next) {
     User.findByPk(req.params.id)
       .then((user) => {
@@ -39,7 +40,6 @@ module.exports = {
   },
 
   create: function (req, res, next) {
-    console.log('LALALLALALALAL', req.body);
     User.create({
 
       firstName: req.body.firstName,

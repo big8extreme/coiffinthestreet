@@ -1,61 +1,88 @@
-import React, { Component } from 'react'
-import { StyleSheet, View, Text } from 'react-native';
-import Axios from 'axios';
-import { Provider } from 'react-redux';
-import store from '../../../store';
-import { connect } from 'react-redux'
-import { fetchConfigs } from '../../../store/actions/config'
+import * as React from 'react';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import FirstScreen from './FirstScreen';
+import SecondScreen from './SecondScreen';
+import ThirdScreen from './ThirdScreen';
 
-export class Whoweare extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            keyWord: null
-        };
+export default class Whoweare extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { val: 1 };
+  }
+  renderElement() {
+    if (this.state.val === 1) {
+      return <FirstScreen />;
+    } else if (this.state.val === 2) {
+      return <SecondScreen />;
+    } else {
+      return <ThirdScreen />;
     }
-    componentDidMount() {
-        this.props.fetchConfigs();
+  }
+  render() {
+    return (
+      <React.Fragment>
+        <View style={styles.container}>
+          <Text style={styles.Titletext}>Qui Sommes Nous</Text>
+          <View style={{ flexDirection: 'row' }}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => this.setState({ val: 1 })}>
+              <Text style={{ color: '#ffffff' }}>Fondateurs</Text>
+            </TouchableOpacity>
 
-    }
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => this.setState({ val: 2 })}>
+              <Text style={{ color: '#ffffff' }}>Bénévoles</Text>
+            </TouchableOpacity>
 
-    // static propTypes = {
-    //     prop: PropTypes
-    // }
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => this.setState({ val: 3 })}>
+              <Text style={{ color: '#ffffff' }}>Développeurs</Text>
+            </TouchableOpacity>
+          </View>
 
-    render() {
-        return (
-            <Provider store={store}>
-                <View style={styles.backgroundApp}>
-                    <Text style={styles.Titletext}>Qui Sommes Nous</Text>
-      
-                </View>
-            </Provider>
-        );
-    }
+          <Text style={styles.paragraph}>
+            LE DON DE SOI N'A PAS DE PRIX
+        </Text>
+
+          <View style={{ backgroundColor: '#ffffff' }}>
+            {this.renderElement()}
+          </View>
+        </View>
+
+      </React.Fragment>
+    );
+  }
 }
-
-const mapStateToProps = (state) => ({
-
-})
-
-const mapDispatchToProps = {
-    fetchConfigs
-
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Whoweare);
 
 const styles = StyleSheet.create({
-    backgroundApp: {
-        backgroundColor: '#4E4E4E', flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    Titletext: {
-        color: 'white',
-        fontSize: 35,
-        fontFamily: "Sedgwick",
-    },
-
+  container: {
+    flex: 1,
+    backgroundColor: '#4E4E4E',
+    padding: 8,
+    marginTop: 30,
+  },
+  paragraph: {
+    margin: 24,
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  button: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: '#808080',
+    padding: 10,
+    margin: 2,
+  },
+  Titletext: {
+    color: 'white',
+    fontSize: 35,
+    fontFamily: "Sedgwick",
+    textAlign: 'center',
+  }
 });
+
+
