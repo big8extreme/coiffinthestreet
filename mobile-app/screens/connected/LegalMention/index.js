@@ -18,10 +18,6 @@ export class LegalMentions extends Component {
 
   }
 
-  // static propTypes = {
-  //     prop: PropTypes
-  // }
-
   render() {
     return (
       <Provider store={store}>
