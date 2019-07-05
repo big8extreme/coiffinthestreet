@@ -4,7 +4,7 @@ import { Text, Header, Item, Input, Button, Form } from "native-base";
 import Icon from "react-native-vector-icons/Ionicons";
 
 export default class HeaderListMaraudes extends Component {
-   static navigationOptions = {
+  static navigationOptions = {
     header: null,
   };
   constructor() {

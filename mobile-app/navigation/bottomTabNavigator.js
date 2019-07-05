@@ -34,7 +34,7 @@ const TabNavFooter = createBottomTabNavigator({
   }
 },
   {
-    initialRouteName: "List",
+    initialRouteName: "Map",
     tabBarOptions: {
       activeTintColor: "#FDC500",
       showLabel: false,

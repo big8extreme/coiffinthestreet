@@ -7,7 +7,6 @@ export const fetchConfigs = () => {
         function onSucces(response) {
             console.log("ALLALALALALAL", JSON.stringify(response.data))
             dispatch({ type: FETCH_CONFIGS, payload: response.data.configs})
-
         }
         function onError(error) {
             console.log("ERORORORORROROROOR", JSON.stringify(error.response))
@@ -20,5 +19,4 @@ export const fetchConfigs = () => {
             onError(err)
         }
     };
-
 }
