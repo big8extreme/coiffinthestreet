@@ -16,7 +16,6 @@ import MapMaraudes from '../screens/connected/MapMaraudes';
 import ListMaraudes from '../screens/connected/ListMaraudes';
 import Participation from '../screens/public/Participation';
 
-
 const AppStack = createStackNavigator(
   {
     Profile: { screen: Profile },
@@ -57,7 +56,7 @@ export default createAppContainer(
       Tab: BottomTabNav,
       App: AppStack,
       Auth: AuthStack,
-      DrawerMenu: DrawerMenu,
+      DrawerMenu: DrawerMenu
     },
     {
       initialRouteName: "Auth"

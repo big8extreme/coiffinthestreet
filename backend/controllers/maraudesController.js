@@ -21,6 +21,15 @@ if(city){
         res.status(500).json({ error })
       });
   },
+  
+   Maraude.findAll(query)
+      .then((maraudes) => { 
+        res.json({ maraudes });
+       })
+      .catch((error) => {
+        res.status(500).json({ error })
+      });
+  },
 
   show: function (req, res, next) {
     Maraude.findByPk(req.params.id, {include:['photos']})
