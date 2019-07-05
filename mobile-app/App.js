@@ -22,10 +22,11 @@ export default class App extends React.Component {
   async componentDidMount() {
     await Font.loadAsync({
       Roboto: require("native-base/Fonts/Roboto.ttf"),
+      Sedgwick: require('./assets/fonts/SedgwickAveDisplay-Regular.ttf'),
       Tinos: require('./assets/fonts/Tinos-Regular.ttf'),
       Tinos_bold: require('./assets/fonts/Tinos-Bold.ttf'),
-      Sedgwick: require('./assets/fonts/SedgwickAveDisplay-Regular.ttf'),
-      
+      TinosItalic: require('./assets/fonts/Tinos-Italic.ttf'),
+      TinosBoldItalic: require('./assets/fonts/Tinos-BoldItalic.ttf'),
       ...Ionicons.font
     });
     this.setState({ loading: false });

@@ -17,7 +17,6 @@ import ListMaraudes from '../screens/connected/ListMaraudes';
 import Participation from '../screens/public/Participation';
 import MaraudeCreationForm from "../screens/connected/Maraudes/MaraudeCreationForm";
 
-
 const AppStack = createStackNavigator(
   {
     Profile: { screen: Profile },
@@ -59,7 +58,7 @@ export default createAppContainer(
       Tab: BottomTabNav,
       App: AppStack,
       Auth: AuthStack,
-      DrawerMenu: DrawerMenu,
+      DrawerMenu: DrawerMenu
     },
     {
       //initialRouteName: "Tab"

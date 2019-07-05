@@ -34,6 +34,7 @@ class LoginForm extends Component {
     const { auth } = this.props;
     if (auth.user.isConnected) {
       setTimeout(() => {
+        //TODO remove before production
         navigate('App', { name: 'John DOE' })
       }, 10)
     }
