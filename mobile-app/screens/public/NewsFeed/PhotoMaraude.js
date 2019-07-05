@@ -10,7 +10,7 @@ import moment from "moment";
 
 
 
-export default function PhotoMaraude({ photo, title, createdAt, description, city, index }) {
+export default function PhotoMaraude({ photo, title, startAt, description, city, index }) {
 
     return (
         <View>
@@ -19,7 +19,7 @@ export default function PhotoMaraude({ photo, title, createdAt, description, cit
                     <Body style={style.body}>
                         <Left />
                         <Text style={style.title}>{title}</Text>
-                        <Text style={style.city}>{`${city}${moment(maraude.createdAt).format(" DD/ MM/ YYYY")}`}</Text>
+                        <Text style={style.city}>{`${city}${moment(maraude.startAt).format(" DD/ MM/ YYYY")}`}</Text>
                     </Body>
                 </CardItem>
                 <CardItem >
