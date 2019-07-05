@@ -39,7 +39,7 @@ class CardsPhotosMaraude extends Component {
                     description={maraude.description}  
                     city={maraude.city}  
                     startAt={maraude.startAt}  
-                    index={index}            
+                               
                     />
                     
                     </ScrollView>

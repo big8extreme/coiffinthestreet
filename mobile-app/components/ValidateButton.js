@@ -3,10 +3,13 @@ import { Font, Svg } from "expo";
 import { View, Text, TouchableOpacity } from "react-native";
 import { withNavigation } from 'react-navigation';
 
+
+
 class ValidateButton extends React.Component {
   render() {
     const { onPress, label } = this.props;
     const { navigate } = this.props.navigation;
+    
     return (
       <TouchableOpacity  onPress={() => navigate('Signup')}>
         <Svg
@@ -19,18 +22,23 @@ class ValidateButton extends React.Component {
             stroke="#FFF"
             strokeWidth="6"
           />
-          <Svg.Text
-            x="90"
-            y="40"
-            fontFamily="Sedgwick"
-            fill="#FFF"
-            fontSize={16}
-          >
-            {label}
-          </Svg.Text>
         </Svg>
+        <Text style={style.btnStyle}>Envoyer</Text>
       </TouchableOpacity>
     );
+  }
+}
+
+const style = {
+  btnStyle: {
+      fontFamily:'Sedgwick',
+      color:'white',
+      fontSize:30,
+      position:'absolute',
+      alignSelf:'center',
+      marginTop:17,
+      height:60
+      
   }
 }
 
