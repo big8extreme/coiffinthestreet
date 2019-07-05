@@ -15,6 +15,7 @@ import Contact from '../screens/connected/Profile/Contact';
 import MapMaraudes from '../screens/connected/MapMaraudes';
 import ListMaraudes from '../screens/connected/ListMaraudes';
 import Participation from '../screens/public/Participation';
+import forgetPassword from '../screens/public/LoginForm/forgetPassword/forgetPassword';
 
 const AppStack = createStackNavigator(
   {
