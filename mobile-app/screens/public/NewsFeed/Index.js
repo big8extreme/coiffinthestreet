@@ -47,7 +47,7 @@ const style = {
         justifyContent: 'center',
         alignItems: 'center',
         paddingTop: 20,
-        // flex:1
+        
     },
     logo: {
         justifyContent: 'center',

@@ -3,7 +3,7 @@
 import React from 'react'
 import { Image, Text, View } from 'react-native';
 import maraude from '../../../store/reducers/maraude';
-import { Header, Card, CardItem, Thumbnail, Left, Body, Icon, Button } from 'native-base';
+import { Card, CardItem, Left, Body } from 'native-base';
 import moment from "moment";
 
 
@@ -14,7 +14,6 @@ export default function PhotoMaraude({ photo, title, createdAt, description, cit
 
     return (
         <View>
-
             <Card style={style.card}>
                 <CardItem>
                     <Body style={style.body}>
@@ -37,36 +36,9 @@ export default function PhotoMaraude({ photo, title, createdAt, description, cit
                     </Body>
                 </CardItem>
             </Card>
-
-            {/* <View style={{ flexDirection: "row", flex: 1, position: "absolute", bottom: 50, left: 0, right: 0, justifyContent: 'space-between', padding: 15 }}>
-                <Button iconLeft onPress={() => this._deckSwiper._root.swipeLeft()}>
-                    <Text>Swipe Left</Text>
-                </Button>
-                <Button iconRight onPress={() => this._deckSwiper._root.swipeRight()}>
-                    <Icon name="arrow-forward" 
-                    style={{color:'red'}}/>
-                    <Text>Swipe Right</Text>
-                </Button>
-            </View>
-            <Icon name="arrow-back" /> */}
         </View>
     )
 }
-
-// const style = {
-//     thumbnail: {
-//         width: 80,
-//         height: 80,
-//         borderColor: 'black',
-//         borderWidth: 1
-//     },
-//     image: {
-//         height: 300,
-//         width: 300,
-//         alignSelf: 'center'
-//     }
-// }
-
 
 const style = {
 
