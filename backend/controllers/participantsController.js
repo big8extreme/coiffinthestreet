@@ -28,7 +28,7 @@ module.exports = {
             age: req.body.age
         })
             .then((participant) => {
-                Maraude.findByPk(req.body.maraudeId) //Todo add email as query parameter
+                Maraude.findByPk(req.body.maraudeId)
                     .then((maraude) => {
                         User.findByPk(maraude.userId)
                             .then((user) => {
