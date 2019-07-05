@@ -21,6 +21,6 @@ router.post('/signin', passport.authenticate('local', { session: false }), authC
 /* POST create new user. multer create an object, we can access it with req.avatar */
 router.post('/signup', upload.single('avatar'), authController.signUp);
 
-
+router.post('/reset', authController.forgetPassword);
 
 module.exports = router;
