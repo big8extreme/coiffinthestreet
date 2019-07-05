@@ -13,14 +13,12 @@ export default class Contact extends Component {
         <View style={styles.logo}>
           <Image source={require('../../../../assets/Logo_light.png')} />
         </View>
-        <React.Fragment>
           <PickerTextAndItemStyleExample />
           <MessageTextInput />
           <ValidateButton 
           label="Envoyer"
           style={{color:'yellow'}}
           />
-        </React.Fragment>
       </ScrollView>
 
 
