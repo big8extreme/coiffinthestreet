@@ -14,10 +14,6 @@ class CardsMaraudes extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   this.props.fetchMaraudes();
-  // }
-
   render() {
     return (
       <ScrollView style={{ backgroundColor: "#FBFBFB" }}>
