@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 import {fetchParticipants, showParticipant, createParticipant} from '../../../store/actions/participant'
 import ParticipForm from './ParticipForm';
 import { connect } from 'react-redux';
@@ -7,28 +7,18 @@ import { connect } from 'react-redux';
 export class Participant extends Component {
 
     constructor(props) {
-            console.log('constructor')
-
         super(props);
-        this.state = {
-            
-            participants :[console.log('participantsarray')]
-            
+        this.state = {            
+            participants :[]            
         };
     }
-
     componentDidMount() {
-            console.log('componentDidMount')
-
-        this.props.fetchParticipants(console.log("fetch"));
+        this.props.fetchParticipants();
     }
-
     render() {
-        console.log('RRR')
         return (
             <ScrollView style={styles.main_container}>
                 <ParticipForm 
-                // createParticipant={() => this.createParticipant()}
                 />
             </ScrollView>
         )

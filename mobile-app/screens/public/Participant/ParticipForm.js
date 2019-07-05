@@ -8,18 +8,17 @@ import ValidateButton from './ValidateButton';
 
 const required = value => (value ? undefined : 'This is a required field.');
 // const email = value => value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,5}$/i.test(value) ? 'Please provide a valid email address.' : undefined;
-const requiredFields = ['email', 'city', 'lastname', 'firstname', 'job']
+const requiredFields = ['email', 'city', 'lastName', 'firstName', 'job']
 
 const defaultParticipant = {
     errors: [],
     maraudeId: 2,
     isValidate: false,
-    age: 34,
     email: 'ronddoudou@gig.ls',
     city: 'Carlosville',
-    lastname: 'Dumbo',
-    firstname: 'Casimir',
-    job:'Coiffeur',
+    lastName: '',
+    firstName: 'Casimir',
+    job:'',
     FlatListItems: [
         { item: 'Coiffeur' },
         { item: 'Photographe' },
@@ -37,9 +36,8 @@ export class ParticipForm extends Component {
     }
 
     submitForm = () => {
-        return console.log('submitForm');
         let errors = [];
-        requiredFields.forEach((field) => { console.log('AFTER Validation')
+        requiredFields.forEach((field) => {
             if (this.state[field].length === 0) {
                 errors.push(field)
             }
@@ -55,15 +53,14 @@ export class ParticipForm extends Component {
         this.sendForm();
     }
 
-    
     //send data to sendForm
     sendForm = async () => {
-        const response = await this.props.createParticipant(...state);
+        //...this.state au lieu de ...state
+        const response = await this.props.createParticipant(...this.state);
         console.log('sendForm',...state)
         if (response.status === 'error') {
             
-        } else if (response.status === 'success') {
-             
+        } else if (response.status === 'success') {            
         }
     }
 
@@ -79,7 +76,7 @@ export class ParticipForm extends Component {
 
     FlatListItemSeparator = () => {
         return (
-            <View style={{ height: 1, width: "100%", backgroundColor: "#607D8B" }} />
+            <View style={{ height: 1, width: "100%", backgroundColor: "#607D8B", marginLeft:10 }} />
         );
     };
     GetItem(item) {
@@ -87,38 +84,35 @@ export class ParticipForm extends Component {
         Alert.alert("Vous avez sélectionné la profession " + `"${item}"`);
     }
 
-
     render() {
-        console.log('render', this.state)
-
         return (
             <ScrollView>
                 <Form
                     style={{ marginTop: 30, justifyContent: 'center' }}
                 >
                     <Text style={styles.text}>Nom *</Text>
-                    <Item regular style={{ borderColor: this.state.errors.includes("lastname") ? "red" : "#FDC500" }}>
+                    <Item regular style={{ borderColor: this.state.errors.includes("lastName") ? "red" : "white" }}>
                         <Input
-                            name="lastname"
-                            value={this.state.lastname}
-                            onChangeText={(value) => this.handleTextChange({ name: 'lastname', value })}
+                            name="lastName"
+                            value={this.state.lastName}
+                            onChangeText={(value) => this.handleTextChange({ name: 'lastName', value })}
                             style={styles.field}
                             placeholder="Nom du participant"
                         />
                     </Item>
                     <Text style={styles.text}>Prénom *</Text>
-                    <Item regular style={{ borderColor: this.state.errors.includes("firstname") ? "red" : "#FDC500" }}>
+                    <Item regular style={{ borderColor: this.state.errors.includes("firstName") ? "red" : "white" }}>
                         <Input
-                            name="firstname"
-                            value={this.state.firstname}
-                            onChangeText={(value) => this.handleTextChange({ name: "firstname", value })}
+                            name="firstName"
+                            value={this.state.firstName}
+                            onChangeText={(value) => this.handleTextChange({ name: "firstName", value })}
                             style={styles.field}
                             placeholder="Prénom du participant"
                         />
                     </Item>
 
                     <Text style={styles.text}>E-mail *</Text>
-                    <Item regular style={{ borderColor: this.state.errors.includes("email") ? "red" : "#FDC500" }}>
+                    <Item regular style={{ borderColor: this.state.errors.includes("email") ? "red" : "white" }}>
                         <Input
                             name="email"
                             value={this.state.email}
@@ -128,16 +122,23 @@ export class ParticipForm extends Component {
                         />
                     </Item>
                     <Text style={styles.text}>Profession *</Text>
-                    <View style={styles.flatListContainer}>
+                    <Item regular style={{ borderColor: this.state.errors.includes("job") ? "red" : "white" }}>
+                    <View style={styles.flatListContainer}>                   
                         <FlatList style={styles.container}
-                            keyExtractor={(item, index) => {item.id}}
-                            data={[{key:'coiffeur'}, {key:'photographe'}]}
+                            keyExtractor={(item, index) => {index.id}}
+                            data={[{key:'Coiffeur'}, {key:'Photographe'}, {key:'Esthéticien-ne'}]}
                             ItemSeparatorComponent={this.FlatListItemSeparator}
-                            renderItem={({ item }) => <Text onPress={this.GetItem.bind(this, item.key)}> {item.key} </Text>}
+                            renderItem={({ item }) => 
+                            <Text
+                            style= {styles.item} 
+                            onPress={this.GetItem.bind(this, item.key)}> {item.key} 
+                            </Text>}
                         />
+                        
                     </View>
+                    </Item>
                     <Text style={styles.text}>Ville*</Text>
-                    <Item regular style={{ borderColor: this.state.errors.includes("city") ? "red" : "#FDC500" }}>
+                    <Item regular style={{ borderColor: this.state.errors.includes("city") ? "red" : "white" }}>
                         <Input
                             name="city"
                             value={this.state.city}
@@ -157,32 +158,38 @@ const styles = {
     field: {
         borderColor: '#FDC500',
         height: 60,
-        borderWidth: 1,
+        borderWidth: 2,
         width: '90%',
-        borderRadius: 5,
-        paddingLeft: 5,
-        fontSize: 18
+        borderRadius: 10,
+        padding: 10,
+        fontSize: 18,
+        marginLeft: 11,
+        marginRight: 11
     },
     text: {
         fontFamily: 'Georgia',
         fontWeight: 'bold',
         alignItems: 'center',
         marginBottom: 5,
+        marginLeft: 11,
         marginTop: 25
     },
     container: {
         display: 'flex',
         flexDirection: 'row',
-        height: 50,
+        height: 110
     },
     flatListContainer: {
         backgroundColor: 'white',
         borderWidth: 2,
         borderColor: '#FDC500',
         borderRadius: 10,
-        padding: 10,
-        width: '90%',
+        width: '70%',
         marginLeft: 11,
+    },
+    item: {
+        padding: 8,
+        fontSize: 15
     },
     buttonText: {
         marginTop: 82,
@@ -194,20 +201,11 @@ const styles = {
         color: '#FDC500'
     }
 }
-
-
-
-
-
 const mapStateToProps = (state) => ({
     auth: state.auth
 })
-
 const mapDispatchToProps = {
     createParticipant
-    
-    
-
 }
 
 // // @ts-ignore

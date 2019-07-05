@@ -6,11 +6,9 @@ import { FETCH_PARTICIPANTS, ERROR_ON_PARTICIPANTS, FETCH_PARTICIPANT, ERROR_ON_
 export function fetchParticipants(){
     return async function(dispatch, getState) {
         function onSuccess(response){
-            console.log('succesfetch : ' + response.data.participants)
             dispatch({ type: FETCH_PARTICIPANTS, payload: response.data.participants})
         }
         function onError(error){
-            console.log('error : ' + error)
 
             dispatch({ type: ERROR_ON_PARTICIPANTS, payload: error})
         }
@@ -49,23 +47,16 @@ export function showParticipant(participantId){
 export function createParticipant(participantFields){
     
     return async function(dispatch, getState) {
-        console.log('BEFORE dispatchcreateParticipant OK!')
         function onSuccess(response){
-            console.log('responseDONE NOT OK?')
             dispatch({ type: CREATE_PARTICIPANT, payload: response.data.participants})
-            console.log('AFTER dispatchcreateParticipant NOT OK ?')
-                // return {status: 'success', participants: response.data.participant}
-
         }
         function onError(error){
             dispatch({ type: ERROR_ON_CREATE_PARTICIPANT, payload: error})
         }
         try{
-            console.log('ON ERROR try OK!')
             const response = await axios.post(`${baseUrlApi}/participants/`, { ...participantFields }, {
                 headers: { Authorization: `bearer ${getState().auth.user.token }` }
             })
-            console.log('Before onSuccess NOT OK ?')
             onSuccess(response)
         }
         catch(err){
