@@ -4,14 +4,14 @@ const Maraude = models.Maraude;
 
 module.exports = {
   index: function (req, res, next) {
-    const { city,  } = req.query;
+    const { city  } = req.query;
  const query = {
   include:['photos'],
    where: {
 }}
 
-if(req.query && req.query.city){
-  query.where.city = req.query.city;
+if(city){
+  query.where.city = city;
 }
    Maraude.findAll(query)
       .then((maraudes) => { 
