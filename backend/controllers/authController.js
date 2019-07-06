@@ -30,8 +30,8 @@ module.exports = {
         const userDatas = {
           firstName: newUser.firstName,
           lastName: newUser.lastName,
-          compagny: 'Coiffinthestreet',
-          adress_mail: 'Coiffla@hotmail.com'
+          compagny: 'Coiffinthestreet', //Todo add it to .env
+          adress_mail: 'Coiffla@hotmail.com' //Todo add it to .env
         }
         mailer(userDatas, newUser.email, 'welcome')
         res.json({ user: newUser });
@@ -51,27 +51,22 @@ module.exports = {
       }
       return password;
     }
-
-    User.findAll({
-      where: {
-        email: req.body.email //Todo add email as query parameter
-      }
-    })
+    
+    //verifier si l'utilisateur exist en base
+    //Todo add email as query parameter
+    //TODO Use other function than findAll to get only one result
+    User.findAll({ where: {  email: req.body.email  }})
       .then((users) => {
         if (!users) {
           return res.status(500).json({ message: 'Email introuvable merci de verifier' })
         }
 
         let user = users[0];
-        //verifier si l'utilisateur exist en base
         //Génère un nouveau mot de passe de manière aléatoire
         //Encrypter le mot de passe (bcrypt)
-        const password = generatePassword();
+        //TODO Use other function than findAll to get only one result      const password = generatePassword();
         bcrypt.genSalt(10, function (err, salt) {
           bcrypt.hash(password, salt, function (err, hash) {
-            console.log(password + 'rerere')
-
-            // Store hash in your password DB.
             //Mettre à jour le mot de passe de l'utilisateur (avec la version chiffré)
             user.update({
               password: hash
@@ -79,9 +74,9 @@ module.exports = {
               .then((updatedUser) => {
                 const userDatas = {
                   id: user.id,
-                  password: password,
+                  password: password //dans l'email on renvoi le mot de passe en clair
                 }
-                //dans l'email, envoyer le mot de passe en clair
+                
                 mailer(userDatas, user.email, 'resetPassword')
                 res.json({ updatedUser });
               })
@@ -90,6 +85,5 @@ module.exports = {
         });
       })
       .catch((err) => res.send(err));
-
   }
 };
