@@ -1,6 +1,3 @@
-//PARTS 1
-//TODO send email to your personnal email adress
-
 const nodemailer = require('nodemailer');
 let ejs = require('ejs'),
     people = ['geddy', 'neil', 'alex'],
@@ -42,11 +39,8 @@ const getMailContent = (mailType) => {
     }
 }
 
-
-
+//TODO get default value from .env
 const Mailer = (userDatas, recipient = 'Coiffla@hotmail.com', mailType = "contactAdmin") => {
-    console.log('Mailer')
-
     ejs.renderFile(__dirname + getMailContent(mailType), { ...userDatas },
         function (err, data) {
             if (err) {
@@ -59,12 +53,13 @@ const Mailer = (userDatas, recipient = 'Coiffla@hotmail.com', mailType = "contac
                     subject: getMailObject(mailType), // Subject line
                     html: data // plain text body
                 };
-                // console.log("html data ======================>", mailOptions.html);
                 transporter.sendMail(mailOptions, function (err, info) {
                     if (err) {
-                        console.log(err);
+                        //console.log(err);
+                        //TODO MANAGE ERROR
                     } else {
-                        console.log('Message sent: ' + info.response);
+                        //console.log('Message sent: ' + info.response);
+                        //TODO MANAGE RESPONSE
                         // res.render('contact', {msg:'Email has been sent'});
                     }
                 });
