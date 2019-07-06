@@ -10,7 +10,7 @@ module.exports = {
     },
 
     update: function (req, res, next) {
-        Config.findByPk(1)
+        Config.findByPk(1)//todo add it to .env
             .then((config) => {
                 config.update({
                     cgu: req.body.cgu,
@@ -33,10 +33,6 @@ module.exports = {
     },
 
     contactAdmin: function (req, res, next) {
-        // const message = {
-        //     subject: req.body.subject,
-        //     message: req.body.message
-        // }
         const userDatas = {
             email: req.body.email,
             firstName: req.body.firstName,
