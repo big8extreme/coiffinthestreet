@@ -1,7 +1,6 @@
 const nodemailer = require('nodemailer');
-let ejs = require('ejs'),
-    people = ['geddy', 'neil', 'alex'],
-    html = ejs.render('<%= people.join(", "); %>', { people: people });
+let ejs = require('ejs');
+
 //create reusable transporte object using the defaults SMTP transport 
 let transporter = nodemailer.createTransport({
     host: "smtp.live.com", //nom d'hote auquel se connecter 
