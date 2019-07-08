@@ -1,16 +1,10 @@
 import React, { Component } from "react";
-import { ScrollView, Button } from "react-native";
+import { ScrollView } from "react-native";
 import CardMaraude from './CardMaraude';
 import { View } from "native-base";
+import { connect } from 'react-redux'
 
 class CardsMaraudes extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      maraudes: []
-    };
-  }
-
   render() {
     return (
       <ScrollView style={{ backgroundColor: "#FBFBFB" }}>
@@ -26,5 +20,11 @@ class CardsMaraudes extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  maraudes: state.maraude.maraudes
+});
+
+const mapDispatchToProps = {}
+
 // @ts-ignore
-export default CardsMaraudes
+export default connect(mapStateToProps, mapDispatchToProps)(CardsMaraudes);

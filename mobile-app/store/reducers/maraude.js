@@ -18,7 +18,6 @@ const defaultStates = {
 export default function (state = defaultStates, action) {
   switch (action.type) {
     case FETCH_MARAUDES:
-      console.log("MARAUDESSSSSSSS", action.payload.length)
       return { ...state, maraudes: [...action.payload] };
     case ERROR_ON_MARAUDES:
       return state;

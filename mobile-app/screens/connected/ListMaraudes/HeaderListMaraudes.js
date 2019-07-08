@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { SearchBar } from "react-native-elements";
 import { fetchMaraudesByCity } from "../../../store/actions/maraude";
 import { connect } from "react-redux";
+import { View } from "react-native";
 
 class HeaderListMaraudes extends Component {
   static navigationOptions = {
@@ -10,13 +11,11 @@ class HeaderListMaraudes extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      maraudes: [],
-      search: "Marseille"
+      search: ""
     };
   }
 
   componentDidMount() {
-    this.submitSearch();
   }
 
   updateSearch = search => {
@@ -30,7 +29,7 @@ class HeaderListMaraudes extends Component {
   render() {
     console.log("MARAUDES", this.props.maraude)
     return (
-      <React.Fragment>
+      <View>
         <SearchBar
           ref="searchBar"
           onChangeText={this.updateSearch}
@@ -42,13 +41,12 @@ class HeaderListMaraudes extends Component {
           inputContainerStyle={{ backgroundColor: "#FBFBFB" }}
           inputStyle={{ borderBottomWidth: 0 }}
         />
-      </React.Fragment>
+      </View>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  ...state
 });
 
 const mapDispatchToProps = {
