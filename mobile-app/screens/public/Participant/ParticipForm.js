@@ -14,7 +14,7 @@ const defaultParticipant = {
     errors: [],
     maraudeId: 2,
     isValidate: false,
-    email: 'ronddoudou@gig.ls',
+    email: '',
     city: 'Carlosville',
     lastName: '',
     firstName: 'Casimir',
@@ -91,6 +91,7 @@ export class ParticipForm extends Component {
                 <Form
                     style={{ marginTop: 30, justifyContent: 'center' }}
                 >
+                    <Text style={styles.title}>Inscription en tant que participant</Text>
                     <Text style={styles.text}>Nom *</Text>
                     <Item regular style={{ borderColor: this.state.errors.includes("lastName") ? "red" : "white" }}>
                         <Input
@@ -127,15 +128,14 @@ export class ParticipForm extends Component {
                     <View style={styles.flatListContainer}>                   
                         <FlatList style={styles.container}
                             keyExtractor={(item, index) => {index.id}}
-                            data={[{key:'Coiffeur'}, {key:'Photographe'}, {key:'Esthéticien-ne'}]}
+                            data={[{key:'Coiffeur-Coiffeuse'}, {key:'Photographe'}, {key:'Esthéticien-ne'}]}
                             ItemSeparatorComponent={this.FlatListItemSeparator}
                             renderItem={({ item }) => 
                             <Text
                             style= {styles.item} 
                             onPress={this.GetItem.bind(this, item.key)}> {item.key} 
                             </Text>}
-                        />
-                        
+                        />                        
                     </View>
                     </Item>
                     <Text style={styles.text}>Ville*</Text>
@@ -149,26 +149,34 @@ export class ParticipForm extends Component {
                         />
                     </Item>
                 </Form>
-                <ValidateButton onPress={this.submitForm.bind(this)} label="Valider" />
+                <ValidateButton 
+                    onPress={this.submitForm.bind(this)} label="Valider"
+                    style={styles.validateButton}
+                    />
             </ScrollView>
         );
     }
 }
 
 const styles = {
+    title: {
+        fontSize: 25,
+        textAlign: 'center',
+        fontWeight:'bold'
+    },
     field: {
         borderColor: '#FDC500',
         height: 60,
         borderWidth: 2,
         width: '90%',
         borderRadius: 10,
-        padding: 10,
+        padding: 5,
         fontSize: 18,
         marginLeft: 11,
         marginRight: 11
     },
     text: {
-        fontFamily: 'Georgia',
+        fontFamily: 'Tinos',
         fontWeight: 'bold',
         alignItems: 'center',
         marginBottom: 5,
@@ -192,14 +200,7 @@ const styles = {
         padding: 8,
         fontSize: 15
     },
-    buttonText: {
-        marginTop: 82,
-        marginLeft: 120,
-        position: 'absolute',
-        fontFamily: 'Sedgwick',
-        fontSize: 30,
-        zIndex: 900,
-        color: '#FDC500'
+    validateButton: {
     }
 }
 const mapStateToProps = (state) => ({
