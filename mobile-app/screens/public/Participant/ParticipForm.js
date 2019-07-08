@@ -1,50 +1,44 @@
 import React, { Component } from 'react';
-import { StyleSheet, FlatList, Text, View, Alert, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { StyleSheet, FlatList, Text, View, Alert,TouchableOpacity, Image, ScrollView } from 'react-native';
 import { Input, Container, Form, Item } from 'native-base';
-// import { Form, Field } from 'react-native-validate-form';
-import { CheckBox } from 'react-native-elements';
-import InputField from '../SignupForm/InputField';
-import ValidateButton from '../../../components/ValidateButton';
-import RequestProfession from './RequestProfession';
+import {connect} from 'react-redux';
+import {createParticipant} from '../../../store/actions/participant';
+import ValidateButton from './../../../components/ValidateButton';
 
-// const required = value => (value ? undefined : 'This is a required field.');
-// const email = value => value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,5}$/i.test(value) ? 'Please provide a valid email address.' : undefined;
-const requiredFields = ['email', 'city', 'lastname', 'firstname', 'job']
+
+const required = value => (value ? undefined : 'This is a required field.');
+const email = value => value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,5}$/i.test(value) ? 'Please provide a valid email address.' : undefined;
+const requiredFields = ['email', 'city', 'lastName', 'firstName', 'job']
+
 const defaultParticipant = {
     errors: [],
-    // email: '',
-    // city: '',
-    // lastname: '',
-    // firstname: '',
+    maraudeId: 2,
+    isValidate: false,
     email: '',
-    city: '',
-    lastname: '',
-    firstname: '',
-    job: '',
-    // FlatListItems: [
-    //     { item: 'Coiffeur' },
-    // { item: 'Photographe' },
-    // { item: 'Esthéticien(ne)' },
-    // ]
-    // one: false,
-    // two: false,
-    // itemChecked: false,
-    // code: ''
+    city: 'Carlosville',
+    lastName: '',
+    firstName: 'Casimir',
+    job:'',
+    FlatListItems: [
+        { item: 'Coiffeur' },
+        { item: 'Photographe' },
+        { item: 'Esthéticien(ne)' },
+    ]
+    
 };
 
-export default class ParticipForm extends Component {
+export class ParticipForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            ...defaultParticipant
+            ...defaultParticipant,
+            required,
+            email
+
         }
     }
 
     submitForm = () => {
-        console.log(this.state);
-
-
-        console.log('state before submit1', this.state)
         let errors = [];
         requiredFields.forEach((field) => {
             if (this.state[field].length === 0) {
@@ -53,28 +47,26 @@ export default class ParticipForm extends Component {
         })
         this.setState({ errors: errors });
         if (errors.length === 0) {
-            console.log('state before submit2', this.state)
             this.props.createParticipant(this.state)
+            signupUser = async()=>{
+                const response = await this.props
+            }
             this.setState({ ...defaultParticipant })
-            console.log('state before submit3', this.state)
         }
         this.sendForm();
-
     }
 
     sendForm = async () => {
-        const response = await this.props.createParticipant(this.state);
+        const response = await this.props.createParticipant(...this.state);
+        console.log('sendForm',...state)
         if (response.status === 'error') {
             
-        } else if (response.status === 'success') {
-           
+        } else if (response.status === 'success') {            
         }
     }
 
     handleTextChange = (event) => {
-
         this.setState({ [event.name]: event.value })
-        console.log('check the states', this.state)
         let { errors } = this.state;
         if (errors.includes(event.name)) {
             const index = errors.indexOf(event.name)
@@ -82,211 +74,141 @@ export default class ParticipForm extends Component {
             this.setState({ errors })
     }
 }
+
     FlatListItemSeparator = () => {
         return (
-            <View style={{ height: 1, width: "100%", backgroundColor: "#607D8B" }} />
+            <View style={{ height: 1, width: "100%", backgroundColor: "#607D8B", marginLeft:10 }} />
         );
     };
-
-    GetItem = (item) => {
-        console.log('le state avant', this.state)
-        this.setState({ job: item })
-        console.log('le state après', this.state)
-        Alert.alert("Vous avez sélectionné " + item);
+    GetItem(item) {
+        this.setState({job: item})
+        Alert.alert("Vous avez sélectionné la profession " + `"${item}"`);
     }
 
-    // submitSuccess() {
-    //     console.log("Submit Success!");
-    // }
-
-    // submitFailed() {
-    //     console.log("Submit Failed!");
-    // }
-
     render() {
-        console.log('render', this.state)
-
         return (
             <ScrollView>
                 <Form
-                    // ref={(ref) => this.ParticipForm = ref}
-                    // validate={true}
-                    // submit={this.submitSuccess.bind(this)}
-                    // failed={this.submitFailed.bind(this)}
-                    // errors={this.state.errors}
                     style={{ marginTop: 30, justifyContent: 'center' }}
                 >
-                    <Text style={{
-                        fontFamily: 'Georgia',
-                        fontWeight: 'bold',
-                        marginBottom: 5,
-                        marginTop: 25
-                    }}
-                    >Nom *</Text>
-                    <Item regular style={{ borderColor: this.state.errors.includes("lastname") ? "red" : "#FDC500" }}>
+                    <Text style={styles.title}>Inscription en tant que participant</Text>
+                    <Text style={styles.text}>Nom *</Text>
+                    <Item regular style={{ borderColor: this.state.errors.includes("lastName") ? "red" : "white" }}>
                         <Input
-                            name="lastname"
-                            value={this.state.lastname}
-                            // onChangeText={(val) => this.setState({ lastname: val })}
-                            onChangeText={(value) => this.handleTextChange({name: 'lastname', value})}
-
-                            style={{
-                                borderColor: '#FDC500',
-                                height: 60,
-                                borderWidth: 1,
-                                width: '90%',
-                                borderRadius: 5,
-                                paddingLeft: 5,
-                                fontSize: 18
-                            }}
+                            name="lastName"
+                            value={this.state.lastName}
+                            onChangeText={(value) => this.handleTextChange({ name: 'lastName', value })}
+                            style={styles.field}
                             placeholder="Nom du participant"
                         />
                     </Item>
-                    <Text style={{
-                        fontFamily: 'Georgia',
-                        fontWeight: 'bold',
-                        marginBottom: 5,
-                        marginTop: 25
-                    }}>Prénom *</Text>
-                    <Item regular style={{ borderColor: this.state.errors.includes("firstname") ? "red" : "#FDC500" }}>
+                    <Text style={styles.text}>Prénom *</Text>
+                    <Item regular style={{ borderColor: this.state.errors.includes("firstName") ? "red" : "white" }}>
                         <Input
-                            name="firstname"
-                            value={this.state.firstname}
-                            onChangeText={(val) => this.setState({ firstname: val })}
-                            style={{
-                                borderColor: '#FDC500',
-                                height: 60,
-                                borderWidth: 1,
-                                width: '90%',
-                                borderRadius: 5,
-                                paddingLeft: 5,
-                                fontSize: 18
-                            }}
+                            name="firstName"
+                            value={this.state.firstName}
+                            onChangeText={(value) => this.handleTextChange({ name: "firstName", value })}
+                            style={styles.field}
                             placeholder="Prénom du participant"
                         />
                     </Item>
 
-                    <Text style={{
-                        fontFamily: 'Georgia',
-                        fontWeight: 'bold',
-                        marginBottom: 5,
-                        marginTop: 25
-                    }}>E-mail *</Text>
-                    <Item regular style={{ borderColor: this.state.errors.includes("email") ? "red" : "#FDC500" }}>
+                    <Text style={styles.text}>E-mail *</Text>
+                    <Item regular style={{ borderColor: this.state.errors.includes("email") ? "red" : "white" }}>
                         <Input
                             name="email"
                             value={this.state.email}
-                            onChangeText={(val) => this.setState({ email: val })}
-                            style={{
-                                borderColor: '#FDC500',
-                                height: 60,
-                                borderWidth: 1,
-                                width: '90%',
-                                borderRadius: 5,
-                                paddingLeft: 5,
-                                fontSize: 18
-                            }}
+                            onChangeText={(value) => this.handleTextChange({ name: 'email', value })}
+                            style={styles.field}
                             placeholder="Adresse mail du participant"
                         />
                     </Item>
-
-                    <View style={{
-                        backgroundColor: 'white',
-                        borderWidth: 2,
-                        borderColor: '#FDC500',
-                        borderRadius: 10,
-                        padding: 10,
-                        width: '90%',
-                        marginLeft: 11,
-                    }} >
-                        <FlatList style={{
-                            backgroundColor: 'white',
-                            borderWidth: 2,
-                            borderColor: '#FDC500',
-                            borderRadius: 10,
-                            padding: 10,
-                            width: '90%',
-                            marginLeft: 11,
-                        }}
-
-                            keyExtractor={(item, index) => { console.log('test1', item.id), item.id }}
-
-                            data={[{ key: 'coiffeur' }, { key: 'photographe' }]}
+                    <Text style={styles.text}>Profession *</Text>
+                    <Item regular style={{ borderColor: this.state.errors.includes("job") ? "red" : "white" }}>
+                    <View style={styles.flatListContainer}>                   
+                        <FlatList style={styles.container}
+                            keyExtractor={(item, index) => {index.id}}
+                            data={[{key:'Coiffeur-Coiffeuse'}, {key:'Photographe'}, {key:'Esthéticien-ne'}]}
                             ItemSeparatorComponent={this.FlatListItemSeparator}
-                            renderItem={({ item }) => <Text onPress={this.GetItem.bind(this, item.key)}> {item.key} </Text>}
-                        />
+                            renderItem={({ item }) => 
+                            <Text
+                            style= {styles.item} 
+                            onPress={this.GetItem.bind(this, item.key)}> {item.key} 
+                            </Text>}
+                        />                        
                     </View>
-                    {/* <RequestProfession /> */}
-
-                    <Text style={{
-                        fontFamily: 'Georgia',
-                        fontWeight: 'bold',
-                        marginBottom: 5,
-                        marginTop: 25
-                    }}>Ville*</Text>
-
-                    <Item regular style={{ borderColor: this.state.errors.includes("city") ? "red" : "#FDC500" }}>
+                    </Item>
+                    <Text style={styles.text}>Ville*</Text>
+                    <Item regular style={{ borderColor: this.state.errors.includes("city") ? "red" : "white" }}>
                         <Input
                             name="city"
                             value={this.state.city}
-                            onChangeText={(val) => this.setState({ city: val })}
-                            style={{
-                                borderColor: '#FDC500',
-                                height: 60,
-                                borderWidth: 1,
-                                width: '90%',
-                                borderRadius: 5,
-                                paddingLeft: 5,
-                                fontSize: 18
-                            }}
+                            onChangeText={(value) => this.handleTextChange({ name: 'city', value })}
+                            style= {styles.field}
                             placeholder="Ville du participant"
                         />
                     </Item>
                 </Form>
-                <ValidateButton onPress={this.submitForm} label="Valider" />
+                <ValidateButton 
+                    onPress={this.submitForm.bind(this)} label="Valider"
+                    style={styles.validateButton}
+                    />
             </ScrollView>
         );
     }
 }
 
-// const style = {
-//     field: {
-//         borderColor: '#FDC500',
-//         height: 60,
-//         borderWidth: 1,
-//         width: '90%',
-//         borderRadius: 5,
-//         paddingLeft: 5,
-//         fontSize: 18
-//     },
-//     inputText: {
-//         fontFamily: 'Georgia',
-//         fontWeight: 'bold',
-//         marginBottom: 5,
-//         marginTop: 25
-//     },
-//     container: {
-//         display: 'flex',
-//         flexDirection: 'row',
-//         alignItems: 'center',
-//         height: 50,
-//     },
-//     FlatList_container: {
-//         backgroundColor: 'white',
-//         borderWidth: 2,
-//         borderColor: '#FDC500',
-//         borderRadius: 10,
-//         padding: 10,
-//         width: '90%',
-//         marginLeft: 11,
-//     },
-//     buttonText: {
-//         marginTop: 82,
-//         marginLeft: 120,
-//         position: 'absolute',
-//         fontFamily: 'Sedgwick',
-//         fontSize: 30,
-//         zIndex: 900,
-//         color: '#FDC500'
-//     }
-// }
+const styles = StyleSheet.create({
+    title: {
+        fontSize: 25,
+        textAlign: 'center',
+        fontWeight:'bold'
+    },
+    field: {
+        borderColor: '#FDC500',
+        height: 60,
+        borderWidth: 2,
+        width: '90%',
+        borderRadius: 10,
+        padding: 5,
+        fontSize: 18,
+        marginLeft: 11,
+        marginRight: 11
+    },
+    text: {
+        fontFamily: 'Tinos',
+        fontWeight: 'bold',
+        alignItems: 'center',
+        marginBottom: 5,
+        marginLeft: 11,
+        marginTop: 25
+    },
+    container: {
+        display: 'flex',
+        flexDirection: 'row',
+        height: 110
+    },
+    flatListContainer: {
+        backgroundColor: 'white',
+        borderWidth: 2,
+        borderColor: '#FDC500',
+        borderRadius: 10,
+        width: '70%',
+        marginLeft: 11,
+    },
+    item: {
+        padding: 8,
+        fontSize: 15
+    },
+    validateButton: {
+    }
+})
+const mapStateToProps = (state) => ({
+    auth: state.auth
+})
+const mapDispatchToProps = {
+    createParticipant
+}
+
+// // @ts-ignore
+export default connect(mapStateToProps, mapDispatchToProps)(ParticipForm)

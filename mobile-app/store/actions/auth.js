@@ -33,3 +33,44 @@ export function logout() {
     payload: null
   }
 };
+
+export function signup(user) {
+
+  return async dispatch => {
+
+    function onSuccess(response) {
+
+      // set token as default header
+      axios.defaults.headers.common['Authorization'] = `bearer ${response.data.token}`;
+
+      dispatch({ type: LOGIN, payload: response.data });
+
+      return { response, status: 'success' };
+
+    }
+
+    function onError(error) {
+      
+      dispatch({ type: LOG_IN_ERROR, error });
+
+      return { error, status: 'error' };
+
+    }
+
+    try {
+
+      const response = await axios.post(`${baseUrlApi}/auth/signup`, { ...user });
+
+      return onSuccess(response);
+
+    }
+
+    catch (err) {
+
+      return onError(err);
+
+    }
+
+  };
+
+};
