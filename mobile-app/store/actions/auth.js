@@ -33,7 +33,6 @@ export function logout() {
     payload: null
   }
 };
-<<<<<<< HEAD
 
 export function signup(user) {
 
@@ -75,5 +74,3 @@ export function signup(user) {
   };
 
 };
-=======
->>>>>>> 79afdb31599ea13585d18cb076a43a9b2065088f

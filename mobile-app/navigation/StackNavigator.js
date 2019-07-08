@@ -14,7 +14,7 @@ import Whoweare from '../screens/public/Whoweare/whoweare';
 import Contact from '../screens/connected/Profile/Contact';
 import MapMaraudes from '../screens/connected/MapMaraudes';
 import ListMaraudes from '../screens/connected/ListMaraudes';
-import Participation from '../screens/public/Participation';
+import Participant from '../screens/public/Participant';
 import forgetPassword from '../screens/public/LoginForm/forgetPassword/forgetPassword';
 
 const AppStack = createStackNavigator(
@@ -22,8 +22,7 @@ const AppStack = createStackNavigator(
     Profile: { screen: Profile },
     Contact: { screen: Contact },
     Participant: { screen: Participant},
-    Contact: { screen: Contact },
-    Participation: { screen: Participation },
+    Contact: { screen: Contact },  
   },
   {
     initialRouteName: "Profile",
@@ -37,7 +36,7 @@ const AuthStack = createStackNavigator(
     forgetPassword: {screen: forgetPassword },
     Signup: { screen: SignupForm },
     Discover: { screen: Discover },
-    Participation: { screen: Participation },
+    Participant: { screen: Participant},
     drawerMenu: { screen: DrawerMenu },
     BottomTabNav: { screen: BottomTabNav },
     Charte: { screen: Charte },
