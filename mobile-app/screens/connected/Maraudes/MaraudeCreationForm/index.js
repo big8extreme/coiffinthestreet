@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { ScrollView, Text } from 'react-native'
-import { Content, Form, Item, Input, Button } from 'native-base';  
+import { Content, Form, Item, Input, Button } from 'native-base';
 import { connect } from 'react-redux'
 import DatePicker from '../../../../components/DatePicker'
 import TimePicker from '../../../../components/TimePicker'
@@ -30,29 +30,29 @@ export class index extends Component {
     }
   }
 
-submitForm = () => {
+  submitForm = () => {
     let errors = [];
     requiredFields.forEach((field) => {
-      if(this.state[field].length === 0){
+      if (this.state[field].length === 0) {
         errors.push(field)
       }
     })
     this.setState({ errors: errors });
-    if(errors.length === 0){
+    if (errors.length === 0) {
       this.props.createMaraude(this.state)
-      this.setState({...defaultMaraude})
+      this.setState({ ...defaultMaraude })
     }
-}
-
-handleTextChange = (event) => {
-  this.setState({[event.name]: event.value})
-  let {errors} = this.state;
-  if(errors.includes(event.name)){
-    const index = errors.indexOf(event.name)
-    errors.splice(index, 1)
-    this.setState({errors})
   }
-}
+
+  handleTextChange = (event) => {
+    this.setState({ [event.name]: event.value })
+    let { errors } = this.state;
+    if (errors.includes(event.name)) {
+      const index = errors.indexOf(event.name)
+      errors.splice(index, 1)
+      this.setState({ errors })
+    }
+  }
 
   render() {
     return (
@@ -65,42 +65,39 @@ handleTextChange = (event) => {
               Titre de la maraude : </Text>
             <Item regular style={{ borderColor: this.state.errors.includes('title') ? 'red' : '#FDC500' }}>
               <Input
-                name="title"
                 value={this.state.title}
-                onChangeText={(value) => this.handleTextChange({name: 'title', value})}
-                placeholder="NOM Maraude" 
-                />
+                onChangeText={(value) => this.handleTextChange({ name: 'title', value })}
+                placeholder="NOM Maraude"
+              />
             </Item>
             <Item regular style={{ borderColor: this.state.errors.includes('description') ? 'red' : '#FDC500' }}>
               <Input
-                name="description"
                 value={this.state.description}
-                onChangeText={(value) => this.handleTextChange({name: 'description', value})}
-                placeholder="Description" 
-                />
+                onChangeText={(value) => this.handleTextChange({ name: 'description', value })}
+                placeholder="Description"
+              />
             </Item>
             <DatePicker
               style={{ borderColor: this.state.errors.includes('startDate') ? 'red' : '#FDC500' }}
-              onChange={(value) => this.handleTextChange({name: 'startDate', value})} 
+              onChange={(value) => this.handleTextChange({ name: 'startDate', value })}
             />
             <Text style={style.maraudeText}>Heure de début de la Maraude</Text>
-            <TimePicker 
+            <TimePicker
               style={{ borderColor: this.state.errors.includes('startAt') ? 'red' : '#FDC500' }}
-              onChange={(value) => this.handleTextChange({name: 'startAt', value})} 
+              onChange={(value) => this.handleTextChange({ name: 'startAt', value })}
             />
             <Text style={style.maraudeText}>Heure de fin de la Maraude</Text>
             <TimePicker
               style={{ borderColor: this.state.errors.includes('endAt') ? 'red' : '#FDC500' }}
-              onChange={(value) => this.handleTextChange({name: 'endAt', value})} 
+              onChange={(value) => this.handleTextChange({ name: 'endAt', value })}
             />
             <Text style={{ marginBottom: 15, fontWeight: 'bold', fontSize: 16 }}>
               Lieu :</Text>
             <Item regular style={{ borderColor: this.state.errors.includes('city') ? 'red' : '#FDC500' }}>
-              <Input 
-                name="city"
+              <Input
                 value={this.state.city}
-                onChangeText={(value) => this.handleTextChange({name: 'city', value})}
-                placeholder="Ville" 
+                onChangeText={(value) => this.handleTextChange({ name: 'city', value })}
+                placeholder="Ville"
                 style={{ borderRadius: 10, marginBottom: 15, fontSize: 12, borderColor: '#FDC500', borderWidth: 2 }} />
             </Item>
 
@@ -133,19 +130,19 @@ const style = {
     borderRadius: 5,
     paddingLeft: 5,
     fontSize: 18
-},
-inputText: {
+  },
+  inputText: {
     fontFamily: 'Georgia',
     fontWeight: 'bold',
     marginBottom: 5,
     marginTop: 25
-},
+  },
   maraudeText: {
-      textAlign: 'left',
-      marginLeft: 10,
-      marginBottom: 5,
-      marginTop: 25,
-      fontWeight: 'bold'
+    textAlign: 'left',
+    marginLeft: 10,
+    marginBottom: 5,
+    marginTop: 25,
+    fontWeight: 'bold'
   }
 }
 

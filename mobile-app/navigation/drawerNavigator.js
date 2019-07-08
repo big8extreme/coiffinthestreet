@@ -11,6 +11,7 @@ import TermsOfService from '../screens/connected/TermsOfService/index'
 import LegalMention from '../screens/connected/LegalMention';
 import Whoweare from '../screens/public/Whoweare/whoweare';
 import { logout } from '../store/actions/auth'
+import MaraudeForm from '../screens/connected/Maraudes/MaraudeCreationForm';
 
 const { width } = Dimensions.get('screen')
 
@@ -41,6 +42,22 @@ export default createDrawerNavigator({
             <TouchableOpacity onPress={() => navigation.navigate('Contact')} style={styles.flex}>
               <Icon name="ios-mail" size={25} style={styles.icon} />
               <Text style={styles.text}>Contacter l'administrateur</Text>
+            </TouchableOpacity>
+          </View>
+        }
+      }
+    }
+  },
+  MaraudeForm: {
+    screen: MaraudeForm,
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: "Créer une Maraude",
+        drawerLabel: () => {
+          return <View style={styles.view}>
+            <TouchableOpacity onPress={() => navigation.navigate('MaraudeForm')} style={styles.flex}>
+              <Icon name="ios-mail" size={25} style={styles.icon} />
+              <Text style={styles.text}>Créer une Maraude</Text>
             </TouchableOpacity>
           </View>
         }
