@@ -16,6 +16,7 @@ import MapMaraudes from '../screens/connected/MapMaraudes';
 import ListMaraudes from '../screens/connected/ListMaraudes';
 import Participation from '../screens/public/Participation';
 import MaraudeCreationForm from "../screens/connected/Maraudes/MaraudeCreationForm";
+import forgetPassword from '../screens/public/LoginForm/forgetPassword/forgetPassword';
 
 const AppStack = createStackNavigator(
   {
@@ -33,6 +34,7 @@ const AppStack = createStackNavigator(
 const AuthStack = createStackNavigator(
   {
     Login: { screen: LoginForm },
+    forgetPassword: {screen: forgetPassword },
     Signup: { screen: SignupForm },
     Discover: { screen: Discover },
     Participation: { screen: Participation },

@@ -76,7 +76,6 @@ class MapMarker extends React.Component {
     </MapView.Marker>
     );
   };
-
   render() {
     const { region } = this.state;
     const allCoords = maraudesToMarkers(this.props.maraude.maraudes);
@@ -84,6 +83,7 @@ class MapMarker extends React.Component {
     return (
       <View style={Style.container}>
         <MapView
+          showsUserLocation={true}  
           style={Style.map}
           loadingIndicatorColor={"#ffbbbb"}
           loadingBackgroundColor={"#ffbbbb"}

@@ -6,6 +6,6 @@ npm-debug.*
 *.key
 *.mobileprovision
 yarn-error.log
-yarn.lock
-apiUrl.js
 .history/*
+apiUrl.js
+yarn.lock

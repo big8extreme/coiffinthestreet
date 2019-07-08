@@ -1,5 +1,9 @@
 const models = require('../models');
 const Participant = models.Participant;
+const Maraude = models.Maraude;
+const User = models.User;
+const mailer = require('../mailer/mailer');
+
 
 module.exports = {
     index: function (req, res, next) {
@@ -23,8 +27,39 @@ module.exports = {
             city: req.body.city,
             age: req.body.age
         })
-            .then((participant) => { res.json({ participant }); })
-            .catch((error) => res.status(500).json({ error }));
+            .then((participant) => {
+                Maraude.findByPk(req.body.maraudeId)
+                    .then((maraude) => {
+                        User.findByPk(maraude.userId)
+                            .then((user) => {
+                                const recipient = {
+                                    user: user.email,
+                                }
+                                const userDatas = {
+                                    firstName: participant.firstName,
+                                    lastName: participant.lastName,
+                                    job: req.body.job
+
+                                }
+                                //send email
+                                mailer(userDatas, recipient.user, 'participateMaraude')
+                                res.json({ participant });
+
+                            })
+                            .catch((error) => {
+                                res.status(500).json({ error })
+                            });
+
+                    })
+                    .catch((err) => {
+                        res.status(500).json({ err })
+                    });
+
+            })
+            .catch((e) => {
+                res.status(500).json({ e})
+            });
+
     },
     update: function (req, res, next) {
         Participant.findByPk(req.params.id)

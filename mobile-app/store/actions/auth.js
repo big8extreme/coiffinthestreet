@@ -1,6 +1,7 @@
 import axios from 'axios';
-import { LOGIN, LOGOUT, LOG_IN_ERROR } from '../types/auth'
+import { LOGIN, LOGOUT, LOG_IN_ERROR, LOG_OUT_ERROR } from '../types/auth'
 import { baseUrlApi } from '../../apiUrl'
+import { bindActionCreators } from 'redux'
 
 export function login(email, password) {
   return async dispatch => {
