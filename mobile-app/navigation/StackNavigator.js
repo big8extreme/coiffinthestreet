@@ -15,7 +15,7 @@ import Contact from '../screens/connected/Profile/Contact';
 import MapMaraudes from '../screens/connected/MapMaraudes';
 import ListMaraudes from '../screens/connected/ListMaraudes';
 import Participation from '../screens/public/Participation';
-
+import forgetPassword from '../screens/public/LoginForm/forgetPassword/forgetPassword';
 
 const AppStack = createStackNavigator(
   {
@@ -34,6 +34,7 @@ const AppStack = createStackNavigator(
 const AuthStack = createStackNavigator(
   {
     Login: { screen: LoginForm },
+    forgetPassword: {screen: forgetPassword },
     Signup: { screen: SignupForm },
     Discover: { screen: Discover },
     Participation: { screen: Participation },
@@ -59,7 +60,7 @@ export default createAppContainer(
       Tab: BottomTabNav,
       App: AppStack,
       Auth: AuthStack,
-      DrawerMenu: DrawerMenu,
+      DrawerMenu: DrawerMenu
     },
     {
       initialRouteName: "Auth"

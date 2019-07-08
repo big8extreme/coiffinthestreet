@@ -1,6 +1,7 @@
 import axios from 'axios';
-import { LOGIN, LOGOUT, LOG_IN_ERROR } from '../types/auth'
+import { LOGIN, LOGOUT, LOG_IN_ERROR, LOG_OUT_ERROR } from '../types/auth'
 import { baseUrlApi } from '../../apiUrl'
+import { bindActionCreators } from 'redux'
 
 export function login(email, password) {
   return async dispatch => {
@@ -32,6 +33,7 @@ export function logout() {
     payload: null
   }
 };
+<<<<<<< HEAD
 
 export function signup(user) {
 
@@ -73,3 +75,5 @@ export function signup(user) {
   };
 
 };
+=======
+>>>>>>> 79afdb31599ea13585d18cb076a43a9b2065088f

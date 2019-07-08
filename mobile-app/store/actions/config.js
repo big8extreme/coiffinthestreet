@@ -8,7 +8,7 @@ export const fetchConfigs = () => {
             dispatch({ type: FETCH_CONFIGS, payload: response.data.configs})
         }
         function onError(error) {
-            //TODO Manage Error
+            // TODO MANAGE ERROR
         }
         try {
             const response = await Axios.get(`${baseUrlApi}/configs`)
