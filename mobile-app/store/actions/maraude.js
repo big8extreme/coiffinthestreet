@@ -29,6 +29,27 @@ export function fetchMaraudes(params) {
     }
 }
 
+export function fetchMaraudesByCity(city) {
+    return async function (dispatch, getState) {
+        function onSuccess(response) {
+            dispatch({ type: FETCH_MARAUDES, payload: response.data.maraudes })
+        }
+        function onError(error) {
+            dispatch({ type: ERROR_ON_MARAUDES, payload: error })
+        }
+        try {
+            const response = await axios.get(`${baseUrlApi}/maraudes`, {
+                params: { city },
+                headers: { Authorization: `bearer ${getState().auth.user.token}` },
+            })
+            onSuccess(response)
+        }
+        catch (err) {
+            onError(err)
+        }
+    }
+}
+
 export function showMaraude(maraudeId) {
     return async function (dispatch, getState) {
         function onSuccess(response) {

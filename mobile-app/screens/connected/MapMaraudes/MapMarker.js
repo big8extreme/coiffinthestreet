@@ -31,11 +31,11 @@ function maraudesToMarkers(maraudeArray) {
     let marker = {
       geometry: {
         coordinates: [parseFloat(maraude.longitude), parseFloat(maraude.latitude)]
-      }, 
-      properties : {
+      },
+      properties: {
         id: maraude.id,
         title: maraude.title,
-      }  
+      }
     }
     return marker
   })
@@ -55,25 +55,25 @@ class MapMarker extends React.Component {
     const { navigate } = this.props.navigation;
     if (marker.properties.cluster) {
       return (
-        <ClusterMarker longitude={ marker.geometry.coordinates[0]} latitude={marker.geometry.coordinates[1]} count={marker.properties.point_count} key={index} markers={marker.properties.data} />
+        <ClusterMarker longitude={marker.geometry.coordinates[0]} latitude={marker.geometry.coordinates[1]} count={marker.properties.point_count} key={index} markers={marker.properties.data} />
       );
     }
     const maraude = this.props.maraude.maraudes.filter((maraude) => {
       return maraude.id === marker.properties.id;
     })[0];
     return (
-      <MapView.Marker 
+      <MapView.Marker
         key={key}
         coordinate={{
           latitude: marker.geometry.coordinates[1],
           longitude: marker.geometry.coordinates[0]
         }}
         image={require('../../../assets/pin.png')}
-        >
-      <MapView.Callout tooltip style={{ width: 200 }}>
-        <MapToolTip navigation={{navigate}} maraude={maraude} />
-      </MapView.Callout>
-    </MapView.Marker>
+      >
+        <MapView.Callout tooltip style={{ width: 200 }}>
+          <MapToolTip navigation={{ navigate }} maraude={maraude} />
+        </MapView.Callout>
+      </MapView.Marker>
     );
   };
   render() {
@@ -83,7 +83,7 @@ class MapMarker extends React.Component {
     return (
       <View style={Style.container}>
         <MapView
-          showsUserLocation={true}  
+          showsUserLocation={true}
           style={Style.map}
           loadingIndicatorColor={"#ffbbbb"}
           loadingBackgroundColor={"#ffbbbb"}

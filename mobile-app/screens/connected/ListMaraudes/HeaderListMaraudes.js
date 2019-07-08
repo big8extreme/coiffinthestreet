@@ -1,14 +1,7 @@
 import React, { Component } from "react";
-import { View, StatusBar, StyleSheet, ScrollView } from "react-native";
-import { Text, Header, Item, Input, Button, Form } from "native-base";
 import { SearchBar } from "react-native-elements";
-import Icon from "react-native-vector-icons/Ionicons";
-import { fetchMaraudes } from "../../../store/actions/maraude";
+import { fetchMaraudesByCity } from "../../../store/actions/maraude";
 import { connect } from "react-redux";
-import maraude from "../../../store/reducers/maraude";
-import axios from "axios";
-import CardMaraude from "./CardMaraude";
-import { baseUrlApi } from '../../../apiUrl';
 
 class HeaderListMaraudes extends Component {
   static navigationOptions = {
@@ -18,7 +11,7 @@ class HeaderListMaraudes extends Component {
     super(props);
     this.state = {
       maraudes: [],
-      search: ""
+      search: "Marseille"
     };
   }
 
@@ -31,28 +24,23 @@ class HeaderListMaraudes extends Component {
   };
 
   submitSearch = () => {
-    axios.get(`${baseUrlApi}/maraudes`, { params: { city : 'Nice' }})
-     .then(function (response){ 
-      console.log(JSON.stringify({ maraudes: response.data.maraudes }));
-     })    
-     .catch(function (error) { 
-       console.log(JSON.stringify({ error }));
-     })
-   };
+    this.props.fetchMaraudesByCity(this.state.search)
+  };
 
   render() {
+    console.log("MARAUDES", this.props.maraude)
     return (
       <React.Fragment>
-        <SearchBar 
-        ref="searchBar"
+        <SearchBar
+          ref="searchBar"
           onChangeText={this.updateSearch}
           value={this.state.search}
           onSubmitEditing={this.submitSearch}
           placeholder="Entrez votre ville"
-          rightIconContainerStyle={{paddingRight: 15}}
-          containerStyle={{backgroundColor: "#FBFBFB", borderBottomWidth: 0, borderTopWidth: 0}}
-          inputContainerStyle={{backgroundColor: "#FBFBFB"}}
-          inputStyle={{borderBottomWidth: 0}}
+          rightIconContainerStyle={{ paddingRight: 15 }}
+          containerStyle={{ backgroundColor: "#FBFBFB", borderBottomWidth: 0, borderTopWidth: 0 }}
+          inputContainerStyle={{ backgroundColor: "#FBFBFB" }}
+          inputStyle={{ borderBottomWidth: 0 }}
         />
       </React.Fragment>
     );
@@ -64,7 +52,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  fetchMaraudes
+  fetchMaraudesByCity
 };
 
 // @ts-ignore

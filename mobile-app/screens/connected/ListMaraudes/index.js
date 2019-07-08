@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View } from "native-base";
-import { fetchMaraudes } from "../../../store/actions/maraude";
+import { Button } from "react-native";
 import { connect } from "react-redux";
 import HeaderListMaraudes from "./HeaderListMaraudes";
 import CardsMaraudes from "./CardsMaraudes";
@@ -8,13 +8,13 @@ import CardsMaraudes from "./CardsMaraudes";
 
 export class ListMaraudes extends Component {
   render() {
-    const { navigate } = this.props.navigation;
-    const { auth } = this.props;
+    console.log("LALALALA", this.props)
     return (
       <React.Fragment>
         <HeaderListMaraudes />
+        <Button onPress={() => this.forceUpdate()} title="test" />
         <View>
-          <CardsMaraudes navigation={this.props.navigation} />
+          <CardsMaraudes maraudes={this.props.maraude.maraudes} navigation={this.props.navigation} />
         </View>
       </React.Fragment>
     );
@@ -26,9 +26,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  fetchMaraudes
+
 }
 
+// @ts-ignore
 export default connect(
   mapStateToProps,
   mapDispatchToProps
