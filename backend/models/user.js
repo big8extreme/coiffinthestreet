@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
         beforeCreate: (user, options) => {
           return bcrypt.hash(user.password, 10)
             .then((hash) => user.password = hash)
-            .catch((err) => console.log(err));
+            .catch((error) =>  res.status(500).json({error}));
         }
       }
     });
