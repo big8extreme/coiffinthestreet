@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, ScrollView } from 'react-native';
-import {fetchParticipants, showParticipant, createParticipant} from '../../../store/actions/participant'
+import { showParticipant, createParticipant } from '../../../store/actions/participant'
 import ParticipForm from './ParticipForm';
 import { connect } from 'react-redux';
 
@@ -8,18 +8,18 @@ export class Participant extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {            
-            participants :[]            
+        this.state = {
+            participants: [],
+            selectedMaraudeId: null
         };
     }
     componentDidMount() {
-        this.props.fetchParticipants();
+        this.setState({ selectedMaraudeId: this.props.navigation.state.params.maraudeId })
     }
     render() {
         return (
             <ScrollView style={styles.main_container}>
-                <ParticipForm 
-                />
+                <ParticipForm navigation={this.props.navigation} maraudeId={this.state.selectedMaraudeId} />
             </ScrollView>
         )
     }
@@ -32,12 +32,11 @@ const styles = StyleSheet.create({
     },
 })
 
-const mapStateToProps =state => ({
+const mapStateToProps = state => ({
     ...state
 });
 
 const mapDispatchToProps = {
-    fetchParticipants,
     showParticipant,
     createParticipant
 };

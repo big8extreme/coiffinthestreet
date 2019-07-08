@@ -14,7 +14,7 @@ export class ListMaraudes extends Component {
       <React.Fragment>
         <HeaderListMaraudes />
         <View>
-        <CardsMaraudes />
+          <CardsMaraudes navigation={this.props.navigation} />
         </View>
       </React.Fragment>
     );
@@ -26,7 +26,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-fetchMaraudes
+  fetchMaraudes
 }
 
 export default connect(

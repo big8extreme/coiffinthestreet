@@ -19,8 +19,8 @@ class CardsMaraudes extends Component {
       <ScrollView style={{ backgroundColor: "#FBFBFB" }}>
         {this.props.maraude.maraudes.map((maraude, index) => {
           return (
-            <View key={index}  style={{ backgroundColor: '#FBFBFB' }}>
-            <CardMaraude maraude={maraude} />
+            <View key={index} style={{ backgroundColor: '#FBFBFB' }}>
+              <CardMaraude maraude={maraude} navigation={this.props.navigation} />
             </View>
           );
         })}

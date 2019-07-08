@@ -19,45 +19,20 @@ module.exports = {
     create: function (req, res, next) {
         Participant.create({
             maraudeId: req.body.maraudeId,
-            isValidate: req.body.isValidate,
             email: req.body.email,
             job: req.body.job,
             lastName: req.body.lastName,
             firstName: req.body.firstName,
             city: req.body.city,
-            age: req.body.age
+            age: req.body.age,
+            isValidate: false
         })
             .then((participant) => {
-                Maraude.findByPk(req.body.maraudeId)
-                    .then((maraude) => {
-                        User.findByPk(maraude.userId)
-                            .then((user) => {
-                                const recipient = {
-                                    user: user.email,
-                                }
-                                const userDatas = {
-                                    firstName: participant.firstName,
-                                    lastName: participant.lastName,
-                                    job: req.body.job
-
-                                }
-                                //send email
-                                mailer(userDatas, recipient.user, 'participateMaraude')
-                                res.json({ participant });
-
-                            })
-                            .catch((error) => {
-                                res.status(500).json({ error })
-                            });
-
-                    })
-                    .catch((err) => {
-                        res.status(500).json({ err })
-                    });
-
+                res.json({ participant });
             })
-            .catch((e) => {
-                res.status(500).json({ e})
+            .catch((error) => {
+                console.log(error);
+                res.status(500).json({ error });
             });
 
     },

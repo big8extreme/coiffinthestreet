@@ -22,9 +22,7 @@ import MaraudeForm from '../screens/connected/Maraudes/MaraudeCreationForm'
 const AppStack = createStackNavigator(
   {
     Profile: { screen: Profile },
-    Contact: { screen: Contact },
-    Participant: { screen: Participant},
-    Contact: { screen: Contact },  
+    Contact: { screen: Contact }
   },
   {
     initialRouteName: "Profile",
@@ -38,7 +36,7 @@ const AuthStack = createStackNavigator(
     forgetPassword: { screen: forgetPassword },
     Signup: { screen: SignupForm },
     Discover: { screen: Discover },
-    Participant: { screen: Participant},
+    Participant: { screen: Participant },
     drawerMenu: { screen: DrawerMenu },
     BottomTabNav: { screen: BottomTabNav },
     Charte: { screen: Charte },

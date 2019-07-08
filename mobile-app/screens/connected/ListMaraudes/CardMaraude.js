@@ -5,7 +5,7 @@ import moment from "moment";
 import { Svg } from "expo";
 import ValidateButton from '../../../components/ValidateButton';
 
-export default function CardMaraude({ maraude }) {
+export default function CardMaraude({ maraude = {}, navigation = {} }) {
   return (
     <View style={styles.shadow}>
       <Icon
@@ -30,26 +30,27 @@ export default function CardMaraude({ maraude }) {
         {maraude.title}
       </Text>
       <Text style={{ paddingTop: 20, paddingBottom: 20, paddingLeft: 30 }}>
-          <Text style={{ color: "#929292", textTransform: 'uppercase', fontSize: 14 }}>Le :</Text>  <Text style={{ fontWeight: 'bold', fontSize: 14 }}>{moment(maraude.startAt).format("DD/MM/YYYY")}</Text>  <Text style={{ color: "#929292", textTransform: 'uppercase', fontSize: 14 }}>à</Text>  <Text style={{ fontWeight: 'bold', fontSize: 14 }}>{moment(maraude.startAt).format("HH[h]mm")}</Text>
-          </Text>
-      <View>
-      <Text
-        style={{
-          fontSize: 14,
-          color: "#929292",
-          fontStyle: "italic",
-          paddingLeft: 30,
-          paddingRight: 30,
-          paddingBottom: 60
-        }}
-      >
-        {maraude.description}
+        <Text style={{ color: "#929292", textTransform: 'uppercase', fontSize: 14 }}>Le :</Text>  <Text style={{ fontWeight: 'bold', fontSize: 14 }}>{moment(maraude.startAt).format("DD/MM/YYYY")}</Text>  <Text style={{ color: "#929292", textTransform: 'uppercase', fontSize: 14 }}>à</Text>  <Text style={{ fontWeight: 'bold', fontSize: 14 }}>{moment(maraude.startAt).format("HH[h]mm")}</Text>
       </Text>
+      <View>
+        <Text
+          style={{
+            fontSize: 14,
+            color: "#929292",
+            fontStyle: "italic",
+            paddingLeft: 30,
+            paddingRight: 30,
+            paddingBottom: 60
+          }}
+        >
+          {maraude.description}
+        </Text>
       </View>
       <View>
-        <ValidateButton 
-        label="Je souhaite participer"
-      />
+        <ValidateButton
+          label="Je souhaite participer"
+          onPress={() => navigation.navigate('Participant', { maraudeId: maraude.id })}
+        />
       </View>
     </View>
   )
