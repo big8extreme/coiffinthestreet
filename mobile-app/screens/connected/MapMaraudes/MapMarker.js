@@ -55,7 +55,7 @@ class MapMarker extends React.Component {
     const { navigate } = this.props.navigation;
     if (marker.properties.cluster) {
       return (
-        <ClusterMarker longitude={ marker.geometry.coordinates[0]} latitude={marker.geometry.coordinates[1]} count={marker.properties.point_count} key={index} markers={marker.properties.data} />
+        <ClusterMarker longitude={ marker.geometry.coordinates[0]} latitude={marker.geometry.coordinates[1]} count={marker.properties.point_count} key={index} markers={marker.properties.data}/>
       );
     }
     const maraude = this.props.maraude.maraudes.filter((maraude) => {
@@ -68,8 +68,7 @@ class MapMarker extends React.Component {
           latitude: marker.geometry.coordinates[1],
           longitude: marker.geometry.coordinates[0]
         }}
-        image={require('../../../assets/pin.png')}
-        >
+        image={require('../../../assets/pin.png')}>
       <MapView.Callout tooltip style={{ width: 200 }}>
         <MapToolTip navigation={{navigate}} maraude={maraude} />
       </MapView.Callout>
