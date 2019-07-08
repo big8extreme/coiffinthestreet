@@ -25,7 +25,7 @@ const AppStack = createStackNavigator(
     MaraudeForm: { screen: MaraudeCreationForm }
   },
   {
-    initialRouteName: "MaraudeCreationForm",
+    initialRouteName: "Profile",
     navigationOptions: { header: null },
   },
 );
@@ -42,9 +42,10 @@ const AuthStack = createStackNavigator(
     Whoweare: { screen: Whoweare },
     Map: { screen: MapMaraudes },
     List: { screen: ListMaraudes },
+    MaraudeForm: { screen: MaraudeCreationForm }
   },
   {
-    initialRouteName: "BottomTabNav",
+    initialRouteName: "MaraudeCreationForm",
     headerMode: 'none',
     navigationOptions: {
       headerVisible: false,
