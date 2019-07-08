@@ -8,7 +8,7 @@ import store from '../store'
 import Charte from '../screens/public/Charte'
 import Contact from '../screens/connected/Profile/Contact'
 import TermsOfService from '../screens/connected/TermsOfService/index'
-import LegalMentions from '../screens/connected/LegalMention';
+import LegalMention from '../screens/connected/LegalMention';
 import Whoweare from '../screens/public/Whoweare/whoweare';
 import { logout } from '../store/actions/auth'
 
@@ -53,16 +53,18 @@ export default createDrawerNavigator({
       return {
         title: "Se connecter",
         drawerLabel: () => {
-          return store.getState().auth.user && store.getState().auth.user.isConnected ? 
-          <View style={styles.view}>
-               {/* TODO need test improovment <TouchableOpacity onPress={() => navigation.navigate('Profile')}  style={styles.flex}>*/}
-               <TouchableOpacity onPress={() => logout(navigation)} style={styles.flex}> 
+          return store.getState().auth.user && store.getState().auth.user.isConnected ?
+            <View style={styles.view}>
+              <TouchableOpacity onPress={() => {
+                store.dispatch(logout())
+                navigation.dispatch(DrawerActions.closeDrawer())
+              }} style={styles.flex}>
                 <Icon name="ios-cut" size={25} style={styles.icon} />
                 <Text style={styles.text}>Je suis coiffeur(se)</Text>
                 <Text style={{ color: 'white', fontStyle: 'italic' }}> se déconnecter</Text>
               </TouchableOpacity>
             </View>
-              :
+            :
             <View style={styles.view}>
               <TouchableOpacity onPress={() => navigation.navigate('Login')} style={styles.flex}>
                 <Icon name="ios-cut" size={25} style={styles.icon} />
@@ -78,12 +80,12 @@ export default createDrawerNavigator({
     screen: BottomTabNavigator,
     navigationOptions: ({ navigation }) => {
       return {
-        title: "Associations",
+        title: "Videos",
         drawerLabel: () => {
           return <View style={styles.view}>
             <TouchableOpacity style={styles.flex}>
               <Icon name="ios-people" size={25} style={styles.icon} />
-              <Text style={styles.text}>Associations</Text>
+              <Text style={styles.text}>Videos</Text>
             </TouchableOpacity>
           </View>
         }
@@ -139,13 +141,13 @@ export default createDrawerNavigator({
     }
   },
   Legals: {
-    screen: LegalMentions,
+    screen: LegalMention,
     navigationOptions: ({ navigation }) => {
       return {
         title: "Mentions légales",
         drawerLabel: () => {
           return <View style={styles.view}>
-            <TouchableOpacity onPress={() => navigation.navigate('LegalMentions')} style={styles.flex}>
+            <TouchableOpacity onPress={() => navigation.navigate('LegalMention')} style={styles.flex}>
               <Icon name="ios-book" size={25} style={styles.icon} />
               <Text style={styles.text}>Mentions légales</Text>
             </TouchableOpacity>
