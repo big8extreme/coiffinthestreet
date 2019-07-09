@@ -49,31 +49,31 @@ class LoginForm extends Component {
           <View style={styles.flexCenter}>
             <Text style={styles.whiteTextLabel}>Email :</Text>
             <View style={styles.yellowBorder}>
-              <TextInput 
-              onChangeText={(value) => this.setState({ email: value })} 
-              placeholder='Entrez votre email'
-              placeholderTextColor={'#F1F0C7'}
-              PlaceholderText={20}
-              style={styles.textInput}/>
+              <TextInput
+                onChangeText={(value) => this.setState({ email: value })}
+                placeholder='Entrez votre email'
+                placeholderTextColor={'#F1F0C7'}
+                PlaceholderText={20}
+                style={styles.textInput} />
             </View>
-            
+
             <Text style={styles.whiteTextLabel}>Mot de passe :</Text>
             <View style={styles.yellowBorder}>
-              <TextInput 
-              onChangeText={(value) => this.setState({ password: value })} 
-              placeholder='******' 
-              placeholderTextColor={'#F1F0C7'}
-              secureTextEntry={true}
-              style={styles.textInput}/>
+              <TextInput
+                onChangeText={(value) => this.setState({ password: value })}
+                placeholder='******'
+                placeholderTextColor={'#F1F0C7'}
+                secureTextEntry={true}
+                style={styles.textInput} />
             </View>
             <TouchableOpacity onPress={() => navigate("forgetPassword")}>
               <Text style={styles.whiteTextLabel} >Mot de passe oublié ?</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.flexCenterImg}>
-          <ConnectButton
-          label="Se connecter"
-          onPress={() => this.loginUser()}/>
+            <ConnectButton
+              label="Se connecter"
+              onPress={() => this.loginUser()} />
           </View>
         </View>
       </Root>
@@ -87,16 +87,16 @@ const styles = StyleSheet.create({
   },
 
   flexCenterImg: {
-   alignSelf:'center',
+    alignSelf: 'center',
     marginBottom: 30,
-    marginTop:30
+    marginTop: 30
   },
 
   flexCenter: {
-    alignSelf:'center',
+    alignSelf: 'center',
     alignItems: 'stretch',
     marginTop: 20,
-    width:300
+    width: 300
   },
 
   whiteTextLabel: {
@@ -111,14 +111,14 @@ const styles = StyleSheet.create({
     borderBottomColor: '#FDC500',
     borderBottomWidth: 3,
     marginBottom: 30,
-    paddingBottom:20,
+    paddingBottom: 20,
   },
-  textInput:{
-    color:'#F1F0C7',
+  textInput: {
+    color: '#F1F0C7',
   },
-  button:{
-    alignSelf:'center',
-    color:'red'
+  button: {
+    alignSelf: 'center',
+    color: 'red'
   }
 });
 

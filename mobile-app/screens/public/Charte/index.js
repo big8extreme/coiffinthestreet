@@ -16,10 +16,10 @@ export class Charte extends Component {
 
     render() {
         return (
-                <View style={styles.backgroundApp}>
-                    <Text style={styles.Titletext}>Charte d'utilisateur</Text>
-                    <Text style={styles.textCharte}>{this.props.config.charte}</Text>
-                </View>
+            <View style={styles.backgroundApp}>
+                <Text style={styles.Titletext}>Charte d'utilisateur</Text>
+                <Text style={styles.textCharte}>{this.props.config.charte}</Text>
+            </View>
         );
     }
 }

@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     startAt: DataTypes.DATE,
     endAt: DataTypes.DATE,
     description: DataTypes.TEXT,
+    address: DataTypes.STRING,
     city: DataTypes.STRING,
     isPublished: DataTypes.BOOLEAN,
     longitude: DataTypes.DECIMAL(11, 2),
