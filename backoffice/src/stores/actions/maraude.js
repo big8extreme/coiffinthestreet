@@ -43,8 +43,7 @@ export const createMaraude = (maraudeData) => {
 };
 
 
-export const updateMaraude = (maraudeId) => {
-  console.log('DDDDDDDDDDDD');
+export const updateMaraude = (maraudeFields, maraudeId) => {
   return async function (dispatch, getState) {
 
     function onSuccess(response) {
@@ -55,7 +54,7 @@ export const updateMaraude = (maraudeId) => {
       console.log('ERROR WHILE update MARAUDES', err);
     }
     try {
-      const response = await axios.put(`/maraudes/${maraudeId}`, { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
+      const response = await axios.put(`/maraudes/${maraudeId}`, maraudeFields, { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
       onSuccess(response);
     }
     catch (err) {
@@ -77,6 +76,26 @@ export const deleteMaraude = (maraudeId) => {
     }
     try {
       const response = await axios.delete(`/maraudes/${maraudeId}`, { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
+      onSuccess(response);
+    }
+    catch (err) {
+      onError(err);
+    }
+  };
+};
+
+export const deletePicture = (pictureId) => {
+  return async function (dispatch, getState) {
+
+    function onSuccess(response) {
+      console.log('success WHILE delete PICTURE', response);
+      dispatch(fetchMaraudes());
+    }
+    function onError(err) {
+      console.log('ERROR WHILE delete PICTURE', err);
+    }
+    try {
+      const response = await axios.delete(`/pictures/${pictureId}`, { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
       onSuccess(response);
     }
     catch (err) {

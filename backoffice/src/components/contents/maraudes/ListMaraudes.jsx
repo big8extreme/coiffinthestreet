@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { Dialog } from 'primereact/dialog';
-import { fetchMaraudes, createMaraude, updateMaraude, deleteMaraude } from '../../../stores/actions/maraude';
-import { connect } from 'react-redux';
+import { fetchMaraudes, createMaraude, updateMaraude, deleteMaraude, deletePicture } from '../../../stores/actions/maraude';
+import { clearFieldValues } from '../../../utils/document';
 
 const defaultMaraude = {
 
@@ -16,7 +17,7 @@ class ListMaraudes extends Component {
         super(props);
         this.state = {
             maraude: defaultMaraude,
-            onCreate: true
+            onCreate: true,
         };
         this.save = this.save.bind(this);
         this.delete = this.delete.bind(this);
@@ -28,8 +29,23 @@ class ListMaraudes extends Component {
         this.props.fetchMaraudes();
     }
 
+    componentDidUpdate() {
+        const currentMaraude = this.props.maraudes.filter(maraude => maraude.id === this.state.maraude.id)[0];
+        if (currentMaraude) {
+            const currentPhotos = currentMaraude.photos;
+            const prevPhotos = this.state.maraude.photos;
+            if ((currentPhotos && prevPhotos) && (prevPhotos.length !== currentPhotos.length)) {
+                this.setState({ ...this.state, maraude: { ...currentMaraude } });
+            }
+        }
+    }
+
     save() {
-        this.props.createMaraude(this.state.maraude);
+        if (this.state.onCreate) {
+            this.props.createMaraude(this.state.maraude);
+        } else {
+            this.props.updateMaraude(this.state.maraude, this.state.maraude.id);
+        }
         this.resetState();
     }
 
@@ -76,6 +92,8 @@ class ListMaraudes extends Component {
     }
 
     render() {
+        console.log('RENDER', this.state);
+        const labelButton = this.state.onCreate ? 'Ajouter' : 'Modifier';
         let header = <div className="p-clearfix" style={{ lineHeight: '1.87em' }}>Gestion des maraudes </div>;
 
         let footer = <div className="p-clearfix" style={{ width: '100%' }}>
@@ -83,10 +101,12 @@ class ListMaraudes extends Component {
         </div>;
 
         let dialogFooter = <div className="ui-dialog-buttonpane p-clearfix">
-            <Button label="Supprimer" icon="pi pi-times" onClick={this.delete} />
-            <Button label="Enregistrer" icon="pi pi-check" onClick={this.save} />
+            {
+                !this.state.onCreate &&
+                <Button label="Supprimer" icon="pi pi-times" onClick={this.delete} />
+            }
+            <Button label={labelButton} icon="pi pi-check" onClick={this.save} />
         </div>;
-        console.log('STATETETTETE', this.state);
         return (
             <div>
                 <div className="content-section introduction">
@@ -106,10 +126,13 @@ class ListMaraudes extends Component {
                         <Column field="city" header="Ville" sortable={true} />
                         <Column field="longitude" header="Longitude" sortable={true} />
                         <Column field="latitude" header="Latitude" sortable={true} />
-                        <Column field="isPublished" header="Publiée" sortable={true} />
                     </DataTable>
 
-                    <Dialog visible={this.state.displayDialog} width="300px" header="Modifier / Enregistrer / Supprimer la maraude" modal={true} footer={dialogFooter} onHide={() => this.setState({ ...this.state, displayDialog: false, onCreate: true, maraude: {} })}>
+                    <Dialog visible={this.state.displayDialog} header="Modifier / Enregistrer / Supprimer la maraude" footer={dialogFooter} onHide={() => {
+
+                        this.setState({ ...this.state, displayDialog: false, onCreate: true, maraude: {} });
+                        clearFieldValues(['title', 'description', 'city', 'longitude', 'latitude']);
+                    }}>
                         {
                             this.state.maraude &&
 
@@ -121,7 +144,7 @@ class ListMaraudes extends Component {
 
                                 <div className="p-col-4" style={{ padding: '.75em' }}><label htmlFor="Description">Description</label></div>
                                 <div className="p-col-8" style={{ padding: '.5em' }}>
-                                    <InputText id="longitude" onChange={(e) => { this.updateProperty('description', e.target.value); }} value={this.state.maraude.description} />
+                                    <InputText id="description" onChange={(e) => { this.updateProperty('description', e.target.value); }} value={this.state.maraude.description} />
                                 </div>
 
                                 <div className="p-col-4" style={{ padding: '.75em' }}><label htmlFor="City">Ville</label></div>
@@ -131,18 +154,36 @@ class ListMaraudes extends Component {
 
                                 <div className="p-col-4" style={{ padding: '.75em' }}><label htmlFor="Longitude">Longitude</label></div>
                                 <div className="p-col-8" style={{ padding: '.5em' }}>
-                                    <InputText id="id" onChange={(e) => { this.updateProperty('longitude', e.target.value); }} value={this.state.maraude.longitude} />
+                                    <InputText id="longitude" onChange={(e) => { this.updateProperty('longitude', e.target.value); }} value={this.state.maraude.longitude} />
                                 </div>
 
                                 <div className="p-col-4" style={{ padding: '.75em' }}><label htmlFor="Latitude">Latitude</label></div>
                                 <div className="p-col-8" style={{ padding: '.5em' }}>
-                                    <InputText id="id" onChange={(e) => { this.updateProperty('latitude', e.target.value); }} value={this.state.maraude.latitude} />
+                                    <InputText id="latitude" onChange={(e) => { this.updateProperty('latitude', e.target.value); }} value={this.state.maraude.latitude} />
                                 </div>
 
-                                <div className="p-col-4" style={{ padding: '.75em' }}><label htmlFor="IsPublished">Publiée</label></div>
-                                <div className="p-col-8" style={{ padding: '.5em' }}>
-                                    <InputText id="id" onChange={(e) => { this.updateProperty('isPublished', e.target.value); }} value={this.state.maraude.isPublished} />
-                                </div>
+                                {
+                                    this.state.maraude.photos &&
+                                    <div className="maraude-photos">
+                                        {
+                                            this.state.maraude.photos.map((photo, idx) => {
+                                                return (
+                                                    <div className="maraude-photo" key={`photo-${idx}`}>
+                                                        <div
+                                                            onClick={() => {
+                                                                this.props.deletePicture(photo.id);
+                                                            }}
+                                                            className="destroyer"
+                                                            style={{ position: 'relative', width: 10, height: 10, backgroundColor: 'red', cursor: 'pointer', top: 10, right: 10 }}>
+
+                                                        </div>
+                                                        <img alt={`${this.state.maraude.title}-${idx}`} src={photo.url} width="100" />
+                                                    </div>
+                                                );
+                                            })
+                                        }
+                                    </div>
+                                }
                             </div>
 
                         }
@@ -161,7 +202,8 @@ const mapDispatchToProps = {
     fetchMaraudes,
     createMaraude,
     updateMaraude,
-    deleteMaraude
+    deleteMaraude,
+    deletePicture
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListMaraudes);
