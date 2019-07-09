@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { login } from '../../../store/actions/auth'
 import ConnectButton from '../../../components/ConnectButton';
 
+
 class LoginForm extends Component {
   static navigationOptions = {
     title: 'Connexion',
@@ -38,7 +39,9 @@ class LoginForm extends Component {
       }, 10)
     }
     return (
+      
       <Root>
+        
         <ScrollView style={styles.backgroundApp}>
           <View style={styles.flexCenterImg}>
             <Image
@@ -74,7 +77,9 @@ class LoginForm extends Component {
               />
           </View>
         </ScrollView>
+       
       </Root>
+      
     )
   }
 }
@@ -106,7 +111,6 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     marginBottom: 20,
     fontFamily:'Tinos_bold'
-
   },
 
   yellowBorder: {
@@ -115,9 +119,6 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     paddingBottom: 20,
   },
-  // button: {
-  //   marginTop: 60,
-  // },
   textInput: {
     color: '#F1F0C7',
   },

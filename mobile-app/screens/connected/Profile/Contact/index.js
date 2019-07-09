@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import { StyleSheet, View, ScrollView, Image } from 'react-native';
 import MessageTextInput from './MessageTextInput';
 import PickerTextAndItemStyleExample from './Dropdown';
-import ValidateButton from '../../../../components/ValidateButton';
+import SendButton from '../../../../components/SendButton';
+
 
 export default class Contact extends Component {
   render() {
@@ -13,16 +14,14 @@ export default class Contact extends Component {
         <View style={styles.logo}>
           <Image source={require('../../../../assets/Logo_light.png')} />
         </View>
+
         <React.Fragment>
-          <PickerTextAndItemStyleExample />
+          <PickerTextAndItemStyleExample style={{ position: 'absolute', zIndex: 999 }} />
+
           <MessageTextInput />
-          <ValidateButton 
-          label="Envoyer"
-          style={{color:'yellow'}}
-          />
+          <SendButton />
         </React.Fragment>
       </ScrollView>
-
 
     );
   }
@@ -31,8 +30,7 @@ export default class Contact extends Component {
 const styles = StyleSheet.create({
   logo: {
     alignSelf: 'center',
-    marginTop:30,
-    marginBottom:30
-
+    marginTop: 30,
+    marginBottom: 30
   },
 })

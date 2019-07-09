@@ -5,7 +5,7 @@ import { withNavigation } from 'react-navigation';
 
 
 
-class ValidateButton extends React.Component {
+class SendButton extends React.Component {
   render() {
     const { onPress, label } = this.props;
     const { navigate } = this.props.navigation;
@@ -23,7 +23,7 @@ class ValidateButton extends React.Component {
             strokeWidth="6"
           />
         </Svg>
-        <Text style={style.btnStyle}>Je souhaite participer</Text>
+        <Text style={style.btnStyle}>Envoyer</Text>
       </TouchableOpacity>
     );
   }
@@ -33,7 +33,7 @@ const style = {
   btnStyle: {
       fontFamily:'Sedgwick',
       color:'white',
-      fontSize:20,
+      fontSize:30,
       position:'absolute',
       alignSelf:'center',
       marginTop:17,
@@ -42,4 +42,4 @@ const style = {
   }
 }
 
-export default withNavigation(ValidateButton);
+export default withNavigation(SendButton);

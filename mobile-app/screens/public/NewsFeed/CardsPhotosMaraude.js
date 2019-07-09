@@ -22,7 +22,7 @@ class CardsPhotosMaraude extends Component {
             horizontal
             pagingEnabled
             showsHorizontalScrollIndicator={false}>
-
+                    
               {
                 
                 maraude.photos.map((photo, index, title) => {
@@ -38,8 +38,7 @@ class CardsPhotosMaraude extends Component {
                     title={maraude.title}
                     description={maraude.description}  
                     city={maraude.city}  
-                    startAt={maraude.startAt}  
-                               
+                    startAt={maraude.startAt}                               
                     />
                     
                     </ScrollView>
