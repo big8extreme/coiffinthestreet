@@ -7,6 +7,7 @@ Maraude.create({
   title: 'Maraude no 1',
   startAt: new Date(),
   endAt: new Date(),
+  startDate: new Date(),
   description: faker.lorem.sentence(),
   city: 'Marseille',
   isPublished: true,
@@ -26,6 +27,7 @@ Maraude.create({
   title: 'Maraude no 2',
   startAt: new Date(),
   endAt: new Date(),
+  startDate: new Date(),
   description: faker.lorem.sentence(),
   city: 'Marseille',
   isPublished: true,
@@ -45,6 +47,7 @@ Maraude.create({
   title: 'Maraude no 3',
   startAt: new Date(),
   endAt: new Date(),
+  startDate: new Date(),
   description: faker.lorem.sentence(),
   city: 'Marseille',
   isPublished: true,
@@ -64,6 +67,7 @@ Maraude.create({
   title: 'Maraude no 4',
   startAt: new Date(),
   endAt: new Date(),
+  startDate: new Date(),
   description: faker.lorem.sentence(),
   city: 'Marseille',
   isPublished: true,
@@ -83,6 +87,7 @@ Maraude.create({
   title: 'Maraude no 5',
   startAt: new Date(),
   endAt: new Date(),
+  startDate: new Date(),
   description: faker.lorem.sentence(),
   city: 'Marseille',
   isPublished: true,
@@ -102,6 +107,7 @@ Maraude.create({
   title: 'Maraude no 6',
   startAt: new Date(),
   endAt: new Date(),
+  startDate: new Date(),
   description: faker.lorem.sentence(),
   city: 'Marseille',
   isPublished: true,
@@ -121,6 +127,7 @@ Maraude.create({
   title: 'Maraude no 7',
   startAt: new Date(),
   endAt: new Date(),
+  startDate: new Date(),
   description: faker.lorem.sentence(),
   city: 'Marseille',
   isPublished: true,
@@ -140,6 +147,7 @@ Maraude.create({
   title: 'Maraude no 8',
   startAt: new Date(),
   endAt: new Date(),
+  startDate: new Date(),
   description: faker.lorem.sentence(),
   city: 'Marseille',
   isPublished: true,
@@ -159,6 +167,7 @@ Maraude.create({
   title: 'Maraude no 9',
   startAt: new Date(),
   endAt: new Date(),
+  startDate: new Date(),
   description: faker.lorem.sentence(),
   city: 'Marseille',
   isPublished: true,
@@ -173,21 +182,40 @@ Maraude.create({
   .then((maraude) => { console.log(maraude); })
   .catch((error) => { console.log(error); });
 
-Maraude.create({
-  userId: 10,
-  title: 'Maraude no 10',
-  startAt: new Date(),
-  endAt: new Date(),
-  description: faker.lorem.sentence(),
-  city: 'Marseille',
-  isPublished: true,
-  longitude: '5.41259',
-  latitude: '43.337499',
-  photos: [
-    { url: faker.image.imageUrl() },
-    { url: faker.image.imageUrl() },
-    { url: faker.image.imageUrl() },
-  ]
-}, { include: ['photos'] })
-  .then((maraude) => { console.log(maraude); })
-  .catch((error) => { console.log(error); });
+  Maraude.create({
+    userId: 10,
+    title: 'Maraude no 10',
+    startAt: new Date(),
+    endAt: new Date(),
+    description: faker.lorem.sentence(),
+    city: 'Marseille',
+    isPublished: true,
+    longitude: '5.41259',
+    latitude: '43.337499',
+    photos: [
+      { url: faker.image.imageUrl() },
+      { url: faker.image.imageUrl() },
+      { url: faker.image.imageUrl() },
+    ]
+  }, { include: ['photos'] })
+    .then((maraude) => { console.log(maraude); })
+    .catch((error) => { console.log(error); });
+
+    Maraude.create({
+      userId: 11,
+      title: 'Maraude no 11',
+      startAt: new Date(),
+      endAt: new Date(),
+      description: faker.lorem.sentence(),
+      city: 'Nice',
+      isPublished: true,
+      longitude: '5.41259',
+      latitude: '43.337499',
+      photos: [
+        { url: faker.image.imageUrl() },
+        { url: faker.image.imageUrl() },
+        { url: faker.image.imageUrl() },
+      ]
+    }, { include: ['photos'] })
+      .then((maraude) => { console.log(maraude); })
+      .catch((error) => { console.log(error); });

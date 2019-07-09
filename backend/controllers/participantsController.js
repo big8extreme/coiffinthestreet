@@ -1,5 +1,9 @@
 const models = require('../models');
 const Participant = models.Participant;
+const Maraude = models.Maraude;
+const User = models.User;
+const mailer = require('../mailer/mailer');
+
 
 module.exports = {
     index: function (req, res, next) {
@@ -15,16 +19,22 @@ module.exports = {
     create: function (req, res, next) {
         Participant.create({
             maraudeId: req.body.maraudeId,
-            isValidate: req.body.isValidate,
             email: req.body.email,
             job: req.body.job,
             lastName: req.body.lastName,
             firstName: req.body.firstName,
             city: req.body.city,
-            age: req.body.age
+            age: req.body.age,
+            isValidate: false
         })
-            .then((participant) => { res.json({ participant }); })
-            .catch((error) => res.status(500).json({ error }));
+            .then((participant) => {
+                res.json({ participant });
+            })
+            .catch((error) => {
+                console.log(error);
+                res.status(500).json({ error });
+            });
+
     },
     update: function (req, res, next) {
         Participant.findByPk(req.params.id)

@@ -14,6 +14,7 @@ export default class Contact extends Component {
         <View style={styles.logo}>
           <Image source={require('../../../../assets/Logo_light.png')} />
         </View>
+<<<<<<< HEAD
 
         <React.Fragment>
           <PickerTextAndItemStyleExample style={{ position: 'absolute', zIndex: 999 }} />
@@ -21,6 +22,14 @@ export default class Contact extends Component {
           <MessageTextInput />
           <SendButton />
         </React.Fragment>
+=======
+          <PickerTextAndItemStyleExample />
+          <MessageTextInput />
+          <ValidateButton 
+          label="Envoyer"
+          style={{color:'yellow'}}
+          />
+>>>>>>> 70ddc7bea970fd9ab2bd8c33a7fef77ccadd24d2
       </ScrollView>
 
     );

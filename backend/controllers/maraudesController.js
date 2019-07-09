@@ -4,32 +4,34 @@ const Maraude = models.Maraude;
 
 module.exports = {
   index: function (req, res, next) {
-    const { city,  } = req.query;
- const query = {
-  include:['photos'],
-   where: {
-}}
+    const { city } = req.query;
+    const query = {
+      include: ['photos'],
+      where: {
+      }
+    };
 
-if(req.query && req.query.city){
-  query.where.city = req.query.city;
-}
-   Maraude.findAll(query)
-      .then((maraudes) => { 
+    if (city) {
+      query.where.city = city;
+    }
+    Maraude.findAll(query)
+      .then((maraudes) => {
         res.json({ maraudes });
-       })
+      })
       .catch((error) => {
-        res.status(500).json({ error })
+        console.log('EROROROROROR', error);
+        res.status(500).json({ error });
       });
   },
 
   show: function (req, res, next) {
-    Maraude.findByPk(req.params.id, {include:['photos']})
+    Maraude.findByPk(req.params.id, { include: ['photos'] })
       .then((maraude) => { res.json({ maraude }); })
       .catch((error) => res.status(500).json({ error }));
   },
 
   create: function (req, res, next) {
-    // no safe //
+    console.log('ENTER HERE', req.body);
     Maraude.create({
       userId: req.body.userId,
       title: req.body.title,
@@ -42,7 +44,10 @@ if(req.query && req.query.city){
       latitude: req.body.latitude
     })
       .then((maraude) => { res.json({ maraude }); })
-      .catch((error) => res.status(500).json({ error }));
+      .catch((error) => {
+        console.log('ENTER IN ERROR', error);
+        res.status(500).json({ error });
+      });
   },
 
   update: function (req, res, next) {

@@ -1,30 +1,17 @@
 import React, { Component } from "react";
 import { ScrollView } from "react-native";
-import { fetchMaraudes, showMaraude } from "../../../store/actions/maraude";
-import { connect } from "react-redux";
 import CardMaraude from './CardMaraude';
 import { View } from "native-base";
-
+import { connect } from 'react-redux'
 
 class CardsMaraudes extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      maraudes: [],
-    };
-  }
-
-  componentDidMount() {
-    this.props.fetchMaraudes();
-  }
-
   render() {
     return (
       <ScrollView style={{ backgroundColor: "#FBFBFB" }}>
-        {this.props.maraude.maraudes.map((maraude, index) => {
+        {this.props.maraudes.map((maraude, index) => {
           return (
-            <View key={index}  style={{ backgroundColor: '#FBFBFB' }}>
-            <CardMaraude maraude={maraude} />
+            <View key={index} style={{ backgroundColor: '#FBFBFB' }}>
+              <CardMaraude maraude={maraude} navigation={this.props.navigation} />
             </View>
           );
         })}
@@ -33,18 +20,11 @@ class CardsMaraudes extends Component {
   }
 }
 
-
 const mapStateToProps = state => ({
-  ...state
+  maraudes: state.maraude.maraudes
 });
 
-const mapDispatchToProps = {
-  fetchMaraudes,
-  showMaraude
-};
+const mapDispatchToProps = {}
 
 // @ts-ignore
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CardsMaraudes);
+export default connect(mapStateToProps, mapDispatchToProps)(CardsMaraudes);

@@ -33,8 +33,9 @@ class LoginForm extends Component {
   render() {
     const { navigate } = this.props.navigation;
     const { auth } = this.props;
-    if (auth.user.isConnected) {
+    if (auth.user && auth.user.isConnected) {
       setTimeout(() => {
+        //TODO remove before production
         navigate('App', { name: 'John DOE' })
       }, 10)
     }
@@ -68,6 +69,9 @@ class LoginForm extends Component {
                 secureTextEntry={true}
                 style={styles.textInput} />
             </View>
+            <TouchableOpacity onPress={() => navigate("forgetPassword")}>
+              <Text style={styles.whiteTextLabel} >Mot de passe oublié ?</Text>
+            </TouchableOpacity>
           </View>
 
           <View style={styles.flexCenterImg}>

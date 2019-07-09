@@ -15,7 +15,7 @@ User.create({
   job: 'coiffeur'
 })
   .then((user) => {
-    console.log('User created !', user);
+   // console.log('User created !', user);
   })
   .catch((err) => console.log(err));
 
@@ -33,7 +33,7 @@ for(let i = 2; i < 11; i++){
     job: 'coiffeur'
   })
     .then((user) => {
-      console.log('User created !', user);
+      // console.log('User created !', user);
     })
     .catch((err) => console.log(err));
 }
