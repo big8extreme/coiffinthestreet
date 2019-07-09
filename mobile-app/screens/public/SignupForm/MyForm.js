@@ -59,17 +59,17 @@ export default class MyForm extends Component {
 
         return (
 
-            <ScrollView>
+            <ScrollView     style={{ margin: 30 }}>
 
                 <AvatarUpload />
 
-                <Form
+                <Form 
                     ref={(ref) => this.myForm = ref}
                     validate={true}
                     submit={this.submitSuccess.bind(this)}
                     failed={this.submitFailed.bind(this)}
                     errors={this.state.errors}
-                    style={{ marginTop: 30, justifyContent: 'center' }}
+                
                 >
                     <Text style={style.inputText}>Nom *</Text>
                     <Field
@@ -147,15 +147,16 @@ export default class MyForm extends Component {
                             checkedColor='#FDC500'
                         />
                         <Text style={{ fontFamily: 'Roboto' }}>Oui</Text>
-                    </Container>
-                    <Container style={style.container}>
+                
                         <CheckBox
                             checked={this.state.two}
                             onPress={() => this.twoPressed()}
                             checkedColor='#FDC500'
                         />
-                        <Text style={{ fontFamily: 'Roboto' }}>Non, je n'ai pas de parrain</Text>
+                        <Text style={{ fontFamily: 'Roboto' }}>Non</Text>
                     </Container>
+
+
                     <Text style={style.inputText}>Entrez votre code de parrainage *</Text>
                     <Field
                         required
@@ -168,7 +169,7 @@ export default class MyForm extends Component {
                         customStyle={style.field}
                     />
                 </Form>
-                <ValidateButton onPress={this.submitForm.bind(this)} label="Valider" />
+                <ValidateButton  style={style.validatebut} onPress={this.submitForm.bind(this)} label="Valider" />
             </ScrollView>
         );
     }
@@ -177,11 +178,9 @@ export default class MyForm extends Component {
 const style = {
     field: {
         borderColor: '#FDC500',
-        height: 60,
+        height: 50,
         borderWidth: 1,
-        width: '90%',
         borderRadius: 5,
-        paddingLeft: 5,
         fontSize: 18
     },
     inputText: {
@@ -189,7 +188,8 @@ const style = {
         fontWeight: 'bold',
         marginBottom: 5,
         marginTop: 25
-    },
+
+     },
     container: {
         display: 'flex',
         flexDirection: 'row',
@@ -201,8 +201,14 @@ const style = {
         marginLeft: 120,
         position: 'absolute',
         fontFamily: 'Sedgwick',
-        fontSize: 30,
+        fontSize: 80,
         zIndex: 900,
         color: '#FDC500'
-    }
+    },
+    validatebut: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        height: 50,
+    },
 }

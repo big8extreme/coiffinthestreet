@@ -40,7 +40,7 @@ const AuthStack = createStackNavigator(
     drawerMenu: { screen: DrawerMenu },
     BottomTabNav: { screen: BottomTabNav },
     Charte: { screen: Charte },
-    Whoweare: { screen: Whoweare },
+    Whoweare: { screen: SignupForm },
     Map: { screen: MapMaraudes },
     List: { screen: ListMaraudes },
     LegalMention: { screen: LegalMention },
