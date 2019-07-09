@@ -14,6 +14,7 @@ class AdminRouter extends Component {
         <Route exact path='/admin' component={Dashboard} />
         <Route exact path='/admin/maraudes' component={MaraudesPanel} />
         <Route exact path='/admin/users' component={UserPanel} />
+        <Route exact path='/admin/maraudes' component={MaraudesPanel} />
         <Route exact path='/admin/configs' component={ConfigPage} />
         <Route exact path='/admin/docapi' component={DocApi} />
       </Switch>
