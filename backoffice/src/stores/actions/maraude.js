@@ -24,21 +24,15 @@ export const createMaraude = (maraudeData) => {
   return async function (dispatch, getState) {
     function onSuccess(response) {
       dispatch({ type: CREATE_MARAUDE, payload: response.data.maraude });
-      dispatch(fetchMaraudes())
+      dispatch(fetchMaraudes());
     }
     function onError(err) {
       console.log('ERROR WHILE CREATE MARAUDE', err);
     }
     try {
-      let form = new FormData();
-      form.append('userId', maraudeData.userId);
-      form.append('title', maraudeData.title);
-      form.append('description', maraudeData.description);
-      form.append('city', maraudeData.city);
-      form.append('longitude', maraudeData.longitude);
-      form.append('latitude', maraudeData.latitude);
-      const response = await axios.post('/maraudes', form, {
-        headers: { Authorization: `bearer ${getState().authentification.user.token}`, 'Content-Type': 'multipart/form-data' }
+      maraudeData.userId = getState().authentification.user.id;
+      const response = await axios.post('/maraudes', maraudeData, {
+        headers: { Authorization: `bearer ${getState().authentification.user.token}` }
       });
       onSuccess(response);
     }
@@ -50,20 +44,20 @@ export const createMaraude = (maraudeData) => {
 
 
 export const updateMaraude = (maraudeId) => {
-  console.log('DDDDDDDDDDDD')
+  console.log('DDDDDDDDDDDD');
   return async function (dispatch, getState) {
 
     function onSuccess(response) {
       console.log('success WHILE update MARAUDES', response);
-      dispatch(fetchMaraudes())
+      dispatch(fetchMaraudes());
     }
     function onError(err) {
       console.log('ERROR WHILE update MARAUDES', err);
     }
     try {
-        const response = await  axios.put(`/maraudes/${maraudeId}`, { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
-        onSuccess(response);
-      }
+      const response = await axios.put(`/maraudes/${maraudeId}`, { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
+      onSuccess(response);
+    }
     catch (err) {
       onError(err);
     }
@@ -71,22 +65,22 @@ export const updateMaraude = (maraudeId) => {
 };
 
 
-  export const deleteMaraude = (maraudeId) => {
-    return async function (dispatch, getState) {
-  
-      function onSuccess(response) {
-        console.log('success WHILE delete MARAUDE', response);
-        dispatch(fetchMaraudes())
-      }
-      function onError(err) {
-        console.log('ERROR WHILE delete MARAUDE', err);
-      }
-      try {
-          const response = await  axios.delete(`/maraudes/${maraudeId}`, { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
-          onSuccess(response);
-        }
-      catch (err) {
-        onError(err);
-      }
-    };
+export const deleteMaraude = (maraudeId) => {
+  return async function (dispatch, getState) {
+
+    function onSuccess(response) {
+      console.log('success WHILE delete MARAUDE', response);
+      dispatch(fetchMaraudes());
+    }
+    function onError(err) {
+      console.log('ERROR WHILE delete MARAUDE', err);
+    }
+    try {
+      const response = await axios.delete(`/maraudes/${maraudeId}`, { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
+      onSuccess(response);
+    }
+    catch (err) {
+      onError(err);
+    }
   };
+};

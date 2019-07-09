@@ -3,6 +3,7 @@ import userReducer from './user';
 import authReducer from './authReducer';
 import configReducer from './config';
 import appReducer from './app';
+import maraudeReducer from './maraude';
 
 
 export default combineReducers({
@@ -10,5 +11,6 @@ export default combineReducers({
   user: userReducer,
   config: configReducer,
   app: appReducer,
+  maraude: maraudeReducer,
 });
 

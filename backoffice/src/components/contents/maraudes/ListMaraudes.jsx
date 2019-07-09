@@ -7,11 +7,17 @@ import { Dialog } from 'primereact/dialog';
 import { fetchMaraudes, createMaraude, updateMaraude, deleteMaraude } from '../../../stores/actions/maraude';
 import { connect } from 'react-redux';
 
+const defaultMaraude = {
+
+};
 
 class ListMaraudes extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            maraude: defaultMaraude,
+            onCreate: true
+        };
         this.save = this.save.bind(this);
         this.delete = this.delete.bind(this);
         this.onMaraudeSelect = this.onMaraudeSelect.bind(this);
@@ -23,22 +29,18 @@ class ListMaraudes extends Component {
     }
 
     save() {
-        let maraudes = [...this.props.maraudes];
-        if (this.newMaraude)
-            maraudes.push(this.props.maraudes);
-        else
-            maraudes[this.findSelectedMaraudeIndex()] = this.props.maraudes;
+        this.props.createMaraude(this.state.maraude);
+        this.resetState();
+    }
 
-        this.setState({ maraudes: maraudes, selectedMaraude: null, maraude: null, displayDialog: false });
-        console.log('BBBBBBBBBBB', this.state.maraude);
-
+    resetState() {
+        this.setState({ onCreate: true, maraude: defaultMaraude, displayDialog: false });
     }
 
     delete() {
         let index = this.findSelectedMaraudeIndex();
         this.setState({
             maraudes: this.props.maraudes.filter((val, i) => i !== index),
-            selectedMaraude: null,
             maraude: null,
             displayDialog: false
         });
@@ -52,10 +54,7 @@ class ListMaraudes extends Component {
 
 
     updateProperty(property, value) {
-        console.log('AAAAAAAAAAAAA', this.state.maraude);
-        let maraude = this.state.maraude;
-        maraude[property] = value;
-        this.setState({ maraude: this.state.maraude });
+        this.setState({ ...this.state, maraude: { ...this.state.maraude, [property]: value } });
     }
 
 
@@ -63,14 +62,15 @@ class ListMaraudes extends Component {
         this.newMaraude = false;
         this.setState({
             displayDialog: true,
-            maraude: Object.assign({}, e.data)
+            maraude: { ...e.data },
+            onCreate: false
         });
     }
 
     addNew() {
         this.newMaraude = true;
         this.setState({
-            maraude: { ...this.state.maraudes },
+            maraude: { ...defaultMaraude },
             displayDialog: true
         });
     }
@@ -86,7 +86,7 @@ class ListMaraudes extends Component {
             <Button label="Supprimer" icon="pi pi-times" onClick={this.delete} />
             <Button label="Enregistrer" icon="pi pi-check" onClick={this.save} />
         </div>;
-
+        console.log('STATETETTETE', this.state);
         return (
             <div>
                 <div className="content-section introduction">
@@ -98,7 +98,7 @@ class ListMaraudes extends Component {
 
                 <div className="content-section implementation">
                     <DataTable value={this.props.maraudes} paginator={true} rows={15} header={header} footer={footer}
-                        selectionMode="single" selection={this.state.selectedMaraude} onSelectionChange={e => this.setState({ selectedMaraude: e.value })}
+                        selectionMode="single" selection={this.state.maraude} onSelectionChange={e => this.setState({ maraude: e.value })}
                         onRowSelect={this.onMaraudeSelect}>
                         <Column field="id" header="ID" sortable={true} />
                         <Column field="title" header="Titre de la maraude" sortable={true} />
@@ -109,7 +109,7 @@ class ListMaraudes extends Component {
                         <Column field="isPublished" header="Publiée" sortable={true} />
                     </DataTable>
 
-                    <Dialog visible={this.state.displayDialog} width="300px" header="Modifier / Enregistrer / Supprimer la maraude" modal={true} footer={dialogFooter} onHide={() => this.setState({ displayDialog: false })}>
+                    <Dialog visible={this.state.displayDialog} width="300px" header="Modifier / Enregistrer / Supprimer la maraude" modal={true} footer={dialogFooter} onHide={() => this.setState({ ...this.state, displayDialog: false, onCreate: true, maraude: {} })}>
                         {
                             this.state.maraude &&
 
