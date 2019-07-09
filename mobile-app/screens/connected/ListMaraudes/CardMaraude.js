@@ -2,7 +2,6 @@ import React from 'react'
 import { StyleSheet } from "react-native";
 import { Text, View, Icon } from "native-base";
 import moment from "moment";
-import { Svg } from "expo";
 import ValidateButton from '../../../components/ValidateButton';
 
 export default function CardMaraude({ maraude = {}, navigation = {} }) {

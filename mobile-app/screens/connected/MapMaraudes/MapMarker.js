@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import { fetchMaraudes } from '../../../store/actions/maraude';
 import { StyleSheet, View } from 'react-native';
-import { MapView } from "expo";
+import MapView, { Callout, Marker } from "react-native-maps";
 import { getCluster } from "../../../utils/MapUtils";
 import MapToolTip from './MapToolTip';
 import ClusterMarker from './ClusterMarker';
@@ -62,7 +62,7 @@ class MapMarker extends React.Component {
       return maraude.id === marker.properties.id;
     })[0];
     return (
-      <MapView.Marker
+      <Marker
         key={key}
         coordinate={{
           latitude: marker.geometry.coordinates[1],
@@ -70,10 +70,10 @@ class MapMarker extends React.Component {
         }}
         image={require('../../../assets/pin.png')}
       >
-        <MapView.Callout tooltip style={{ width: 200 }}>
+        <Callout tooltip style={{ width: 200 }}>
           <MapToolTip navigation={{ navigate }} maraude={maraude} />
-        </MapView.Callout>
-      </MapView.Marker>
+        </Callout>
+      </Marker>
     );
   };
   render() {
@@ -88,8 +88,7 @@ class MapMarker extends React.Component {
           loadingIndicatorColor={"#ffbbbb"}
           loadingBackgroundColor={"#ffbbbb"}
           region={region}
-          onRegionChangeComplete={region => this.setState({ region })}
-          image={require('../../../assets/pin.png')}>
+          onRegionChangeComplete={region => this.setState({ region })}>
           {cluster.markers.map((marker, index) => this.renderMarker(marker, index))}
         </MapView>
       </View>
