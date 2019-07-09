@@ -20,6 +20,11 @@ module.exports = (sequelize, DataTypes) => {
           return bcrypt.hash(user.password, 10)
             .then((hash) => user.password = hash)
             .catch((error) =>  res.status(500).json({error}));
+        },
+        beforeUpdate: (user, options) => {
+          return bcrypt.hash(user.password, 10)
+            .then((hash) => user.password = hash)
+            .catch((error) =>  res.status(500).json({error}));
         }
       }
     });
@@ -28,5 +33,12 @@ module.exports = (sequelize, DataTypes) => {
     User.hasMany(models.User, { foreignKey: 'godFatherId', as: 'childFathers' });
     User.hasMany(models.Maraude, { as: 'maraudes'});
   };
+
+  User.prototype.toJSON =  function () {
+  var values = Object.assign({}, this.get());
+
+  delete values.password;
+  return values;
+};
   return User;
 };

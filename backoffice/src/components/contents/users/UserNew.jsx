@@ -27,23 +27,23 @@ class UserNew extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: defaultUser,
+      user: { ...defaultUser },
       userId: ''
     };
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if(this.state.user.id === undefined && !this.props.onCreate){
-      this.setState({ user: this.props.selectedUser, onCreate: false });
+    if (this.state.user.id === undefined && !this.props.onCreate) {
+      this.setState({ user: { ...this.props.selectedUser, ...{ password: '', passwordConfirmation: '' } }, onCreate: false });
     }
     else if (prevProps.onCreate !== this.props.onCreate && this.props.onCreate) {
-      this.setState({...this.state, onCreate: true, user: {...defaultUser}})
-    } 
+      this.setState({ ...this.state, onCreate: true, user: { ...defaultUser } });
+    }
   }
 
 
   handleUserStateChange = async (field, value) => {
-    await this.setState({ ...this.state, user: {...this.state.user,[field]: value}});
+    await this.setState({ ...this.state, user: { ...this.state.user, [field]: value } });
 
   }
 
@@ -52,22 +52,21 @@ class UserNew extends Component {
   }
 
   render() {
-
+    console.log(this.state);
     const jobSelectItems = [
       { label: 'Coiffeur', value: 'Coiffeur' },
       { label: 'Estheticienne', value: 'Estheticienne' },
       { label: 'Photographe', value: 'Photographe' }
     ];
-    const actionLabel = this.props.onCreate ? 'Créer' : 'Modifier';   
+    const actionLabel = this.props.onCreate ? 'Créer' : 'Modifier';
 
     return (
 
 
-      <Dialog header="Ajour/Modification" style={{ width: '50vw' }} visible={this.props.isOpen} onHide={() => 
-        {
-          this.props.closeModal();
-          this.setState({...this.state, user: { ...defaultUser }, onCreate: true})
-        }
+      <Dialog header="Ajour/Modification" style={{ width: '50vw' }} visible={this.props.isOpen} onHide={() => {
+        this.props.closeModal();
+        this.setState({ ...this.state, user: { ...defaultUser }, onCreate: true });
+      }
       }>
         <div>
           <div className="content-section implementation inputgrid-demo">
@@ -139,16 +138,19 @@ class UserNew extends Component {
                     if (this.props.onCreate) {
                       await this.props.createUser(this.state.user);
                       this.props.closeModal();
-                      this.setState({...this.state, user: {...defaultUser}})
+                      this.setState({ ...this.state, user: { ...defaultUser } });
                     } else {
                       this.props.updateUser(this.state.user, this.state.user.id);
                       this.props.closeModal();
-                      this.setState({...this.state, user: {...defaultUser}})
+                      this.setState({ ...this.state, user: { ...defaultUser } });
                     }
                   }} />
                 </div>
                 <div className="p-col-6 p-md-4" >
-                  <Button label="Annuler" icon="pi pi-times" onClick={this.props.closeModal} className="p-button-secondary" />
+                  <Button label="Annuler" icon="pi pi-times" onClick={(event) => {
+                    event.preventDefault();
+                    this.props.closeModal();
+                  }} className="p-button-secondary" />
                 </div>
               </div>
 
