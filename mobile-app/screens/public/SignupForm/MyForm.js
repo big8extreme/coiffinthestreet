@@ -4,8 +4,9 @@ import { Text, ScrollView } from 'react-native';
 import { Form, Field } from 'react-native-validate-form';
 import InputField from './InputField';
 import AvatarUpload from './Avatar';
-import ValidateButton from '../../../components/ValidateButton';
+import CustomButton from '../../../components/CustomButton';
 import { signup } from '../../../store/actions/auth';
+import LoginForm from '../LoginForm';
 
 const email = value => value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,5}$/i.test(value) ? 'Please provide a valid email address.' : undefined;
 const requiredFields = ['email', 'firstName', 'name', 'pseudo', 'password', 'invitationCode', 'confirmPassword']
@@ -65,10 +66,10 @@ class MyForm extends Component {
     }
 
     render() {
-        console.log("HERERERERE", this.state)
+
         return (
 
-            <ScrollView>
+            <ScrollView style={{ margin: 30 }}>
 
                 <AvatarUpload onSelected={(file) => this.setState({avatar: file})} />
 
@@ -148,7 +149,10 @@ class MyForm extends Component {
                         customStyle={style.field}
                     />
                 </Form>
-                <ValidateButton onPress={this.submitForm.bind(this)} label="Valider" />
+                    <CustomButton label="Valider" navigation={LoginForm} screen="LoginForm" onPressFunc={this.submitForm.bind(this)} />
+
+
+           
             </ScrollView>
         );
     }
@@ -157,15 +161,13 @@ class MyForm extends Component {
 const style = {
     field: {
         borderColor: '#FDC500',
-        height: 60,
+        height: 50,
         borderWidth: 1,
-        width: '90%',
         borderRadius: 5,
-        paddingLeft: 5,
         fontSize: 18
     },
     inputText: {
-        fontFamily: 'Roboto',
+        fontFamily: 'Tinos',
         fontWeight: 'bold',
         marginBottom: 5,
         marginTop: 25
@@ -181,7 +183,7 @@ const style = {
         marginLeft: 120,
         position: 'absolute',
         fontFamily: 'Sedgwick',
-        fontSize: 30,
+        fontSize: 80,
         zIndex: 900,
         color: '#FDC500'
     }

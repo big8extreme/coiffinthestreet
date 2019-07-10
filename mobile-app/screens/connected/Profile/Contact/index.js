@@ -17,9 +17,6 @@ export default class Contact extends Component {
           <PickerTextAndItemStyleExample />
           <MessageTextInput />
           <ConnectButton />
-
-          
-          
       </ScrollView>
 
     );
