@@ -150,11 +150,7 @@ const style = {
 }
 
 const mapDispatchToProps = {
-  //fetchMaraudes
-  //fetchMaraude
-  //createMaraude
   createMaraude
-  //deleteMaraude
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(index)
