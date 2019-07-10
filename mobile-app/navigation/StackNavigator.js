@@ -47,7 +47,8 @@ const AuthStack = createStackNavigator(
     MaraudeForm: { screen: MaraudeCreationForm }
   },
   {
-    initialRouteName: "MaraudeCreationForm",
+    //initialRouteName: "MaraudeCreationForm",
+    initialRouteName: "BottomTabNav",
     headerMode: 'none',
     navigationOptions: {
       headerVisible: false,
@@ -65,8 +66,8 @@ export default createAppContainer(
     },
     {
       //initialRouteName: "Tab"
-      //initialRouteName: "App"
-      initialRouteName: "Auth"
+      initialRouteName: "App"
+      //initialRouteName: "Auth"
     }
   )
 );
