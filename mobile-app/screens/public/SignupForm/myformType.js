@@ -6,49 +6,28 @@ import { CheckBox } from 'react-native-elements';
 import InputField from './InputField';
 import AvatarUpload from './Avatar';
 import DatePicker from './DatePicker';
-import CustomButton from '../../../components/CustomButton';
-import LoginForm from '../LoginForm';
-import { connect } from 'react-redux'
-import { createUser } from '../../../store/actions/user';
-
-const defaultUser = {
-    errors: [],
-    lastName: '',
-    firstName: '',
-    pseudo: '',
-    email: '',
-    password: null,
-    confirmPassword: null,
-       code: '',
-
-    one: false,
-    two: false,
-    itemChecked: false
-}
+import ValidateButton from '../../../components/ValidateButton';
 
 const required = value => (value ? undefined : 'This is a required field.');
 const email = value => value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,5}$/i.test(value) ? 'Please provide a valid email address.' : undefined;
 
-export class MyForm extends Component {
+export default class MyForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            ...defaultUser
+            errors: [],
+            email: '',
+            pseudo: '',
+            name: '',
+            firstname: '',
+            password: null,
+            confirmPassword: null,
+            one: false,
+            two: false,
+            itemChecked: false,
+            code: ''
         }
     }
-
-    submitForm() {
-        let submitResults = this.myForm.validate();
-        let errors = [];
-        submitResults.forEach(item => {
-            errors.push({ field: item.fieldName, error: item.error });
-        });
-
-        this.setState({ errors: [...errors] });
-        this.props.createUser(this.state)
-        this.setState({ ...defaultUser })
-    }
-
 
 
     onePressed() {
@@ -59,6 +38,14 @@ export class MyForm extends Component {
         this.setState({ one: false, two: true })
     }
 
+    submitForm() {
+        let submitResults = this.myForm.validate();
+        let errors = [];
+        submitResults.forEach(item => {
+            errors.push({ field: item.fieldName, error: item.error });
+        });
+        this.setState({ errors: errors });
+    }
 
     submitSuccess() {
         console.log("Submit Success!");
@@ -72,26 +59,26 @@ export class MyForm extends Component {
 
         return (
 
-            <ScrollView style={{ margin: 30 }}>
+            <ScrollView     style={{ margin: 30 }}>
 
                 <AvatarUpload />
 
-                <Form
+                <Form 
                     ref={(ref) => this.myForm = ref}
                     validate={true}
                     submit={this.submitSuccess.bind(this)}
                     failed={this.submitFailed.bind(this)}
                     errors={this.state.errors}
-
+                
                 >
                     <Text style={style.inputText}>Nom *</Text>
                     <Field
                         required
                         component={InputField}
                         validations={[required]}
-                        name="lastName"
-                        value={this.state.lastName}
-                        onChangeText={(val) => this.setState({ lastName: val })}
+                        name="name"
+                        value={this.state.name}
+                        onChangeText={(val) => this.setState({ name: val })}
                         customStyle={style.field}
                     />
 
@@ -100,9 +87,9 @@ export class MyForm extends Component {
                         required
                         component={InputField}
                         validations={[required]}
-                        name="firstName"
-                        value={this.state.firstName}
-                        onChangeText={(val) => this.setState({ firstName: val })}
+                        name="firstname"
+                        value={this.state.firstname}
+                        onChangeText={(val) => this.setState({ firstname: val })}
                         customStyle={style.field}
                     />
 
@@ -159,14 +146,14 @@ export class MyForm extends Component {
                             onPress={() => { this.onePressed(); { alert('Entrez votre code de parrainage') } }}
                             checkedColor='#FDC500'
                         />
-                        <Text style={{ fontFamily: 'Tinos' }}>Oui</Text>
-
+                        <Text style={{ fontFamily: 'Roboto' }}>Oui</Text>
+                
                         <CheckBox
                             checked={this.state.two}
                             onPress={() => this.twoPressed()}
                             checkedColor='#FDC500'
                         />
-                        <Text style={{ fontFamily: 'Tinos' }}>Non</Text>
+                        <Text style={{ fontFamily: 'Roboto' }}>Non</Text>
                     </Container>
 
 
@@ -182,16 +169,11 @@ export class MyForm extends Component {
                         customStyle={style.field}
                     />
                 </Form>
-                <CustomButton label="Valider" navigation={LoginForm} screen="LoginForm" onPressFunc={this.submitForm.bind(this)} />
-
-
+                <ValidateButton  style={style.validatebut} onPress={this.submitForm.bind(this)} label="Valider" />
             </ScrollView>
         );
     }
 }
-
-
-
 
 const style = {
     field: {
@@ -202,12 +184,12 @@ const style = {
         fontSize: 18
     },
     inputText: {
-        fontFamily: 'Tinos',
+        fontFamily: 'Roboto',
         fontWeight: 'bold',
         marginBottom: 5,
         marginTop: 25
 
-    },
+     },
     container: {
         display: 'flex',
         flexDirection: 'row',
@@ -222,20 +204,11 @@ const style = {
         fontSize: 80,
         zIndex: 900,
         color: '#FDC500'
-    }
-
-
+    },
+    validatebut: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        height: 50,
+    },
 }
-
-const mapStateToProps = (state) => ({
-    ...state
-  })
-
-
-const mapDispatchToProps = {
-    createUser
-
-  }
-  
-  export default connect(mapStateToProps, mapDispatchToProps)(MyForm)
-  
