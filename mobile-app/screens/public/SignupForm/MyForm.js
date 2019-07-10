@@ -20,7 +20,6 @@ const defaultUser = {
     password: null,
     confirmPassword: null,
        code: '',
-
     one: false,
     two: false,
     itemChecked: false
