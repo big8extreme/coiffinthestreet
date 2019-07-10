@@ -17,7 +17,9 @@ import ListMaraudes from '../screens/connected/ListMaraudes';
 import Participant from '../screens/public/Participant';
 import forgetPassword from '../screens/public/LoginForm/forgetPassword/forgetPassword';
 import LegalMention from "../screens/connected/LegalMention";
-import MaraudeForm from '../screens/connected/Maraudes/MaraudeCreationForm'
+import MaraudeForm from '../screens/connected/Maraudes/MaraudeCreationForm';
+import StartApp from '../screens/public/StartApp/Startapp'
+
 
 const AppStack = createStackNavigator(
   {
@@ -45,6 +47,7 @@ const AuthStack = createStackNavigator(
     List: { screen: ListMaraudes },
     LegalMention: { screen: LegalMention },
     MaraudeForm: { screen: MaraudeForm },
+    StartApp: { screen: StartApp},
   },
   {
     initialRouteName: "BottomTabNav",

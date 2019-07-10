@@ -141,6 +141,22 @@ export default createDrawerNavigator({
       }
     }
   },
+  StartApp: {
+    screen: StartApp,
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: "Qui sommes nous ?",
+        drawerLabel: () => {
+          return <View style={styles.view}>
+            <TouchableOpacity style={styles.flex} onPress={() => navigation.navigate('StartApp')}>
+              <Icon name="ios-information-circle" size={25} style={styles.icon} />
+              <Text style={styles.text}>demarrage ?</Text>
+            </TouchableOpacity>
+          </View>
+        }
+      }
+    }
+  },
   CGU: {
     screen: TermsOfService,
     navigationOptions: ({ navigation }) => {
