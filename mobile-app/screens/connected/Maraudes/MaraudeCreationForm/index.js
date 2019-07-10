@@ -57,20 +57,22 @@ export class index extends Component {
   render() {
     return (
       <ScrollView>
-        <Content>
+        <Content style={style.content}>
           <Form>
-            <Text style={{ marginBottom: 15, fontWeight: 'bold', fontSize: 26 }}>
+            <Text style={style.inputText}>
               Créer une Maraude </Text>
-            <Text style={{ marginBottom: 15, fontWeight: 'bold', fontSize: 16 }}>
+            <Text style={style.inputText}>
               Titre de la maraude : </Text>
-            <Item regular style={{ borderColor: this.state.errors.includes('title') ? 'red' : '#FDC500' }}>
+            <Item regular style={style.customBorder}>
               <Input
                 value={this.state.title}
                 onChangeText={(value) => this.handleTextChange({ name: 'title', value })}
                 placeholder="NOM Maraude"
               />
             </Item>
-            <Item regular style={{ borderColor: this.state.errors.includes('description') ? 'red' : '#FDC500' }}>
+            <Text style={style.inputText}>
+              Description de la maraude : </Text>
+            <Item regular style={style.customBorder}>
               <Input
                 value={this.state.description}
                 onChangeText={(value) => this.handleTextChange({ name: 'description', value })}
@@ -78,27 +80,26 @@ export class index extends Component {
               />
             </Item>
             <DatePicker
-              style={{ borderColor: this.state.errors.includes('startDate') ? 'red' : '#FDC500' }}
+              style={style.customBorder}
               onChange={(value) => this.handleTextChange({ name: 'startDate', value })}
             />
             <Text style={style.maraudeText}>Heure de début de la Maraude</Text>
             <TimePicker
-              style={{ borderColor: this.state.errors.includes('startAt') ? 'red' : '#FDC500' }}
+              style={style.customBorder}
               onChange={(value) => this.handleTextChange({ name: 'startAt', value })}
             />
             <Text style={style.maraudeText}>Heure de fin de la Maraude</Text>
             <TimePicker
-              style={{ borderColor: this.state.errors.includes('endAt') ? 'red' : '#FDC500' }}
+              style={style.customBorder}
               onChange={(value) => this.handleTextChange({ name: 'endAt', value })}
             />
-            <Text style={{ marginBottom: 15, fontWeight: 'bold', fontSize: 16 }}>
+            <Text style={style.inputText}>
               Lieu :</Text>
-            <Item regular style={{ borderColor: this.state.errors.includes('city') ? 'red' : '#FDC500' }}>
+            <Item regular style={style.customBorder}>
               <Input
                 value={this.state.city}
                 onChangeText={(value) => this.handleTextChange({ name: 'city', value })}
-                placeholder="Ville"
-                style={{ borderRadius: 10, marginBottom: 15, fontSize: 12, borderColor: '#FDC500', borderWidth: 2 }} />
+                placeholder="Ville" />
             </Item>
 
             {
@@ -122,17 +123,8 @@ const mapStateToProps = (state) => ({
 })
 
 const style = {
-  field: {
-    borderColor: '#FDC500',
-    height: 60,
-    borderWidth: 1,
-    width: '90%',
-    borderRadius: 5,
-    paddingLeft: 5,
-    fontSize: 18
-  },
   inputText: {
-    fontFamily: 'Georgia',
+    fontFamily: 'roboto',
     fontWeight: 'bold',
     marginBottom: 5,
     marginTop: 25
@@ -143,6 +135,17 @@ const style = {
     marginBottom: 5,
     marginTop: 25,
     fontWeight: 'bold'
+  },
+  content: {
+    marginTop: 50
+  },
+  customBorder: { 
+    width: 300,
+    height: 60,
+    borderRadius: 5,
+    borderWidth: 1,
+    marginLeft: 10, 
+    borderColor: this.state.errors.includes('description') ? 'red' : '#FDC500' 
   }
 }
 
