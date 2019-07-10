@@ -6,7 +6,7 @@ import logger from 'redux-logger';
 import allReducer from './reducers';
 
 const persistConfig = {
-  key: 'XxXxX-XxXxX-XxXdsjfidi',
+  key: 'XxXxX-XxXxXXdsjfidi',
   storage: LocalStorage,
   whitelist: ['auth', 'config'],
   blacklist: ['maraude', 'participant'],

@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { Toast, Root } from 'native-base';
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, ScrollView , TouchableOpacity} from 'react-native';
 import { connect } from 'react-redux'
 import { login } from '../../../store/actions/auth'
 import ConnectButton from '../../../components/ConnectButton';
+
 
 class LoginForm extends Component {
   static navigationOptions = {
@@ -25,7 +26,7 @@ class LoginForm extends Component {
         buttonText: 'Ok'
       })
     } else if (response.status === 'success') {
-      this.props.navigation.navigate('App')
+      this.props.navigation.navigate('Signup')
     }
   }
 
@@ -35,12 +36,14 @@ class LoginForm extends Component {
     if (auth.user && auth.user.isConnected) {
       setTimeout(() => {
         //TODO remove before production
-        navigate('App', { name: 'John DOE' })
+        navigate('Signup', { name: 'John DOE' })
       }, 10)
     }
     return (
+      
       <Root>
-        <View style={styles.backgroundApp}>
+        
+        <ScrollView style={styles.backgroundApp}>
           <View style={styles.flexCenterImg}>
             <Image
               source={require('./Logo_light.png')}
@@ -70,20 +73,26 @@ class LoginForm extends Component {
               <Text style={styles.whiteTextLabel} >Mot de passe oublié ?</Text>
             </TouchableOpacity>
           </View>
+
           <View style={styles.flexCenterImg}>
             <ConnectButton
               label="Se connecter"
-              onPress={() => this.loginUser()} />
+              onPress={() => this.loginUser()} 
+              />
           </View>
-        </View>
+        </ScrollView>
+       
       </Root>
+      
     )
   }
 }
 
 const styles = StyleSheet.create({
   backgroundApp: {
-    backgroundColor: '#2D2D2D', flex: 1,
+    backgroundColor: '#2D2D2D', 
+    flex: 1,
+    
   },
 
   flexCenterImg: {
@@ -105,6 +114,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'left',
     marginBottom: 20,
+    fontFamily:'Tinos_bold'
   },
 
   yellowBorder: {
@@ -116,10 +126,6 @@ const styles = StyleSheet.create({
   textInput: {
     color: '#F1F0C7',
   },
-  button: {
-    alignSelf: 'center',
-    color: 'red'
-  }
 });
 
 const mapStateToProps = (state) => ({
