@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { LOG_IN_USER, LOG_OUT_USER, LOG_IN_ERROR } from '../types/auth';
+import { successMessage, errorMessage } from './app';
 
 export function login(email, password) {
   return async dispatch => {
@@ -8,10 +9,12 @@ export function login(email, password) {
       axios.defaults.headers.common['Authorization'] = `bearer ${response.data.token}`;
 
       dispatch({ type: LOG_IN_USER, payload: response.data });
+      dispatch(successMessage('Connexion réussi !'));
       return response;
     }
     function onError(error) {
       dispatch({ type: LOG_IN_ERROR, error });
+      dispatch(errorMessage('Connexion échoué !'));
       return error;
     }
     try {

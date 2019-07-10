@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const authController = require('../controllers/authController');
+const { checkValidInvitationCode } = require('../middlewares/invitationChecker');
 
 // Require and setup uploader to keep files in uploads folder
 const multer = require('multer');
@@ -19,7 +20,8 @@ const upload = multer({ storage: storage });
 router.post('/signin', passport.authenticate('local', { session: false }), authController.signIn);
 
 /* POST create new user. multer create an object, we can access it with req.avatar */
-router.post('/signup', upload.single('avatar'), authController.signUp);
+// TODO fix validationCode before avatar upload
+router.post('/signup', upload.single('avatar'), checkValidInvitationCode, authController.signUp);
 
 router.post('/reset', authController.forgetPassword);
 

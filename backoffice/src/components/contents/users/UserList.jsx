@@ -6,7 +6,7 @@ import { Button } from 'primereact/button';
 import { Fieldset } from 'primereact/fieldset';
 import { InputSwitch } from 'primereact/inputswitch';
 import { connect } from 'react-redux';
-import { fetchUsers, deleteUser,updateUserStatut } from '../../../stores/actions/user';
+import { fetchUsers, deleteUser, updateUserStatut } from '../../../stores/actions/user';
 import Usernew from './UserNew';
 
 const defaultActive = {
@@ -23,8 +23,8 @@ class UserList extends Component {
       active: defaultActive,
       userId: ''
     };
-    this.handleUserStateChange=this.handleUserStateChange.bind(this);
-    this.actionValid=this.actionValid.bind(this);
+    this.handleUserStateChange = this.handleUserStateChange.bind(this);
+    this.actionValid = this.actionValid.bind(this);
   }
 
   componentDidMount() {
@@ -39,7 +39,7 @@ class UserList extends Component {
       }} style={{ marginRight: '.5em' }} > </Button>
 
       <Button icon="pi pi-times" className="p-button-danger" onClick={() => {
-        this.props.deleteUser(rowData.id)
+        this.props.deleteUser(rowData.id);
         this.props.fetchUsers();
       }}
         style={{ marginRight: '.5em' }} > </Button>
@@ -48,14 +48,14 @@ class UserList extends Component {
 
   actionValid(rowData, column) {
     return <div>
-    <InputSwitch name="isActive" value={rowData.isActive} checked={rowData.isActive} onChange={(event) => this.handleUserStateChange('isActive', rowData)} /> 
+      <InputSwitch name="isActive" value={rowData.isActive} checked={rowData.isActive} onChange={(event) => this.handleUserStateChange('isActive', rowData)} />
     </div>;
   }
 
   handleUserStateChange = async (field, rowData) => {
     rowData.isActive = !rowData.isActive;
-    await this.setState( {isActive:rowData.isActive});
-    await this.props.updateUserStatut({isActive:rowData.isActive},rowData.id );
+    await this.setState({ isActive: rowData.isActive });
+    await this.props.updateUserStatut({ isActive: rowData.isActive }, rowData.id);
   }
 
   toggleModal = (onCreate) => {
@@ -76,7 +76,7 @@ class UserList extends Component {
               <div style={{ padding: '15px' }} > <Button onClick={() => this.toggleModal(true)} label="Ajouter un Coiffeur" className="p-button-warning  float-right" icon="pi pi-power-off" />
               </div>
 
-              <DataTable value={this.props.users}   paginator={true}  rows={5} rowsPerPageOptions={[5,10,20]}>
+              <DataTable value={this.props.users} paginator={true} rows={5} rowsPerPageOptions={[5, 10, 20]}>
                 <Column field="lastName" header="Nom" />
                 <Column field="firstName" header="Prenom" />
                 <Column field="id" header="Ville" />
@@ -106,7 +106,3 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserList);
-
-
-
-
