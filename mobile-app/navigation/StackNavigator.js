@@ -47,6 +47,7 @@ const AuthStack = createStackNavigator(
     MaraudeForm: { screen: MaraudeForm },
   },
   {
+    //initialRouteName: "MaraudeCreationForm",
     initialRouteName: "BottomTabNav",
     headerMode: 'none',
     navigationOptions: {
