@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { fetchMaraudes } from '../../../store/actions/maraude';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { MapView } from "expo";
 import { getCluster } from "../../../utils/MapUtils";
 import MapToolTip from './MapToolTip';
@@ -35,6 +35,7 @@ function maraudesToMarkers(maraudeArray) {
       properties : {
         id: maraude.id,
         title: maraude.title,
+        description: maraude.description
       }  
     }
     return marker
@@ -43,9 +44,12 @@ function maraudesToMarkers(maraudeArray) {
 }
 
 class MapMarker extends React.Component {
-  state = {
-    region: INITIAL_POSITION
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      region: INITIAL_POSITION,
+    };
+  }
   componentDidMount() {
     this.props.fetchMaraudes();
     maraudesToMarkers(this.props.maraude.maraudes)
@@ -69,7 +73,7 @@ class MapMarker extends React.Component {
           longitude: marker.geometry.coordinates[0]
         }}
         image={require('../../../assets/pin.png')}>
-      <MapView.Callout tooltip style={{ width: 200 }}>
+      <MapView.Callout tooltip style={{width: 200}}>
         <MapToolTip navigation={{navigate}} maraude={maraude} />
       </MapView.Callout>
     </MapView.Marker>
@@ -109,3 +113,4 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(MapMarker);
+

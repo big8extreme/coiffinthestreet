@@ -7,7 +7,7 @@ function getZoomLevel(longitudeDelta) {
 
 export function getCluster(places, region) {
     const cluster = new Supercluster({
-        radius: 50,
+        radius: 100,
         maxZoom: 16,
         map: (props) => {
             return {

@@ -62,7 +62,7 @@ class ClusterMarker extends React.Component {
                             leftAvatar={{}}
                             title={marker.title}
                             titleStyle={{color: '#FFF'}}
-                            subtitle={<Text style={{color: '#C0C0C0'}}>Description maraude...</Text>}
+                            subtitle={<Text style={{color: '#C0C0C0'}}></Text>}
                             rightIcon={<TouchableOpacity onPress={() => {navigate('Signup'); this.toggleModal(!this.state.modalVisible) }}>
                                         <Icon name="ios-mail" size={30} style={{color: '#FFF'}}  />
                                       </TouchableOpacity>}
