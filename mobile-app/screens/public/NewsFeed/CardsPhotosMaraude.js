@@ -17,14 +17,6 @@ class CardsPhotosMaraude extends Component {
     return (
       <ScrollView>
         {
-<<<<<<< HEAD
-          this.props.maraude.maraudes.map((maraude) => {
-            return <ScrollView 
-            horizontal
-            pagingEnabled
-            showsHorizontalScrollIndicator={false}>
-                    
-=======
           this.props.maraude.maraudes.map((maraude, idx) => {
             return <ScrollView
               key={`maraude-${idx}`}
@@ -32,27 +24,11 @@ class CardsPhotosMaraude extends Component {
               pagingEnabled
               showsHorizontalScrollIndicator={false}>
 
->>>>>>> 70ddc7bea970fd9ab2bd8c33a7fef77ccadd24d2
               {
 
-                maraude.photos.map((photo, index, title) => {
+                maraude.photos.map((photo, index) => {
 
                   return (
-<<<<<<< HEAD
-                    <ScrollView 
-            horizontal
-            pagingEnabled
-            showsHorizontalScrollIndicator={false}>
-                    <PhotoMaraude
-                    key={index}                   
-                    photo={photo}
-                    title={maraude.title}
-                    description={maraude.description}  
-                    city={maraude.city}  
-                    startAt={maraude.startAt}                               
-                    />
-                    
-=======
                     <ScrollView
                       key={`photo-${index}`}
                       horizontal
@@ -63,11 +39,10 @@ class CardsPhotosMaraude extends Component {
                         title={maraude.title}
                         description={maraude.description}
                         city={maraude.city}
-                        createdAt={maraude.createdAt}
+                        startAt={maraude.startAt}
                         index={index}
                       />
 
->>>>>>> 70ddc7bea970fd9ab2bd8c33a7fef77ccadd24d2
                     </ScrollView>
                   );
                 })

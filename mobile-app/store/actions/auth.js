@@ -58,8 +58,28 @@ export function signup(user) {
     }
 
     try {
+      const splitedAvatarUrl = user.avatar.uri.split('/')
+      const originalFileName = splitedAvatarUrl[splitedAvatarUrl.length - 1]
+      let originalFileExt = originalFileName.split('.')
+      originalFileExt = originalFileExt[originalFileExt.length - 1]
+      const formData = new FormData();
+      formData.append('firstName', user.firstName)
+      formData.append('lastName', user.name)
+      formData.append('email', user.email)
+      formData.append('invitationCode', user.invitationCode)
+      formData.append('password', user.password)
+      formData.append('avatar', {
+        uri: user.avatar.uri,
+        name: originalFileName,
+        type: `image/${originalFileExt}`
+      }, user.avatar.name)
 
-      const response = await axios.post(`${baseUrlApi}/auth/signup`, { ...user });
+      const response = await axios.post(`${baseUrlApi}/auth/signup`, formData, {
+        headers: {
+          "Content-Type": 'multipart/form-data',
+          "Accept": 'application/json'
+        }
+      });
 
       return onSuccess(response);
 

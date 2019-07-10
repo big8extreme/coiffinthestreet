@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Toast, Root } from 'native-base';
-import { StyleSheet, Text, View, Image, TextInput, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, ScrollView , TouchableOpacity} from 'react-native';
 import { connect } from 'react-redux'
 import { login } from '../../../store/actions/auth'
 import ConnectButton from '../../../components/ConnectButton';
@@ -26,7 +26,7 @@ class LoginForm extends Component {
         buttonText: 'Ok'
       })
     } else if (response.status === 'success') {
-      this.props.navigation.navigate('App')
+      this.props.navigation.navigate('Signup')
     }
   }
 
@@ -36,7 +36,7 @@ class LoginForm extends Component {
     if (auth.user && auth.user.isConnected) {
       setTimeout(() => {
         //TODO remove before production
-        navigate('App', { name: 'John DOE' })
+        navigate('Signup', { name: 'John DOE' })
       }, 10)
     }
     return (
