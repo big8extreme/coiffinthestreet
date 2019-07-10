@@ -7,7 +7,6 @@ class ValidateButton extends Component {
   render() {
     const { onPress, label } = this.props;
     const { navigate } = this.props.navigation;
-    
     return (
       <TouchableOpacity onPress={onPress}>
         <Svg
@@ -20,23 +19,18 @@ class ValidateButton extends Component {
             stroke="#FFF"
             strokeWidth="6"
           />
+          <Text
+            x="90"
+            y="40"
+            fontFamily="Sedgwick"
+            fill="#FFF"
+            fontSize={16}
+          >
+            {label}
+          </Text>
         </Svg>
-        <Text style={style.btnStyle}>Je souhaite participer</Text>
       </TouchableOpacity>
     );
-  }
-}
-
-const style = {
-  btnStyle: {
-      fontFamily:'Sedgwick',
-      color:'white',
-      fontSize:20,
-      position:'absolute',
-      alignSelf:'center',
-      marginTop:17,
-      height:60
-      
   }
 }
 
