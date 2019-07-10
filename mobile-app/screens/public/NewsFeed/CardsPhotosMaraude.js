@@ -8,51 +8,52 @@ import PhotoMaraude from './PhotoMaraude';
 
 
 class CardsPhotosMaraude extends Component {
- 
+
   componentDidMount() {
     this.props.fetchMaraudes();
   }
   render() {
-  
+
     return (
-      <ScrollView>          
+      <ScrollView>
         {
-          this.props.maraude.maraudes.map((maraude) => {
-            return <ScrollView 
-            horizontal
-            pagingEnabled
-            showsHorizontalScrollIndicator={false}>
+          this.props.maraude.maraudes.map((maraude, idx) => {
+            return <ScrollView
+              key={`maraude-${idx}`}
+              horizontal
+              pagingEnabled
+              showsHorizontalScrollIndicator={false}>
 
               {
-                
+
                 maraude.photos.map((photo, index, title) => {
-                  
+
                   return (
-                    <ScrollView 
-            horizontal
-            pagingEnabled
-            showsHorizontalScrollIndicator={false}>
-                    <PhotoMaraude
-                    key={index}                   
-                    photo={photo}
-                    title={maraude.title}
-                    description={maraude.description}  
-                    city={maraude.city}  
-                    createdAt={maraude.createdAt}  
-                    index={index}            
-                    />
-                    
+                    <ScrollView
+                      key={`photo-${index}`}
+                      horizontal
+                      pagingEnabled
+                      showsHorizontalScrollIndicator={false}>
+                      <PhotoMaraude
+                        photo={photo}
+                        title={maraude.title}
+                        description={maraude.description}
+                        city={maraude.city}
+                        createdAt={maraude.createdAt}
+                        index={index}
+                      />
+
                     </ScrollView>
                   );
                 })
               }
             </ScrollView>
-            
+
           })
-          
+
         }
-       
-        
+
+
       </ScrollView>
     )
   }

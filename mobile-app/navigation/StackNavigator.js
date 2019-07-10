@@ -14,16 +14,15 @@ import Whoweare from '../screens/public/Whoweare/whoweare';
 import Contact from '../screens/connected/Profile/Contact';
 import MapMaraudes from '../screens/connected/MapMaraudes';
 import ListMaraudes from '../screens/connected/ListMaraudes';
-import Participation from '../screens/public/Participation';
-import MaraudeCreationForm from "../screens/connected/Maraudes/MaraudeCreationForm";
+import Participant from '../screens/public/Participant';
 import forgetPassword from '../screens/public/LoginForm/forgetPassword/forgetPassword';
+import LegalMention from "../screens/connected/LegalMention";
+import MaraudeForm from '../screens/connected/Maraudes/MaraudeCreationForm'
 
 const AppStack = createStackNavigator(
   {
     Profile: { screen: Profile },
-    Contact: { screen: Contact },
-    Participation: { screen: Participation },
-    MaraudeForm: { screen: MaraudeCreationForm }
+    Contact: { screen: Contact }
   },
   {
     initialRouteName: "Profile",
@@ -34,23 +33,25 @@ const AppStack = createStackNavigator(
 const AuthStack = createStackNavigator(
   {
     Login: { screen: LoginForm },
-    forgetPassword: {screen: forgetPassword },
+    forgetPassword: { screen: forgetPassword },
     Signup: { screen: SignupForm },
     Discover: { screen: Discover },
-    Participation: { screen: Participation },
+    Participant: { screen: Participant },
     drawerMenu: { screen: DrawerMenu },
     BottomTabNav: { screen: BottomTabNav },
     Charte: { screen: Charte },
     Whoweare: { screen: Whoweare },
     Map: { screen: MapMaraudes },
     List: { screen: ListMaraudes },
-    MaraudeForm: { screen: MaraudeCreationForm }
+    LegalMention: { screen: LegalMention },
+    MaraudeForm: { screen: MaraudeForm },
   },
   {
     //initialRouteName: "MaraudeCreationForm",
     initialRouteName: "BottomTabNav",
     headerMode: 'none',
     navigationOptions: {
+      // @ts-ignore
       headerVisible: false,
     }
   }
@@ -65,9 +66,7 @@ export default createAppContainer(
       DrawerMenu: DrawerMenu
     },
     {
-      //initialRouteName: "Tab"
-      initialRouteName: "App"
-      //initialRouteName: "Auth"
+      initialRouteName: "DrawerMenu"
     }
   )
 );
