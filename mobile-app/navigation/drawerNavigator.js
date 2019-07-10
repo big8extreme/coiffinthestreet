@@ -12,6 +12,7 @@ import LegalMention from '../screens/connected/LegalMention';
 import Whoweare from '../screens/public/Whoweare/whoweare';
 import { logout } from '../store/actions/auth'
 import MaraudeForm from '../screens/connected/Maraudes/MaraudeCreationForm';
+import StartApp from '../screens/public/StartApp/Startapp';
 
 const { width } = Dimensions.get('screen')
 
@@ -145,7 +146,7 @@ export default createDrawerNavigator({
     screen: StartApp,
     navigationOptions: ({ navigation }) => {
       return {
-        title: "Qui sommes nous ?",
+        title: "demarrage?",
         drawerLabel: () => {
           return <View style={styles.view}>
             <TouchableOpacity style={styles.flex} onPress={() => navigation.navigate('StartApp')}>

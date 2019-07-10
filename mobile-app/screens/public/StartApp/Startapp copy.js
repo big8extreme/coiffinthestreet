@@ -1,6 +1,25 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, Image } from 'react-native';
+import {
+    Animated,
+    Image,
+    Easing,
+  } from "react-native";
   
+  export default class Startapp extends Component {
+    constructor(props) {
+      super(props);
+      this.animatedValue = new Animated.Value(0.5);
+      this.animatedValue2 = new Animated.Value(0);
+    }
+  
+
+
+
+
+
+
+
 
 
 export default class Startapp extends Component {
@@ -16,6 +35,9 @@ export default class Startapp extends Component {
                     />
                 </View>
             </View>
+
+
+
 
         )
     }
