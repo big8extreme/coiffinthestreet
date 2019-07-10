@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Svg } from "expo";
+import  {Svg, Path} from 'react-native-svg';
 import { TouchableOpacity, Text } from "react-native";
 import { withNavigation } from 'react-navigation';
 

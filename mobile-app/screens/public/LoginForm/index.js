@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Toast, Root } from 'native-base';
-import { StyleSheet, Text, View, Image, TextInput, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, ScrollView , TouchableOpacity} from 'react-native';
 import { connect } from 'react-redux'
 import { login } from '../../../store/actions/auth'
 import ConnectButton from '../../../components/ConnectButton';

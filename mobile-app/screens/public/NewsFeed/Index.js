@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ScrollView, Image, Text, View } from 'react-native';
-import { LinearGradient } from 'expo';
+import { LinearGradient } from 'expo-linear-gradient';
 import CardsPhotosMaraude from './CardsPhotosMaraude';
 
 
@@ -36,7 +36,7 @@ export default class NewsFeed extends Component {
 const style = {
     text: {
         color: 'white',
-        fontFamily: 'Georgia',
+        fontFamily: 'Tinos',
         fontStyle: 'italic',
         marginTop: 30,
         marginBottom:30,

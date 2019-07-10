@@ -1,13 +1,14 @@
 
 
 import React from 'react'
-import { Image, Text, View } from 'react-native';
+import { Image, Text, View, Dimensions } from 'react-native';
 import maraude from '../../../store/reducers/maraude';
 import { Card, CardItem, Left, Body } from 'native-base';
 import moment from "moment";
 
 
 
+let deviceWidth = Dimensions.get('window').width
 
 
 export default function PhotoMaraude({ photo, title, startAt, description, city, index }) {
@@ -55,7 +56,7 @@ const style = {
         marginLeft:-10
     },
     image: {
-        width: 315,
+        width: deviceWidth,
         height: 240,
         alignSelf: 'center',
         borderColor: 'black',
@@ -64,7 +65,7 @@ const style = {
     card: {
         marginBottom: 30,
         borderRadius: 0,
-        width: 320,
+        width: deviceWidth,
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 0,
@@ -78,7 +79,7 @@ const style = {
     },
     cardItem: {
         display: 'flex',
-        width: 350
+        width: deviceWidth
     },
     body: {
         height: 60,
