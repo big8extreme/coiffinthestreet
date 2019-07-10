@@ -3,7 +3,7 @@ const User = require('../models').User;
 const os = require('os');
 const mailer = require('../mailer/mailer');
 const bcrypt = require('bcrypt');
-
+const { generateRandomString } = require('../utils/string');
 module.exports = {
   signIn: function (req, res, next) {
     /* By default passport save authenticated user in req.user object */
@@ -28,7 +28,9 @@ module.exports = {
       email: req.body.email,
       password: req.body.password,
       avatarUrl: req.file ? `${process.env.HOST}/${req.file.path}` : null,
-      isAdmin: req.body.isAdmin || false
+      isAdmin: req.body.isAdmin || false,
+      invitationCode: generateRandomString(8),
+      godFatherId: req.inviter.id
     })
       .then((newUser) => {
         const userDatas = {

@@ -15,16 +15,8 @@ export class MenuLeft extends React.Component {
             { label: 'Home', icon: 'pi pi-fw pi-home', command: () => { props.history.push('/admin'); } },
             { label: 'Maraude', icon: 'pi pi-fw pi-calendar', command: () => { props.history.push('/admin/maraudes'); } },
             { label: 'Coiffeur', icon: 'pi pi-fw pi-user', command: () => { props.history.push('/admin/users'); } },
-            { label: 'Participant', icon: 'pi pi-fw pi-users', command: () => { props.history.push('/admin/participants'); } },
-            { label: 'Configs', icon: 'pi pi-fw pi-users', command: () => { props.history.push('/admin/configs'); } }
           ]
         },
-        {
-          label: 'Partenaire??',
-          items: [
-            { label: 'Association', icon: 'pi pi-fw pi-filter' }]
-        },
-
         {
           label: 'Api',
           items: [{ label: 'Documentation', icon: 'pi pi-fw pi-file', command: () => { props.history.push('/admin/docapi'); } }
@@ -32,7 +24,7 @@ export class MenuLeft extends React.Component {
         },
         {
           label: 'Account',
-          items: [{ label: 'Configuration', icon: 'pi pi-fw pi-cog', command: () => { props.history.push('/admin/config'); } },
+          items: [{ label: 'Configuration', icon: 'pi pi-fw pi-cog', command: () => { props.history.push('/admin/configs'); } },
           { label: 'Sign Out', icon: 'pi pi-fw pi-power-off', command: () => { props.logout(); } }]
         },
       ]
