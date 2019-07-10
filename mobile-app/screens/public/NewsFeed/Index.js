@@ -36,8 +36,7 @@ export default class NewsFeed extends Component {
 const style = {
     text: {
         color: 'white',
-        fontFamily: 'Tinos',
-        fontStyle: 'italic',
+        fontFamily: 'TinosItalic',
         marginTop: 30,
         marginBottom:30,
         textAlign: 'center',

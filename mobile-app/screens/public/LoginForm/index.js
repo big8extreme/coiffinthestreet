@@ -26,7 +26,7 @@ class LoginForm extends Component {
         buttonText: 'Ok'
       })
     } else if (response.status === 'success') {
-      this.props.navigation.navigate('App')
+      this.props.navigation.navigate('Signup')
     }
   }
 
@@ -36,7 +36,7 @@ class LoginForm extends Component {
     if (auth.user && auth.user.isConnected) {
       setTimeout(() => {
         //TODO remove before production
-        navigate('App', { name: 'John DOE' })
+        navigate('Signup', { name: 'John DOE' })
       }, 10)
     }
     return (

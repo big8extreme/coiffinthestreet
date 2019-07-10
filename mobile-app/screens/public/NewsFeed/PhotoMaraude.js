@@ -8,6 +8,8 @@ import moment from "moment";
 
 
 
+
+
 let deviceWidth = Dimensions.get('window').width
 
 
@@ -20,9 +22,10 @@ export default function PhotoMaraude({ photo, title, startAt, description, city,
                     <Body style={style.body}>
                         <Left />
                         <Text style={style.title}>{title}</Text>
-                        <Text style={style.city}>{`${city}${moment(maraude.startAt).format(" DD/ MM/ YYYY")}`}</Text>
+                        <Text style={style.city}>{`${city}${moment(maraude.startAt).format("DD/MM/YYYY")}`}</Text>
                     </Body>
                 </CardItem>
+
                 <CardItem >
                     <Body>
                         <Left />
@@ -30,10 +33,14 @@ export default function PhotoMaraude({ photo, title, startAt, description, city,
                             style={style.image} />
                     </Body>
                 </CardItem>
+
                 <CardItem >
-                    <Body style={{paddingStart:0}}>
-                        
-                        <Text style={style.description}>{description}</Text>
+                    <Body>
+                        <Text style={style.description}
+                            numberOfLines={1}
+                            ellipsizeMode={'tail'}>                      
+                        {description}
+                        </Text>
                     </Body>
                 </CardItem>
             </Card>
@@ -46,24 +53,22 @@ const style = {
     description: {
         fontSize: 21,
         fontFamily: 'Tinos',
-        marginLeft:-10,
-        marginTop:-10
+        marginLeft: -10,
+        marginTop: -10
     },
     title: {
-        fontFamily: 'Tinos_bold',
+        fontFamily: 'Sedgwick',
         fontSize: 23,
         textAlign: 'left',
-        marginLeft:-10
+        marginLeft: -10
     },
     image: {
         width: deviceWidth,
         height: 240,
         alignSelf: 'center',
-        borderColor: 'black',
-        borderWidth: 0.5,
     },
     card: {
-        marginBottom: 30,
+        marginBottom: 60,
         borderRadius: 0,
         width: deviceWidth,
         justifyContent: 'center',
@@ -88,9 +93,9 @@ const style = {
 
     },
     city: {
-        fontFamily: 'Tinos',
+        fontFamily: 'Sedgwick',
         fontSize: 19,
-        marginLeft:-10
+        marginLeft: -10
     }
 }
 

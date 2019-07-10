@@ -39,7 +39,7 @@ class CardsPhotosMaraude extends Component {
                         title={maraude.title}
                         description={maraude.description}
                         city={maraude.city}
-                        createdAt={maraude.createdAt}
+                        startAt={maraude.startAt}
                         index={index}
                       />
 
