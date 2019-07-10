@@ -1,3 +1,4 @@
+
 import React from 'react'
 import { TouchableOpacity, View } from 'react-native';
 import { style } from '../assets/ButtonFormulaire';
@@ -33,7 +34,7 @@ const CustomButton = ({ label='', navigation = {}, screen = "",  labelColor = '#
           <Text
             x="90"
             y="50"
-            fontFamily="Sedgwick"
+            fontFamily="Tinos"
             fill="#2D2D2D"
             fontSize={32}
             fontWeight= "bold"
