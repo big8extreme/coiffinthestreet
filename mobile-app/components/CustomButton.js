@@ -43,6 +43,7 @@ const CustomButton = ({ label='', navigation = {}, screen = "",  labelColor = '#
             {label}
           </Text>
         </Svg>
+   
     </TouchableOpacity>
   )
 }

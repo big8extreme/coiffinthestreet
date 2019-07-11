@@ -11,14 +11,7 @@ import DrawerMenu from './drawerNavigator';
 import Contact from '../screens/connected/Profile/Contact';
 import Participant from '../screens/public/Participant';
 import forgetPassword from '../screens/public/LoginForm/forgetPassword/forgetPassword';
-<<<<<<< HEAD
-import LegalMention from "../screens/connected/LegalMention";
-import MaraudeForm from '../screens/connected/Maraudes/MaraudeCreationForm';
-import StartApp from '../screens/public/StartApp/Startapp';
-
-=======
 import MaraudeForm from '../screens/connected/Maraudes/MaraudeCreationForm'
->>>>>>> 582cff7ecd0dd23f60b64dd600c8de0034c44f5c
 
 const AppStack = createStackNavigator(
   {
@@ -38,17 +31,7 @@ const AuthStack = createStackNavigator(
     Discover: { screen: Discover },
     Participant: { screen: Participant },
     BottomTabNav: { screen: BottomTabNav },
-<<<<<<< HEAD
-    Charte: { screen: Charte },
-    Whoweare: { screen: Whoweare },
-    Map: { screen: MapMaraudes },
-    List: { screen: ListMaraudes },
-    LegalMention: { screen: LegalMention },
-    MaraudeForm: { screen: MaraudeForm },
-    StartApp: { screen: StartApp},
-=======
     MaraudeForm: { screen: MaraudeForm }
->>>>>>> 582cff7ecd0dd23f60b64dd600c8de0034c44f5c
   },
   {
     initialRouteName: "BottomTabNav",
