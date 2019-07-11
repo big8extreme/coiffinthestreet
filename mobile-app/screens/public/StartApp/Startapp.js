@@ -13,7 +13,7 @@ export default class Startapp extends React.Component {
   }
   render() {
 
-     return (
+    return (
       <View style={stylestar.backgroundApp}>
         <View>
           <ProgressiveImage
@@ -39,7 +39,7 @@ export default class Startapp extends React.Component {
             source={require('../../../assets/iconeSplash.png')}
           />
         </View>
-       
+
         <View style={stylestar.iconOne}>
           <Image
             source={require('../../../assets/social/Facebook.png')}
@@ -91,13 +91,13 @@ const stylestar = StyleSheet.create({
     marginTop: 650,
     position: "absolute",
     paddingLeft: config.deviceWidth * 0.25,
-    width : config.deviceWidth * 0.8
- },
- iconTwo: {
-  backgroundColor: 'transparent',
-  marginTop: 650,
-  position: "absolute",
-  paddingLeft: config.deviceWidth * 0.57,
-  width : config.deviceWidth * 0.8
-},
+    width: config.deviceWidth * 0.8
+  },
+  iconTwo: {
+    backgroundColor: 'transparent',
+    marginTop: 650,
+    position: "absolute",
+    paddingLeft: config.deviceWidth * 0.57,
+    width: config.deviceWidth * 0.8
+  },
 });
