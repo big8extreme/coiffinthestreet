@@ -15,7 +15,7 @@ const defaultStates = {
   maraudes: [],
 };
 
-export default function(state = defaultStates, action) {
+export default function (state = defaultStates, action) {
   switch (action.type) {
     case FETCH_MARAUDES:
       return { ...state, maraudes: [...action.payload] };

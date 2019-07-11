@@ -10,13 +10,13 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Badge, Button } from 'native-base';
-import { MapView } from "expo";
-import { ListItem } from 'react-native-elements';
+import { Marker } from "react-native-maps";
 import { withNavigation } from 'react-navigation';
+import {ListItem} from 'react-native-elements';
 
 class ClusterMarker extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       modalVisible: false,
     };
@@ -28,7 +28,7 @@ class ClusterMarker extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View>
-        <MapView.Marker 
+        <Marker
           key={this.props.index}
           coordinate={{
             latitude: this.props.latitude,
@@ -39,7 +39,7 @@ class ClusterMarker extends React.Component {
           <Badge style={{ marginTop: -10, marginLeft: 30 }}>
               <Text style={{color: 'white'}}>{this.props.count}</Text>
           </Badge>
-        </MapView.Marker>
+        </Marker>
         <Modal 
           animationType = {"slide"} 
           transparent = {true}
@@ -62,7 +62,7 @@ class ClusterMarker extends React.Component {
                             leftAvatar={{}}
                             title={marker.title}
                             titleStyle={{color: '#FFF'}}
-                            subtitle={<Text style={{color: '#C0C0C0'}}></Text>}
+                            subtitle={<Text style={{color: '#C0C0C0'}}>Description</Text>}
                             rightIcon={<TouchableOpacity onPress={() => {navigate('Signup'); this.toggleModal(!this.state.modalVisible) }}>
                                         <Icon name="ios-mail" size={30} style={{color: '#FFF'}}  />
                                       </TouchableOpacity>}
@@ -83,7 +83,7 @@ const styles = StyleSheet.create ({
   modal: {
     color: 'white',
     height: 300,
-    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
     width: '90%',
     borderRadius: 4,
     marginTop: 20,  
@@ -92,4 +92,7 @@ const styles = StyleSheet.create ({
   },
 })
 
+
+
+// @ts-ignore
 export default withNavigation(ClusterMarker);
