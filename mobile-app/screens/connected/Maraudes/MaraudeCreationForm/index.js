@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import { ScrollView, Text } from 'react-native'
+import { ScrollView, Text, StyleSheet } from 'react-native'
 import { Content, Form, Item, Input } from 'native-base';
 import { connect } from 'react-redux'
 import DatePicker from '../../../../components/DatePicker'
 import TimePicker from '../../../../components/TimePicker'
 import { createMaraude } from '../../../../store/actions/maraude'
 import ValidateButton from '../../../../components/ValidateButton'
+import CitySearcher from './CitySearch';
 
 const defaultMaraude = {
   title: '',
@@ -95,7 +96,7 @@ export class index extends Component {
             </Item>
             <DatePicker
               style={{
-                borderColor: this.state.errors.includes('description') ? 'red' : '#FDC500',
+                borderColor: this.state.errors.includes('startDate') ? 'red' : '#FDC500',
                 width: 300,
                 height: 60,
                 borderRadius: 5,
@@ -107,7 +108,7 @@ export class index extends Component {
             <Text style={style.maraudeText}>Heure de début de la Maraude</Text>
             <TimePicker
               style={{
-                borderColor: this.state.errors.includes('startDate') ? 'red' : '#FDC500',
+                borderColor: this.state.errors.includes('startAt') ? 'red' : '#FDC500',
                 width: 300,
                 height: 60,
                 borderRadius: 5,
@@ -119,7 +120,7 @@ export class index extends Component {
             <Text style={style.maraudeText}>Heure de fin de la Maraude</Text>
             <TimePicker
               style={{
-                borderColor: this.state.errors.includes('startAt') ? 'red' : '#FDC500',
+                borderColor: this.state.errors.includes('endAt') ? 'red' : '#FDC500',
                 width: 300,
                 height: 60,
                 borderRadius: 5,
@@ -128,29 +129,18 @@ export class index extends Component {
               }}
               onChange={(value) => this.handleTextChange({ name: 'endAt', value })}
             />
-            <Text style={style.inputText}>
-              Lieu :</Text>
-            <Item regular
-              style={{
-                borderColor: this.state.errors.includes('endAt') ? 'red' : '#FDC500',
-                width: 300,
-                height: 60,
-                borderRadius: 5,
-                borderWidth: 1,
-                marginLeft: 10,
-                marginBottom: 50
-              }}>
-              <Input
-                value={this.state.city}
-                onChangeText={(value) => this.handleTextChange({ name: 'city', value })}/>
-            </Item>
+            <CitySearcher
+              onChangeText={this.handleTextChange}
+              value={this.state.city}
+              errors={this.state.errors}
+            />
 
             {
               //TODO This Button serves to test the connection between frontend and api
               //It must be replace before production
             }
-         
-            <ValidateButton onPress={this.submitForm} label="Créer la Maraude" style={style.customButton}/>
+
+            <ValidateButton onPress={this.submitForm} label="Créer la Maraude" style={style.customButton} />
 
           </Form>
         </Content>
@@ -164,7 +154,7 @@ const mapStateToProps = (state) => ({
   ...state
 })
 
-const style = {
+const style = StyleSheet.create({
   inputTitle: {
     fontFamily: 'Roboto',
     textAlign: 'left',
@@ -192,7 +182,7 @@ const style = {
   content: {
     marginTop: 50
   }
-}
+})
 
 const mapDispatchToProps = {
   createMaraude
