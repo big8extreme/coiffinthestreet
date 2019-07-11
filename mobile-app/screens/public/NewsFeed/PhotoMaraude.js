@@ -33,7 +33,6 @@ export default function PhotoMaraude({ photo, title, startAt, description, city,
                             style={style.image} />
                     </Body>
                 </CardItem>
-
                 <CardItem >
                     <Body>
                         <Text style={style.description}

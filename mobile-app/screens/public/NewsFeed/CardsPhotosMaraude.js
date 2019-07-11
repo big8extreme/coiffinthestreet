@@ -22,7 +22,8 @@ class CardsPhotosMaraude extends Component {
               key={`maraude-${idx}`}
               horizontal
               pagingEnabled
-              showsHorizontalScrollIndicator={false}>
+              showsHorizontalScrollIndicator={true}
+              >
 
               {
 
@@ -33,7 +34,7 @@ class CardsPhotosMaraude extends Component {
                       key={`photo-${index}`}
                       horizontal
                       pagingEnabled
-                      showsHorizontalScrollIndicator={false}>
+                      showsHorizontalScrollIndicator={true}>
                       <PhotoMaraude
                         photo={photo}
                         title={maraude.title}

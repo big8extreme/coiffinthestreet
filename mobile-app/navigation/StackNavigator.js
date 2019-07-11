@@ -47,7 +47,7 @@ const AuthStack = createStackNavigator(
     MaraudeForm: { screen: MaraudeForm },
   },
   {
-    initialRouteName: "Signup",
+    initialRouteName: "BottomTabNav",
     headerMode: 'none',
     navigationOptions: {
       // @ts-ignore
@@ -65,7 +65,7 @@ export default createAppContainer(
       DrawerMenu: DrawerMenu
     },
     {
-      initialRouteName: "Auth"
+      initialRouteName: "Tab"
     }
   )
 );
