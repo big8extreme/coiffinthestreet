@@ -16,13 +16,13 @@ class ProgressiveImage extends React.Component {
   handleThumbnailLoad = () => {
     Animated.timing(this.thumbnailAnimated, {
       toValue: 1, 
-      // duration: 10000, 
+   
     }).start();
   }
 
   onImageLoad = () => {
     Animated.timing(this.imageAnimated, {
-      toValue: 1,
+      toValue: 1,  duration: 4000
     }).start();
   }
 

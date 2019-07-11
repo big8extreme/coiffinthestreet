@@ -37,7 +37,7 @@ const CustomButton = ({ label='', navigation = {}, screen = "",  labelColor = '#
             fontFamily= "Sedgwick"
             fill="#2D2D2D"
             fontSize={fontSize}
-            color={fontColor}
+            color="#FCFCFC"
             fontWeight= "bold"
           >
             {label}
