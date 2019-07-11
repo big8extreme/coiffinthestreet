@@ -92,7 +92,5 @@ const styles = StyleSheet.create ({
   },
 })
 
-
-
 // @ts-ignore
 export default withNavigation(ClusterMarker);
