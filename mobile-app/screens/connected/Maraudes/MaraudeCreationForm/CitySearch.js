@@ -21,7 +21,7 @@ export default class CitySearcher extends Component {
   }
 
   search(query) {
-    Axios.get(`https://eu1.locationiq.com/v1/search.php?key=${APIKEY}&q=${query}&format=json`)
+    Axios.get(`https://eu1.locationiq.com/v1/search.php?key=${APIKEY}&countrycodes=fr&accept-language=fr&city=${query}&format=json`)
       .then((response) => {
         this.setState({ cities: response.data })
       })
@@ -29,11 +29,13 @@ export default class CitySearcher extends Component {
   }
 
   onSelectCity(city) {
-    this.props.onChangeText({ longitude: 'city', value: city.lon })
+    this.props.onChangeText({ longitude: 'longitude', value: city.lon })
+    this.props.onChangeText({ latitude: 'latitude', value: city.lat })
+    this.props.onChangeText({ city: 'city', value: city.display_name })
+    console.log("HERERERERE", this.state.cities) 
   }
 
   render() {
-    console.log("HERERERERE", this.state)
     return (
       <View>
         <Text style={style.inputText}>
@@ -57,9 +59,16 @@ export default class CitySearcher extends Component {
           this.state.cities.length >= 1 &&
           <View>
             <FlatList
-              style={{ marginTop: 5 }}
               data={this.state.cities}
-              renderItem={({ item }) => <Text onPress={() => this.onSelectCity(item)}>{item.display_name}</Text>}
+              renderItem={({ item }) => <Text onPress={() => this.onSelectCity(item.display_name,item.lat,item.lon)} style={{ 
+                marginBottom: 10,
+                borderWidth: 1, 
+                width: 300, 
+                height: 50, 
+                marginLeft: 10,
+              }}>
+              {item.display_name}
+              </Text>}
               keyExtractor={(item, index) => item.place_id}
             />
           </View>
