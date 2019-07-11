@@ -50,7 +50,7 @@ export function signup(user) {
     }
 
     function onError(error) {
-      
+
       dispatch({ type: LOG_IN_ERROR, error });
 
       return { error, status: 'error' };

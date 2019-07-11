@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Toast, Root } from 'native-base';
-import { StyleSheet, Text, View, Image, TextInput, ScrollView , TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, ScrollView, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux'
 import { login } from '../../../store/actions/auth'
 import ConnectButton from '../../../components/ConnectButton';
@@ -26,7 +26,7 @@ class LoginForm extends Component {
         buttonText: 'Ok'
       })
     } else if (response.status === 'success') {
-      this.props.navigation.navigate('App')
+      this.props.navigation.navigate('Map')
     }
   }
 
@@ -36,13 +36,13 @@ class LoginForm extends Component {
     if (auth.user && auth.user.isConnected) {
       setTimeout(() => {
         //TODO remove before production
-        navigate('App', { name: 'John DOE' })
+        navigate('Map')
       }, 10)
     }
     return (
-      
+
       <Root>
-        
+
         <ScrollView style={styles.backgroundApp}>
           <View style={styles.flexCenterImg}>
             <Image
@@ -77,22 +77,22 @@ class LoginForm extends Component {
           <View style={styles.flexCenterImg}>
             <ConnectButton
               label="Se connecter"
-              onPress={() => this.loginUser()} 
-              />
+              onPress={() => this.loginUser()}
+            />
           </View>
         </ScrollView>
-       
+
       </Root>
-      
+
     )
   }
 }
 
 const styles = StyleSheet.create({
   backgroundApp: {
-    backgroundColor: '#2D2D2D', 
+    backgroundColor: '#2D2D2D',
     flex: 1,
-    
+
   },
 
   flexCenterImg: {
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'left',
     marginBottom: 20,
-    fontFamily:'Tinos_bold'
+    fontFamily: 'Tinos_bold'
   },
 
   yellowBorder: {
