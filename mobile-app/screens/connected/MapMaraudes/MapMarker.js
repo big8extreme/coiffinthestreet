@@ -75,7 +75,7 @@ class MapMarker extends React.Component {
         }}
         image={require('../../../assets/pin.png')}
       >
-        <Callout tooltip style={{ width: 220 }} onPress={() => this.props.navigation.navigate('Signup', {city: maraude.city})}>
+        <Callout tooltip style={{ width: 220 }} onPress={() => this.props.navigation.navigate('Signup', { city: maraude.city })}>
           <MapToolTip navigation={{ navigate }} maraude={maraude} />
         </Callout>
       </Marker>
@@ -101,10 +101,13 @@ class MapMarker extends React.Component {
             display: 'flex',
             position: 'absolute',
             bottom: 0,
-            left: '10%',         
+            left: '10%',
           }}>
-          <CreateMaraudeButton navigation={this.props.navigation} label='Ajouter une maraude'/>
-    </View>
+          {
+            this.props.auth.user.isConnected &&
+            <CreateMaraudeButton navigation={this.props.navigation} label='Ajouter une maraude' />
+          }
+        </View>
       </View>
     );
   }
