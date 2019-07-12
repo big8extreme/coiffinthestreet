@@ -118,10 +118,7 @@ class ListMaraudes extends Component {
         <Button type="button" icon="pi pi-times" className="p-button-danger" onClick={(event) => {
           event.preventDefault();
           event.stopPropagation();
-          const result = window.confirm('Confirmez la suppression')
-          if(result){
             this.props.deleteMaraude(item.id)
-          }
         }}></Button>
     </div>;
   }
