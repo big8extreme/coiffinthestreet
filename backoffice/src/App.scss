@@ -40,7 +40,7 @@ body .p-menu {
   top: 70px;
   height: 100%;
   background-color: #fff;
-  width: 300px;
+  width: 13%;
   overflow: auto;
   box-shadow: 0 0 10px 0 rgba(0,0,0,.2);
 }
@@ -110,18 +110,12 @@ body .p-menu {
 }
 
 .layout-content {
-  margin-left: 300px;
+  margin-left: 13%;
   padding-top: 70px;
 }
 
 .layout-content .content-section {
   display: block;
-  padding: 30px;
-  background-color: #f5f7f8;
-}
-
-.layout-content .content-section.implementation {
-  background-color: #fff;
 }
 
 .layout-content .content-section.introduction {
@@ -143,4 +137,38 @@ body .p-menu {
     grid-gap: 10px;
 }
 
+.feature-intro {
+  background-color: #ffc107;
+  padding: 30px;
+}
 
+.p-datatable.p-component {
+  margin: 30px;
+}
+
+button.p-button.p-component.p-button-warning.float-left.p-button-text-icon-left {
+  margin-left: 20px;
+}
+
+.p-datatable.p-component {
+  margin-top: 0;
+}
+
+.p-menuitem-link:hover {
+  background-color: #ffc107 !important;
+}
+
+.row.subtitle-user {
+  margin: 15px
+}
+input.p-inputtext.p-component {
+  margin-right: 10px;
+}
+
+.search-bar:before  {
+  font-size: .7em;
+}
+
+input.p-inputtext.p-component {
+  margin-left: 10px;
+}

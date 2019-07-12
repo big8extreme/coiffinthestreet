@@ -10,11 +10,11 @@ export class MenuLeft extends React.Component {
     this.state = {
       items: [
         {
-          label: 'GENERAL',
+          label: 'TABLEAU DE BORD',
           items: [
-            { label: 'Home', icon: 'pi pi-fw pi-home', command: () => { props.history.push('/admin'); } },
-            { label: 'Maraude', icon: 'pi pi-fw pi-calendar', command: () => { props.history.push('/admin/maraudes'); } },
-            { label: 'Coiffeur', icon: 'pi pi-fw pi-user', command: () => { props.history.push('/admin/users'); } },
+            { label: 'Accueil', icon: 'pi pi-fw pi-home', command: () => { props.history.push('/admin'); } },
+            { label: 'Maraudes', icon: 'pi pi-fw pi-calendar', command: () => { props.history.push('/admin/maraudes'); } },
+            { label: 'Coiffeurs', icon: 'pi pi-fw pi-user', command: () => { props.history.push('/admin/users'); } },
           ]
         },
         {
@@ -25,7 +25,7 @@ export class MenuLeft extends React.Component {
         {
           label: 'Account',
           items: [{ label: 'Configuration', icon: 'pi pi-fw pi-cog', command: () => { props.history.push('/admin/configs'); } },
-          { label: 'Sign Out', icon: 'pi pi-fw pi-power-off', command: () => { props.logout(); } }]
+          { label: 'Déconnexion', icon: 'pi pi-fw pi-power-off', command: () => { props.logout(); } }]
         },
       ]
     };
