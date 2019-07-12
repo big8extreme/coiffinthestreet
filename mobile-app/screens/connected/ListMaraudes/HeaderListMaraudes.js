@@ -15,6 +15,12 @@ class HeaderListMaraudes extends Component {
     };
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if(this.props.city){
+      this.props.fetchMaraudesByCity(this.props.city)
+    }
+  }
+
   updateSearch = search => {
     this.setState({ search });
   };
