@@ -7,6 +7,7 @@ import { InputSwitch } from 'primereact/inputswitch';
 import { Form } from 'reactstrap';
 import { connect } from 'react-redux';
 import { createUser, updateUser } from '../../../stores/actions/user';
+import '../../../App.scss';
 
 const defaultUser = {
   firstName: '',

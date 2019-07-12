@@ -12,7 +12,7 @@ module.exports = {
     };
 
     if (city) {
-      query.where.city = city;
+      query.where.city = sequelize.where(sequelize.fn('LOWER', sequelize.col('city')), 'LIKE', '%' + city + '%')
     }
     Maraude.findAll(query)
       .then((maraudes) => {
