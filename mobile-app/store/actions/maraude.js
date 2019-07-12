@@ -80,8 +80,13 @@ export function createMaraude(maraudeFields) {
         }
         try {
             maraudeFields.userId = getState().auth.user.id
-            //maraudeFields.startAt = `${moment(maraude.startDate).format("DD/MM/YYYY")} ${moment(maraude.startAt).format("HH:MM:SS")}`
-            //maraudeFields.endAt = `${moment(maraude.startDate).format("DD/MM/YYYY")} ${moment(maraude.endAt).format("HH:MM:SS")}`
+            const startDate = maraudeFields.startDate
+            const startAt = maraudeFields.startAt
+            const endAt = maraudeFields.endAt
+            maraudeFields.startAt = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate(), startAt.getHours, startAt.getMinutes())
+            maraudeFields.endAt = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate(), endAt.getHours, endAt.getMinutes())
+            delete maraudeFields.startDate
+            console.log('check the fields', startAt, endAt)
             const response = await axios.post(`${baseUrlApi}/maraudes/`, { ...maraudeFields }, {
                 headers: { Authorization: `bearer ${getState().auth.user.token}` }
             })
@@ -89,6 +94,7 @@ export function createMaraude(maraudeFields) {
         }
         catch (err) {
             onError(err)
+            console.log('error', err)
         }
     }
 }

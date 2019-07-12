@@ -144,14 +144,7 @@ export class index extends Component {
                 value={this.state.city}
                 onChangeText={(value) => this.handleTextChange({ name: 'city', value })}/>
             </Item>
-
-            {
-              //TODO This Button serves to test the connection between frontend and api
-              //It must be replace before production
-            }
-         
             <ValidateButton onPress={this.submitForm} label="Créer la Maraude" style={style.customButton}/>
-
           </Form>
         </Content>
       </ScrollView>
