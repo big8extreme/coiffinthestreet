@@ -101,7 +101,7 @@ class MapMarker extends React.Component {
             display: 'flex',
             position: 'absolute',
             bottom: 0,
-            left: '12%',         
+            left: '10%',         
           }}>
           <CreateMaraudeButton navigation={this.props.navigation} label='Ajouter une maraude'/>
     </View>
