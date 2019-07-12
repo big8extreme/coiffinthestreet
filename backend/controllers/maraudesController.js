@@ -6,7 +6,7 @@ module.exports = {
   index: function (req, res, next) {
     const { city } = req.query;
     const query = {
-      include: ['photos'],
+      include: ['photos', 'author'],
       where: {
       }
     };

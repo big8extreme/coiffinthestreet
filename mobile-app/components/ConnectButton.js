@@ -8,10 +8,10 @@ import { withNavigation } from 'react-navigation';
 class ConnectButton extends React.Component {
 
     render() {
-        const { onPress, label } = this.props;
+        const { onPress, label, disabled=false } = this.props;
         const { navigate } = this.props.navigation;
         return (
-            <TouchableOpacity onPress={onPress}>
+            <TouchableOpacity disabled={disabled} onPress={disabled ? null : onPress}>
                 <Svg
                     height={100}
                     width={350}
