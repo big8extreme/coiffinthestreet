@@ -12,7 +12,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { Badge, Button } from 'native-base';
 import { Marker } from "react-native-maps";
 import { withNavigation } from 'react-navigation';
-import {ListItem} from 'react-native-elements';
+import { ListItem } from 'react-native-elements';
 
 class ClusterMarker extends React.Component {
   constructor(props) {
@@ -29,6 +29,7 @@ class ClusterMarker extends React.Component {
     return (
       <View>
         <Marker
+          style={{}}
           key={this.props.index}
           coordinate={{
             latitude: this.props.latitude,
@@ -57,15 +58,16 @@ class ClusterMarker extends React.Component {
             <ScrollView>
                 {this.props.markers.map((marker, index) => {
                   return  <ListItem
-                            containerStyle={{ backgroundColor: 'rgba(0, 0, 0, 0)', width: '80%', alignSelf: 'center'}}
+                            containerStyle={{ backgroundColor: 'rgba(0, 0, 0, 0)', width: '90%', alignSelf: 'center'}}
                             key={index}
-                            leftAvatar={{}}
+                            leftAvatar={{ source: { uri: marker.author.avatarUrl} }}
                             title={marker.title}
                             titleStyle={{color: '#FFF'}}
-                            subtitle={<Text style={{color: '#C0C0C0'}}>Description</Text>}
+                            subtitle={<Text style={{color: '#C0C0C0'}}>{marker.description}</Text>}
                             rightIcon={<TouchableOpacity onPress={() => {navigate('Signup'); this.toggleModal(!this.state.modalVisible) }}>
-                                        <Icon name="ios-mail" size={30} style={{color: '#FFF'}}  />
+                                        <Icon name="ios-log-in" size={30} style={{color: '#FFF'}}  />
                                       </TouchableOpacity>}
+                            
                           />
                           })}
             </ScrollView>

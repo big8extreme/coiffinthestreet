@@ -1,11 +1,14 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { fetchMaraudes } from '../../../store/actions/maraude';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
+import { Button } from 'native-base';
 import MapView, { Callout, Marker } from "react-native-maps";
 import { getCluster } from "../../../utils/MapUtils";
 import MapToolTip from './MapToolTip';
 import ClusterMarker from './ClusterMarker';
+import CreateMaraudeButton from '../../../components/CreateMaraudeButton';
+
 
 const Style = StyleSheet.create({
   container: {
@@ -33,9 +36,8 @@ function maraudesToMarkers(maraudeArray) {
         coordinates: [parseFloat(maraude.longitude), parseFloat(maraude.latitude)]
       },
       properties: {
-        id: maraude.id,
-        title: maraude.title,
-      }  
+        ...maraude
+      }
     }
     return marker
   })
@@ -73,7 +75,7 @@ class MapMarker extends React.Component {
         }}
         image={require('../../../assets/pin.png')}
       >
-        <Callout tooltip style={{ width: 200 }}>
+        <Callout tooltip style={{ width: 220 }} onPress={() => this.props.navigation.navigate('Signup', {city: maraude.city})}>
           <MapToolTip navigation={{ navigate }} maraude={maraude} />
         </Callout>
       </Marker>
@@ -94,6 +96,15 @@ class MapMarker extends React.Component {
           onRegionChangeComplete={region => this.setState({ region })}>
           {cluster.markers.map((marker, index) => this.renderMarker(marker, index))}
         </MapView>
+        <View
+          style={{
+            display: 'flex',
+            position: 'absolute',
+            bottom: 0,
+            left: '12%',         
+          }}>
+          <CreateMaraudeButton navigation={this.props.navigation} label='Ajouter une maraude'/>
+    </View>
       </View>
     );
   }
