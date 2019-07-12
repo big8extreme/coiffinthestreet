@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, View, Image, TouchableOpacity, Alert, Text } from "react-native";
-import { Container, Content, Form, Textarea } from 'native-base';
+import { Container, Content, Form, Textarea} from 'native-base';
 
 export default class MessageTextInput extends Component {
     constructor(props) {
@@ -16,38 +16,36 @@ export default class MessageTextInput extends Component {
     render() {
         return (
             <View>
-
-                <Text style={styles.contactTextTitle}>Message :</Text>
-                <Container style={styles.form}>
-
-                    <Content >
-                        <Form >
-                            <Textarea
-                                placeholder="Tapez votre texte"
-                                
-                            />
-                        </Form>
-                    </Content>
-                </Container>
+                
+                    <Text style={styles.contactTextTitle}>Message :</Text>
+                    <Container style={styles.form}>
+                        
+                        <Content >
+                            <Form >
+                                <Textarea 
+                                 placeholder="Tapez votre texte"
+                                 />
+                            </Form>
+                        </Content>
+                    </Container>
             </View>
         );
     }
 }
 const styles = StyleSheet.create({
-    form: {
-        width: 300,
-        height: 200,
-        alignSelf: 'center',
-        borderWidth: 2,
-        borderColor: 'rgb(253,197,0)',
-        borderRadius: 5,
-        marginBottom: 60,
-        fontFamily: 'Tinos'
+    form:{
+        width:300,
+        height:200,
+        alignSelf:'center',
+        borderWidth:2,
+        borderColor:'rgb(253,197,0)',
+        borderRadius:5,
+        marginBottom:60,
     },
     contactTextTitle: {
-        fontSize: 20,
-        color: 'rgb(241,240,199)',
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: 'rgb(253,197,0)',
         margin: 22,
-        fontFamily: 'Tinos_bold'
     },
 })

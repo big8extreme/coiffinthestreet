@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import  {Svg, Path} from 'react-native-svg';
-import { TouchableOpacity, Text } from "react-native";
+import { Svg, Path, Text } from "react-native-svg";
+import { TouchableOpacity } from "react-native";
 import { withNavigation } from 'react-navigation';
 
 
@@ -23,21 +23,17 @@ class ConnectButton extends React.Component {
                         stroke="#FFF"
                         strokeWidth="6"
                     />
+                    <Text
+                        x="60"
+                        y="50"
+                        fill="#2D2D2D"
+                        fontSize={36}
+                    >
+                        {label}
+                    </Text>
                 </Svg>
-                <Text style={style.btnStyle}>Se connecter</Text>
             </TouchableOpacity>
         );
-    }
-}
-const style = {
-    btnStyle: {
-        fontFamily:'Sedgwick',
-        color:'#2D2D2D',
-        fontSize:35,
-        position:'absolute',
-        alignSelf:'center',
-        marginTop:20,
-        
     }
 }
 

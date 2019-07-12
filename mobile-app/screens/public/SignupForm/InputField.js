@@ -9,7 +9,6 @@ const InputField = ({
     disabled,
     placeholder,
     errors,
-    secureTextEntry=false
 }) => {
     return (
         <View>
@@ -20,7 +19,6 @@ const InputField = ({
                 placeholder={placeholder ? placeholder : ""}
                 disabled={disabled}
                 style={customStyle ? customStyle : {}}
-                secureTextEntry={secureTextEntry}
             />
             {errors && errors.length > 0 && errors.map((item, index) =>
                 

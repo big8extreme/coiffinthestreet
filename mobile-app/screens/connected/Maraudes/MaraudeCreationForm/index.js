@@ -55,6 +55,13 @@ export class index extends Component {
       this.setState({ errors })
     }
   }
+  handlePositionSelect = (position) => {
+      this.setState({ 
+        longitude: position.lon,
+        latitude: position.lat,
+        city: position.display_name
+      })
+  }
 
   render() {
     return (
@@ -130,8 +137,9 @@ export class index extends Component {
               onChange={(value) => this.handleTextChange({ name: 'endAt', value })}
             />
             <CitySearcher
-              onChangeText={this.handleTextChange}
-              value={this.state.city}
+              handleCityChange={(value) => this.handleTextChange({ name: 'city', value })}
+              handlePositionSelect={this.handlePositionSelect}
+              city={this.state.city}
               errors={this.state.errors}
             />
 
@@ -140,7 +148,10 @@ export class index extends Component {
               //It must be replace before production
             }
 
-            <ValidateButton onPress={this.submitForm} label="Créer la Maraude" style={style.customButton} />
+            <ValidateButton
+              onPress={this.submitForm} 
+              label="Créer la Maraude" 
+              style={style.customButton} />
 
           </Form>
         </Content>

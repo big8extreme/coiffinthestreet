@@ -20,7 +20,6 @@ export default class AvatarUpload extends Component {
                 mediaTypes: 'Images',
             }).catch(error => console.log(permissions, { error }));
             this.setState({ avatar: image })
-            this.props.onSelected(image)
         }
     }
     render() {

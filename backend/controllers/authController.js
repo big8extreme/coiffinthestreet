@@ -40,9 +40,7 @@ module.exports = {
           adress_mail: 'Coiffla@hotmail.com' //Todo add it to .env
         };
         mailer(userDatas, newUser.email, 'welcome');
-        const token = jwt.sign(user, 'your_jwt_secret');
-        /* Return user and token in json response */
-        res.json({ user, token });
+        res.json({ user: newUser });
       })
       .catch((err) => res.send(err));
   },

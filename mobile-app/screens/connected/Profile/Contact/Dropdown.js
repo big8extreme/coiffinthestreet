@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import { Content, Icon, Picker, Form } from "native-base";
-
-
-
+import { Container, Header, Content, Icon, Picker, Form, View } from "native-base";
 
 const subjects = [
     'Problème technique',
@@ -53,7 +50,7 @@ export default class PickerTextAndItemStyleExample extends Component {
 
                     </Picker>
                 </Form>
-           </Content>
+            </Content>
 
         );
     }
@@ -62,13 +59,14 @@ export default class PickerTextAndItemStyleExample extends Component {
 const style = {
     dropdown: {
         width: 300,
-        color: 'rgb(241,240,199)',
+        color: 'rgb(253,197,0)',
         borderWidth: 2,
-        borderColor: 'rgb(241,240,199)',
+        borderColor: 'rgb(253,197,0)',
         alignSelf: 'center',
         marginTop: 50,
         marginBottom: 30,
         fontSize: 18,
-        fontFamily: 'Tinos_bold',
-    }
+        fontWeight: 'bold'
+    },
+
 }

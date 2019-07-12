@@ -7,10 +7,16 @@ import BottomTabNav from './bottomTabNavigator';
 import LoginForm from "../screens/public/LoginForm";
 import Profile from "../screens/connected/Profile";
 import Discover from '../screens/public/Discover/discover';
+import SignupForm from '../screens/public/SignupForm/MyForm';
 import DrawerMenu from './drawerNavigator';
+import Charte from '../screens/public/Charte';
+import Whoweare from '../screens/public/Whoweare/whoweare';
 import Contact from '../screens/connected/Profile/Contact';
+import MapMaraudes from '../screens/connected/MapMaraudes';
+import ListMaraudes from '../screens/connected/ListMaraudes';
 import Participant from '../screens/public/Participant';
 import forgetPassword from '../screens/public/LoginForm/forgetPassword/forgetPassword';
+import LegalMention from "../screens/connected/LegalMention";
 import MaraudeForm from '../screens/connected/Maraudes/MaraudeCreationForm'
 
 const AppStack = createStackNavigator(
@@ -28,10 +34,17 @@ const AuthStack = createStackNavigator(
   {
     Login: { screen: LoginForm },
     forgetPassword: { screen: forgetPassword },
+    Signup: { screen: SignupForm },
     Discover: { screen: Discover },
     Participant: { screen: Participant },
+    drawerMenu: { screen: DrawerMenu },
     BottomTabNav: { screen: BottomTabNav },
-    MaraudeForm: { screen: MaraudeForm }
+    Charte: { screen: Charte },
+    Whoweare: { screen: Whoweare },
+    Map: { screen: MapMaraudes },
+    List: { screen: ListMaraudes },
+    LegalMention: { screen: LegalMention },
+    MaraudeForm: { screen: MaraudeForm },
   },
   {
     initialRouteName: "BottomTabNav",
