@@ -1,3 +1,6 @@
+# Hide idea
+.idea/*
+
 # Uploaded files
 uploads/*
 # Logs
