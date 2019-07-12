@@ -12,14 +12,13 @@ module.exports = {
     };
 
     if (city) {
-      query.where.city = city;
+      query.where.city = sequelize.where(sequelize.fn('LOWER', sequelize.col('city')), 'LIKE', '%' + city + '%')
     }
     Maraude.findAll(query)
       .then((maraudes) => {
         res.json({ maraudes });
       })
       .catch((error) => {
-        console.log('EROROROROROR', error);
         res.status(500).json({ error });
       });
   },
@@ -31,7 +30,6 @@ module.exports = {
   },
 
   create: function (req, res, next) {
-    console.log('ENTER HERE', req.body);
     Maraude.create({
       userId: req.body.userId,
       title: req.body.title,
@@ -45,7 +43,6 @@ module.exports = {
     })
       .then((maraude) => { res.json({ maraude }); })
       .catch((error) => {
-        console.log('ENTER IN ERROR', error);
         res.status(500).json({ error });
       });
   },

@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
     cb(null, file.originalname);
   }
 });
-const upload = multer({ storage: storage });
+const upload = multer({ storage: storage, limits: { fieldSize: 25 * 1024 * 1024 } });
 
 /* POST email and password and return jwt if authenticated successfull */
 router.post('/signin', passport.authenticate('local', { session: false }), authController.signIn);
