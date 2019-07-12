@@ -83,10 +83,11 @@ export function createMaraude(maraudeFields) {
             const startDate = maraudeFields.startDate
             const startAt = maraudeFields.startAt
             const endAt = maraudeFields.endAt
-            maraudeFields.startAt = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate(), startAt.getHours, startAt.getMinutes())
-            maraudeFields.endAt = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate(), endAt.getHours, endAt.getMinutes())
+            maraudeFields.startAt = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate(), startAt.getHours(), startAt.getMinutes())
+            maraudeFields.endAt = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate(), endAt.getHours(), endAt.getMinutes())
             delete maraudeFields.startDate
-            console.log('check the fields', startAt, endAt)
+
+
             const response = await axios.post(`${baseUrlApi}/maraudes/`, { ...maraudeFields }, {
                 headers: { Authorization: `bearer ${getState().auth.user.token}` }
             })
