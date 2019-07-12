@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import { StyleSheet, View, ScrollView, Image } from 'react-native';
 import MessageTextInput from './MessageTextInput';
 import PickerTextAndItemStyleExample from './Dropdown';
-import ValidateButton from '../../../../components/ValidateButton';
+import ConnectButton from '../../../../components/ConnectButton';
+
 
 export default class Contact extends Component {
   render() {
@@ -15,12 +16,8 @@ export default class Contact extends Component {
         </View>
           <PickerTextAndItemStyleExample />
           <MessageTextInput />
-          <ValidateButton 
-          label="Envoyer"
-          style={{color:'yellow'}}
-          />
+          <ConnectButton />
       </ScrollView>
-
 
     );
   }
@@ -29,8 +26,7 @@ export default class Contact extends Component {
 const styles = StyleSheet.create({
   logo: {
     alignSelf: 'center',
-    marginTop:30,
-    marginBottom:30
-
+    marginTop: 30,
+    marginBottom: 30
   },
 })

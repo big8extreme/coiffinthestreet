@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ScrollView, Image, Text, View } from 'react-native';
-import { LinearGradient } from 'expo';
+import { LinearGradient } from 'expo-linear-gradient';
 import CardsPhotosMaraude from './CardsPhotosMaraude';
 
 
@@ -18,12 +18,10 @@ export default class NewsFeed extends Component {
             >
                 <ScrollView >
                     <View style={style.logo}>
-                        <Image source={require('../../../assets/Logo_light.png')}/>
+                        <Image source={require('../../../assets/Logo_light.png')} />
                     </View>
                     <Text style={style.text}>Retrouvez-nous avec #coiffinthestreet !</Text>
                     <CardsPhotosMaraude />
-
-
                 </ScrollView>
 
             </LinearGradient>
@@ -35,23 +33,21 @@ export default class NewsFeed extends Component {
 
 const style = {
     text: {
-        color: 'white',
-        fontFamily: 'Georgia',
-        fontStyle: 'italic',
+        color: '#FDC500',
+        fontFamily: 'TinosBoldItalic',
         marginTop: 30,
-        marginBottom:30,
+        marginBottom: 30,
         textAlign: 'center',
-        fontSize:17
+        fontSize: 17
     },
     background: {
         justifyContent: 'center',
         alignItems: 'center',
         paddingTop: 20,
-        
+
     },
     logo: {
-        justifyContent: 'center',
-        alignItems: 'center'
+        alignSelf: 'center'
     }
 }
 

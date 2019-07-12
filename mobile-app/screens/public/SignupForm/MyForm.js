@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
-import { Text, TouchableOpacity, Image, ScrollView, View } from 'react-native';
-import { Input, Container, } from 'native-base';
+import { connect } from 'react-redux'
+import { Text, ScrollView } from 'react-native';
 import { Form, Field } from 'react-native-validate-form';
-import { CheckBox } from 'react-native-elements';
 import InputField from './InputField';
 import AvatarUpload from './Avatar';
-import DatePicker from './DatePicker';
-import ValidateButton from '../../../components/ValidateButton';
+import { signup } from '../../../store/actions/auth';
+import { Toast, Root } from 'native-base';
+import ConnectButton from '../../../components/ConnectButton';
 
-const required = value => (value ? undefined : 'This is a required field.');
+
 const email = value => value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,5}$/i.test(value) ? 'Please provide a valid email address.' : undefined;
+const requiredFields = ['email', 'firstName', 'name', 'pseudo', 'password', 'invitationCode', 'confirmPassword']
 
-export default class MyForm extends Component {
+class MyForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -19,32 +20,43 @@ export default class MyForm extends Component {
             email: '',
             pseudo: '',
             name: '',
-            firstname: '',
-            password: null,
-            confirmPassword: null,
-            one: false,
-            two: false,
-            itemChecked: false,
-            code: ''
+            firstName: '',
+            password: '',
+            confirmPassword: '',
+            invitationCode: '',
+            loading: false
         }
     }
 
 
-    onePressed() {
-        this.setState({ one: true, two: false })
-    }
-
-    twoPressed() {
-        this.setState({ one: false, two: true })
-    }
-
-    submitForm() {
-        let submitResults = this.myForm.validate();
+    submitForm = async () => {
+        this.setState({ loading: true })
         let errors = [];
-        submitResults.forEach(item => {
-            errors.push({ field: item.fieldName, error: item.error });
+        requiredFields.forEach(item => {
+            if (this.state[item].length < 1) {
+                errors.push({ field: item, error: "Can't be blank !" });
+            }
         });
         this.setState({ errors: errors });
+        if (errors.length < 1) {
+            const response = await this.props.signup(this.state)
+            if (response.status === "success") {
+                Toast.show({
+                    text: 'Success',
+                    position: 'top',
+                    type: 'success',
+
+
+                })
+            } else {
+                Toast.show({
+                    text: "Erreur lors de l'inscription",
+                    position: 'top',
+                    type: 'danger'
+                })
+            }
+        }
+        this.setState({ loading: false })
     }
 
     submitSuccess() {
@@ -55,137 +67,126 @@ export default class MyForm extends Component {
         console.log("Submit Failed!");
     }
 
+    handleTextChange = (field, value) => {
+        this.setState({ [field]: value })
+        this.resetError(field)
+    }
+
+    resetError = (field) => {
+        const { errors } = this.state
+        const erronedFields = errors.map((err => err.field))
+        if (erronedFields.includes(field)) {
+            const index = erronedFields.indexOf(field)
+            errors.splice(index, 1)
+            this.setState({ errors })
+        }
+    }
+
     render() {
 
         return (
+            <Root>
+                <ScrollView style={{ margin: 30 }}>
+                    <AvatarUpload onSelected={(file) => this.setState({ avatar: file })} />
 
-            <ScrollView>
-
-                <AvatarUpload />
-
-                <Form
-                    ref={(ref) => this.myForm = ref}
-                    validate={true}
-                    submit={this.submitSuccess.bind(this)}
-                    failed={this.submitFailed.bind(this)}
-                    errors={this.state.errors}
-                    style={{ marginTop: 30, justifyContent: 'center' }}
-                >
-                    <Text style={style.inputText}>Nom *</Text>
-                    <Field
-                        required
-                        component={InputField}
-                        validations={[required]}
-                        name="name"
-                        value={this.state.name}
-                        onChangeText={(val) => this.setState({ name: val })}
-                        customStyle={style.field}
-                    />
-
-                    <Text style={style.inputText}>Prénom *</Text>
-                    <Field
-                        required
-                        component={InputField}
-                        validations={[required]}
-                        name="firstname"
-                        value={this.state.firstname}
-                        onChangeText={(val) => this.setState({ firstname: val })}
-                        customStyle={style.field}
-                    />
-
-                    <Text style={style.inputText}>Pseudo</Text>
-                    <Field
-                        required
-                        component={InputField}
-                        validations={[required]}
-                        name="pseudo"
-                        value={this.state.pseudo}
-                        onChangeText={(val) => this.setState({ pseudo: val })}
-                        customStyle={style.field}
-                    />
-
-                    <DatePicker />
-
-                    <Text style={style.inputText}>E-mail *</Text>
-                    <Field
-                        required
-                        component={InputField}
-                        validations={[required, email]}
-                        name="email"
-                        value={this.state.email}
-                        onChangeText={(val) => this.setState({ email: val })}
-                        customStyle={style.field}
-                    />
-
-                    <Text style={style.inputText}>Mot de passe *</Text>
-                    <Input
-                        validations={required}
-                        name="password"
-                        secureTextEntry={true}
-                        value={this.state.password}
-                        onChangeText={(val) => this.setState({ password: val })}
-                        style={style.field}
-                    />
-
-                    <Text style={style.inputText}>Confirmer le mot de passe *</Text>
-                    <Input
-                        required
-                        component={InputField}
-                        validations={[required]}
-                        name="confirmPassword"
-                        secureTextEntry={true}
-                        value={this.state.confirmPassword}
-                        onChangeText={(val) => this.setState({ confirmPassword: val })}
-                        style={style.field}
-                    />
-
-                    <Text style={style.inputText}>Code de parrainage *</Text>
-                    <Container style={style.container}>
-                        <CheckBox
-                            checked={this.state.one}
-                            onPress={() => { this.onePressed(); { alert('Entrez votre code de parrainage') } }}
-                            checkedColor='#FDC500'
+                    <Form
+                        ref={(ref) => this.myForm = ref}
+                        validate={true}
+                        submit={this.submitSuccess.bind(this)}
+                        failed={this.submitFailed.bind(this)}
+                        errors={this.state.errors}
+                        style={{ marginTop: 30, justifyContent: 'center' }}
+                    >
+                        <Text style={style.inputText}>Nom *</Text>
+                        <Field
+                            component={InputField}
+                            name="name"
+                            value={this.state.name}
+                            onChangeText={(val) => this.handleTextChange('name', val)}
+                            customStyle={style.field}
                         />
-                        <Text style={{ fontFamily: 'Roboto' }}>Oui</Text>
-                    </Container>
-                    <Container style={style.container}>
-                        <CheckBox
-                            checked={this.state.two}
-                            onPress={() => this.twoPressed()}
-                            checkedColor='#FDC500'
+
+                        <Text style={style.inputText}>Prénom *</Text>
+                        <Field
+                            component={InputField}
+                            name="firstname"
+                            value={this.state.firstname}
+                            onChangeText={(val) => this.handleTextChange('firstName', val)}
+                            customStyle={style.field}
                         />
-                        <Text style={{ fontFamily: 'Roboto' }}>Non, je n'ai pas de parrain</Text>
-                    </Container>
-                    <Text style={style.inputText}>Entrez votre code de parrainage *</Text>
-                    <Field
-                        required
-                        component={InputField}
-                        validations={[required]}
-                        name="code"
-                        secureTextEntry={true}
-                        value={this.state.code}
-                        onChangeText={(val) => this.setState({ code: val })}
-                        customStyle={style.field}
-                    />
-                </Form>
-                <ValidateButton onPress={this.submitForm.bind(this)} label="Valider" />
-            </ScrollView>
+
+                        <Text style={style.inputText}>Pseudo *</Text>
+                        <Field
+                            component={InputField}
+                            name="pseudo"
+                            value={this.state.pseudo}
+                            onChangeText={(val) => this.handleTextChange('pseudo', val)}
+                            customStyle={style.field}
+                        />
+
+                        <Text style={style.inputText}>E-mail *</Text>
+                        <Field
+                            component={InputField}
+                            name="email"
+                            value={this.state.email}
+                            onChangeText={(val) => this.handleTextChange('email', val)}
+                            customStyle={style.field}
+                        />
+
+                        <Text style={style.inputText}>Mot de passe *</Text>
+                        <Field
+                            secureTextEntry
+                            component={InputField}
+                            name="password"
+                            secureTextEntry={true}
+                            value={this.state.password}
+                            onChangeText={(val) => this.handleTextChange('password', val)}
+                            customStyle={style.field}
+                        />
+
+                        <Text style={style.inputText}>Confirmer le mot de passe *</Text>
+                        <Field
+                            secureTextEntry
+                            component={InputField}
+                            name="confirmPassword"
+                            secureTextEntry={true}
+                            value={this.state.confirmPassword}
+                            onChangeText={(val) => this.handleTextChange('confirmPassword', val)}
+                            customStyle={style.field}
+                        />
+
+                        <Text style={style.inputText}>Entrez votre code de parrainage *</Text>
+                        <Field
+                            component={InputField}
+                            name="code"
+                            secureTextEntry={true}
+                            value={this.state.code}
+                            onChangeText={(val) => this.handleTextChange('invitationCode', val)}
+                            customStyle={style.field}
+                        />
+                    </Form>
+                    <ConnectButton disabled={this.state.loading} label="Valider" onPress={() => this.submitForm()} />
+
+
+
+                </ScrollView>
+            </Root>
         );
     }
 }
 
+
+
 const style = {
     field: {
         borderColor: '#FDC500',
-        height: 60,
+        height: 50,
         borderWidth: 1,
-        width: '90%',
         borderRadius: 5,
-        paddingLeft: 5,
         fontSize: 18
     },
     inputText: {
-        fontFamily: 'Roboto',
+        fontFamily: 'Tinos',
         fontWeight: 'bold',
         marginBottom: 5,
         marginTop: 25
@@ -201,8 +202,19 @@ const style = {
         marginLeft: 120,
         position: 'absolute',
         fontFamily: 'Sedgwick',
-        fontSize: 30,
+        fontSize: 80,
         zIndex: 900,
         color: '#FDC500'
     }
 }
+
+
+const mapStateToProps = (state) => ({
+
+})
+
+const mapDispatchToProps = {
+    signup
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyForm)
