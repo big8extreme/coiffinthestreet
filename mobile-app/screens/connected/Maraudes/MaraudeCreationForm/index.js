@@ -152,7 +152,6 @@ export class index extends Component {
               onPress={this.submitForm} 
               label="Créer la Maraude" 
               style={style.customButton} />
-
           </Form>
         </Content>
       </ScrollView>
