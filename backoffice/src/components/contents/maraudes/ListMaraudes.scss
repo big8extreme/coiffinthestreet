@@ -1,0 +1,94 @@
+#containerListMaraudes {
+    .content-section.header {
+        background-color: #ffc107;
+    }
+    div#pr_id_1 {
+        width: 70vw;
+    }
+    input {
+        margin: 20px 0;
+    }
+    .item-maraude {
+        margin-left: 15px;
+        display: flex;
+        align-items: center;
+    }
+    .maraude-photo {
+        position: relative;
+        padding: 0 10px 0 10px;
+    }
+    .destroyer {
+        position: absolute;
+        top: 0;
+        right: 10px;
+        cursor: pointer;
+    }
+    .item-photos-maraudes {
+        display: flex;
+    }
+    .p-datatable-footer{
+        background-color: transparent;
+        border: none;
+        padding-left: 0;
+    }
+    button.p-button.p-component.p-button-warning.p-button-text-icon-left {
+        margin-top: 10px;
+    }
+    .p-datatable-header {
+        padding-right: 0;
+        padding-left: 0;
+    }
+    .search-bar {
+        text-align: left;
+    }
+    input.p-inputtext.p-component {
+        height: 40px;
+    }
+    .search-bar:before  {
+        font-size: .7em;
+        margin-right: 10px;
+    }
+    .row.subtitle-maraude {
+        display: flex;
+    }
+    .col-9.add-maraude {
+        display: flex;
+        justify-content: flex-end;
+    }
+    button.p-button.p-component.p-button-warning.p-button-text-icon-left {
+        height: 35px;
+        margin-top: 23px;
+    }
+    input.p-inputtext.p-component {
+        height: 35px;
+    }
+    td {
+        text-align: center;
+    }
+}
+
+
+body .p-datatable .p-datatable-tbody > tr:nth-child(even) {
+    background-color: #fffcf2 !important;
+}
+body .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+    background-color: #ffc107 !important;
+    color: #4E4E4E !important;
+    font-weight: bold;
+}
+body .p-datatable .p-datatable-thead > tr > th {
+    background-color: #4E4E4E !important;
+    color: white !important;
+}
+.p-datatable-header {
+    background-color: transparent !important; 
+    padding-top: 30px !important;
+    border: transparent !important;
+}
+.p-clearfix {
+    font-size: 1.4em !important;
+    line-height: 0 !important;
+}
+.p-dialog-titlebar {
+    background-color: #ffc107 !important;
+}
