@@ -34,8 +34,8 @@ export default class Startapp extends React.Component {
         </View>
 
         <View style={stylestar.firstbutton}>
-          <CustomButton fontSize={25} colorfill='#06247D' label="JE CONNAIS DEJA" navigation={Discover} screen="Discover" onPressFunc={this.submitForm.bind(this)} />
-          <CustomButton fontSize={22} turn="177" colorfill='#A03002' label="DECOUVRIR LE MOUVEMENT" navigation={LoginForm} screen="LoginForm" onPressFunc={this.submitForm.bind(this)} />
+          <CustomButton fontSize={22} colorfill='#06247D' label="JE CONNAIS DÉJÀ !" navigation={Discover} screen="Discover" onPressFunc={this.submitForm.bind(this)} />
+          <CustomButton fontSize={22} turn="177" colorfill='#A03002' label="DÉCOUVRÌR LE MOUVEMENT́" navigation={LoginForm} screen="LoginForm" onPressFunc={this.submitForm.bind(this)} />
         </View>
 
         <View style={stylestar.iconeline}>
