@@ -1,15 +1,19 @@
 //export default class Startapp extends Component {
 import React from 'react';
-import { StyleSheet, View, Dimensions, Image } from 'react-native';
+import { StyleSheet, View, Dimensions, Image, Linking, TouchableOpacity } from 'react-native';
 import ProgressiveImage from './ProgressiveImage';
 import CustomButton from '../../../components/CustomButton';
 import LoginForm from '../LoginForm';
+import Discover from '../Discover/discover';
+
+
 const config = {
   deviceWidth: Dimensions.get('window').width,
   deviceHeight: Dimensions.get('window').height
 }
 export default class Startapp extends React.Component {
   submitForm() {
+
   }
   render() {
 
@@ -30,8 +34,8 @@ export default class Startapp extends React.Component {
         </View>
 
         <View style={stylestar.firstbutton}>
-          <CustomButton fontSize={18} colorfill='#06247D' fontColor='#FCFCFC' label="JE CONNAIS DEJA" navigation={LoginForm} screen="LoginForm" onPressFunc={this.submitForm.bind(this)} />
-          <CustomButton fontSize={18} decalagetext={50} colorfill='#A03002' label="DECOUVRIR LE MOUVEMENT" navigation={LoginForm} screen="LoginForm" onPressFunc={this.submitForm.bind(this)} />
+          <CustomButton fontSize={25} colorfill='#06247D' label="JE CONNAIS DEJA" navigation={Discover} screen="Discover" onPressFunc={this.submitForm.bind(this)} />
+          <CustomButton fontSize={22} turn="177" colorfill='#A03002' label="DECOUVRIR LE MOUVEMENT" navigation={LoginForm} screen="LoginForm" onPressFunc={this.submitForm.bind(this)} />
         </View>
 
         <View style={stylestar.iconeline}>
@@ -40,23 +44,26 @@ export default class Startapp extends React.Component {
           />
         </View>
 
-        <View style={stylestar.iconOne}>
-          <Image
-            source={require('../../../assets/social/Facebook.png')}
-          />
+        <View style={stylestar.iconOne} >
+          <TouchableOpacity onPress={() => { Linking.openURL('https://fr-fr.facebook.com/coiffinthestreet') }}>
+            <Image
+              source={require('../../../assets/social/Facebook.png')}
+            />
+          </TouchableOpacity>
         </View>
 
         <View style={stylestar.iconTwo}>
+        <TouchableOpacity onPress={() => { Linking.openURL('https://www.instagram.com/coiffinthestreet_/') }}>
           <Image
-            source={require('../../../assets/social/Facebook.png')}
+            source={require('../../../assets/social/instagram.png')}
           />
+               </TouchableOpacity>
         </View>
 
       </View>
     );
   }
 }
-
 
 const stylestar = StyleSheet.create({
   container: {
@@ -79,6 +86,7 @@ const stylestar = StyleSheet.create({
     marginBottom: 20,
     position: "absolute",
     marginTop: 600,
+ 
   },
   logoStyle: {
     marginBottom: 20,
@@ -88,16 +96,18 @@ const stylestar = StyleSheet.create({
   },
   iconOne: {
     backgroundColor: 'transparent',
-    marginTop: 650,
+    marginTop: 643,
     position: "absolute",
-    paddingLeft: config.deviceWidth * 0.25,
-    width: config.deviceWidth * 0.8
+    paddingLeft: config.deviceWidth * 0.26,
+    width: config.deviceWidth * 0.8,
+    
   },
   iconTwo: {
     backgroundColor: 'transparent',
-    marginTop: 650,
+    marginTop: 665,
     position: "absolute",
-    paddingLeft: config.deviceWidth * 0.57,
-    width: config.deviceWidth * 0.8
+    paddingLeft: config.deviceWidth * 0.61,
+    width: config.deviceWidth * 0.8,
+   
   },
 });

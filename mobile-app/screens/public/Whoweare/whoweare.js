@@ -27,13 +27,13 @@ export default class Whoweare extends React.Component {
             <TouchableOpacity
               style={styles.button}
               onPress={() => this.setState({ val: 1 })}>
-              <Text style={{ color: '#ffffff' }}>Fondateurs</Text>
+              <Text style={{ color: '#ffffff' }}>L' Equipe</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
               style={styles.button}
               onPress={() => this.setState({ val: 2 })}>
-              <Text style={{ color: '#ffffff' }}>Bénévoles</Text>
+              <Text style={{ color: '#ffffff' }}>Coiffeurs</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
