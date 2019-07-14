@@ -1,4 +1,4 @@
-import { FETCH_MARAUDES, FETCH_MARAUDE, CREATE_MARAUDE,FETCH_COUNTPICTUREMARAUDES,  UPDATE_MARAUDE, DELETE_MARAUDE } from '../types/maraude';
+import { FETCH_MARAUDES, FETCH_MARAUDE, CREATE_MARAUDE, UPDATE_MARAUDE, DELETE_MARAUDE } from '../types/maraude';
 import axios from 'axios';
 import { successMessage, errorMessage } from './app';
 
@@ -6,7 +6,6 @@ export const fetchMaraudes = () => {
   return async function (dispatch, getState) {
 
     function onSuccess(response) {
-      console.log("LALALLALAL", response)
       dispatch({ type: FETCH_MARAUDES, payload: response.data.maraudes });
     }
     function onError(err) {

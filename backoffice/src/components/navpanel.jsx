@@ -6,21 +6,13 @@ import { fetchMaraudes} from '../stores/actions/maraude';
 
 
 class NavPanel extends Component {
-
-
 componentDidMount(){
-
 this.props.fetchUsers();
 this.props.fetchMaraudes();
-
 }
 
 
-
-
 	render() {
-
-		console.log('okkkkkkkkkkkkkkooo',this.props.maraudes)
 		return (
 			<div>
 				<div className="row small-spacing">
