@@ -9,7 +9,7 @@ import GlobalFooter from '../../../../components/GlobalFooter';
 export default class Contact extends Component {
   render() {
     return (
-      <View style={{minHeight: '100%'}}  >
+      <View style={{flex: 1}}  >
         <ScrollView style={{ backgroundColor: '#2D2D2D'}}>
         <View style={styles.logo}>
           <Image source={require('../../../../assets/Logo_light.png')} />
