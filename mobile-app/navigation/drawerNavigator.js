@@ -12,7 +12,6 @@ import LegalMention from '../screens/connected/LegalMention';
 import Whoweare from '../screens/public/Whoweare/whoweare';
 import { logout } from '../store/actions/auth'
 import MaraudeForm from '../screens/connected/Maraudes/MaraudeCreationForm';
-import StartApp from '../screens/public/StartApp/Startapp';
 import SignupForm from '../screens/public/SignupForm/MyForm';
 
 const { width } = Dimensions.get('screen')

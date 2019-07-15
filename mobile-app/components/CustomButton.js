@@ -3,7 +3,7 @@ import { TouchableOpacity, Text, Dimensions } from 'react-native';
 import { style as customStyle } from '../assets/ButtonFormulaire';
 import { Path, Svg, G } from "react-native-svg";
 
-const CustomButton = ({ label = '', turn = "360", navigation = {}, screen = "", labelColor = '#fff', color = 'transparent', onPressFunc = null, fontSize = "32", decalagetext = "90", colorfill = '#FDC500' }) => {
+const CustomButton = ({ label = '', turn = "360", navigation = {}, screen = "", labelColor = '#fff', color = 'transparent', onPressFunc = null, fontSize = 32, decalagetext = "90", colorfill = '#FDC500' }) => {
 
   const handlePress = () => {
     if (typeof onPressFunc === "function") {
@@ -44,7 +44,7 @@ const CustomButton = ({ label = '', turn = "360", navigation = {}, screen = "", 
             textAlign: 'center',
             color: labelColor,
             lineHeight: 60,
-            textShadowOffset: { width: -1, height: 30 },
+            textShadowOffset: { width: -1, height: 10 },
             textShadowRadius: 40,
           }}>
           {label}

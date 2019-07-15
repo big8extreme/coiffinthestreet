@@ -6,7 +6,8 @@ import InputField from './InputField';
 import AvatarUpload from './Avatar';
 import { signup } from '../../../store/actions/auth';
 import { Toast, Root } from 'native-base';
-import ConnectButton from '../../../components/ConnectButton';
+
+import CustomButton from '../../../components/CustomButton';
 
 
 const email = value => value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,5}$/i.test(value) ? 'Please provide a valid email address.' : undefined;
@@ -27,20 +28,6 @@ class MyForm extends Component {
             loading: false
         }
     }
-
-    submitForm() {
-        let submitResults = this.myForm.validate();
-        let errors = [];
-        submitResults.forEach(item => {
-            errors.push({ field: item.fieldName, error: item.error });
-        });
-
-        this.setState({ errors: [...errors] });
-        this.props.createUser(this.state)
-        this.setState({ ...defaultUser })
-    }
-
-
 
     submitForm = async () => {
         this.setState({ loading: true })
@@ -179,7 +166,7 @@ class MyForm extends Component {
                         customStyle={style.field}
                     />
                 </Form>
-                    <CustomButton label="Valider" navigation={LoginForm} screen="LoginForm" onPressFunc={this.submitForm.bind(this)} />
+                    <CustomButton label="Valider" navigation={this.props.navigation} screen="LoginForm" onPressFunc={this.submitForm.bind(this)} />
 
 
            
