@@ -27,7 +27,7 @@ export default class PickerTextAndItemStyleExample extends Component {
         <Form>
           <Picker
             mode="dropdown"
-            iosIcon={<Icon name="arrow-down" style={{ color: 'rgb(253,197,0)', marginLeft: 0 }} />}
+            iosIcon={<Icon name="arrow-down" style={{ color: 'rgb(253,197,0)', marginLeft: '-80%'}} />}
             placeholder="Objet"
             placeholderStyle={{ fontWeight: 'bold', paddingLeft: 14 }}
             textStyle={{ color: 'rgb(253,197,0)' }}
@@ -36,6 +36,8 @@ export default class PickerTextAndItemStyleExample extends Component {
               marginLeft: 0,
               paddingLeft: 10,
             }}
+            headerBackButtonTextStyle={{ color: "#fff" }}
+            headerStyle={{ backgroundColor: "#2D2D2D"}}
             itemTextStyle={{ color: 'black' }}
             selectedValue={this.state.selected}
             onValueChange={this.onValueChange.bind(this)}
@@ -55,7 +57,8 @@ export default class PickerTextAndItemStyleExample extends Component {
 
 const style = {
   dropdown: {
-    width: 300,
+    width: '90%',
+    alignSelf: 'center',
     borderWidth: 2,
     borderColor: 'rgb(241,240,199)',
     alignSelf: 'center',

@@ -32,7 +32,8 @@ export default class MessageTextInput extends Component {
 }
 const styles = StyleSheet.create({
   form: {
-    width: 300,
+    width: '90%',
+    alignSelf: 'center',
     height: 200,
     alignSelf: 'center',
     borderWidth: 2,

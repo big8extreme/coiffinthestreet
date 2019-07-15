@@ -135,11 +135,9 @@ class MyForm extends Component {
             </Form>
             <CustomButton label="Valider" navigation={LoginForm} screen="LoginForm" onPressFunc={this.submitForm.bind(this)}/>
           </View>
-
         </ScrollView>
         <GlobalFooter/>
-
-        </React.Fragment>
+      </React.Fragment>
       
     );
   }
