@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet,  Linking  } from 'react-native';
 import { Card, ListItem } from 'react-native-elements'
 export default class SecondScreen extends React.Component {
   constructor(props) {
@@ -25,7 +25,7 @@ export default class SecondScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Card title="Bénévoles" >
+        <Card  >
           {
             list.map((l, i) => (
               <ListItem

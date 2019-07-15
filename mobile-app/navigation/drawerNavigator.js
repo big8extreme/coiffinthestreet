@@ -164,6 +164,7 @@ export default createDrawerNavigator({
       }
     }
   },
+
   CGU: {
     screen: TermsOfService,
     navigationOptions: ({ navigation }) => {

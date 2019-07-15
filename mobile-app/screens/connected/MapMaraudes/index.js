@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import MapMarker from "./MapMarker";
 
 export class MapMaraudes extends Component {
-  
+
   static navigationOptions = {
     title: 'Profile',
   };
@@ -12,7 +12,7 @@ export class MapMaraudes extends Component {
     const { navigate } = this.props.navigation;
     return (
       <Container>
-        <MapMarker navigation={{navigate}} />
+        <MapMarker navigation={{ navigate }} />
       </Container>
     );
   }
@@ -23,7 +23,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  
+
 };
 
 // @ts-ignore
