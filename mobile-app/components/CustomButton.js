@@ -5,7 +5,7 @@ import { Path, Svg, G } from "react-native-svg";
 
 const CustomButton = ({ label = '', turn = "360", navigation = {}, screen = "", labelColor = '#fff', color = 'transparent', onPressFunc = null, fontSize = "32", decalagetext = "90", colorfill = '#FDC500' }) => {
 
-  handlePress = () => {
+  const handlePress = () => {
     if (typeof onPressFunc === "function") {
       onPressFunc()
     } else {

@@ -3,8 +3,6 @@ import React from 'react';
 import { StyleSheet, View, Dimensions, Image, Linking, TouchableOpacity } from 'react-native';
 import ProgressiveImage from './ProgressiveImage';
 import CustomButton from '../../../components/CustomButton';
-import LoginForm from '../LoginForm';
-import Discover from '../Discover/discover';
 
 
 const config = {
@@ -12,9 +10,7 @@ const config = {
   deviceHeight: Dimensions.get('window').height
 }
 export default class Startapp extends React.Component {
-  submitForm() {
-
-  }
+  
   render() {
 
     return (
@@ -34,8 +30,8 @@ export default class Startapp extends React.Component {
         </View>
 
         <View style={stylestar.firstbutton}>
-          <CustomButton fontSize={22} colorfill='#06247D' label="JE CONNAIS DÉJÀ !" navigation={Discover} screen="Discover" onPressFunc={this.submitForm.bind(this)} />
-          <CustomButton fontSize={22} turn="177" colorfill='#A03002' label="DÉCOUVRÌR LE MOUVEMENT́" navigation={LoginForm} screen="LoginForm" onPressFunc={this.submitForm.bind(this)} />
+          <CustomButton fontSize={22} colorfill='#06247D' label="JE CONNAIS DÉJÀ !" navigation={this.props.navigation} screen="Feed" />
+          <CustomButton fontSize={22} turn="177" colorfill='#A03002' label="DÉCOUVRÌR LE MOUVEMENT́"  navigation={this.props.navigation} screen="Discover"/>
         </View>
 
         <View style={stylestar.iconeline}>
