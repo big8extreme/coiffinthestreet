@@ -16,24 +16,25 @@ export default class CitySearcher extends Component {
   }
 
   handleTextChange = (value) => {
-    this.props.onChangeText({ name: 'city', value })
-    this.search(value)
+    if(value.length < 1){
+      this.setState({cities: []})
+    }
+    this.props.handleCityChange(value)
+    clearTimeout(this.requestTimer)
+    this.requestTimer = setTimeout(() => {
+      this.search(value)
+    }, 500)
   }
 
   search(query) {
-    Axios.get(`https://eu1.locationiq.com/v1/search.php?key=${APIKEY}&q=${query}&format=json`)
+    Axios.get(`https://eu1.locationiq.com/v1/search.php?key=${APIKEY}&countrycodes=fr,be,ch&accept-language=fr&city=${query}&format=json`)
       .then((response) => {
         this.setState({ cities: response.data })
       })
       .catch((error) => { console.log(error); })
   }
 
-  onSelectCity(city) {
-    this.props.onChangeText({ longitude: 'city', value: city.lon })
-  }
-
   render() {
-    console.log("HERERERERE", this.state)
     return (
       <View>
         <Text style={style.inputText}>
@@ -49,18 +50,32 @@ export default class CitySearcher extends Component {
             marginBottom: 50
           }}>
           <Input
-            value={this.state.city}
+            value={this.props.city}
             onChangeText={(value) => this.handleTextChange(value)}
             placeholder="Ville" />
         </Item>
         {
           this.state.cities.length >= 1 &&
-          <View>
+          <View style={{
+            borderWidth: 1,
+            marginBottom: 20,
+            width: 300, 
+            marginLeft: 10,}}>
             <FlatList
-              style={{ marginTop: 5 }}
               data={this.state.cities}
-              renderItem={({ item }) => <Text onPress={() => this.onSelectCity(item)}>{item.display_name}</Text>}
-              keyExtractor={(item, index) => item.place_id}
+              renderItem={({ item, index }) => <Text onPress={() =>     {
+                this.props.handlePositionSelect(item);
+                this.setState({cities: []})
+                }
+              } 
+              style={{
+              marginLeft: 10, 
+              marginTop: 8,
+              marginBottom: 8,
+            }}>
+              {item.display_name}
+              </Text>}
+              keyExtractor={(item, index) => `${item.place_id}-${index}`}
             />
           </View>
         }
@@ -68,7 +83,7 @@ export default class CitySearcher extends Component {
     )
   }
 }
-
+// Increase the number of decimals in database  for precision
 const style = StyleSheet.create({
   inputText: {
     fontFamily: 'Roboto',

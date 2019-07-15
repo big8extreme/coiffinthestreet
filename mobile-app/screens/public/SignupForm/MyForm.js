@@ -4,10 +4,13 @@ import { Text, ScrollView, View } from 'react-native';
 import { Form, Field } from 'react-native-validate-form';
 import InputField from './InputField';
 import AvatarUpload from './Avatar';
-import CustomButton from '../../../components/CustomButton';
 import { signup } from '../../../store/actions/auth';
 import LoginForm from '../LoginForm';
 import GlobalFooter from '../../../components/GlobalFooter';
+import { Toast, Root } from 'native-base';
+
+import CustomButton from '../../../components/CustomButton';
+
 
 const email = value => value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,5}$/i.test(value) ? 'Please provide a valid email address.' : undefined;
 const requiredFields = ['email', 'firstName', 'name', 'pseudo', 'password', 'invitationCode', 'confirmPassword']
@@ -142,6 +145,8 @@ class MyForm extends Component {
     );
   }
 }
+
+
 
 const style = {
   field: {

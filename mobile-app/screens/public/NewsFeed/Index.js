@@ -23,12 +23,12 @@ export default class NewsFeed extends Component {
 
 const style = {
     text: {
-        color: 'white',
-        fontFamily: 'TinosItalic',
+        color: '#FDC500',
+        fontFamily: 'TinosBoldItalic',
         marginTop: 30,
-        marginBottom:30,
+        marginBottom: 30,
         textAlign: 'center',
-        fontSize:17
+        fontSize: 17
     },
     background: {
         justifyContent: 'center',
@@ -36,8 +36,7 @@ const style = {
         paddingTop: 20,
     },
     logo: {
-        justifyContent: 'center',
-        alignItems: 'center'
+        alignSelf: 'center'
     }
 }
 

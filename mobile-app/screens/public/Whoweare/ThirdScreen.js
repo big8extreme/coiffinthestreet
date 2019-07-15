@@ -64,7 +64,7 @@ export default class ThirdScreen extends React.Component {
       <View style={styles.container}>
         <ScrollView >
           {
-            <Card title="Développeurs" >
+            <Card >
               {
                 list.map((l, i) => (
                   <View key={i}>

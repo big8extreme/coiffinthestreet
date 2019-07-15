@@ -100,12 +100,13 @@ class MapMarker extends React.Component {
           style={{
             display: 'flex',
             position: 'absolute',
-            bottom: 10,     
+            bottom: 0,
           }}>
-            <View>
-              <ButtonMapCreateMaraude navigation={this.props.navigation} label='Ajouter une maraude'/>
-            </View>
-    </View>
+          {
+            this.props.auth.user.isConnected &&
+            <ButtonMapCreateMaraude navigation={this.props.navigation} label='Ajouter une maraude' />
+          }
+        </View>
       </View>
     );
   }
