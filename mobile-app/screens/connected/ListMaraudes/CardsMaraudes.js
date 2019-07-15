@@ -3,6 +3,7 @@ import { ScrollView } from "react-native";
 import CardMaraude from './CardMaraude';
 import { View } from "native-base";
 import { connect } from 'react-redux'
+import PicturesUpload from './Pictures'
 
 class CardsMaraudes extends Component {
   render() {
@@ -11,6 +12,7 @@ class CardsMaraudes extends Component {
         {this.props.maraudes.map((maraude, index) => {
           return (
             <View key={index} style={{ backgroundColor: '#FBFBFB' }}>
+              <PicturesUpload onSelected={(file) => this.setState({pictures: file})} />
               <CardMaraude maraude={maraude} navigation={this.props.navigation} />
             </View>
           );
@@ -21,6 +23,8 @@ class CardsMaraudes extends Component {
 }
 
 const mapStateToProps = state => ({
+  // For upload pictures :
+  //  add state pictures ? 
   maraudes: state.maraude.maraudes
 });
 

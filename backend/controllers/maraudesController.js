@@ -1,6 +1,11 @@
 const models = require('../models');
 const sequelize = require('sequelize');
 const Maraude = models.Maraude;
+/*
+// should i import & install this ?
+var multer  = require('multer')
+var upload = multer({ dest: 'uploads/' })
+*/
 
 module.exports = {
   index: function (req, res, next) {
@@ -64,8 +69,8 @@ module.exports = {
           .then((updatedMaraude) => { res.json({ updatedMaraude }); })
           .catch((error) => res.status(500).json({ error }));
       })
-    .catch((error) => res.status(500).json({ error }));
-},
+      .catch((error) => res.status(500).json({ error }));
+  },
 
   delete: function (req, res, next) {
     Maraude.findByPk(req.params.id)
@@ -83,18 +88,30 @@ module.exports = {
       order: sequelize.col('distance'),
       limit: parseInt(limit) || 10,
     })
-    .catch((error) => res.status(500).json({ error }));
-},
-findByCoord: function (req, res, next) {
-  const { lat, lng, limit } = req.query;
-  Maraude.findAll({
-    attributes: ['id', 'title', [sequelize.literal('6371 * acos(cos(radians(' + lat + ')) * cos(radians(latitude)) * cos(radians(' + lng + ') - radians(longitude)) + sin(radians(' + lat + ')) * sin(radians(latitude)))'), 'distance']],
-    order: sequelize.col('distance'),
-    limit: parseInt(limit) || 10,
-  })
-    .then((places) => {
-      res.json({ places });
+      .catch((error) => res.status(500).json({ error }));
+  },
+  findByCoord: function (req, res, next) {
+    const { lat, lng, limit } = req.query;
+    Maraude.findAll({
+      attributes: ['id', 'title', [sequelize.literal('6371 * acos(cos(radians(' + lat + ')) * cos(radians(latitude)) * cos(radians(' + lng + ') - radians(longitude)) + sin(radians(' + lat + ')) * sin(radians(latitude)))'), 'distance']],
+      order: sequelize.col('distance'),
+      limit: parseInt(limit) || 10,
     })
-    .catch((error) => { res.status(500).json({ error }); });
-}
+      .then((places) => {
+        res.json({ places });
+      })
+      .catch((error) => { res.status(500).json({ error }); });
+  },
+  upload: function (req, res, next) {
+    Maraude.findOne({
+      where: { maraudeId: req.params.id }
+    })
+      .then((maraude) => {
+        // ??
+        app.put('/:id(\\d+)/pictures/', upload.array('pictures', 12), function (req, res, next) {
+          // req.files is array of `photos` files
+          // req.body will contain the text fields, if there were any
+        })
+      }
+    }
 };

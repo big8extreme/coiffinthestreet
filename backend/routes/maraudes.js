@@ -17,6 +17,8 @@ router.post('/', maraudesController.create);
 
 router.put('/:id(\\d+)/', maraudesController.update);
 
+router.put('/:id(\\d+)/pictures/', maraudesController.upload);
+
 router.delete('/:id(\\d+)/', maraudesController.delete);
 
 
