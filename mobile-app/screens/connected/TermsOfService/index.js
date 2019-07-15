@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import store from '../../../store';
 import { connect } from 'react-redux'
 import { fetchConfigs } from '../../../store/actions/config'
+import GlobalFooter from '../../../components/GlobalFooter';
 
 export class TermsOfService extends Component {
   constructor(props) {
@@ -15,12 +16,7 @@ export class TermsOfService extends Component {
   }
   componentDidMount() {
     this.props.fetchConfigs();
-
   }
-
-  // static propTypes = {
-  //     prop: PropTypes
-  // }
 
   render() {
     return (
@@ -31,6 +27,7 @@ export class TermsOfService extends Component {
             <Text style={styles.textCgu}>{this.props.config.cgu}</Text>
           </ScrollView>
         </View>
+        <GlobalFooter/>
       </Provider>
     );
   }
