@@ -41,6 +41,10 @@ class UserList extends Component {
 
       <Button icon="pi pi-times" className="p-button-danger" onClick={() => {
         this.props.deleteUser(rowData.id);
+        const result = window.confirm('Confirmez la suppression')
+          if(result){
+            this.props.deleteUser(rowData.id)
+          }
         this.props.fetchUsers();
       }}
         style={{ marginRight: '.5em' }} > </Button>
@@ -75,10 +79,8 @@ class UserList extends Component {
         <h3>Gérer les utilisateurs</h3>
     </div>
         <div>
-        
-        <div style={{ padding: '15px', textAlign: 'center', fontSize: '1.4em', fontWeight: 'bold' }}>Liste des utilisateurs</div>
         <div className="row subtitle-user">
-      <div className="col-3 search-bar"><i className="pi pi-search search-bar"></i><InputText  type="search" onInput={(e) => this.setState({globalFilter: e.target.value})} placeholder="Recherche" size="20"/></div>
+      <div className="col-3 search-bar"><i className="pi pi-search search-bar user"></i><InputText  type="search" onInput={(e) => this.setState({globalFilter: e.target.value})} placeholder="Recherche" size="20"/></div>
       <div className="col-9 add-maraude">
       <Button
       style={{ float: "right" }}
@@ -91,8 +93,9 @@ class UserList extends Component {
       </div>
               <DataTable value={this.props.users} paginator={true} rows={10} rowsPerPageOptions={[5, 10, 20]}>
                 <Column field="lastName" header="Nom" />
-                <Column field="firstName" header="Prenom" />
-                <Column field="id" header="Ville" />
+                <Column field="firstName" header="Prénom" />
+                <Column field="email" header="Email" />
+                <Column field="job" header="Profession" />
                 <Column body={this.actionTemplate.bind(this)} style={{ textAlign: 'center', width: '12em' }} header="Action" />
                 <Column body={this.actionValid} style={{ textAlign: 'center', width: '5em' }} header="Actif" />
               </DataTable>

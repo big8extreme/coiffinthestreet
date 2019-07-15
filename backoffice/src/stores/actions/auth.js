@@ -14,7 +14,7 @@ export function login(email, password) {
     }
     function onError(error) {
       dispatch({ type: LOG_IN_ERROR, error });
-      dispatch(errorMessage('Connexion échoué !'));
+      dispatch(errorMessage('Connexion échouée !'));
       return error;
     }
     try {

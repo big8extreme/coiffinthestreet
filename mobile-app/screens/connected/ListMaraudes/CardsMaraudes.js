@@ -8,13 +8,18 @@ class CardsMaraudes extends Component {
   render() {
     return (
       <ScrollView style={{ backgroundColor: "#FBFBFB" }}>
-        {this.props.maraudes.map((maraude, index) => {
+      {
+        this.props.maraudes.length>1 ? 
+        this.props.maraudes.map((maraude, index) => {
             return (
             <View key={index}>
               <CardMaraude maraude={maraude} navigation={this.props.navigation} />
             </View>
           );
-        })}
+        })
+        :
+        <Text style={{ fontStyle: 'italic', padding: 10 }}>Désolé il n'y a pas de maraude dans cette ville</Text>
+      }
       </ScrollView>
     );
   }
@@ -28,19 +33,3 @@ const mapDispatchToProps = {}
 
 // @ts-ignore
 export default connect(mapStateToProps, mapDispatchToProps)(CardsMaraudes);
-
-
-{/* <ScrollView style={{ backgroundColor: "#FBFBFB" }}>
-{console.log('DDDDDDDDDDD')}
-  {this.props.maraudes.map((maraude, index) => {
-    if((this.props.maraudes).length>0){
-      return (
-      <View key={index}>
-        <CardMaraude maraude={maraude} navigation={this.props.navigation} />
-      </View>
-    );
-    } else {
-      return <Text>{this.props.maraudes.title}</Text>
-    }
-  })}
-</ScrollView> */}

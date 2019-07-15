@@ -1,7 +1,7 @@
 import { FETCH_MARAUDES, FETCH_MARAUDE, CREATE_MARAUDE, UPDATE_MARAUDE, DELETE_MARAUDE } from '../types/maraude';
 
 const initialState = {
-users: []
+maraudes: []
 };
 
 export default (state = initialState , { type,payload }) =>{
