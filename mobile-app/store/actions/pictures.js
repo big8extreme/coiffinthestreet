@@ -3,23 +3,21 @@ import { baseUrlApi } from '../../apiUrl'
 import { ERROR_ON_PICTURES, UPLOAD_PICTURES } from '../types/pictures';
 
 
-export function UploadPictures(pictures) {
+export function UploadPictures(maraudeId, pictures) {
 
-    return async dispatch => {
+    return async function (dispatch, getState) {
 
         function onSuccess(response) {
-
-            // set token as default header
-            axios.defaults.headers.common['Authorization'] = `bearer ${response.data.token}`;
-            // data.pictures ?
-            dispatch({ type: UPLOAD_PICTURES, payload: response.data });
+            console.log("UPDATED MARAUDE", response.data)
+            console.log("MARAUDES IN REDUX", )
+            dispatch({ type: UPLOAD_PICTURES, payload: response.data.photos });
 
             return { response, status: 'success' };
 
         }
 
         function onError(error) {
-
+            console.log("ERROR", error)
             dispatch({ type: ERROR_ON_PICTURES, error });
 
             return { error, status: 'error' };
@@ -27,25 +25,34 @@ export function UploadPictures(pictures) {
         }
 
         try {
-            const splitedpicturesUrl = user.pictures.uri.split('/')
+            console.log('Preparing', pictures)
+            const splitedpicturesUrl = pictures.uri.split('/')
             const originalFileName = splitedpicturesUrl[splitedpicturesUrl.length - 1]
             let originalFileExt = originalFileName.split('.')
             originalFileExt = originalFileExt[originalFileExt.length - 1]
             const formData = new FormData();
-            user.pictures.forEach(function (formData) {
-                formData.append('pictures', {
-                    uri: user.pictures.uri,
-                    name: originalFileName,
-                    type: `image/${originalFileExt}`
-                }, user.pictures.name)
-            });
+            // user.pictures.forEach(function (formData) {
+            //     formData.append('pictures', {
+            //         uri: user.pictures.uri,
+            //         name: originalFileName,
+            //         type: `image/${originalFileExt}`
+            //     }, user.pictures.name)
+            // });
 
-
+            formData.append('pictures', {
+                        uri: pictures.uri,
+                        name: originalFileName,
+                        type: `image/${originalFileExt}`
+            }, originalFileName);
+            //need maraude ID
+            console.log('formData : ', formData)
             // !!  route is it ok ?  !!
-            const response = await axios.put(`${baseUrlApi}/:id(\\d+)/pictures`, formData, {
+            const response = await axios.put(`${baseUrlApi}/maraudes/${maraudeId}/pictures`, formData, {
                 headers: {
                     "Content-Type": 'multipart/form-data',
-                    "Accept": 'application/json'
+                    "Accept": 'application/json',
+                     "Authorization": `bearer ${getState().auth.user.token}`
+
                 }
             });
 

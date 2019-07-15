@@ -1,8 +1,9 @@
 import React from 'react'
-import { StyleSheet } from "react-native";
+import { StyleSheet, ScrollView } from "react-native";
 import { Text, View, Icon } from "native-base";
 import moment from "moment";
 import ValidateButton from '../../../components/ValidateButton';
+import PhotoMaraude from '../../public/NewsFeed/PhotoMaraude'
 
 export default function CardMaraude({ maraude = {}, navigation = {} }) {
   return (
@@ -45,6 +46,25 @@ export default function CardMaraude({ maraude = {}, navigation = {} }) {
           {maraude.description}
         </Text>
       </View>
+      <ScrollView horizontal>
+      {
+                      maraude.photos.map((photo, index) => {
+                        return (
+                          <PhotoMaraude
+                            key={`photo-${index}`}
+                            photo={photo}
+                            title={maraude.title}
+                            description={maraude.description}
+                            city={maraude.city}
+                            startAt={maraude.startAt}
+                            index={index}
+                          />
+                        );
+                      })
+                    }
+        {console.log(maraude, 'hey')}
+        
+        </ScrollView>
       <View>
         <ValidateButton
           label="Je souhaite participer"

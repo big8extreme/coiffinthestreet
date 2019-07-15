@@ -27,7 +27,6 @@ class HeaderListMaraudes extends Component {
   };
 
   render() {
-    console.log("MARAUDES", this.props.maraude)
     return (
       <View>
         <SearchBar

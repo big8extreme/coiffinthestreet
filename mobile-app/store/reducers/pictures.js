@@ -7,8 +7,11 @@ const defaultStates = {
 export default function (state = defaultStates, action) {
   switch (action.type) {
     case UPLOAD_PICTURES:
-      return { ...state };
+                //Store REDUX : update updated Maraudes in Maraudes List
+      console.log('ENTER IN ACTION', state)
+      return { ...state, pictures: [...action.payload] };
     case ERROR_ON_PICTURES:
+    console.log('ENTER IN ERROR')
       return state;
     default:
       return state;
