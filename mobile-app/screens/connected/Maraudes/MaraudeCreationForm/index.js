@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, StyleSheet } from 'react-native'
+import { ScrollView, Text, StyleSheet, View } from 'react-native'
 import { Content, Form, Item, Input } from 'native-base';
 import { connect } from 'react-redux'
 import DatePicker from '../../../../components/DatePicker'
@@ -7,6 +7,7 @@ import TimePicker from '../../../../components/TimePicker'
 import { createMaraude } from '../../../../store/actions/maraude'
 import ValidateButton from '../../../../components/ValidateButton'
 import CitySearcher from './CitySearch';
+import GlobalFooter from '../../../../components/GlobalFooter';
 
 const defaultMaraude = {
   title: '',
@@ -57,6 +58,7 @@ export class index extends Component {
 
   render() {
     return (
+      <View style={{flex: 1}}>
       <ScrollView>
         <Content style={style.content}>
           <Form>
@@ -144,6 +146,8 @@ export class index extends Component {
           </Form>
         </Content>
       </ScrollView>
+      <GlobalFooter/>
+      </View>
     )
   }
 }
@@ -179,7 +183,7 @@ const style = StyleSheet.create({
     fontWeight: 'bold'
   },
   content: {
-    marginTop: 50
+    marginTop: 50,
   }
 })
 
