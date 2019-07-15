@@ -64,14 +64,13 @@ class ClusterMarker extends React.Component {
                             title={marker.title}
                             titleStyle={{color: '#FFF'}}
                             subtitle={<Text style={{color: '#C0C0C0'}}>{marker.description}</Text>}
-                            rightIcon={<TouchableOpacity onPress={() => {navigate('Signup'); this.toggleModal(!this.state.modalVisible) }}>
+                            rightIcon={<TouchableOpacity onPress={() => {navigate('Participant'); this.toggleModal(!this.state.modalVisible) }}>
                                         <Icon name="ios-log-in" size={30} style={{color: '#FFF'}}  />
                                       </TouchableOpacity>}
-                            
                           />
                           })}
             </ScrollView>
-            <Button bordered light style={{ alignSelf:'center', padding: 10, marginBottom: 30, marginTop: 10}} onPress={() => {navigate('List'); this.toggleModal(!this.state.modalVisible) }}>
+            <Button bordered light style={{ alignSelf:'center', padding: 10, marginBottom: 20, marginTop: 20}} onPress={() => {navigate('List'); this.toggleModal(!this.state.modalVisible) }}>
             <Text style={{color: 'white'}}>Plus de détails</Text>
           </Button>
           </View>

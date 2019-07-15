@@ -7,7 +7,7 @@ import MapView, { Callout, Marker } from "react-native-maps";
 import { getCluster } from "../../../utils/MapUtils";
 import MapToolTip from './MapToolTip';
 import ClusterMarker from './ClusterMarker';
-import CreateMaraudeButton from '../../../components/CreateMaraudeButton';
+import ButtonMapCreateMaraude from '../../../components/ButtonMapCreateMaraude';
 
 
 const Style = StyleSheet.create({
@@ -75,7 +75,7 @@ class MapMarker extends React.Component {
         }}
         image={require('../../../assets/pin.png')}
       >
-        <Callout tooltip style={{ width: 220 }} onPress={() => this.props.navigation.navigate('Signup', {city: maraude.city})}>
+        <Callout tooltip style={{ width: 220 }} onPress={() => this.props.navigation.navigate('Participant', {city: maraude.city})}>
           <MapToolTip navigation={{ navigate }} maraude={maraude} />
         </Callout>
       </Marker>
@@ -100,10 +100,11 @@ class MapMarker extends React.Component {
           style={{
             display: 'flex',
             position: 'absolute',
-            bottom: 0,
-            left: '10%',         
+            bottom: 10,     
           }}>
-          <CreateMaraudeButton navigation={this.props.navigation} label='Ajouter une maraude'/>
+            <View>
+              <ButtonMapCreateMaraude navigation={this.props.navigation} label='Ajouter une maraude'/>
+            </View>
     </View>
       </View>
     );

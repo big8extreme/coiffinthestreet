@@ -12,6 +12,7 @@ import LegalMention from '../screens/connected/LegalMention';
 import Whoweare from '../screens/public/Whoweare/whoweare';
 import { logout } from '../store/actions/auth'
 import MaraudeForm from '../screens/connected/Maraudes/MaraudeCreationForm';
+import SignupForm from '../screens/public/SignupForm/MyForm';
 
 const { width } = Dimensions.get('screen')
 
@@ -54,12 +55,34 @@ export default createDrawerNavigator({
       return {
         title: "Créer une Maraude",
         drawerLabel: () => {
-          return <View style={styles.view}>
-            <TouchableOpacity onPress={() => navigation.navigate('MaraudeForm')} style={styles.flex}>
-              <Icon name="ios-mail" size={25} style={styles.icon} />
-              <Text style={styles.text}>Créer une Maraude</Text>
-            </TouchableOpacity>
-          </View>
+          return store.getState().auth.user && store.getState().auth.user.isConnected ?
+            <View style={styles.view}>
+              <TouchableOpacity onPress={() => navigation.navigate('MaraudeForm')} style={styles.flex}>
+                <Icon name="ios-mail" size={25} style={styles.icon} />
+                <Text style={styles.text}>Créer une Maraude</Text>
+              </TouchableOpacity>
+            </View>
+            :
+            null
+        }
+      }
+    }
+  },
+  SignupForm: {
+    screen: SignupForm,
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: "S'inscrire",
+        drawerLabel: () => {
+          return store.getState().auth.user && store.getState().auth.user.isConnected ?
+            null
+            :
+            <View style={styles.view}>
+              <TouchableOpacity onPress={() => navigation.navigate('SignupForm')} style={styles.flex}>
+                <Icon name="ios-mail" size={25} style={styles.icon} />
+                <Text style={styles.text}>S'inscrire</Text>
+              </TouchableOpacity>
+            </View>
         }
       }
     }
@@ -132,7 +155,7 @@ export default createDrawerNavigator({
         title: "Qui sommes nous ?",
         drawerLabel: () => {
           return <View style={styles.view}>
-            <TouchableOpacity style={styles.flex} onPress={() => navigation.navigate('Whoweare')}>
+            <TouchableOpacity style={styles.flex} onPress={() => navigation.navigate('WhoWeAre')}>
               <Icon name="ios-information-circle" size={25} style={styles.icon} />
               <Text style={styles.text}>Qui sommes nous ?</Text>
             </TouchableOpacity>
@@ -157,7 +180,7 @@ export default createDrawerNavigator({
       }
     }
   },
-  Legals: {
+  LegalMention: {
     screen: LegalMention,
     navigationOptions: ({ navigation }) => {
       return {
