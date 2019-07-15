@@ -9,7 +9,6 @@ const APIKEY = '75163db10930ab';
 export default class CitySearcher extends Component {
   constructor(props) {
     super(props)
-
     this.state = {
       cities: []
     }
@@ -37,16 +36,12 @@ export default class CitySearcher extends Component {
   render() {
     return (
       <View>
-        <Text style={style.inputText}>
-          Lieu :</Text>
         <Item regular
           style={{
             borderColor: this.props.errors.includes('city') ? 'red' : '#FDC500',
-            width: 300,
             height: 60,
             borderRadius: 5,
             borderWidth: 1,
-            marginLeft: 10,
             marginBottom: 50
           }}>
           <Input
