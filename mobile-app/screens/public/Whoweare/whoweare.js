@@ -3,6 +3,8 @@ import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import FirstScreen from './FirstScreen';
 import SecondScreen from './SecondScreen';
 import ThirdScreen from './ThirdScreen';
+import GlobalFooter from '../../../components/GlobalFooter';
+import TabNavFooter from '../../../navigation/bottomTabNavigator';
 
 export default class Whoweare extends React.Component {
   constructor(props) {
@@ -51,7 +53,7 @@ export default class Whoweare extends React.Component {
             {this.renderElement()}
           </View>
         </View>
-
+        <GlobalFooter/>
       </React.Fragment>
     );
   }

@@ -31,7 +31,7 @@ const AuthStack = createStackNavigator(
     Discover: { screen: Discover },
     Participant: { screen: Participant },
     BottomTabNav: { screen: BottomTabNav },
-    MaraudeForm: { screen: MaraudeForm }
+    MaraudeForm: { screen: MaraudeForm },
   },
   {
     initialRouteName: "BottomTabNav",
