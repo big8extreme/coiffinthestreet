@@ -56,12 +56,19 @@ export default class DatePicker extends Component {
 
 const style = {
     datePicker: {
-        width: 300,
+
+
         borderColor: '#FDC500',
-        height: 60,
-        borderRadius: 5,
+        height: 50,
         borderWidth: 1,
-        marginLeft: 10
+        borderRadius: 5,
+        fontSize: 18
+
+
+
+
+
+
     },
     dateText: {
         fontSize: 18,
