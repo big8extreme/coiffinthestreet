@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Image, TextInput, ScrollView, TouchableOpacity 
 import { connect } from 'react-redux'
 import { login } from '../../../store/actions/auth'
 import ConnectButton from '../../../components/ConnectButton';
-
+import GlobalFooter from '../../../components/GlobalFooter';
 
 class LoginForm extends Component {
   static navigationOptions = {
@@ -42,7 +42,6 @@ class LoginForm extends Component {
     return (
 
       <Root>
-
         <ScrollView style={styles.backgroundApp}>
           <View style={styles.flexCenterImg}>
             <Image
@@ -81,9 +80,8 @@ class LoginForm extends Component {
             />
           </View>
         </ScrollView>
-
+        <GlobalFooter/>
       </Root>
-
     )
   }
 }
