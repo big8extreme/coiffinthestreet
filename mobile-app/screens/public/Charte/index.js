@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
   Titletext: {
     color: 'white',
     fontSize: 35,
+    marginTop: 20,
     fontFamily: "Sedgwick",
     alignSelf: 'center',
   },
