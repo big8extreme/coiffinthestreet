@@ -6,7 +6,6 @@ import moment from "moment";
 
 class MapToolTip extends React.Component {
   render () {
-    const { navigate } = this.props.navigation;
     return  (
       <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)', padding: 10, justifyContent: 'center', alignItems: 'center', borderRadius: 4 }}>
         <View style={{justifyContent: 'center', alignItems: 'center', width: '80%'}}>

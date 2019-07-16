@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { fetchMaraudes } from '../../../store/actions/maraude';
-import { StyleSheet, View, Text } from 'react-native';
-import { Button } from 'native-base';
+import { StyleSheet, View } from 'react-native';
+import { Fab } from 'native-base';
+import Icon from 'react-native-vector-icons/Ionicons'
 import MapView, { Callout, Marker } from "react-native-maps";
 import { getCluster } from "../../../utils/MapUtils";
 import MapToolTip from './MapToolTip';
@@ -10,6 +11,7 @@ import ClusterMarker from './ClusterMarker';
 import ButtonMapCreateMaraude from '../../../components/ButtonMapCreateMaraude';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 const Style = StyleSheet.create({
@@ -46,6 +48,7 @@ function maraudesToMarkers(maraudeArray) {
   return markers
 }
 
+
 class MapMarker extends React.Component {
   constructor(props) {
     super(props);
@@ -55,7 +58,8 @@ class MapMarker extends React.Component {
       hasLocationPermission: false,
       coordLoaded: false,
       locationResult: null,
-      loaded: false
+      loaded: false,
+      satelliteView: true
     };
   }
   //  geolocalisation
@@ -68,21 +72,17 @@ class MapMarker extends React.Component {
     } else {
       this.setState({ hasLocationPermissions: true });
     }
-
     let location = await Location.getCurrentPositionAsync({});
     this.setState({ locationResult: location });
-
     // Center the map on the location we just fetched.
     this.setState({ mapRegion: { latitude: location.coords.latitude, longitude: location.coords.longitude, latitudeDelta: 0.0922, longitudeDelta: 0.0421 }, coordLoaded: true });
   };
-  
   //  geolocalisation
   componentDidMount() {
     this.props.fetchMaraudes();
     maraudesToMarkers(this.props.maraude.maraudes)
     this._getLocationAsync();
   }
-
   componentDidUpdate(prevProps, prevState) {
     if (!this.state.loaded && this.state.coordLoaded) {
       const position = this.state.hasLocationPermissions ? this.state.mapRegion : INITIAL_POSITION
@@ -109,7 +109,7 @@ class MapMarker extends React.Component {
         }}
         image={require('../../../assets/pin.png')}
       >
-        <Callout tooltip style={{ width: 220 }} onPress={() => this.props.navigation.navigate('Participant', {city: maraude.city})}>
+        <Callout tooltip style={{ width: 220 }} onPress={() => navigate('Participant', {city: maraude.city})}>
           <MapToolTip navigation={{ navigate }} maraude={maraude} />
         </Callout>
       </Marker>
@@ -119,17 +119,31 @@ class MapMarker extends React.Component {
     const { region } = this.state;
     const allCoords = maraudesToMarkers(this.props.maraude.maraudes);
     const cluster = getCluster(allCoords, region);
+    console.log('jhgvjhvqsd', this.state.satelliteView)
+    const satellite = this.state.satelliteView ? "stardard" : "satellite" ;
     return (
       <View style={Style.container}>
         <MapView
+          mapType={satellite}
           showsUserLocation={true}
+          showsCompass={true}
+          showsScale={true}
+          zoomControlEnabled={true}
           style={Style.map}
+          initialRegion={this.state.region}
           loadingIndicatorColor={"#ffbbbb"}
           loadingBackgroundColor={"#ffbbbb"}
           region={region}
           onRegionChangeComplete={region => this.setState({ region })}>
           {cluster.markers.map((marker, index) => this.renderMarker(marker, index))}
         </MapView>
+        <Fab
+          active={this.state.active}
+          style={{ backgroundColor: '#2D2D2D' }}
+          containerStyle={{position: 'absolute', top: 20, right: 10}}
+          onPress={() => {this.setState({satelliteView: !this.state.satelliteView})}}>
+          <Icon name="ios-eye" />
+        </Fab>
         <View
           style={{
             display: 'flex',

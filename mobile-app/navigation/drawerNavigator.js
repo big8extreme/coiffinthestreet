@@ -15,6 +15,7 @@ import MaraudeForm from '../screens/connected/Maraudes/MaraudeCreationForm';
 import SignupForm from '../screens/public/SignupForm/MyForm';
 
 const { width } = Dimensions.get('screen')
+const { height } = Dimensions.get('screen')
 
 export default createDrawerNavigator({
   BottomTab: {
@@ -197,34 +198,34 @@ export default createDrawerNavigator({
       }
     }
   },
-  Close: {
-    screen: BottomTabNavigator,
-    navigationOptions: ({ navigation }) => {
-      return {
-        title: "Close",
-        drawerLabel: () => {
-          return <TouchableOpacity
-            onPress={() => { navigation.dispatch(DrawerActions.closeDrawer()) }}
-            style={{
-              flex: 1,
-              flexDirection: 'row',
-              justifyContent: 'flex-end',
-              alignItems: 'center',
-              height: 100,
-            }}>
-            <Icon name="ios-close" size={30} style={{ color: "white", marginRight: 10, marginLeft: 10 }} />
-            <Text style={{ marginRight: 20, color: "white", fontWeight: 'bold' }}>Fermer</Text>
-          </TouchableOpacity>
-        }
-      }
-    }
-  },
+  // Close: {
+  //   screen: BottomTabNavigator,
+  //   navigationOptions: ({ navigation }) => {
+  //     return {
+  //       title: "Close",
+  //       drawerLabel: () => {
+  //         return <TouchableOpacity
+  //           onPress={() => { navigation.dispatch(DrawerActions.closeDrawer()) }}
+  //           style={{
+  //             flex: 1,
+  //             flexDirection: 'row',
+  //             justifyContent: 'flex-end',
+  //             alignItems: 'center',
+  //             height: Math.min(height) * 0.1
+  //           }}>
+  //           <Icon name="ios-close" size={30} style={{ color: "white", marginRight: 10, marginLeft: 10 }} />
+  //           <Text style={{ marginRight: 20, color: "white", fontWeight: 'bold' }}>Fermer</Text>
+  //         </TouchableOpacity>
+  //       }
+  //     }
+  //   }
+  // },
 },
   {
     initialRouteName: 'BottomTab',
     drawerPosition: 'right',
     drawerBackgroundColor: "#2D2D2D",
-    drawerWidth: Math.min(width) * 1,
+    drawerWidth: Math.min(width) * 0.8,
     navigationOptions: { header: null },
   })
 
@@ -237,14 +238,14 @@ const styles = StyleSheet.create({
   flex: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'flex-start',
-    height: 90,
   },
   view: {
     borderBottomColor: 'gray',
     borderBottomWidth: 1,
+    height: Math.min(height) * 0.1,
     flex: 1,
-  },
+    justifyContent: 'center'
+    },
   icon: {
     color: 'white',
     marginRight: 10,
