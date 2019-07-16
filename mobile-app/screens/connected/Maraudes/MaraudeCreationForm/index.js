@@ -66,11 +66,11 @@ export class index extends Component {
       <React.Fragment>
         <Text style={{
           alignSelf: 'center', 
-          fontFamily: 'Roboto',
+          fontFamily: "Sedgwick",
           marginBottom: 10,
           marginTop: 25,
           fontWeight: 'bold',
-          fontSize: 30}}>
+          fontSize: 40}}>
             Créer une Maraude
         </Text>
       <ScrollView>
@@ -145,7 +145,7 @@ export class index extends Component {
               //TODO This Button serves to test the connection between frontend and api
               //It must be replace before production
             }
-            <ButtonCreate label="Créer la Maraude" submit={this.submitForm}/>
+            <ButtonCreate label="Valider" submit={this.submitForm}/>
           </Form>
         </Content>
       </View>

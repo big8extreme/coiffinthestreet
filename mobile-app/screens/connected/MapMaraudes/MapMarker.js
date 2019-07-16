@@ -8,6 +8,8 @@ import { getCluster } from "../../../utils/MapUtils";
 import MapToolTip from './MapToolTip';
 import ClusterMarker from './ClusterMarker';
 import ButtonMapCreateMaraude from '../../../components/ButtonMapCreateMaraude';
+import * as Location from 'expo-location';
+import * as Permissions from 'expo-permissions';
 
 
 const Style = StyleSheet.create({
@@ -49,11 +51,43 @@ class MapMarker extends React.Component {
     super(props);
     this.state = {
       region: INITIAL_POSITION,
+      mapRegion: null,
+      hasLocationPermission: false,
+      coordLoaded: false,
+      locationResult: null,
+      loaded: false
     };
   }
+  //  geolocalisation
+  _getLocationAsync = async () => {
+    let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    if (status !== 'granted') {
+      this.setState({
+        locationResult: 'Permission to access location was denied',
+      });
+    } else {
+      this.setState({ hasLocationPermissions: true });
+    }
+
+    let location = await Location.getCurrentPositionAsync({});
+    this.setState({ locationResult: location });
+
+    // Center the map on the location we just fetched.
+    this.setState({ mapRegion: { latitude: location.coords.latitude, longitude: location.coords.longitude, latitudeDelta: 0.0922, longitudeDelta: 0.0421 }, coordLoaded: true });
+  };
+  
+  //  geolocalisation
   componentDidMount() {
     this.props.fetchMaraudes();
     maraudesToMarkers(this.props.maraude.maraudes)
+    this._getLocationAsync();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (!this.state.loaded && this.state.coordLoaded) {
+      const position = this.state.hasLocationPermissions ? this.state.mapRegion : INITIAL_POSITION
+      this.setState({ region: position, loaded: true })
+    }
   }
   renderMarker = (marker, index) => {
     const key = index + marker.geometry.coordinates[0];
