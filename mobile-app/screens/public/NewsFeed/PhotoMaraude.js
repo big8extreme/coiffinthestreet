@@ -4,7 +4,7 @@ import {  CardItem, Body } from 'native-base';
 
 let deviceWidth = Dimensions.get('window').width
 
-  
+
 
 export default function PhotoMaraude({ photo }) {
     
@@ -14,7 +14,6 @@ export default function PhotoMaraude({ photo }) {
             <Body style={{width: deviceWidth, }}>
            
                 <Image source={{ uri: `${photo.url}` }} style={{width:deviceWidth, height:260 }}/>
-                
             </Body>
         </CardItem>
         

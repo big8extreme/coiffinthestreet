@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Image, TextInput, ScrollView, TouchableOpacity 
 import { connect } from 'react-redux'
 import { login } from '../../../store/actions/auth'
 import ConnectButton from '../../../components/ConnectButton';
-
+import { LinearGradient } from 'expo-linear-gradient';
 
 class LoginForm extends Component {
   static navigationOptions = {
@@ -40,8 +40,11 @@ class LoginForm extends Component {
       }, 10)
     }
     return (
-
-      <Root>
+      <LinearGradient
+      colors={['#131517', '#2D2D2D', '#454545']}
+      
+  >
+     
 
         <ScrollView style={styles.backgroundApp}>
           <View style={styles.flexCenterImg}>
@@ -77,13 +80,14 @@ class LoginForm extends Component {
           <View style={styles.flexCenterImg}>
             <ConnectButton
               label="Se connecter"
-              onPress={() => this.loginUser()}
+              onPress={() => 
+                this.loginUser()}
             />
           </View>
         </ScrollView>
 
-      </Root>
-
+     
+</LinearGradient>
     )
   }
 }
