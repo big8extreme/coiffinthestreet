@@ -33,7 +33,6 @@ export default class CitySearcher extends Component {
   }
 
   render() {
-    console.log("HERERERERE", this.state)
     return (
       <View>
         <Text style={style.inputText}>

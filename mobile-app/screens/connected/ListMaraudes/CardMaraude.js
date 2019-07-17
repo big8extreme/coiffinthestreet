@@ -62,7 +62,6 @@ export default function CardMaraude({ maraude = {}, navigation = {} }) {
                         );
                       })
                     }
-        {console.log(maraude, 'hey')}
         
         </ScrollView>
       <View>

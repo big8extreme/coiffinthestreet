@@ -46,7 +46,7 @@ export function UploadPictures(maraudeId, pictures) {
             }, originalFileName);
             //need maraude ID
             console.log('formData : ', formData)
-            // !!  route is it ok ?  !!
+            // route is it ok ? 
             const response = await axios.put(`${baseUrlApi}/maraudes/${maraudeId}/pictures`, formData, {
                 headers: {
                     "Content-Type": 'multipart/form-data',

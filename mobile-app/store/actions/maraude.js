@@ -9,7 +9,6 @@ export function fetchMaraudes(params) {
     }
     return async function (dispatch, getState) {
         function onSuccess(response) {
-            console.log(response.data.maraudes)
             dispatch({ type: FETCH_MARAUDES, payload: response.data.maraudes })
 
         }
