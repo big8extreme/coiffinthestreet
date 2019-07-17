@@ -11,7 +11,7 @@ class CardsMaraudes extends Component {
         {this.props.maraudes.map((maraude, index) => {
           return (
             <View key={index}>
-              <CardMaraude maraude={maraude} navigation={this.props.navigation} />
+              <CardMaraude currentUserId={this.props.user.id} maraude={maraude} navigation={this.props.navigation} />
             </View>
           );
         })}
@@ -21,7 +21,8 @@ class CardsMaraudes extends Component {
 }
 
 const mapStateToProps = state => ({
-  maraudes: state.maraude.maraudes
+  maraudes: state.maraude.maraudes,
+  user: state.auth.user
 });
 
 const mapDispatchToProps = {}
