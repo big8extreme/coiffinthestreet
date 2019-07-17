@@ -14,11 +14,13 @@ import forgetPassword from '../screens/public/LoginForm/forgetPassword/forgetPas
 import MaraudeForm from '../screens/connected/Maraudes/MaraudeCreationForm';
 import StartApp from '../screens/public/StartApp/Startapp';
 import SignUp from '../screens/public/SignupForm/MyForm'
+import MaraudePictures from "../screens/connected/MaraudeEdit/MaraudePictures";
 
 const AppStack = createStackNavigator(
   {
     Profile: { screen: Profile },
     Contact: { screen: Contact },
+    MaraudePictures: { screen: MaraudePictures },
   },
   {
     initialRouteName: "Profile",

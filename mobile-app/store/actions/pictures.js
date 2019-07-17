@@ -3,13 +3,11 @@ import { baseUrlApi } from '../../apiUrl'
 import { ERROR_ON_PICTURES, UPLOAD_PICTURES } from '../types/pictures';
 
 
-export function UploadPictures(maraudeId, pictures) {
+export function uploadPictures(maraudeId, pictures) {
 
     return async function (dispatch, getState) {
 
         function onSuccess(response) {
-            console.log("UPDATED MARAUDE", response.data)
-            console.log("MARAUDES IN REDUX", )
             dispatch({ type: UPLOAD_PICTURES, payload: response.data.photos });
 
             return { response, status: 'success' };
@@ -31,18 +29,10 @@ export function UploadPictures(maraudeId, pictures) {
             let originalFileExt = originalFileName.split('.')
             originalFileExt = originalFileExt[originalFileExt.length - 1]
             const formData = new FormData();
-            // user.pictures.forEach(function (formData) {
-            //     formData.append('pictures', {
-            //         uri: user.pictures.uri,
-            //         name: originalFileName,
-            //         type: `image/${originalFileExt}`
-            //     }, user.pictures.name)
-            // });
-
             formData.append('pictures', {
-                        uri: pictures.uri,
-                        name: originalFileName,
-                        type: `image/${originalFileExt}`
+                uri: pictures.uri,
+                name: originalFileName,
+                type: `image/${originalFileExt}`
             }, originalFileName);
             //need maraude ID
             console.log('formData : ', formData)
@@ -51,7 +41,7 @@ export function UploadPictures(maraudeId, pictures) {
                 headers: {
                     "Content-Type": 'multipart/form-data',
                     "Accept": 'application/json',
-                     "Authorization": `bearer ${getState().auth.user.token}`
+                    "Authorization": `bearer ${getState().auth.user.token}`
 
                 }
             });

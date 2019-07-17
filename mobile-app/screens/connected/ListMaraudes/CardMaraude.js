@@ -33,7 +33,9 @@ export default function CardMaraude({ maraude = {}, navigation = {}, currentUser
         {
           // if current user is author and maraude is passed, then currentUser can add photos
           (maraude.author.id === currentUserId) && (new Date(maraude.endAt) < new Date()) &&
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("MaraudePictures", { maraudeId: maraude.id })}
+          >
             <Text>Ajouter des photos</Text>
           </TouchableOpacity>
         }
