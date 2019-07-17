@@ -45,9 +45,10 @@ class MyForm extends Component {
                     text: 'Success',
                     position: 'top',
                     type: 'success',
-
-
                 })
+                setTimeout(() => {
+                    this.props.navigation.navigate('DrawerMenu')
+                }, 500)
             } else {
                 Toast.show({
                     text: "Erreur lors de l'inscription",
@@ -57,14 +58,6 @@ class MyForm extends Component {
             }
         }
         this.setState({ loading: false })
-    }
-
-    submitSuccess() {
-        console.log("Submit Success!");
-    }
-
-    submitFailed() {
-        console.log("Submit Failed!");
     }
 
     handleTextChange = (field, value) => {
@@ -85,92 +78,91 @@ class MyForm extends Component {
     render() {
 
         return (
+            <Root>
+                <ScrollView style={{ margin: 30 }}>
 
-            <ScrollView style={{ margin: 30 }}>
+                    <AvatarUpload onSelected={(file) => this.setState({ avatar: file })} />
 
-                <AvatarUpload onSelected={(file) => this.setState({avatar: file})} />
+                    <Form
+                        ref={(ref) => this.myForm = ref}
+                        validate={true}
+                        errors={this.state.errors}
 
-                <Form
-                    ref={(ref) => this.myForm = ref}
-                    validate={true}
-                    submit={this.submitSuccess.bind(this)}
-                    failed={this.submitFailed.bind(this)}
-                    errors={this.state.errors}
+                    >
+                        <Text style={style.inputText}>Nom *</Text>
+                        <Field
+                            component={InputField}
+                            name="name"
+                            value={this.state.name}
+                            onChangeText={(val) => this.handleTextChange('name', val)}
+                            customStyle={style.field}
+                        />
 
-                >
-                    <Text style={style.inputText}>Nom *</Text>
-                    <Field
-                        component={InputField}
-                        name="name"
-                        value={this.state.name}
-                        onChangeText={(val) => this.handleTextChange('name', val)}
-                        customStyle={style.field}
-                    />
+                        <Text style={style.inputText}>Prénom *</Text>
+                        <Field
+                            component={InputField}
+                            name="firstname"
+                            value={this.state.firstname}
+                            onChangeText={(val) => this.handleTextChange('firstName', val)}
+                            customStyle={style.field}
+                        />
 
-                    <Text style={style.inputText}>Prénom *</Text>
-                    <Field
-                        component={InputField}
-                        name="firstname"
-                        value={this.state.firstname}
-                        onChangeText={(val) => this.handleTextChange('firstName', val)}
-                        customStyle={style.field}
-                    />
+                        <Text style={style.inputText}>Pseudo</Text>
+                        <Field
+                            component={InputField}
+                            name="pseudo"
+                            value={this.state.pseudo}
+                            onChangeText={(val) => this.handleTextChange('pseudo', val)}
+                            customStyle={style.field}
+                        />
 
-                    <Text style={style.inputText}>Pseudo</Text>
-                    <Field
-                        component={InputField}
-                        name="pseudo"
-                        value={this.state.pseudo}
-                        onChangeText={(val) => this.handleTextChange('pseudo', val)}
-                        customStyle={style.field}
-                    />
+                        <Text style={style.inputText}>E-mail *</Text>
+                        <Field
+                            component={InputField}
+                            name="email"
+                            value={this.state.email}
+                            onChangeText={(val) => this.handleTextChange('email', val)}
+                            customStyle={style.field}
+                        />
 
-                    <Text style={style.inputText}>E-mail *</Text>
-                    <Field
-                        component={InputField}
-                        name="email"
-                        value={this.state.email}
-                        onChangeText={(val) => this.handleTextChange('email', val)}
-                        customStyle={style.field}
-                    />
+                        <Text style={style.inputText}>Mot de passe *</Text>
+                        <Field
+                            secureTextEntry
+                            component={InputField}
+                            name="password"
+                            secureTextEntry={true}
+                            value={this.state.password}
+                            onChangeText={(val) => this.handleTextChange('password', val)}
+                            customStyle={style.field}
+                        />
 
-                    <Text style={style.inputText}>Mot de passe *</Text>
-                    <Field
-                        secureTextEntry
-                        component={InputField}
-                        name="password"
-                        secureTextEntry={true}
-                        value={this.state.password}
-                        onChangeText={(val) => this.handleTextChange('password', val)}
-                        customStyle={style.field}
-                    />
+                        <Text style={style.inputText}>Confirmer le mot de passe *</Text>
+                        <Field
+                            secureTextEntry
+                            component={InputField}
+                            name="confirmPassword"
+                            secureTextEntry={true}
+                            value={this.state.confirmPassword}
+                            onChangeText={(val) => this.handleTextChange('confirmPassword', val)}
+                            customStyle={style.field}
+                        />
 
-                    <Text style={style.inputText}>Confirmer le mot de passe *</Text>
-                    <Field
-                        secureTextEntry
-                        component={InputField}
-                        name="confirmPassword"
-                        secureTextEntry={true}
-                        value={this.state.confirmPassword}
-                        onChangeText={(val) => this.handleTextChange('confirmPassword', val)}
-                        customStyle={style.field}
-                    />
-
-                    <Text style={style.inputText}>Entrez votre code de parrainage *</Text>
-                    <Field
-                        component={InputField}
-                        name="code"
-                        secureTextEntry={true}
-                        value={this.state.code}
-                        onChangeText={(val) => this.handleTextChange('invitationCode', val)}
-                        customStyle={style.field}
-                    />
-                </Form>
+                        <Text style={style.inputText}>Entrez votre code de parrainage *</Text>
+                        <Field
+                            component={InputField}
+                            name="code"
+                            secureTextEntry={true}
+                            value={this.state.code}
+                            onChangeText={(val) => this.handleTextChange('invitationCode', val)}
+                            customStyle={style.field}
+                        />
+                    </Form>
                     <CustomButton label="Valider" navigation={this.props.navigation} screen="LoginForm" onPressFunc={this.submitForm.bind(this)} />
 
 
-           
-            </ScrollView>
+
+                </ScrollView>
+            </Root>
         );
     }
 }

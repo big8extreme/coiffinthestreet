@@ -13,6 +13,7 @@ import Participant from '../screens/public/Participant';
 import forgetPassword from '../screens/public/LoginForm/forgetPassword/forgetPassword';
 import MaraudeForm from '../screens/connected/Maraudes/MaraudeCreationForm';
 import StartApp from '../screens/public/StartApp/Startapp';
+import SignUp from '../screens/public/SignupForm/MyForm'
 
 const AppStack = createStackNavigator(
   {
@@ -28,6 +29,7 @@ const AppStack = createStackNavigator(
 const AuthStack = createStackNavigator(
   {
     Login: { screen: LoginForm },
+    SignUp: { screen: SignUp },
     forgetPassword: { screen: forgetPassword },
     Discover: { screen: Discover },
     Participant: { screen: Participant },

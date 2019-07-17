@@ -44,8 +44,8 @@ export function signup(user) {
       axios.defaults.headers.common['Authorization'] = `bearer ${response.data.token}`;
 
       dispatch({ type: LOGIN, payload: response.data });
-
-      return { response, status: 'success' };
+      const res = { response, status: 'success' };
+      return res;
 
     }
 
