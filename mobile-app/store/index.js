@@ -14,6 +14,15 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, allReducer)
 
-export default createStore(
-  persistedReducer,
-  applyMiddleware(thunk))
+
+const store = process.env.NODE_ENV === 'production'
+  ?
+  createStore(
+    persistedReducer,
+    applyMiddleware(thunk))
+  :
+  createStore(
+    persistedReducer,
+    applyMiddleware(thunk, logger))
+
+export default store;
