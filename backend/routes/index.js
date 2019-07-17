@@ -13,9 +13,7 @@ router.get('/', function (req, res, next) {
 
  * @apiGroup indexes
 
-
  * @apiSuccess {index} indexes / Get a welcome sentence from Express
-
 
  * @apiError 400BadRequest Bad Request.
 
