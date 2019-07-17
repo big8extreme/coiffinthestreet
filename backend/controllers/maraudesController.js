@@ -13,13 +13,13 @@ module.exports = {
   index: function (req, res, next) {
     const { city } = req.query;
     const query = {
-      include: ['photos'],
+      include: ['photos', 'author'],
       where: {
       }
     };
 
     if (city) {
-      query.where.city = city;
+      query.where.city = sequelize.where(sequelize.fn('LOWER', sequelize.col('city')), 'LIKE', '%' + city + '%');
     }
     Maraude.findAll(query)
       .then((maraudes) => {
@@ -37,6 +37,7 @@ module.exports = {
   },
 
   create: function (req, res, next) {
+    console.log('BEFORE CREATE', req.body);
     Maraude.create({
       userId: req.body.userId,
       title: req.body.title,
@@ -50,6 +51,7 @@ module.exports = {
     })
       .then((maraude) => { res.json({ maraude }); })
       .catch((error) => {
+        console.log('ERROR ON CREATE MARAUDE', error);
         res.status(500).json({ error });
       });
   },

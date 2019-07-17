@@ -43,7 +43,7 @@ export default class Discover extends Component {
                         <Image style={{ width: 30, height: 60 }}
                             source={require('./ImagesVideo/_ionicons_svg_md-arrow-down.png')}
                         />
-                        <TouchableOpacity onPress={() => navigate("Signup")}>
+                        <TouchableOpacity onPress={() => navigate("SignUp")}>
                             <Image style={{ marginTop: 30 }}
                                 source={require('./ImagesVideo/Btn_Coiffeur.png')} />
                         </TouchableOpacity>

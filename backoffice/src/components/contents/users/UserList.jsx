@@ -5,6 +5,7 @@ import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 import { Fieldset } from 'primereact/fieldset';
 import { InputSwitch } from 'primereact/inputswitch';
+import { InputText } from "primereact/inputtext";
 import { connect } from 'react-redux';
 import { fetchUsers, deleteUser, updateUserStatut } from '../../../stores/actions/user';
 import Usernew from './UserNew';
@@ -30,6 +31,17 @@ class UserList extends Component {
   componentDidMount() {
     this.props.fetchUsers();
   }
+
+  actionPicture(rowData, column) {
+    return <div>
+      <img
+        alt={rowData.firstName}
+        src={rowData.avatarUrl}
+        width="50px"
+      />
+                            </div >;
+  }
+
 
   actionTemplate(rowData, column) {
     return <div>
@@ -68,29 +80,39 @@ class UserList extends Component {
 
   render() {
     return (
-      <div>
-        <TabView >
-          <TabPanel header="Tous les Utilisateurs">
+      <React.Fragment>
+        <div className="content-section header">
+          <div className="feature-intro">
+            <h3>Gérer les utilisateurs</h3>
+          </div>
+          <div>
 
-            <Fieldset legend="">
-              <div style={{ padding: '15px' }} > <Button onClick={() => this.toggleModal(true)} label="Ajouter un Coiffeur" className="p-button-warning  float-right" icon="pi pi-power-off" />
+            <div style={{ padding: '15px', textAlign: 'center', fontSize: '1.4em', fontWeight: 'bold' }}>Liste des utilisateurs</div>
+            <div className="row subtitle-user">
+              <div className="col-3 search-bar"><i className="pi pi-search search-bar"></i><InputText type="search" onInput={(e) => this.setState({ globalFilter: e.target.value })} placeholder="Recherche" size="20" /></div>
+              <div className="col-9 add-maraude">
+                <Button
+                  style={{ float: "right" }}
+                  label="Ajouter un coiffeur"
+                  icon="pi pi-plus"
+                  onClick={() => this.toggleModal(true)}
+                  className="p-button-warning"
+                />
               </div>
-
-              <DataTable value={this.props.users} paginator={true} rows={5} rowsPerPageOptions={[5, 10, 20]}>
-                <Column field="lastName" header="Nom" />
-                <Column field="firstName" header="Prenom" />
-                <Column field="id" header="Ville" />
-                <Column body={this.actionTemplate.bind(this)} style={{ textAlign: 'center', width: '12em' }} header="action" />
-                <Column body={this.actionValid} style={{ textAlign: 'center', width: '5em' }} header="actif" />
-              </DataTable>
-              <Usernew onCreate={this.state.onCreate} isOpen={this.state.modal} closeModal={this.closeModal} selectedUser={this.state.selectedUser} />
-            </Fieldset>
-          </TabPanel>
-
-        </TabView>
-      </div>
-
-
+            </div>
+            <DataTable value={this.props.users} paginator={true} rows={10} rowsPerPageOptions={[5, 10, 20]}>
+            <Column body={this.actionPicture.bind(this)} style={{ textAlign: 'center', width: '12em' }} header="Avatar" />
+                       <Column field="lastName" header="Nom" />
+              <Column field="firstName" header="Prenom" />
+              <Column field="email" header="Mail" />
+              <Column field="invitationCode" header="Code" />
+              <Column body={this.actionTemplate.bind(this)} style={{ textAlign: 'center', width: '12em' }} header="Action" />
+              <Column body={this.actionValid} style={{ textAlign: 'center', width: '5em' }} header="Actif" />
+            </DataTable>
+            <Usernew onCreate={this.state.onCreate} isOpen={this.state.modal} closeModal={this.closeModal} selectedUser={this.state.selectedUser} />
+          </div>
+        </div>
+      </React.Fragment>
     );
   }
 }

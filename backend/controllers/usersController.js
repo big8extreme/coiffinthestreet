@@ -69,9 +69,10 @@ module.exports = {
       .then((user) => {
         user.destroy()
           .then((user) => { res.json({ message: 'user has been deleted !' }); })
-          .catch((error) => res.status(500).json({ error }));
+          .catch((error) => console.log(error));
       })
-      .catch((error) => res.status(500).json({ error }));
+      .catch((error) => console.log(error)
+      );
   }
 
 };

@@ -44,16 +44,19 @@ export function signup(user) {
       axios.defaults.headers.common['Authorization'] = `bearer ${response.data.token}`;
 
       dispatch({ type: LOGIN, payload: response.data });
-
-      return { response, status: 'success' };
+      const res = { response, status: 'success' };
+      return res;
 
     }
 
     function onError(error) {
 
       dispatch({ type: LOG_IN_ERROR, error });
-
-      return { error, status: 'error' };
+      let status = "error";
+      if (error.response.data.message === "Invitation code is invalid") {
+        status = 'invalid_code'
+      }
+      return { error: error.response, status };
 
     }
 

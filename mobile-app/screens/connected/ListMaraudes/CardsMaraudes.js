@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { ScrollView } from "react-native";
 import CardMaraude from './CardMaraude';
-import { View } from "native-base";
+import { View, Text } from "native-base";
 import { connect } from 'react-redux'
 import PicturesUpload from './Pictures'
 

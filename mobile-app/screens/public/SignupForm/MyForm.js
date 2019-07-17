@@ -4,9 +4,11 @@ import { Text, ScrollView } from 'react-native';
 import { Form, Field } from 'react-native-validate-form';
 import InputField from './InputField';
 import AvatarUpload from './Avatar';
-import CustomButton from '../../../components/CustomButton';
 import { signup } from '../../../store/actions/auth';
-import LoginForm from '../LoginForm';
+import { Toast, Root } from 'native-base';
+
+import CustomButton from '../../../components/CustomButton';
+
 
 const email = value => value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,5}$/i.test(value) ? 'Please provide a valid email address.' : undefined;
 const requiredFields = ['email', 'firstName', 'name', 'pseudo', 'password', 'invitationCode', 'confirmPassword']
@@ -22,141 +24,155 @@ class MyForm extends Component {
             firstName: '',
             password: '',
             confirmPassword: '',
-            invitationCode: ''
+            invitationCode: '',
+            loading: false
         }
     }
 
-
-
-
-    submitForm() {
+    submitForm = async () => {
+        this.setState({ loading: true })
         let errors = [];
         requiredFields.forEach(item => {
-            if(this.state[item].length < 1){
+            if (this.state[item].length < 1) {
                 errors.push({ field: item, error: "Can't be blank !" });
             }
         });
         this.setState({ errors: errors });
-        if(errors.length < 1){
-            this.props.signup(this.state)
+        if (errors.length < 1) {
+            const response = await this.props.signup(this.state)
+            if (response.status === "success") {
+                Toast.show({
+                    text: 'Success',
+                    position: 'top',
+                    type: 'success',
+                })
+                setTimeout(() => {
+                    this.props.navigation.navigate('DrawerMenu')
+                }, 500)
+            }
+            else if (response.status === "invalid_code") {
+                Toast.show({
+                    text: "Le code de parrainage saisi est invalide !",
+                    position: 'top',
+                    type: 'danger'
+                })
+            }
+            else {
+                Toast.show({
+                    text: response.error.data.message,
+                    position: 'top',
+                    type: 'danger'
+                })
+            }
         }
-    }
-
-    submitSuccess() {
-        console.log("Submit Success!");
-    }
-
-    submitFailed() {
-        console.log("Submit Failed!");
+        this.setState({ loading: false })
     }
 
     handleTextChange = (field, value) => {
-        this.setState({[field]: value})
+        this.setState({ [field]: value })
         this.resetError(field)
     }
 
     resetError = (field) => {
-        const {errors} = this.state
+        const { errors } = this.state
         const erronedFields = errors.map((err => err.field))
-        if(erronedFields.includes(field)){
+        if (erronedFields.includes(field)) {
             const index = erronedFields.indexOf(field)
             errors.splice(index, 1)
-            this.setState({errors})
+            this.setState({ errors })
         }
     }
 
     render() {
 
         return (
+            <Root>
+                <ScrollView style={{ margin: 30 }}>
 
-            <ScrollView style={{ margin: 30 }}>
+                    <AvatarUpload onSelected={(file) => this.setState({ avatar: file })} />
 
-                <AvatarUpload onSelected={(file) => this.setState({avatar: file})} />
+                    <Form
+                        ref={(ref) => this.myForm = ref}
+                        validate={true}
+                        errors={this.state.errors}
 
-                <Form
-                    ref={(ref) => this.myForm = ref}
-                    validate={true}
-                    submit={this.submitSuccess.bind(this)}
-                    failed={this.submitFailed.bind(this)}
-                    errors={this.state.errors}
-                    style={{ marginTop: 30, justifyContent: 'center' }}
-                >
-                    <Text style={style.inputText}>Nom *</Text>
-                    <Field
-                        component={InputField}
-                        name="name"
-                        value={this.state.name}
-                        onChangeText={(val) => this.handleTextChange('name', val)}
-                        customStyle={style.field}
-                    />
+                    >
+                        <Text style={style.inputText}>Nom *</Text>
+                        <Field
+                            component={InputField}
+                            name="name"
+                            value={this.state.name}
+                            onChangeText={(val) => this.handleTextChange('name', val)}
+                            customStyle={style.field}
+                        />
 
-                    <Text style={style.inputText}>Prénom *</Text>
-                    <Field
-                        component={InputField}
-                        name="firstname"
-                        value={this.state.firstname}
-                        onChangeText={(val) => this.handleTextChange('firstName', val)}
-                        customStyle={style.field}
-                    />
+                        <Text style={style.inputText}>Prénom *</Text>
+                        <Field
+                            component={InputField}
+                            name="firstname"
+                            value={this.state.firstname}
+                            onChangeText={(val) => this.handleTextChange('firstName', val)}
+                            customStyle={style.field}
+                        />
 
-                    <Text style={style.inputText}>Pseudo</Text>
-                    <Field
-                        component={InputField}
-                        name="pseudo"
-                        value={this.state.pseudo}
-                        onChangeText={(val) => this.handleTextChange('pseudo', val)}
-                        customStyle={style.field}
-                    />
+                        <Text style={style.inputText}>Pseudo</Text>
+                        <Field
+                            component={InputField}
+                            name="pseudo"
+                            value={this.state.pseudo}
+                            onChangeText={(val) => this.handleTextChange('pseudo', val)}
+                            customStyle={style.field}
+                        />
 
-                    <Text style={style.inputText}>E-mail *</Text>
-                    <Field
-                        component={InputField}
-                        name="email"
-                        value={this.state.email}
-                        onChangeText={(val) => this.handleTextChange('email', val)}
-                        customStyle={style.field}
-                    />
+                        <Text style={style.inputText}>E-mail *</Text>
+                        <Field
+                            component={InputField}
+                            name="email"
+                            value={this.state.email}
+                            onChangeText={(val) => this.handleTextChange('email', val)}
+                            customStyle={style.field}
+                        />
 
-                    <Text style={style.inputText}>Mot de passe *</Text>
-                    <Field
-                        secureTextEntry
-                        component={InputField}
-                        name="password"
-                        secureTextEntry={true}
-                        value={this.state.password}
-                        onChangeText={(val) => this.handleTextChange('password', val)}
-                        customStyle={style.field}
-                    />
+                        <Text style={style.inputText}>Mot de passe *</Text>
+                        <Field
+                            secureTextEntry
+                            component={InputField}
+                            name="password"
+                            secureTextEntry={true}
+                            value={this.state.password}
+                            onChangeText={(val) => this.handleTextChange('password', val)}
+                            customStyle={style.field}
+                        />
 
-                    <Text style={style.inputText}>Confirmer le mot de passe *</Text>
-                    <Field
-                        secureTextEntry
-                        component={InputField}
-                        name="confirmPassword"
-                        secureTextEntry={true}
-                        value={this.state.confirmPassword}
-                        onChangeText={(val) => this.handleTextChange('confirmPassword', val)}
-                        customStyle={style.field}
-                    />
+                        <Text style={style.inputText}>Confirmer le mot de passe *</Text>
+                        <Field
+                            secureTextEntry
+                            component={InputField}
+                            name="confirmPassword"
+                            secureTextEntry={true}
+                            value={this.state.confirmPassword}
+                            onChangeText={(val) => this.handleTextChange('confirmPassword', val)}
+                            customStyle={style.field}
+                        />
 
-                    <Text style={style.inputText}>Entrez votre code de parrainage *</Text>
-                    <Field
-                        component={InputField}
-                        name="code"
-                        secureTextEntry={true}
-                        value={this.state.code}
-                        onChangeText={(val) => this.handleTextChange('invitationCode', val)}
-                        customStyle={style.field}
-                    />
-                </Form>
-                    <CustomButton label="Valider" navigation={LoginForm} screen="LoginForm" onPressFunc={this.submitForm.bind(this)} />
-
-
-           
-            </ScrollView>
+                        <Text style={style.inputText}>Entrez votre code de parrainage *</Text>
+                        <Field
+                            component={InputField}
+                            name="code"
+                            secureTextEntry={true}
+                            value={this.state.code}
+                            onChangeText={(val) => this.handleTextChange('invitationCode', val)}
+                            customStyle={style.field}
+                        />
+                    </Form>
+                    <CustomButton label="Valider" navigation={this.props.navigation} screen="LoginForm" onPressFunc={this.submitForm.bind(this)} />
+                </ScrollView>
+            </Root>
         );
     }
 }
+
+
 
 const style = {
     field: {
@@ -171,6 +187,7 @@ const style = {
         fontWeight: 'bold',
         marginBottom: 5,
         marginTop: 25
+
     },
     container: {
         display: 'flex',
@@ -191,7 +208,7 @@ const style = {
 
 
 const mapStateToProps = (state) => ({
-    
+
 })
 
 const mapDispatchToProps = {

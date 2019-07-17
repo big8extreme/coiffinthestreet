@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { SearchBar } from "react-native-elements";
 import { fetchMaraudesByCity } from "../../../store/actions/maraude";
 import { connect } from "react-redux";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 
 class HeaderListMaraudes extends Component {
   static navigationOptions = {
@@ -15,7 +15,10 @@ class HeaderListMaraudes extends Component {
     };
   }
 
-  componentDidMount() {
+  componentDidUpdate(prevProps, prevState) {
+    if(this.props.city){
+      this.props.fetchMaraudesByCity(this.props.city)
+    }
   }
 
   updateSearch = search => {
@@ -23,7 +26,7 @@ class HeaderListMaraudes extends Component {
   };
 
   submitSearch = () => {
-    this.props.fetchMaraudesByCity(this.state.search)
+    this.props.fetchMaraudesByCity(this.state.search) 
   };
 
   render() {
