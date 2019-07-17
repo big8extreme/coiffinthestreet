@@ -3,6 +3,8 @@ import { ScrollView } from "react-native";
 import CardMaraude from './CardMaraude';
 import { View, Text } from "native-base";
 import { connect } from 'react-redux'
+import PicturesUpload from './Pictures'
+
 
 class CardsMaraudes extends Component {
   render() {

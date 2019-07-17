@@ -1,6 +1,13 @@
 const models = require('../models');
 const sequelize = require('sequelize');
 const Maraude = models.Maraude;
+const Picture = models.Picture;
+
+/*
+// should i import & install this ?
+var multer  = require('multer')
+var upload = multer({ dest: 'uploads/' })
+*/
 
 module.exports = {
   index: function (req, res, next) {
@@ -98,5 +105,22 @@ module.exports = {
         res.json({ places });
       })
       .catch((error) => { res.status(500).json({ error }); });
-  }
+  },
+
+  upload: function (req, res, next) {
+    Picture.create({
+      url :`${process.env.HOST}/${req.file.path}`,
+      maraudeId : req.params.id
+    })
+      .then((picture) => {
+        Maraude.findByPk(req.params.id, { include: ['photos'] })
+        .then((maraude) => {
+          res.json({ maraude }); 
+        })
+        .catch((error) => res.status(500).json({ error }));
+
+      })
+      .catch((error) => res.status(500).json({ error }));
+    }
+
 };
