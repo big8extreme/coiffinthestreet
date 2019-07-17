@@ -52,8 +52,11 @@ export function signup(user) {
     function onError(error) {
 
       dispatch({ type: LOG_IN_ERROR, error });
-
-      return { error, status: 'error' };
+      let status = "error";
+      if (error.response.data.message === "Invitation code is invalid") {
+        status = 'invalid_code'
+      }
+      return { error: error.response, status };
 
     }
 

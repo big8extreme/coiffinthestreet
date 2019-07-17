@@ -20,10 +20,9 @@ export default class TimePicker extends Component {
   };
 
   handlePicker = time => {
-    console.log("A date has been picked: ", time);
     this.setState({
-        isTimePickerVisible: false,
-        chosenTime: moment(time).format('hh:mm')
+      isTimePickerVisible: false,
+      chosenTime: moment(time).format('hh:mm')
     })
     this.props.onChange(time)
   };
@@ -31,36 +30,36 @@ export default class TimePicker extends Component {
   render() {
     return (
       <View>
-                <View style={{...style.timePicker, ...this.props.style}}>
-                    <TouchableOpacity onPress={this.showPicker}>
-                        <Text style={style.timeText}>{this.state.chosenTime}</Text>
-                    </TouchableOpacity>
-                    
-                </View>
-      
+        <View style={{ ...style.timePicker, ...this.props.style }}>
+          <TouchableOpacity onPress={this.showPicker}>
+            <Text style={style.timeText}>{this.state.chosenTime}</Text>
+          </TouchableOpacity>
+
+        </View>
+
         <DateTimePicker
           isVisible={this.state.isTimePickerVisible}
           onConfirm={this.handlePicker}
           onCancel={this.hidePicker}
           mode={'time'}
           is24Hour={true}
-          />
-          </View>
+        />
+      </View>
     );
   }
 }
 
 const style = {
-    timePicker: {
-        width: 300,
-        height: 60,
-        borderRadius: 5,
-        borderWidth: 1,
-        marginLeft: 10
-    },
-    timeText: {
-        fontSize: 18,
-        marginTop: 15,
-        marginLeft: 10
-    }
+  timePicker: {
+    width: 300,
+    height: 60,
+    borderRadius: 5,
+    borderWidth: 1,
+    marginLeft: 10
+  },
+  timeText: {
+    fontSize: 18,
+    marginTop: 15,
+    marginLeft: 10
+  }
 }

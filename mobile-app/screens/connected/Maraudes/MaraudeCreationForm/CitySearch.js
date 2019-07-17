@@ -16,8 +16,8 @@ export default class CitySearcher extends Component {
   }
 
   handleTextChange = (value) => {
-    if(value.length < 1){
-      this.setState({cities: []})
+    if (value && value.length < 1) {
+      this.setState({ cities: [] })
     }
     this.props.handleCityChange(value)
     clearTimeout(this.requestTimer)
@@ -55,25 +55,26 @@ export default class CitySearcher extends Component {
             placeholder="Ville" />
         </Item>
         {
-          this.state.cities.length >= 1 &&
+          this.state.cities && this.state.cities.length >= 1 &&
           <View style={{
             borderWidth: 1,
             marginBottom: 20,
-            width: 300, 
-            marginLeft: 10,}}>
+            width: 300,
+            marginLeft: 10,
+          }}>
             <FlatList
               data={this.state.cities}
-              renderItem={({ item, index }) => <Text onPress={() =>     {
+              renderItem={({ item, index }) => <Text onPress={() => {
                 this.props.handlePositionSelect(item);
-                this.setState({cities: []})
-                }
-              } 
-              style={{
-              marginLeft: 10, 
-              marginTop: 8,
-              marginBottom: 8,
-            }}>
-              {item.display_name}
+                this.setState({ cities: [] })
+              }
+              }
+                style={{
+                  marginLeft: 10,
+                  marginTop: 8,
+                  marginBottom: 8,
+                }}>
+                {item.display_name}
               </Text>}
               keyExtractor={(item, index) => `${item.place_id}-${index}`}
             />

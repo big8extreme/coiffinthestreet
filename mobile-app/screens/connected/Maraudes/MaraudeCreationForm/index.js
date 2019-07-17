@@ -7,6 +7,7 @@ import TimePicker from '../../../../components/TimePicker'
 import { createMaraude } from '../../../../store/actions/maraude'
 import ValidateButton from '../../../../components/ValidateButton'
 import CitySearcher from './CitySearch';
+import { Toast, Root } from 'native-base';
 
 const defaultMaraude = {
   title: '',
@@ -32,17 +33,26 @@ export class index extends Component {
     }
   }
 
-  submitForm = () => {
-    let errors = [];
+  submitForm = async () => {
+    let { errors } = this.state;
     requiredFields.forEach((field) => {
-      if (this.state[field].length === 0) {
+      if (this.state[field] && this.state[field].length === 0) {
         errors.push(field)
       }
     })
-    this.setState({ errors: errors });
-    if (errors.length === 0) {
-      this.props.createMaraude(this.state)
-      this.setState({ ...defaultMaraude })
+
+    this.setState({ errors: [...errors] });
+    if (errors && errors.length === 0) {
+      const response = await this.props.createMaraude(this.state)
+      if (response.status === 'success') {
+        this.props.navigation.navigate('DrawerMenu');
+      } else {
+        Toast.show({
+          text: 'Erreur lors de la création de maraude',
+          position: 'top',
+          type: 'danger',
+        })
+      }
     }
   }
 
@@ -56,17 +66,18 @@ export class index extends Component {
     }
   }
   handlePositionSelect = (position) => {
-      this.setState({ 
-        longitude: position.lon,
-        latitude: position.lat,
-        city: position.display_name
-      })
+    this.setState({
+      longitude: position.lon,
+      latitude: position.lat,
+      city: position.display_name
+    })
   }
 
   render() {
+    console.log("FROM  STATE", this.state)
     return (
-      <ScrollView>
-        <Content style={style.content}>
+      <Root>
+        <ScrollView style={{ margin: 30 }}>
           <Form>
             <Text style={style.inputTitle}>
               Créer une Maraude </Text>
@@ -149,12 +160,12 @@ export class index extends Component {
             }
 
             <ValidateButton
-              onPress={this.submitForm} 
-              label="Créer la Maraude" 
+              onPress={this.submitForm}
+              label="Créer la Maraude"
               style={style.customButton} />
           </Form>
-        </Content>
-      </ScrollView>
+        </ScrollView>
+      </Root>
     )
   }
 }

@@ -49,9 +49,17 @@ class MyForm extends Component {
                 setTimeout(() => {
                     this.props.navigation.navigate('DrawerMenu')
                 }, 500)
-            } else {
+            }
+            else if (response.status === "invalid_code") {
                 Toast.show({
-                    text: "Erreur lors de l'inscription",
+                    text: "Le code de parrainage saisi est invalide !",
+                    position: 'top',
+                    type: 'danger'
+                })
+            }
+            else {
+                Toast.show({
+                    text: response.error.data.message,
                     position: 'top',
                     type: 'danger'
                 })
@@ -158,9 +166,6 @@ class MyForm extends Component {
                         />
                     </Form>
                     <CustomButton label="Valider" navigation={this.props.navigation} screen="LoginForm" onPressFunc={this.submitForm.bind(this)} />
-
-
-
                 </ScrollView>
             </Root>
         );
