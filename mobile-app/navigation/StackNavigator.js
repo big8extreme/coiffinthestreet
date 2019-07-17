@@ -11,12 +11,14 @@ import DrawerMenu from './drawerNavigator';
 import Contact from '../screens/connected/Profile/Contact';
 import Participant from '../screens/public/Participant';
 import forgetPassword from '../screens/public/LoginForm/forgetPassword/forgetPassword';
-import MaraudeForm from '../screens/connected/Maraudes/MaraudeCreationForm'
+import MaraudeForm from '../screens/connected/Maraudes/MaraudeCreationForm';
+import StartApp from '../screens/public/StartApp/Startapp';
+import SignupForm from '../screens/public/SignupForm/MyForm';
 
 const AppStack = createStackNavigator(
   {
     Profile: { screen: Profile },
-    Contact: { screen: Contact }
+    Contact: { screen: Contact },
   },
   {
     initialRouteName: "Profile",
@@ -31,10 +33,11 @@ const AuthStack = createStackNavigator(
     Discover: { screen: Discover },
     Participant: { screen: Participant },
     BottomTabNav: { screen: BottomTabNav },
-    MaraudeForm: { screen: MaraudeForm }
+    MaraudeForm: { screen: MaraudeForm },
   },
   {
     initialRouteName: "BottomTabNav",
+
     headerMode: 'none',
     navigationOptions: {
       // @ts-ignore
@@ -49,10 +52,13 @@ export default createAppContainer(
       Tab: BottomTabNav,
       App: AppStack,
       Auth: AuthStack,
-      DrawerMenu: DrawerMenu
+      StartApp: StartApp,
+      DrawerMenu: DrawerMenu,
+      Signup: SignupForm
     },
     {
-      initialRouteName: "DrawerMenu"
+      // initialRouteName: "DrawerMenu" //TODO TEST BEFORE REMOVING
+      initialRouteName: "StartApp"
     }
   )
 );

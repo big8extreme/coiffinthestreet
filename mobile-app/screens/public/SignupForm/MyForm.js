@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Text, ScrollView, Container} from 'react-native';
+import { Text, ScrollView, Container } from 'react-native';
 import { Form, Field } from 'react-native-validate-form';
 import InputField from './InputField';
 import AvatarUpload from './Avatar';
@@ -13,7 +13,7 @@ import { withNavigation } from 'react-navigation';
 
 const email = value => value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,5}$/i.test(value) ? 'Please provide a valid email address.' : undefined;
 const requiredFields = ['email', 'firstName', 'name', 'pseudo', 'password', 'invitationCode', 'confirmPassword']
-const onPress= {onPress}
+const onPress = { onPress }
 class MyForm extends Component {
   constructor(props) {
     super(props);
@@ -27,13 +27,11 @@ class MyForm extends Component {
       confirmPassword: '',
       invitationCode: '',
     }
-
   }
 
 
   submitForm = async () => {
     // this.setState({isDisabled : true })
-
     let errors = [];
     requiredFields.forEach(item => {
       if (this.state[item].length < 1) {
@@ -41,7 +39,7 @@ class MyForm extends Component {
       }
     });
     this.setState({ errors: errors, loading: false });
-    
+
     if (errors.length < 1) {
       // this.setState({isDisabled : true })
       const response = await this.props.signup(this.state)
@@ -51,9 +49,9 @@ class MyForm extends Component {
           text: 'Success',
           position: 'top',
           type: 'success',
-          duration : 4000,
-          onClose:()=> {
-            this.props.navigation.navigate('Map') ;
+          duration: 4000,
+          onClose: () => {
+            this.props.navigation.navigate('Map');
           }
         })
       } else {
@@ -63,7 +61,7 @@ class MyForm extends Component {
           text: "Erreur lors de l'inscription",
           position: 'top',
           type: 'danger',
-          duration : 2000
+          duration: 2000
         })
       }
     }
@@ -98,14 +96,14 @@ class MyForm extends Component {
       <Root>
         <ScrollView>
           <AvatarUpload onSelected={(file) => this.setState({ avatar: file })} />
-         
+
           <Form
             ref={(ref) => this.myForm = ref}
             validate={true}
             submit={this.submitSuccess.bind(this)}
             failed={this.submitFailed.bind(this)}
             errors={this.state.errors}
-            
+
           >
             <Text style={style.inputText}>Nom *</Text>
             <Field
@@ -169,11 +167,11 @@ class MyForm extends Component {
               customStyle={style.field}
             />
           </Form>
-         
+
           <ValidateFormButton
-              label="valider"
-              onPress={() => this.submitForm()}       
-            />
+            label="valider"
+            onPress={() => this.submitForm()}
+          />
         </ScrollView>
       </Root>
     );
