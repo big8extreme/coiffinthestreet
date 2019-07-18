@@ -4,12 +4,6 @@ const { getHost } = require('../utils/ip');
 const Maraude = models.Maraude;
 const Picture = models.Picture;
 
-/*
-// should i import & install this ?
-var multer  = require('multer')
-var upload = multer({ dest: 'uploads/' })
-*/
-
 module.exports = {
   index: function (req, res, next) {
     const { city } = req.query;
@@ -89,21 +83,15 @@ module.exports = {
   findByCoord: function (req, res, next) {
     const { lat, lng, limit } = req.query;
     Maraude.findAll({
-      attributes: ['id', 'title', [sequelize.literal('6371 * acos(cos(radians(' + lat + ')) * cos(radians(latitude)) * cos(radians(' + lng + ') - radians(longitude)) + sin(radians(' + lat + ')) * sin(radians(latitude)))'), 'distance']],
+      attributes: [
+        'id', 'userId', 'title', 'startAt', 'endAt', 'description', 'address', 'city', 'isPublished', 'longitude', 'latitude',
+        [sequelize.literal('6371 * acos(cos(radians(' + lat + ')) * cos(radians(latitude)) * cos(radians(' + lng + ') - radians(longitude)) + sin(radians(' + lat + ')) * sin(radians(latitude)))'), 'distance']],
       order: sequelize.col('distance'),
       limit: parseInt(limit) || 10,
+      include: { all: true, nested: true }
     })
-      .catch((error) => res.status(500).json({ error }));
-  },
-  findByCoord: function (req, res, next) {
-    const { lat, lng, limit } = req.query;
-    Maraude.findAll({
-      attributes: ['id', 'title', [sequelize.literal('6371 * acos(cos(radians(' + lat + ')) * cos(radians(latitude)) * cos(radians(' + lng + ') - radians(longitude)) + sin(radians(' + lat + ')) * sin(radians(latitude)))'), 'distance']],
-      order: sequelize.col('distance'),
-      limit: parseInt(limit) || 10,
-    })
-      .then((places) => {
-        res.json({ places });
+      .then((maraudes) => {
+        res.json({ maraudes });
       })
       .catch((error) => { res.status(500).json({ error }); });
   },

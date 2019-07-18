@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { fetchMaraudes } from '../../../store/actions/maraude';
+import { fetchMaraudes, fetchMaraudesByLoc } from '../../../store/actions/maraude';
+import { setUserLocation } from '../../../store/actions/user';
 import { StyleSheet, View, Platform } from 'react-native';
 import MapView, { Callout, Marker } from "react-native-maps";
 import { getCluster } from "../../../utils/MapUtils";
@@ -53,16 +54,17 @@ class MapMarker extends React.Component {
       region: INITIAL_POSITION
     };
   }
-  componentDidMount() {
-    this.props.fetchMaraudes();
+  componentDidMount = async () => {
     maraudesToMarkers(this.props.maraude.maraudes)
     if (Platform.OS === 'android' && !Constants.isDevice) {
       this.setState({
         errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
       });
     } else {
-      this._getLocationAsync();
+      await this._getLocationAsync();
     }
+    this.props.setUserLocation(this.state.region)
+    this.props.fetchMaraudesByLoc();
   }
   _getLocationAsync = async () => {
     let { status } = await Permissions.askAsync(Permissions.LOCATION);
@@ -75,6 +77,13 @@ class MapMarker extends React.Component {
       this.setState({ ...this.state, region: { latitude: location.coords.latitude, longitude: location.coords.longitude, latitudeDelta: 0.0922, longitudeDelta: 0.0421 }, coordLoaded: true });
     }
   };
+
+  fetchByLocAsync = (region) => {
+    clearTimeout(this.maraudesTimer);
+    this.maraudesTimer = setTimeout(() => {
+      this.props.fetchMaraudesByLoc(region);
+    }, 2000)
+  }
   renderMarker = (marker, index) => {
     const key = index + marker.geometry.coordinates[0];
     const { navigate } = this.props.navigation;
@@ -108,12 +117,15 @@ class MapMarker extends React.Component {
     return (
       <View style={Style.container}>
         <MapView
-          showsUserLocation={true}
+          showsUserLocation={false}
           style={Style.map}
           loadingIndicatorColor={"#ffbbbb"}
           loadingBackgroundColor={"#ffbbbb"}
           region={region}
-          onRegionChangeComplete={region => this.setState({ region })}>
+          onRegionChangeComplete={region => {
+            this.setState({ region })
+            this.fetchByLocAsync(region)
+          }}>
           {cluster.markers.map((marker, index) => this.renderMarker(marker, index))}
         </MapView>
         <View
@@ -138,7 +150,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  fetchMaraudes
+  fetchMaraudes,
+  setUserLocation,
+  fetchMaraudesByLoc
 };
 
 // @ts-ignore
