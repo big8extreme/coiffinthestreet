@@ -12,7 +12,7 @@ export const fetchMaraudes = () => {
       console.log('ERROR WHILE FETCHING USERS', err);
     }
     try {
-      const response = await axios.get('/maraudes', { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
+      const response = await axios.get('/api/v1/maraudes', { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
       onSuccess(response);
     }
     catch (err) {
@@ -36,7 +36,7 @@ export const createMaraude = (maraudeData) => {
     }
     try {
       maraudeData.userId = getState().authentification.user.id;
-      const response = await axios.post('/maraudes', maraudeData, {
+      const response = await axios.post('/api/v1/maraudes', maraudeData, {
         headers: { Authorization: `bearer ${getState().authentification.user.token}` }
       });
       onSuccess(response);
@@ -63,7 +63,7 @@ export const updateMaraude = (maraudeFields, maraudeId) => {
       return err;
     }
     try {
-      const response = await axios.put(`/maraudes/${maraudeId}`, maraudeFields, { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
+      const response = await axios.put(`/api/v1/maraudes/${maraudeId}`, maraudeFields, { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
       onSuccess(response);
     }
     catch (err) {
@@ -88,7 +88,7 @@ export const deleteMaraude = (maraudeId) => {
       return err;
     }
     try {
-      const response = await axios.delete(`/maraudes/${maraudeId}`, { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
+      const response = await axios.delete(`/api/v1/maraudes/${maraudeId}`, { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
       onSuccess(response);
     }
     catch (err) {
@@ -112,7 +112,7 @@ export const deletePicture = (pictureId) => {
       return err;
     }
     try {
-      const response = await axios.delete(`/pictures/${pictureId}`, { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
+      const response = await axios.delete(`/api/v1/pictures/${pictureId}`, { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
       onSuccess(response);
     }
     catch (err) {
