@@ -17,7 +17,7 @@ module.exports = {
       city: req.user.city
     };
     /* Signin jwt with your SECRET key */
-    const token = jwt.sign(user, 'your_jwt_secret');
+    const token = jwt.sign(user, process.env.JWT_SECRET);
     /* Return user and token in json response */
     res.json({ user, token });
   },
@@ -42,7 +42,7 @@ module.exports = {
           city: newUser.city,
         };
         mailer(userDatas, newUser.email, 'welcome');
-        const token = jwt.sign(userDatas, 'your_jwt_secret');
+        const token = jwt.sign(userDatas, process.env.JWT_SECRET);
         /* Return user and token in json response */
         res.json({ user: userDatas, token });
       })
