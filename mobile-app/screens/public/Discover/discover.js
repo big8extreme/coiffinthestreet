@@ -3,7 +3,6 @@ import { StyleSheet, ScrollView, View, Image, TouchableOpacity } from 'react-nat
 import { Text } from 'react-native';
 import { Video } from 'expo-av'
 
-
 export default class Discover extends Component {
     render() {
         const { navigate } = this.props.navigation;

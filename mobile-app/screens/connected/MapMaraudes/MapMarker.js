@@ -20,7 +20,7 @@ const Style = StyleSheet.create({
     justifyContent: 'center',
   },
   map: {
-    ...StyleSheet.absoluteFill
+    ...StyleSheet.absoluteFillObject
   }
 });
 
@@ -95,7 +95,7 @@ class MapMarker extends React.Component {
         }}
         image={require('../../../assets/pin.png')}
       >
-        <Callout tooltip style={{ width: 220 }} onPress={() => this.props.navigation.navigate('Signup', { city: maraude.city })}>
+        <Callout tooltip style={{ width: 220 }} onPress={() => this.props.navigation.navigate('List', { city: maraude.city })}>
           <MapToolTip navigation={{ navigate }} maraude={maraude} />
         </Callout>
       </Marker>
