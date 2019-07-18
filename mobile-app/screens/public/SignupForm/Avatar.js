@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Avatar } from 'react-native-elements';
 import { ImagePicker, Permissions } from 'expo';
-import { View } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 
 export default class AvatarUpload extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            avatar:null
+            avatar: null
         }
     }
 
@@ -22,10 +22,12 @@ export default class AvatarUpload extends Component {
             this.setState({ avatar: image })
             this.props.onSelected(image)
         }
+        this.props.resetError('avatar')
     }
     render() {
+        const { erroned } = this.props;
         return (
-            <View>
+            <View style={erroned ? styles.erroned : {}} >
                 <Avatar
                     onPress={this.pickFromGallery}
                     rounded
@@ -34,9 +36,14 @@ export default class AvatarUpload extends Component {
                     size="large"
                     source={this.state.avatar}
                 />
-            </View>
+                {erroned && <Text>Can't be blank !</Text>}
+            </ View>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    erroned: { borderBottomWidth: 1, borderColor: 'red', width: 100 }
+})
 
 

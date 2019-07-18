@@ -11,7 +11,7 @@ import CustomButton from '../../../components/CustomButton';
 
 
 const email = value => value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,5}$/i.test(value) ? 'Please provide a valid email address.' : undefined;
-const requiredFields = ['email', 'firstName', 'name', 'pseudo', 'password', 'invitationCode', 'confirmPassword']
+const requiredFields = ['avatar', 'email', 'firstName', 'name', 'pseudo', 'password', 'invitationCode', 'confirmPassword']
 
 class MyForm extends Component {
     constructor(props) {
@@ -25,6 +25,7 @@ class MyForm extends Component {
             password: '',
             confirmPassword: '',
             invitationCode: '',
+            avatar: '',
             loading: false
         }
     }
@@ -89,7 +90,10 @@ class MyForm extends Component {
             <Root>
                 <ScrollView style={{ margin: 30 }}>
 
-                    <AvatarUpload onSelected={(file) => this.setState({ avatar: file })} />
+                    <AvatarUpload
+                        resetError={this.resetError}
+                        erroned={this.state.errors.map(err => err.field).includes('avatar')}
+                        onSelected={(file) => this.setState({ avatar: file })} />
 
                     <Form
                         ref={(ref) => this.myForm = ref}
@@ -158,14 +162,18 @@ class MyForm extends Component {
                         <Text style={style.inputText}>Entrez votre code de parrainage *</Text>
                         <Field
                             component={InputField}
-                            name="code"
-                            secureTextEntry={true}
+                            name="invitationCode"
                             value={this.state.code}
                             onChangeText={(val) => this.handleTextChange('invitationCode', val)}
                             customStyle={style.field}
                         />
                     </Form>
-                    <CustomButton label="Valider" navigation={this.props.navigation} screen="LoginForm" onPressFunc={this.submitForm.bind(this)} />
+                    <CustomButton
+                        disabled={this.state.loading}
+                        label="Valider"
+                        navigation={this.props.navigation}
+                        screen="LoginForm"
+                        onPressFunc={this.submitForm} />
                 </ScrollView>
             </Root>
         );
