@@ -1,4 +1,5 @@
 const User = require('../models').User;
+const { getHost } = require('../utils/ip');
 
 module.exports = {
 
@@ -46,7 +47,7 @@ module.exports = {
       lastName: req.body.lastName,
       email: req.body.email,
       password: req.body.password,
-      avatarUrl: `${process.env.HOST}/${req.file.path}`,
+      avatarUrl: `${getHost()}/${req.file.path}`,
       isAdmin: req.body.isAdmin,
       isActive: req.body.isActive,
       isBanned: req.body.isBanned,

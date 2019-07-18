@@ -1,5 +1,6 @@
 const models = require('../models');
 const sequelize = require('sequelize');
+const { getHost } = require('../utils/ip');
 const Maraude = models.Maraude;
 const Picture = models.Picture;
 
@@ -109,18 +110,18 @@ module.exports = {
 
   upload: function (req, res, next) {
     Picture.create({
-      url :`${process.env.HOST}/${req.file.path}`,
-      maraudeId : req.params.id
+      url: `${getHost()}/${req.file.path}`,
+      maraudeId: req.params.id
     })
       .then((picture) => {
         Maraude.findByPk(req.params.id, { include: ['photos'] })
-        .then((maraude) => {
-          res.json({ maraude }); 
-        })
-        .catch((error) => res.status(500).json({ error }));
+          .then((maraude) => {
+            res.json({ maraude });
+          })
+          .catch((error) => res.status(500).json({ error }));
 
       })
       .catch((error) => res.status(500).json({ error }));
-    }
+  }
 
 };

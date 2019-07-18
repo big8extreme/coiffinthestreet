@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models').User;
-const os = require('os');
+const { getHost } = require('../utils/ip');
 const mailer = require('../mailer/mailer');
 const bcrypt = require('bcrypt');
 const { generateRandomString } = require('../utils/string');
@@ -27,7 +27,7 @@ module.exports = {
       lastName: req.body.lastName,
       email: req.body.email,
       password: req.body.password,
-      avatarUrl: req.file ? `${process.env.HOST}/${req.file.path}` : null,
+      avatarUrl: req.file ? `${getHost()}/${req.file.path}` : null,
       isAdmin: req.body.isAdmin || false,
       invitationCode: generateRandomString(8),
       godFatherId: req.inviter.id
