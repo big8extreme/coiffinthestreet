@@ -14,7 +14,6 @@ export default class AvatarUpload extends Component {
     pickFromGallery = async () => {
         const permissions = Permissions.CAMERA_ROLL;
         const { status } = await Permissions.askAsync(permissions)
-        console.log(permissions, status);
         if (status === 'granted') {
             let image = await ImagePicker.launchImageLibraryAsync({
                 mediaTypes: 'Images',

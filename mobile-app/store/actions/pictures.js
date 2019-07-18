@@ -15,7 +15,7 @@ export function uploadPictures(maraudeId, pictures) {
         }
 
         function onError(error) {
-            console.log("ERROR", error)
+            console.log("ERROR ON UPLOADING PICTURES", error)
             dispatch({ type: ERROR_ON_PICTURES, error });
 
             return { error, status: 'error' };
@@ -23,7 +23,6 @@ export function uploadPictures(maraudeId, pictures) {
         }
 
         try {
-            console.log('Preparing', pictures)
             const splitedpicturesUrl = pictures.uri.split('/')
             const originalFileName = splitedpicturesUrl[splitedpicturesUrl.length - 1]
             let originalFileExt = originalFileName.split('.')
@@ -34,9 +33,7 @@ export function uploadPictures(maraudeId, pictures) {
                 name: originalFileName,
                 type: `image/${originalFileExt}`
             }, originalFileName);
-            //need maraude ID
-            console.log('formData : ', formData)
-            // route is it ok ? 
+
             const response = await axios.put(`${baseUrlApi}/maraudes/${maraudeId}/pictures`, formData, {
                 headers: {
                     "Content-Type": 'multipart/form-data',

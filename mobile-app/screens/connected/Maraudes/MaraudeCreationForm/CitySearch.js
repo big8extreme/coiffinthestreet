@@ -88,7 +88,7 @@ export default class CitySearcher extends Component {
 const style = StyleSheet.create({
   inputText: {
     fontFamily: 'Roboto',
-    textAlign: 'left',
+    textAlign: 'center',
     marginLeft: 10,
     marginBottom: 5,
     marginTop: 25,

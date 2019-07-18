@@ -29,8 +29,7 @@ export class Uploader extends Component {
                 let image = await ImagePicker.launchImageLibraryAsync({
                     mediaTypes: 'Images',
                 }).catch(error => {
-                    console.log("ERRROR GETTING IMAGE")
-                    console.log(permissions, { error })
+                    console.log("ERROR GETTING IMAGE", error)
                 });
 
                 pictures.push(image)

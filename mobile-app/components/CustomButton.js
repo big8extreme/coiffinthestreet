@@ -1,7 +1,7 @@
 import React from 'react'
-import { TouchableOpacity, Text, Dimensions } from 'react-native';
-import { style as customStyle } from '../assets/ButtonFormulaire';
+import { TouchableOpacity, Text, Platform } from 'react-native';
 import { Path, Svg, G } from "react-native-svg";
+import { withNavigation } from 'react-navigation'
 
 const CustomButton = ({ label = '', turn = "360", navigation = {}, screen = "", labelColor = '#fff', color = 'transparent', onPressFunc = null, fontSize = 32, decalagetext = "90", colorfill = '#FDC500', disabled = false }) => {
 
@@ -13,16 +13,16 @@ const CustomButton = ({ label = '', turn = "360", navigation = {}, screen = "", 
     }
   }
 
+  const buttonPaddingTop = Platform.OS === 'ios' ? 10 : 0;
   return (
     <TouchableOpacity onPress={() => handlePress()}
       style={{ alignSelf: 'center', bottom: 0, opacity: disabled ? 0.3 : 1 }}
       disabled={disabled}
-      activeOpacity={1}>
+      activeOpacity={0.2}>
       <Svg
         height={100}
         width={350}
-        marginLeft={35}
-        marginTop={50}
+        style={{ marginLeft: 35, marginTop: 50 }}
       >
 
         <G
@@ -40,6 +40,7 @@ const CustomButton = ({ label = '', turn = "360", navigation = {}, screen = "", 
 
         <Text
           style={{
+            paddingTop: buttonPaddingTop,
             fontFamily: "Sedgwick",
             fontSize: fontSize,
             textAlign: 'center',
@@ -58,4 +59,4 @@ const CustomButton = ({ label = '', turn = "360", navigation = {}, screen = "", 
 }
 
 
-export default CustomButton
+export default withNavigation(CustomButton);

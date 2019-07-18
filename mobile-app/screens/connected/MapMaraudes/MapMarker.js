@@ -11,6 +11,7 @@ import CreateMaraudeButton from '../../../components/CreateMaraudeButton';
 import Constants from 'expo-constants';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
+import CustomButton from '../../../components/CustomButton';
 
 
 const Style = StyleSheet.create({
@@ -133,11 +134,15 @@ class MapMarker extends React.Component {
             display: 'flex',
             position: 'absolute',
             bottom: 0,
-            left: '10%',
+            left: -2,
           }}>
           {
             this.props.auth.user.isConnected &&
-            <CreateMaraudeButton navigation={this.props.navigation} label='Ajouter une maraude' />
+            <CustomButton
+              screen="MaraudeForm"
+              label="Ajouter une maraude"
+              fontSize={20}
+              colorfill="#0F2148" />
           }
         </View>
       </View>

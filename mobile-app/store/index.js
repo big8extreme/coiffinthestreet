@@ -23,6 +23,6 @@ const store = process.env.NODE_ENV === 'production'
   :
   createStore(
     persistedReducer,
-    applyMiddleware(thunk, logger))
+    applyMiddleware(thunk))
 
 export default store;

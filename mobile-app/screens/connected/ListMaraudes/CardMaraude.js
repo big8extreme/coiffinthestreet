@@ -1,11 +1,11 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Platform } from "react-native";
 import { Text, View, Icon } from "native-base";
 import moment from "moment";
-import ValidateButton from "../../../components/ValidateButton";
 import { TouchableOpacity } from "react-native-gesture-handler";
-
+import CustomButton from '../../../components/CustomButton'
 export default function CardMaraude({ maraude = {}, navigation = {}, currentUserId = null }) {
+  const marginButton = Platform.OS === 'ios' ? "3%" : -15
   return (
     <React.Fragment>
       <View style={styles.shadow}>
@@ -84,14 +84,13 @@ export default function CardMaraude({ maraude = {}, navigation = {}, currentUser
         </View>
       </View>
       <View
-        style={{ position: "absolute", marginTop: "50%", marginLeft: "5%" }}
+        style={{ position: "absolute", marginTop: "35%", marginLeft: marginButton }}
       >
-        <ValidateButton
+        <CustomButton
           label="Je souhaite participer"
-          onPress={() =>
-            navigation.navigate("Participant", { maraudeId: maraude.id })
-          }
-        />
+          fontSize={25}
+          colorfill="blue"
+          onPressFunc={() => navigation.navigate("Participant", { maraudeId: maraude.id })} />
       </View>
     </React.Fragment>
   );

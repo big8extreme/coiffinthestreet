@@ -116,7 +116,7 @@ export function createMaraude(maraudeFields) {
             delete maraudeFields.startDate
 
 
-            const response = await axios.post(`${baseUrlApi}/maraudes/`, { ...maraudeFields }, {
+            const response = await axios.post(`${baseUrlApi}/maraudes`, { ...maraudeFields }, {
                 headers: { Authorization: `bearer ${getState().auth.user.token}` }
             })
             return onSuccess(response)
@@ -136,7 +136,7 @@ export function updateMaraude(maraudeId, maraudeFields) {
             dispatch({ type: ERROR_ON_UPDATE_MARAUDE, payload: error })
         }
         try {
-            const response = await axios.put(`${baseUrlApi}/maraudes/`, { ...maraudeFields }, {
+            const response = await axios.put(`${baseUrlApi}/maraudes`, { ...maraudeFields }, {
                 headers: { Authorization: `bearer ${getState().auth.user.token}` }
             })
             onSuccess(response)
