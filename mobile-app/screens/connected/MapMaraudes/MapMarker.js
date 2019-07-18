@@ -1,13 +1,15 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { fetchMaraudes } from '../../../store/actions/maraude';
-import { StyleSheet, View, Text } from 'react-native';
-import { Button } from 'native-base';
+import { StyleSheet, View, Platform } from 'react-native';
 import MapView, { Callout, Marker } from "react-native-maps";
 import { getCluster } from "../../../utils/MapUtils";
 import MapToolTip from './MapToolTip';
 import ClusterMarker from './ClusterMarker';
 import CreateMaraudeButton from '../../../components/CreateMaraudeButton';
+import Constants from 'expo-constants';
+import * as Location from 'expo-location';
+import * as Permissions from 'expo-permissions';
 
 
 const Style = StyleSheet.create({
@@ -48,13 +50,31 @@ class MapMarker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      region: INITIAL_POSITION,
+      region: INITIAL_POSITION
     };
   }
   componentDidMount() {
     this.props.fetchMaraudes();
     maraudesToMarkers(this.props.maraude.maraudes)
+    if (Platform.OS === 'android' && !Constants.isDevice) {
+      this.setState({
+        errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
+      });
+    } else {
+      this._getLocationAsync();
+    }
   }
+  _getLocationAsync = async () => {
+    let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    if (status !== 'granted') {
+      this.setState({
+        errorMessage: 'Permission to access location was denied',
+      });
+    } else {
+      let location = await Location.getCurrentPositionAsync({});
+      this.setState({ ...this.state, region: { latitude: location.coords.latitude, longitude: location.coords.longitude, latitudeDelta: 0.0922, longitudeDelta: 0.0421 }, coordLoaded: true });
+    }
+  };
   renderMarker = (marker, index) => {
     const key = index + marker.geometry.coordinates[0];
     const { navigate } = this.props.navigation;

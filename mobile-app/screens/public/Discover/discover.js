@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, ScrollView, View, Image, TouchableOpacity } from 'react-native';
 import { Text } from 'react-native';
-import { Video } from 'expo';
+import { Video } from 'expo-av'
 
 
 export default class Discover extends Component {
