@@ -1,10 +1,8 @@
 //export default class Startapp extends Component {
 import React from 'react';
 import { connect } from 'react-redux'
-
 import { StyleSheet, View, Dimensions, Image, Linking, TouchableOpacity, ImageBackground } from 'react-native';
 import CustomButton from '../../../components/CustomButton';
-
 
 const config = {
   deviceWidth: Dimensions.get('window').width,

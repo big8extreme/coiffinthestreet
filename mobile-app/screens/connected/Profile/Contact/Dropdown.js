@@ -53,7 +53,7 @@ export default class PickerTextAndItemStyleExample extends Component {
 
                     </Picker>
                 </Form>
-           </Content>
+            </Content>
 
         );
     }

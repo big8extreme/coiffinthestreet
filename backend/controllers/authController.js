@@ -14,7 +14,8 @@ module.exports = {
       firstName: req.user.firstName,
       lastName: req.user.lastName,
       job: req.user.job,
-      city: req.user.city
+      city: req.user.city,
+      invitationCode: req.user.invitationCode,
     };
     /* Signin jwt with your SECRET key */
     const token = jwt.sign(user, process.env.JWT_SECRET);
@@ -36,10 +37,12 @@ module.exports = {
         const userDatas = {
           id: newUser.id,
           isAdmin: newUser.isAdmin,
+          email: newUser.email,
           firstName: newUser.firstName,
           lastName: newUser.lastName,
           job: newUser.job,
           city: newUser.city,
+          invitationCode: newUser.invitationCode,
         };
         mailer(userDatas, newUser.email, 'welcome');
         const token = jwt.sign(userDatas, process.env.JWT_SECRET);

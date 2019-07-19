@@ -1,6 +1,6 @@
 import React from 'react'
 import { createDrawerNavigator, DrawerActions } from 'react-navigation'
-import { TouchableOpacity, Text, Dimensions, StyleSheet, View } from 'react-native'
+import { TouchableOpacity, Text, Dimensions, StyleSheet, View, Clipboard } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import BottomTabNavigator from './bottomTabNavigator'
 import LoginForm from '../screens/public/LoginForm'
@@ -33,22 +33,22 @@ export default createDrawerNavigator({
       }
     }
   },
-  Contact: {
-    screen: Contact,
-    navigationOptions: ({ navigation }) => {
-      return {
-        title: "Contacter l'administrateur",
-        drawerLabel: () => {
-          return <View style={styles.view}>
-            <TouchableOpacity onPress={() => navigation.navigate('Contact')} style={styles.flex}>
-              <Icon name="ios-mail" size={25} style={styles.icon} />
-              <Text style={styles.text}>Contacter l'administrateur</Text>
-            </TouchableOpacity>
-          </View>
-        }
-      }
-    }
-  },
+  // Contact: {
+  //   screen: Contact,
+  //   navigationOptions: ({ navigation }) => {
+  //     return {
+  //       title: "Contacter l'administrateur",
+  //       drawerLabel: () => {
+  //         return <View style={styles.view}>
+  //           <TouchableOpacity onPress={() => navigation.navigate('Contact')} style={styles.flex}>
+  //             <Icon name="ios-mail" size={25} style={styles.icon} />
+  //             <Text style={styles.text}>Contacter l'administrateur</Text>
+  //           </TouchableOpacity>
+  //         </View>
+  //       }
+  //     }
+  //   }
+  // },
   MaraudeForm: {
     screen: MaraudeForm,
     navigationOptions: ({ navigation }) => {
@@ -219,6 +219,26 @@ export default createDrawerNavigator({
       }
     }
   },
+  Code: {
+    screen: BottomTabNavigator,
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: "",
+        drawerLabel: () => {
+          return store.getState().auth.user.isConnected ?
+            <View style={{ padding: 20 }}>
+              <TouchableOpacity onPress={() => {
+                Clipboard.setString(store.getState().auth.user.invitationCode)
+              }}>
+                <Text style={styles.text}>Mon code parrain : {store.getState().auth.user.invitationCode} (copier)</Text>
+              </TouchableOpacity>
+            </View>
+            :
+            null
+        }
+      }
+    }
+  }
 },
   {
     initialRouteName: 'BottomTab',

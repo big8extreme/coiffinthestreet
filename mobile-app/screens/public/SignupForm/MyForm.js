@@ -48,7 +48,7 @@ class MyForm extends Component {
                     type: 'success',
                 })
                 setTimeout(() => {
-                    this.props.navigation.navigate('DrawerMenu')
+                    this.props.navigation.navigate('BottomTab')
                 }, 500)
             }
             else if (response.status === "invalid_code") {

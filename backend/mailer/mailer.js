@@ -3,7 +3,7 @@ let ejs = require('ejs');
 
 //create reusable transporte object using the defaults SMTP transport
 let transporter = nodemailer.createTransport({
-  host: process.env.MAIL_HOST, //nom d'hote auquel se connecter
+  service: 'gmail', //nom d'hote auquel se connecter
   port: process.env.MAIL_PORT, // port 587 si sécurisé est false ou 465 si true
   secure: true, // upgrade later with STARTTLS
   auth: {
@@ -40,6 +40,7 @@ const getMailContent = (mailType) => {
 
 //TODO get default value from .env
 const Mailer = (userDatas, recipient = process.env.MAIL_SENDER, mailType = "contactAdmin") => {
+  console.log("SEND EMAIL", userDatas, recipient, mailType)
   ejs.renderFile(__dirname + getMailContent(mailType), { ...userDatas },
     function (err, data) {
       if (err) {
@@ -54,10 +55,10 @@ const Mailer = (userDatas, recipient = process.env.MAIL_SENDER, mailType = "cont
         };
         transporter.sendMail(mailOptions, function (err, info) {
           if (err) {
-            //console.log(err);
+            console.log(err);
             //TODO MANAGE ERROR
           } else {
-            //console.log('Message sent: ' + info.response);
+            console.log('Message sent: ' + info.response);
             //TODO MANAGE RESPONSE
             // res.render('contact', {msg:'Email has been sent'});
           }
