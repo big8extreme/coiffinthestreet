@@ -13,7 +13,6 @@ class CardsPhotosMaraude extends Component {
 
   componentDidMount() {
     this.props.fetchMaraudes();
-
   }
 
   render() {
@@ -48,7 +47,7 @@ class CardsPhotosMaraude extends Component {
                       })
                     }
                   </ScrollView>
-                  <CardItem style={{ paddingLeft: 5, paddingTop:15 }}>
+                  <CardItem style={{ paddingLeft: 5, paddingTop: 15 }}>
                     <Body>
                       <Text style={style.description}>{maraude.description}</Text>
                     </Body>
@@ -72,7 +71,7 @@ const style = StyleSheet.create({
   title: {
     fontFamily: 'Tinos_bold',
     fontSize: 23,
-    marginBottom:3
+    marginBottom: 3
   },
   card: {
     marginBottom: 60,
@@ -92,7 +91,7 @@ const style = StyleSheet.create({
   city: {
     fontFamily: 'Tinos_bold',
     fontSize: 17,
-    marginTop:3
+    marginTop: 3
 
   },
   body: {
@@ -101,12 +100,12 @@ const style = StyleSheet.create({
     alignItems: 'center'
   },
   avatar: {
-    width: 80, 
-    height: 80, 
-    borderRadius: 40, 
-    marginRight: 30, 
-    borderColor: 'black', 
-    borderWidth: 1 
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    marginRight: 30,
+    borderColor: 'black',
+    borderWidth: 1
   }
 })
 

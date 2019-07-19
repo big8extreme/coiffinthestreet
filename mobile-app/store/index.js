@@ -6,15 +6,23 @@ import logger from 'redux-logger';
 import allReducer from './reducers';
 
 const persistConfig = {
-  key: 'XxXxX-XxXxXXdsjfidi',
+  key: 'XxXxX-XxXxXXsjfi',
   storage: LocalStorage,
   whitelist: ['auth', 'config'],
   blacklist: ['maraude', 'participant'],
 }
 
 const persistedReducer = persistReducer(persistConfig, allReducer)
-applyMiddleware(thunk, logger)
 
-export default createStore(
-  persistedReducer,
-  applyMiddleware(thunk, logger))
+
+const store = process.env.NODE_ENV === 'production'
+  ?
+  createStore(
+    persistedReducer,
+    applyMiddleware(thunk))
+  :
+  createStore(
+    persistedReducer,
+    applyMiddleware(thunk))
+
+export default store;

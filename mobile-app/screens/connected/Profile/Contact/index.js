@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, ScrollView, Image } from 'react-native';
 import MessageTextInput from './MessageTextInput';
 import PickerTextAndItemStyleExample from './Dropdown';
-import ConnectButton from '../../../../components/ConnectButton';
+import CustomButton from '../../../../components/CustomButton';
 
 
 export default class Contact extends Component {
@@ -14,9 +14,13 @@ export default class Contact extends Component {
         <View style={styles.logo}>
           <Image source={require('../../../../assets/Logo_light.png')} />
         </View>
-          <PickerTextAndItemStyleExample />
-          <MessageTextInput />
-          <ConnectButton />
+        <PickerTextAndItemStyleExample />
+        <MessageTextInput />
+        <CustomButton
+          label="Envoyer"
+          fontSize={25}
+          colorfill="#FDC500"
+          onPressFunc={() => console.log("Send")} />
       </ScrollView>
 
     );

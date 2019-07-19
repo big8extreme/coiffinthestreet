@@ -1,6 +1,8 @@
 const models = require('../models');
 const sequelize = require('sequelize');
+const { getHost } = require('../utils/ip');
 const Maraude = models.Maraude;
+const Picture = models.Picture;
 
 module.exports = {
   index: function (req, res, next) {
@@ -12,7 +14,7 @@ module.exports = {
     };
 
     if (city) {
-      query.where.city = sequelize.where(sequelize.fn('LOWER', sequelize.col('city')), 'LIKE', '%' + city + '%')
+      query.where.city = sequelize.where(sequelize.fn('LOWER', sequelize.col('city')), 'LIKE', '%' + city + '%');
     }
     Maraude.findAll(query)
       .then((maraudes) => {
@@ -30,6 +32,7 @@ module.exports = {
   },
 
   create: function (req, res, next) {
+    console.log('BEFORE CREATE', req.body);
     Maraude.create({
       userId: req.body.userId,
       title: req.body.title,
@@ -43,6 +46,7 @@ module.exports = {
     })
       .then((maraude) => { res.json({ maraude }); })
       .catch((error) => {
+        console.log('ERROR ON CREATE MARAUDE', error);
         res.status(500).json({ error });
       });
   },
@@ -64,8 +68,8 @@ module.exports = {
           .then((updatedMaraude) => { res.json({ updatedMaraude }); })
           .catch((error) => res.status(500).json({ error }));
       })
-    .catch((error) => res.status(500).json({ error }));
-},
+      .catch((error) => res.status(500).json({ error }));
+  },
 
   delete: function (req, res, next) {
     Maraude.findByPk(req.params.id)
@@ -79,22 +83,33 @@ module.exports = {
   findByCoord: function (req, res, next) {
     const { lat, lng, limit } = req.query;
     Maraude.findAll({
-      attributes: ['id', 'title', [sequelize.literal('6371 * acos(cos(radians(' + lat + ')) * cos(radians(latitude)) * cos(radians(' + lng + ') - radians(longitude)) + sin(radians(' + lat + ')) * sin(radians(latitude)))'), 'distance']],
+      attributes: [
+        'id', 'userId', 'title', 'startAt', 'endAt', 'description', 'address', 'city', 'isPublished', 'longitude', 'latitude',
+        [sequelize.literal('6371 * acos(cos(radians(' + lat + ')) * cos(radians(latitude)) * cos(radians(' + lng + ') - radians(longitude)) + sin(radians(' + lat + ')) * sin(radians(latitude)))'), 'distance']],
       order: sequelize.col('distance'),
       limit: parseInt(limit) || 10,
+      include: { all: true, nested: true }
     })
-    .catch((error) => res.status(500).json({ error }));
-},
-findByCoord: function (req, res, next) {
-  const { lat, lng, limit } = req.query;
-  Maraude.findAll({
-    attributes: ['id', 'title', [sequelize.literal('6371 * acos(cos(radians(' + lat + ')) * cos(radians(latitude)) * cos(radians(' + lng + ') - radians(longitude)) + sin(radians(' + lat + ')) * sin(radians(latitude)))'), 'distance']],
-    order: sequelize.col('distance'),
-    limit: parseInt(limit) || 10,
-  })
-    .then((places) => {
-      res.json({ places });
+      .then((maraudes) => {
+        res.json({ maraudes });
+      })
+      .catch((error) => { res.status(500).json({ error }); });
+  },
+
+  upload: function (req, res, next) {
+    Picture.create({
+      url: `${getHost()}/${req.file.path}`,
+      maraudeId: req.params.id
     })
-    .catch((error) => { res.status(500).json({ error }); });
-}
+      .then((picture) => {
+        Maraude.findByPk(req.params.id, { include: ['photos'] })
+          .then((maraude) => {
+            res.json({ maraude });
+          })
+          .catch((error) => res.status(500).json({ error }));
+
+      })
+      .catch((error) => res.status(500).json({ error }));
+  }
+
 };

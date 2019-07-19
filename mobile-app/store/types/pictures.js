@@ -1,0 +1,5 @@
+export const UPLOAD_PICTURES = 'UPLOAD_PICTURES';
+
+
+// Errors
+export const ERROR_ON_PICTURES = 'ERROR_ON_PICTURES';
