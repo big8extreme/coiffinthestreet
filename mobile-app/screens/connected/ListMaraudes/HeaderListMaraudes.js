@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { SearchBar } from "react-native-elements";
-import { fetchMaraudesByCity } from "../../../store/actions/maraude";
+import { fetchMaraudesByCity, fetchMaraudes } from "../../../store/actions/maraude";
+import { NavigationEvents } from "react-navigation";
 import { connect } from "react-redux";
 import { View, Text } from "react-native";
 
@@ -16,7 +17,7 @@ class HeaderListMaraudes extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if(this.props.city){
+    if (this.props.city) {
       this.props.fetchMaraudesByCity(this.props.city)
     }
   }
@@ -26,12 +27,17 @@ class HeaderListMaraudes extends Component {
   };
 
   submitSearch = () => {
-    this.props.fetchMaraudesByCity(this.state.search) 
+    this.props.fetchMaraudesByCity(this.state.search)
   };
 
   render() {
     return (
       <View>
+        <NavigationEvents
+          onWillFocus={payload => {
+            this.props.fetchMaraudes()
+          }}
+        />
         <SearchBar
           ref="searchBar"
           onChangeText={this.updateSearch}
@@ -52,7 +58,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  fetchMaraudesByCity
+  fetchMaraudesByCity,
+  fetchMaraudes
 };
 
 // @ts-ignore

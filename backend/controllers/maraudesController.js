@@ -1,24 +1,34 @@
 const models = require('../models');
 const sequelize = require('sequelize');
 const { getHost } = require('../utils/ip');
+const moment = require('moment');
 const Maraude = models.Maraude;
 const Picture = models.Picture;
 
 module.exports = {
   index: function (req, res, next) {
-    const { city } = req.query;
+    const { city, passed, lastweek } = req.query;
     const query = {
       include: ['photos', 'author'],
       where: {
       }
     };
-
+    // only future by default
+    query.where.startAt = { [sequelize.Op.gt]: moment(new Date()).toDate() };
     if (city) {
       query.where.city = sequelize.where(sequelize.fn('LOWER', sequelize.col('city')), 'LIKE', '%' + city + '%');
     }
+    if (lastweek) {
+      query.where.endAt = { [sequelize.Op.gte]: moment(new Date()).subtract(7, 'days').toDate() };
+      delete query.where.startAt;
+    }
+    if (passed) {
+      query.where.endAt = { [sequelize.Op.lt]: moment(new Date()).toDate() };
+      delete query.where.startAt;
+    }
     Maraude.findAll(query)
       .then((maraudes) => {
-        res.json({ maraudes });
+        res.json({ maraudes, count: maraudes.length });
       })
       .catch((error) => {
         res.status(500).json({ error });
@@ -86,6 +96,7 @@ module.exports = {
       attributes: [
         'id', 'userId', 'title', 'startAt', 'endAt', 'description', 'address', 'city', 'isPublished', 'longitude', 'latitude',
         [sequelize.literal('6371 * acos(cos(radians(' + lat + ')) * cos(radians(latitude)) * cos(radians(' + lng + ') - radians(longitude)) + sin(radians(' + lat + ')) * sin(radians(latitude)))'), 'distance']],
+      where: { startAt: { [sequelize.Op.gt]: moment(new Date()).toDate() } },
       order: sequelize.col('distance'),
       limit: parseInt(limit) || 10,
       include: { all: true, nested: true }

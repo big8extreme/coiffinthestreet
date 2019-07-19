@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { fetchMaraudes, fetchMaraudesByLoc } from '../../../store/actions/maraude';
+import { NavigationEvents } from "react-navigation";
 import { setUserLocation } from '../../../store/actions/user';
 import { StyleSheet, View, Platform } from 'react-native';
 import MapView, { Callout, Marker } from "react-native-maps";
 import { getCluster } from "../../../utils/MapUtils";
 import MapToolTip from './MapToolTip';
 import ClusterMarker from './ClusterMarker';
-import CreateMaraudeButton from '../../../components/CreateMaraudeButton';
 import Constants from 'expo-constants';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
@@ -117,6 +117,11 @@ class MapMarker extends React.Component {
     const cluster = getCluster(allCoords, region);
     return (
       <View style={Style.container}>
+        <NavigationEvents
+          onWillFocus={payload => {
+            this.fetchByLocAsync(this.state.region)
+          }}
+        />
         <MapView
           showsUserLocation={false}
           style={Style.map}
