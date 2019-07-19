@@ -7,7 +7,7 @@ const Picture = models.Picture;
 
 module.exports = {
   index: function (req, res, next) {
-    const { city, passed, lastweek } = req.query;
+    const { city, passed, lastweek, all } = req.query;
     const query = {
       include: ['photos', 'author'],
       where: {
@@ -24,6 +24,10 @@ module.exports = {
     }
     if (passed) {
       query.where.endAt = { [sequelize.Op.lt]: moment(new Date()).toDate() };
+      delete query.where.startAt;
+    }
+    if (all) {
+      delete query.where.endAt;
       delete query.where.startAt;
     }
     Maraude.findAll(query)
