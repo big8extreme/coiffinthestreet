@@ -16,10 +16,17 @@ import {
 import { clearFieldValues } from "../../../utils/document";
 import "./ListMaraudes.scss";
 import moment from 'moment';
-import {Calendar} from 'primereact/calendar';
 
 
-const defaultMaraude = {};
+const defaultMaraude = {
+  title: '',
+  description: '',
+  startAt: '',
+  endAt: '',
+  city: '',
+  longitude: '',
+  latitude: ''
+};
 
 class ListMaraudes extends Component {
   constructor(props) {
@@ -27,7 +34,7 @@ class ListMaraudes extends Component {
     this.state = {
       maraude: defaultMaraude,
       onCreate: true,
-      globalFilter: null
+      globalFilter: null,
     };
     this.save = this.save.bind(this);
     this.delete = this.delete.bind(this);
@@ -88,6 +95,7 @@ class ListMaraudes extends Component {
   }
 
   updateProperty(property, value) {
+    console.log('PPPPPPPPP', property, value)
     this.setState({
       ...this.state,
       maraude: { ...this.state.maraude, [property]: value }
@@ -108,38 +116,61 @@ class ListMaraudes extends Component {
     this.setState({
       maraude: { ...defaultMaraude },
       displayDialog: true,
+      onCreate: true
     });
   }
 
 
   actionTemplate = (item) => {
     return <div>
-        <Button type="button" icon="pi pi-search" className="p-button-warning" style={{marginRight: '.5em'}}></Button>
+        <Button type="button" icon="pi pi-pencil" className="p-button-success" style={{marginRight: '.5em'}}></Button>
         <Button type="button" icon="pi pi-times" className="p-button-danger" onClick={(event) => {
           event.preventDefault();
           event.stopPropagation();
+          const confirm = window.confirm('Confirmez la suppression')
+          if(confirm){
             this.props.deleteMaraude(item.id)
+          }
         }}></Button>
     </div>;
   }
 
 startAtTemplate(item){
   return (
-    <p>{moment(item.startAt).format('L')}</p>
+    <p>{moment(item.startAt).format('DD/MM/YYYY')}</p>
   )
 }
 endAtTemplate(item){
   return (
-    <p>{moment(item.endAt).format('L')}</p>
+    <p>{moment(item.endAt).format('DD/MM/YYYY')}</p>
+  )
+}
+
+startAtTemplateWithoutDate(item){
+  return (
+    <p>{moment(item.startAt).format('HH:MM')}</p>
+  )
+}
+endAtTemplateWithoutDate(item){
+  return (
+    <p>{moment(item.endAt).format('HH:MM')}</p>
+  )
+}
+
+dialogFooter = () => {
+  const labelButton = this.state.onCreate ? "Ajouter" : "Modifier";
+  return (
+    <div className="ui-dialog-buttonpane p-clearfix">
+    <Button label={labelButton} icon="pi pi-check" className="p-button-warning" onClick={() => {
+      this.save()
+      }} />
+  </div>
   )
 }
 
   render() {
-    const labelButton = this.state.onCreate ? "Ajouter" : "Modifier";
     let header = (
       <div className="p-clearfix" style={{ lineHeight: "2.97em", fontSize:"1.2em" }}>
-      
-        Liste des maraudes
       <div className="row subtitle-maraude">
       <div className="col-3 search-bar"><i className="pi pi-search search-bar"></i><InputText  type="search" onInput={(e) => this.setState({globalFilter: e.target.value})} placeholder="Recherche" size="20"/></div>
       <div className="col-9 add-maraude">
@@ -155,28 +186,8 @@ endAtTemplate(item){
       </div>
     );
 
-    
-
-    // let footer = (
-    //   <div className="p-clearfix" style={{ width: "100%" }}>
-    //     <Button
-    //       style={{ float: "left" }}
-    //       label="AjouterRRRRRRR"
-    //       icon="pi pi-plus"
-    //       onClick={this.addNew}
-    //     />
-    //   </div>
-    // );
-
-    let dialogFooter = (
-      <div className="ui-dialog-buttonpane p-clearfix">
-        {!this.state.onCreate && (
-          <Button label="Supprimer" icon="pi pi-times" className="p-button-warning" onClick={this.delete} />
-        )}
-        <Button label={labelButton} icon="pi pi-check" className="p-button-warning" onClick={this.save} />
-      </div>
-    );
     return (
+      <div>
       <div id="containerListMaraudes">
         <div className="content-section header">
           <div className="feature-intro">
@@ -197,22 +208,23 @@ endAtTemplate(item){
             className="datable-td"
             globalFilter={this.state.globalFilter}
           >
-            <Column field="id" header="ID" className="width-id" sortable={true} />
+          <Column field="id" header="ID" className="width-id" sortable={true} />
             <Column field="title" header="Titre de la maraude" sortable={true} />
             <Column field="description" header="Description" sortable={true} />
-            <Column field="startAt" header="Date de début" sortable={true} body={this.startAtTemplate} />
-            <Column field="endAt" header="Date de fin" sortable={true} body={this.endAtTemplate} />
+            <Column field="startAt" header="Date" sortable={true} body={this.startAtTemplate} />
+            <Column field="startAtWithoutDate" header="Heure de début" sortable={true} body={this.startAtTemplateWithoutDate} />
+            <Column field="endAtWithoutDate" header="Heure de fin" sortable={true} body={this.endAtTemplateWithoutDate} />
             <Column field="city" header="Ville" sortable={true} />
             <Column field="longitude" header="Longitude" sortable={true} />
             <Column field="latitude" header="Latitude" sortable={true} />
             <Column field="action" header="Action" sortable={true} body={this.actionTemplate} style={{textAlign:'center', width: '8em'}}/>
           </DataTable>
-        
+
           <Dialog
             visible={this.state.displayDialog}
-            header="Modifier / Supprimer la maraude"
+            header="Ajouter / Modifier"
             closeOnEscape
-            footer={dialogFooter}
+            footer={this.dialogFooter()}
             onHide={() => {
               this.setState({
                 ...this.state,
@@ -276,23 +288,41 @@ endAtTemplate(item){
                     this.updateProperty("startAt", e.target.value);
                   }}
                   type="date"
-                  value={this.state.maraude.startAt}
+                  value={moment(this.state.maraude.startAt).format('YYYY-MM-DD')}
                 />
+                <div
+                  className="col-3 item-maraude"
+                  style={{ padding: ".75em" }}
+                >
+                  <label htmlFor="startAt">Heure de début</label>
+                </div>
+                <InputText
+                  id="startAtWithoutDate"
+                  className="col-8"
+                  onChange={e => {
+                    this.updateProperty("startAtWithoutDate", e.target.value);
+                    console.log('TTTTTTTT', e.target.value)
+                  }}
+                  type="time"
+                  value={moment(this.state.maraude.startAt).format('HH:MM')}
+                />
+
 
                 <div
                   className="col-3 item-maraude"
                   style={{ padding: ".75em" }}
                 >
-                  <label htmlFor="endAt">Fin de la maraude</label>
+                  <label htmlFor="endAt">Heure de fin</label>
                 </div>
                 <InputText
-                  id="endAt"
+                  id="endAtWithoutDate"
                   className="col-8"
                   onChange={e => {
-                    this.updateProperty("endAt", e.target.value);
+                    this.updateProperty("endAtWithoutDate", e.target.value);
+                
                   }}
-                  type="date"
-                  value={this.state.maraude.endAt}
+                  type="time"
+                  value={moment(this.state.maraude.endAt).format('HH:MM')}
                   
                 />
                 <div
@@ -372,6 +402,7 @@ endAtTemplate(item){
             )}
           </Dialog>
         </div>
+      </div>
       </div>
     );
   }

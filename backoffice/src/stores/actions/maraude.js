@@ -9,7 +9,7 @@ export const fetchMaraudes = () => {
       dispatch({ type: FETCH_MARAUDES, payload: response.data.maraudes });
     }
     function onError(err) {
-      console.log('ERROR WHILE FETCHING USERS', err);
+      console.log('ERROR WHILE FETCHING MARAUDES', err);
     }
     try {
       const response = await axios.get('/api/v1/maraudes', {
@@ -29,13 +29,13 @@ export const createMaraude = (maraudeData) => {
     function onSuccess(response) {
       dispatch({ type: CREATE_MARAUDE, payload: response.data.maraude });
       dispatch(fetchMaraudes());
-      dispatch(successMessage('Maraude ajoutée !'));
-      return response;
+      // dispatch(successMessage('Maraude ajoutée !'));
+      // return response;
     }
     function onError(err) {
       console.log('ERROR WHILE CREATE MARAUDE', err);
-      dispatch(errorMessage("L'ajout de la maraude a échoué !"));
-      return err;
+      // dispatch(errorMessage("L'ajout de la maraude a échoué !"));
+      // return err;
     }
     try {
       maraudeData.userId = getState().authentification.user.id;
