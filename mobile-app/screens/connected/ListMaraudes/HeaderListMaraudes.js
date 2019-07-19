@@ -24,7 +24,6 @@ class HeaderListMaraudes extends Component {
 
   updateSearch = search => {
     this.setState({ search });
-    this.props.fetchMaraudesByCity();
   };
 
   submitSearch = () => {
@@ -36,7 +35,12 @@ class HeaderListMaraudes extends Component {
       <View>
         <NavigationEvents
           onWillFocus={payload => {
-            this.props.fetchMaraudes()
+            if (!this.props.city && this.props.auth.user.isConnected) {
+              console.log("Hello", this.props.city)
+              this.props.fetchMaraudes({ lastweek: true })
+            } else {
+              this.props.fetchMaraudes()
+            }
           }}
         />
         <SearchBar
@@ -56,6 +60,7 @@ class HeaderListMaraudes extends Component {
 }
 
 const mapStateToProps = state => ({
+  ...state
 });
 
 const mapDispatchToProps = {

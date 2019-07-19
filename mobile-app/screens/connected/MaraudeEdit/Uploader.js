@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withNavigation } from 'react-navigation'
 import { View, Text } from 'react-native'
 import { Button, Image, Alert } from 'react-native';
 import * as ImagePicker from 'expo-image-picker'
@@ -46,10 +47,16 @@ export class Uploader extends Component {
 
     uploadPictures = async () => {
         this.setState({ loading: true })
-        await this.state.pictures.forEach(picture => {
-            this.props.uploadPictures(this.props.maraudeId, picture)
-        })
-        this.setState({ loading: false })
+        try {
+            await this.state.pictures.forEach(picture => {
+                this.props.uploadPictures(this.props.maraudeId, picture)
+            })
+            await this.setState({ loading: false })
+            this.props.navigation.navigate('DrawerMenu')
+        } catch (err) {
+            Alert.alert("Erreur lors de l'uplaod d'image")
+            this.setState({ loading: false })
+        }
     }
 
     deletePictureFormSate = (picture) => {
@@ -79,15 +86,16 @@ export class Uploader extends Component {
         return (
             <View>
                 <Button
-                    title="Pick image"
+                    title="Selectionner des photos"
                     onPress={this.pickFromGallery}
                 />
-                <Text>is loading: {JSON.stringify({ loading: this.state.loading })}</Text>
-                <Text>iPictures: {this.state.pictures.length}</Text>
-                <ScrollView style={{ minHeight: 200 }}>
+                <Text>Nombre de photos : {this.state.pictures.length}</Text>
+                <ScrollView style={{ minHeight: 200 }} contentContainerStyle={{ alignItems: 'center' }}>
                     {
                         this.state.pictures.map((picture, idx) => {
-                            return <TouchableOpacity key={`picture-${idx}`} onPress={() => this.deletePictureFormSate(picture)}>
+                            return <TouchableOpacity
+                                style={{ marginTop: 10, marginBottom: 10 }}
+                                key={`picture-${idx}`} onPress={() => this.deletePictureFormSate(picture)}>
                                 <Image
                                     style={{ width: 300, height: 100 }}
                                     source={{ uri: picture.uri }} />
@@ -96,7 +104,7 @@ export class Uploader extends Component {
                     }
                 </ScrollView>
                 <Button
-                    title="Valider les photos"
+                    title="Valider"
                     onPress={this.uploadPictures}
                     disabled={this.state.loading}
                 />
@@ -113,4 +121,4 @@ const mapDispatchToProps = {
     uploadPictures
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Uploader)
+export default withNavigation(connect(mapStateToProps, mapDispatchToProps)(Uploader))
