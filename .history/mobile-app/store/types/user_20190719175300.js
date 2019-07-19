@@ -1,5 +1,0 @@
-export const SET_USER_LOCATION = 'SET_USER_LOCATION';
-export const CONTACT_ADMIN = 'CONTACT_ADMIN';
-export const ERROR_ON_CONTACT = 'ERROR_ON_CONTACT';
-
-
