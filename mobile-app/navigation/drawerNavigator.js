@@ -33,22 +33,22 @@ export default createDrawerNavigator({
       }
     }
   },
-  // Contact: {
-  //   screen: Contact,
-  //   navigationOptions: ({ navigation }) => {
-  //     return {
-  //       title: "Contacter l'administrateur",
-  //       drawerLabel: () => {
-  //         return <View style={styles.view}>
-  //           <TouchableOpacity onPress={() => navigation.navigate('Contact')} style={styles.flex}>
-  //             <Icon name="ios-mail" size={25} style={styles.icon} />
-  //             <Text style={styles.text}>Contacter l'administrateur</Text>
-  //           </TouchableOpacity>
-  //         </View>
-  //       }
-  //     }
-  //   }
-  // },
+  Contact: {
+    screen: Contact,
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: "Contacter l'administrateur",
+        drawerLabel: () => {
+          return <View style={styles.view}>
+            <TouchableOpacity onPress={() => navigation.navigate('Contact')} style={styles.flex}>
+              <Icon name="ios-mail" size={25} style={styles.icon} />
+              <Text style={styles.text}>Contacter l'administrateur</Text>
+            </TouchableOpacity>
+          </View>
+        }
+      }
+    }
+  },
   MaraudeForm: {
     screen: MaraudeForm,
     navigationOptions: ({ navigation }) => {

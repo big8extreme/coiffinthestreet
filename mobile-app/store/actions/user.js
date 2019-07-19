@@ -1,4 +1,4 @@
-import { SET_USER_LOCATION } from '../types/user';
+import { SET_USER_LOCATION} from '../types/user';
 
 export function setUserLocation(location) {
   return {
@@ -11,3 +11,4 @@ export function setUserLocation(location) {
     }
   }
 }
+
