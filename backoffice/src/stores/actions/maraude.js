@@ -1,6 +1,7 @@
 import { FETCH_MARAUDES, FETCH_MARAUDE, CREATE_MARAUDE, UPDATE_MARAUDE, DELETE_MARAUDE } from '../types/maraude';
 import axios from 'axios';
 import { successMessage, errorMessage } from './app';
+import moment from 'moment'
 
 export const fetchMaraudes = () => {
   return async function (dispatch, getState) {
@@ -26,13 +27,13 @@ export const createMaraude = (maraudeData) => {
     function onSuccess(response) {
       dispatch({ type: CREATE_MARAUDE, payload: response.data.maraude });
       dispatch(fetchMaraudes());
-      // dispatch(successMessage('Maraude ajoutée !'));
-      // return response;
+      dispatch(successMessage('Maraude ajoutée !'));
+      return response;
     }
     function onError(err) {
       console.log('ERROR WHILE CREATE MARAUDE', err);
-      // dispatch(errorMessage("L'ajout de la maraude a échoué !"));
-      // return err;
+      dispatch(errorMessage("L'ajout de la maraude a échoué !"));
+      return err;
     }
     try {
       maraudeData.userId = getState().authentification.user.id;
@@ -63,6 +64,15 @@ export const updateMaraude = (maraudeFields, maraudeId) => {
       return err;
     }
     try {
+      console.log("HERERERER", maraudeFields)
+      const startDate = new Date(maraudeFields.startDate)
+      const startAt = new Date(maraudeFields.startAt)
+      const endAt = new Date(maraudeFields.endAt)
+      maraudeFields.startAt = moment(new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate(), startAt.getHours(), startAt.getMinutes())).format('YYYY-MM-DD HH:mm:ss');
+      maraudeFields.endAt = moment(new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate(), endAt.getHours(), endAt.getMinutes())).format('YYYY-MM-DD HH:mm:ss');
+      delete maraudeFields.startDate
+      console.log("DATEETETET", maraudeFields.startAt)
+      console.log("DATEETETET", maraudeFields.endAt)
       const response = await axios.put(`/maraudes/${maraudeId}`, maraudeFields, { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
       onSuccess(response);
     }

@@ -48,6 +48,7 @@ module.exports = {
   },
 
   update: function (req, res, next) {
+    console.log("BODY", req.body)
     Maraude.findByPk(req.params.id)
       .then((maraude) => {
         maraude.update({

@@ -99,3 +99,12 @@ body .p-datatable .p-datatable-thead > tr > th {
 .p-dialog-titlebar {
     background-color: #ffc107 !important;
 }
+
+span.p-calendar.col-8.p-calendar-timeonly.p-inputwrapper-filled {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+input.p-inputtext.p-component.p-inputtext.p-component.p-filled {
+    width: 100%;
+}

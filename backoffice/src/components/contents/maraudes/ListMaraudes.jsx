@@ -16,13 +16,16 @@ import {
 import { clearFieldValues } from "../../../utils/document";
 import "./ListMaraudes.scss";
 import moment from 'moment';
+import 'moment/locale/fr'
+import {Calendar} from 'primereact/calendar';
 
+moment.locale('fr')
 
 const defaultMaraude = {
   title: '',
   description: '',
   startAt: '',
-  endAt: '',
+  startDate: '',
   city: '',
   longitude: '',
   latitude: ''
@@ -50,7 +53,7 @@ class ListMaraudes extends Component {
     const currentMaraude = this.props.maraudes.filter(
       maraude => maraude.id === this.state.maraude.id
     )[0];
-    if (currentMaraude) {
+    if (currentMaraude) {      
       const currentPhotos = currentMaraude.photos;
       const prevPhotos = this.state.maraude.photos;
       if (
@@ -64,10 +67,17 @@ class ListMaraudes extends Component {
   }
 
   save() {
+    const {maraude} = this.state;
     if (this.state.onCreate) {
-      this.props.createMaraude(this.state.maraude);
+      this.props.createMaraude(maraude);
     } else {
-      this.props.updateMaraude(this.state.maraude, this.state.maraude.id);
+      if(maraude.startDate === "" || maraude.startDate === undefined){
+        maraude.startDate = maraude.startAt
+      }
+            if(maraude.startDate === "" || maraude.startDate === undefined){
+        maraude.startDate = maraude.endAt
+      }
+      this.props.updateMaraude(maraude, maraude.id);
     }
     this.resetState();
   }
@@ -76,7 +86,7 @@ class ListMaraudes extends Component {
     this.setState({
       onCreate: true,
       maraude: defaultMaraude,
-      displayDialog: false
+      displayDialog: false, 
     });
   }
 
@@ -95,7 +105,6 @@ class ListMaraudes extends Component {
   }
 
   updateProperty(property, value) {
-    console.log('PPPPPPPPP', property, value)
     this.setState({
       ...this.state,
       maraude: { ...this.state.maraude, [property]: value }
@@ -120,7 +129,6 @@ class ListMaraudes extends Component {
     });
   }
 
-
   actionTemplate = (item) => {
     return <div>
         <Button type="button" icon="pi pi-pencil" className="p-button-success" style={{marginRight: '.5em'}}></Button>
@@ -137,23 +145,23 @@ class ListMaraudes extends Component {
 
 startAtTemplate(item){
   return (
-    <p>{moment(item.startAt).format('DD/MM/YYYY')}</p>
+    <p>{moment(item.startAt).format('HH:mm')}</p>
   )
 }
 endAtTemplate(item){
   return (
-    <p>{moment(item.endAt).format('DD/MM/YYYY')}</p>
+    <p>{moment(item.endAt).format('HH:mm')}</p>
   )
 }
 
-startAtTemplateWithoutDate(item){
+startAtTemplateDate(item){
   return (
-    <p>{moment(item.startAt).format('HH:MM')}</p>
+    <p>{moment(item.startAt).format('DD/MM/YYYY')}</p>
   )
 }
-endAtTemplateWithoutDate(item){
+endAtTemplateDate(item){
   return (
-    <p>{moment(item.endAt).format('HH:MM')}</p>
+    <p>{moment(item.endAt).format('DD/MM/YYYY')}</p>
   )
 }
 
@@ -169,6 +177,7 @@ dialogFooter = () => {
 }
 
   render() {
+    console.log("FROM STATE", this.state)
     let header = (
       <div className="p-clearfix" style={{ lineHeight: "2.97em", fontSize:"1.2em" }}>
       <div className="row subtitle-maraude">
@@ -211,9 +220,9 @@ dialogFooter = () => {
           <Column field="id" header="ID" className="width-id" sortable={true} />
             <Column field="title" header="Titre de la maraude" sortable={true} />
             <Column field="description" header="Description" sortable={true} />
-            <Column field="startAt" header="Date" sortable={true} body={this.startAtTemplate} />
-            <Column field="startAtWithoutDate" header="Heure de début" sortable={true} body={this.startAtTemplateWithoutDate} />
-            <Column field="endAtWithoutDate" header="Heure de fin" sortable={true} body={this.endAtTemplateWithoutDate} />
+            <Column field="startAt" header="Date" sortable={true} body={this.startAtTemplateDate} />
+            <Column field="startAt" header="Heure de début" sortable={true} body={this.startAtTemplate} />
+            <Column field="endAt" header="Heure de fin" sortable={true} body={this.startAtTemplate} />
             <Column field="city" header="Ville" sortable={true} />
             <Column field="longitude" header="Longitude" sortable={true} />
             <Column field="latitude" header="Latitude" sortable={true} />
@@ -279,16 +288,16 @@ dialogFooter = () => {
                   className="col-3 item-maraude"
                   style={{ padding: ".75em" }}
                 >
-                  <label htmlFor="startAt">Début de la maraude</label>
+                  <label htmlFor="startDate">Début de la maraude</label>
                 </div>
                 <InputText
-                  id="startAt"
+                  id="startDate"
                   className="col-8"
                   onChange={e => {
-                    this.updateProperty("startAt", e.target.value);
+                    this.updateProperty("startDate", e.target.value);
                   }}
                   type="date"
-                  value={moment(this.state.maraude.startAt).format('YYYY-MM-DD')}
+                  value={this.state.maraude.startDate || moment(this.state.maraude.startAt).format('YYYY-MM-DD')}
                 />
                 <div
                   className="col-3 item-maraude"
@@ -296,35 +305,18 @@ dialogFooter = () => {
                 >
                   <label htmlFor="startAt">Heure de début</label>
                 </div>
-                <InputText
-                  id="startAtWithoutDate"
-                  className="col-8"
-                  onChange={e => {
-                    this.updateProperty("startAtWithoutDate", e.target.value);
-                    console.log('TTTTTTTT', e.target.value)
-                  }}
-                  type="time"
-                  value={moment(this.state.maraude.startAt).format('HH:MM')}
-                />
-
-
+                  <Calendar className="col-8" value={new Date(this.state.maraude.startAt)} onChange={(e) => 
+                  this.updateProperty("startAt", e.value)                 
+                  } timeOnly={true} hourFormat="24" />
                 <div
                   className="col-3 item-maraude"
                   style={{ padding: ".75em" }}
                 >
-                  <label htmlFor="endAt">Heure de fin</label>
+                  <label htmlFor="startAt">Heure de fin</label>
                 </div>
-                <InputText
-                  id="endAtWithoutDate"
-                  className="col-8"
-                  onChange={e => {
-                    this.updateProperty("endAtWithoutDate", e.target.value);
-                
-                  }}
-                  type="time"
-                  value={moment(this.state.maraude.endAt).format('HH:MM')}
-                  
-                />
+                  <Calendar className="col-8" value={new Date(this.state.maraude.endAt)} onChange={(e) => 
+                  this.updateProperty("endAt", e.value)                 
+                  } timeOnly={true} hourFormat="24" />
                 <div
                   className="col-3 item-maraude"
                   style={{ padding: ".75em" }}
