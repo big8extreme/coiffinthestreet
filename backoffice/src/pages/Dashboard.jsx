@@ -4,7 +4,7 @@ import NavPanel from '../components/navpanel';
 export default class Dashboard extends Component {
   render() {
     return (
-      <div className="flex-row">
+      <div className="container">
         <NavPanel />
       </div>
     );
