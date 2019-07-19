@@ -4,9 +4,11 @@ import { Text, ScrollView } from 'react-native';
 import { Form, Field } from 'react-native-validate-form';
 import InputField from './InputField';
 import AvatarUpload from './Avatar';
-import CustomButton from '../../../components/CustomButton';
 import { signup } from '../../../store/actions/auth';
-import LoginForm from '../LoginForm';
+import { Toast, Root } from 'native-base';
+
+import CustomButton from '../../../components/CustomButton';
+
 
 const email = value => value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,5}$/i.test(value) ? 'Please provide a valid email address.' : undefined;
 const requiredFields = ['email', 'firstName', 'name', 'pseudo', 'password', 'invitationCode', 'confirmPassword']
@@ -22,24 +24,39 @@ class MyForm extends Component {
             firstName: '',
             password: '',
             confirmPassword: '',
-            invitationCode: ''
+            invitationCode: '',
+            loading: false
         }
     }
 
-
-
-
-    submitForm() {
+    submitForm = async () => {
+        this.setState({ loading: true })
         let errors = [];
         requiredFields.forEach(item => {
-            if(this.state[item].length < 1){
+            if (this.state[item].length < 1) {
                 errors.push({ field: item, error: "Can't be blank !" });
             }
         });
         this.setState({ errors: errors });
-        if(errors.length < 1){
-            this.props.signup(this.state)
+        if (errors.length < 1) {
+            const response = await this.props.signup(this.state)
+            if (response.status === "success") {
+                Toast.show({
+                    text: 'Success',
+                    position: 'top',
+                    type: 'success',
+
+
+                })
+            } else {
+                Toast.show({
+                    text: "Erreur lors de l'inscription",
+                    position: 'top',
+                    type: 'danger'
+                })
+            }
         }
+        this.setState({ loading: false })
     }
 
     submitSuccess() {
@@ -51,17 +68,17 @@ class MyForm extends Component {
     }
 
     handleTextChange = (field, value) => {
-        this.setState({[field]: value})
+        this.setState({ [field]: value })
         this.resetError(field)
     }
 
     resetError = (field) => {
-        const {errors} = this.state
+        const { errors } = this.state
         const erronedFields = errors.map((err => err.field))
-        if(erronedFields.includes(field)){
+        if (erronedFields.includes(field)) {
             const index = erronedFields.indexOf(field)
             errors.splice(index, 1)
-            this.setState({errors})
+            this.setState({ errors })
         }
     }
 
@@ -79,7 +96,7 @@ class MyForm extends Component {
                     submit={this.submitSuccess.bind(this)}
                     failed={this.submitFailed.bind(this)}
                     errors={this.state.errors}
-                    style={{ marginTop: 30, justifyContent: 'center' }}
+
                 >
                     <Text style={style.inputText}>Nom *</Text>
                     <Field
@@ -149,7 +166,7 @@ class MyForm extends Component {
                         customStyle={style.field}
                     />
                 </Form>
-                    <CustomButton label="Valider" navigation={LoginForm} screen="LoginForm" onPressFunc={this.submitForm.bind(this)} />
+                    <CustomButton label="Valider" navigation={this.props.navigation} screen="LoginForm" onPressFunc={this.submitForm.bind(this)} />
 
 
            
@@ -157,6 +174,8 @@ class MyForm extends Component {
         );
     }
 }
+
+
 
 const style = {
     field: {
@@ -171,6 +190,7 @@ const style = {
         fontWeight: 'bold',
         marginBottom: 5,
         marginTop: 25
+
     },
     container: {
         display: 'flex',
@@ -191,7 +211,7 @@ const style = {
 
 
 const mapStateToProps = (state) => ({
-    
+
 })
 
 const mapDispatchToProps = {
