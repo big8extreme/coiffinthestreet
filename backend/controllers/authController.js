@@ -70,16 +70,16 @@ module.exports = {
     //verifier si l'utilisateur exist en base
     //Todo add email as query parameter
     //TODO Use other function than findAll to get only one result
-    User.findAll({ where: { email: req.body.email } })
-      .then((users) => {
-        if (!users) {
+    User.findOne({ where: { email: req.body.email } })
+      .then((user) => {
+        if (!user) {
           return res.status(500).json({ message: 'Email introuvable merci de verifier' });
         }
 
-        let user = users[0];
         //Génère un nouveau mot de passe de manière aléatoire
         //Encrypter le mot de passe (bcrypt)
-        //TODO Use other function than findAll to get only one result      const password = generatePassword();
+        //TODO Use other function than findAll to get only one result    
+        const password = generatePassword();
         bcrypt.genSalt(10, function (err, salt) {
           bcrypt.hash(password, salt, function (err, hash) {
             //Mettre à jour le mot de passe de l'utilisateur (avec la version chiffré)
@@ -95,10 +95,14 @@ module.exports = {
                 mailer(userDatas, user.email, 'resetPassword');
                 res.json({ updatedUser });
               })
-              .catch((error) => res.status(500).json({ error }));
+              .catch((error) => {
+                res.status(500).json({ error })
+              });
           });
         });
       })
-      .catch((err) => res.send(err));
+      .catch((error) => {
+        res.status(500).json({ error })
+      });
   }
 };

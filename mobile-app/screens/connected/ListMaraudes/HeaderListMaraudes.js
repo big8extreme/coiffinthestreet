@@ -36,7 +36,6 @@ class HeaderListMaraudes extends Component {
         <NavigationEvents
           onWillFocus={payload => {
             if (!this.props.city && this.props.auth.user.isConnected) {
-              console.log("Hello", this.props.city)
               this.props.fetchMaraudes({ lastweek: true })
             } else {
               this.props.fetchMaraudes()

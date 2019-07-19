@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { LOGIN, LOGOUT, LOG_IN_ERROR, LOG_OUT_ERROR } from '../types/auth'
+import { LOGIN, LOGOUT, LOG_IN_ERROR, LOG_OUT_ERROR, FORGET_PASSWORD, FORGET_PASSWORD_ERROR } from '../types/auth'
 import { baseUrlApi } from '../../apiUrl'
 import { bindActionCreators } from 'redux'
 
@@ -97,3 +97,25 @@ export function signup(user) {
   };
 
 };
+
+
+export function reset(email) {
+  return async (dispatch, getState) => {
+      function onSuccess(response) {
+          dispatch({ type: FORGET_PASSWORD })
+          return { response, status: 'success' };
+      }
+      function onError(error) {
+          dispatch({ type: FORGET_PASSWORD_ERROR, payload: error })
+          return { error, status: 'error' };
+      }
+
+      try {
+          const response = await axios.post(`${baseUrlApi}/auth/reset`, { email : email })
+          return onSuccess(response)
+      }
+      catch (err) {
+          return onError(err)
+      }
+  }
+}
