@@ -18,7 +18,7 @@ export function login(email, password) {
       return error;
     }
     try {
-      const response = await axios.post('/auth/signin', { email, password });
+      const response = await axios.post('/api/v1/auth/signin', { email, password });
       return onSuccess(response);
     }
     catch (err) {

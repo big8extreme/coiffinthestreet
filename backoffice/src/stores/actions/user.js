@@ -11,7 +11,7 @@ export const fetchUsers = () => {
       console.log('ERROR WHILE FETCHING USERS', err);
     }
     try {
-      const response = await axios.get('/users', { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
+      const response = await axios.get('/api/v1/users', { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
       onSuccess(response);
     }
     catch (err) {
@@ -40,7 +40,7 @@ export const createUser = (userData) => {
       form.append('avatar', userData.avatar);
       form.append('isAdmin', userData.isAdmin);
       form.append('isActive', userData.isActive);
-      const response = await axios.post('/users', form, {
+      const response = await axios.post('/api/v1/users', form, {
         headers: { Authorization: `bearer ${getState().authentification.user.token}`, 'Content-Type': 'multipart/form-data' }
       });
       onSuccess(response);
@@ -66,7 +66,7 @@ export const updateUser = (userData, userId) => {
       if (userData.password === undefined || userData.password === '') {
         delete userData.password;
       }
-      const response = await axios.put(`/users/${userId}`, { ...userData }, { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
+      const response = await axios.put(`/api/v1/users/${userId}`, { ...userData }, { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
       onSuccess(response);
     }
     catch (err) {
@@ -86,7 +86,7 @@ export const deleteUser = (userId) => {
       console.log('ERROR WHILE delete USER', err);
     }
     try {
-      const response = await axios.delete(`/users/${userId}`, { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
+      const response = await axios.delete(`/api/v1/users/${userId}`, { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
       onSuccess(response);
     }
     catch (err) {
@@ -106,7 +106,7 @@ export const updateUserStatut = (userData, userId) => {
       console.log('ERROR WHILE update USER', err);
     }
     try {
-      const response = await axios.put(`/users/${userId}`, { ...userData }, { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
+      const response = await axios.put(`/api/v1/users/${userId}`, { ...userData }, { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
       onSuccess(response);
     }
     catch (err) {

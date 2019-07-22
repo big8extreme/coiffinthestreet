@@ -1,79 +1,13 @@
-import { FETCH_USER, FETCH_USERS, CREATE_USER, UPDATE_USER, DELETE_USER } from '../types/user';
-import axios from 'axios';
-import { baseUrlApi } from '../../apiUrl'
+import { SET_USER_LOCATION } from '../types/user';
 
-export const fetchUsers = () => {
-  return async function (dispatch, getState) {
-
-    function onSuccess(response) {
-      dispatch({ type: FETCH_USERS, payload: response.data.users });
+export function setUserLocation(location) {
+  return {
+    type: SET_USER_LOCATION,
+    payload: {
+      latitude: location.latitude,
+      latitudeDelta: location.latitudeDelta,
+      longitude: location.longitude,
+      longitudeDelta: location.longitudeDelta
     }
-    function onError(err) {
-      console.log('ERROR WHILE FETCHING USERS', err);
-    }
-    try {
-      const response = await axios.get(`${baseUrlApi}/users`,
-       { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
-      onSuccess(response);
-    }
-    catch (err) {
-      onError(err);
-    }
-  };
-};
-
-export const createUser = (userData) => {
-  return async function (dispatch, getState) {
-    function onSuccess(response) {
-      dispatch({ type: CREATE_USER, payload: response.data.user });
-      dispatch(fetchUsers());
-    }
-    function onError(err) {
-      console.log('ERROR WHILE CREATE USER', err);
-    }
-    try {
-      let form = new FormData();
-      form.append('email', userData.email);
-      form.append('lastName', userData.lastName);
-      form.append('firstName', userData.firstName);
-      form.append('password', userData.password);
-      form.append('job', userData.job);
-      form.append('godFatherId', getState().authentification.user.id);
-      form.append('avatar', userData.avatar);
-      form.append('isAdmin', userData.isAdmin);
-      form.append('isActive', userData.isActive);
-      const response = await axios.post('/users', form, {
-        headers: { Authorization: `bearer ${getState().authentification.user.token}`, 'Content-Type': 'multipart/form-data' }
-      });
-      onSuccess(response);
-    }
-    catch (err) {
-      onError(err);
-    }
-  };
-};
-
-
-export const updateUser = (userData, userId) => {
-  return async function (dispatch, getState) {
-
-    function onSuccess(response) {
-      console.log('success WHILE update USER', response);
-      dispatch(fetchUsers());
-    }
-    function onError(err) {
-      console.log('ERROR WHILE update USER', err);
-    }
-    try {
-      if (userData.password === undefined || userData.password === '') {
-        delete userData.password;
-      }
-      const response = await axios.put(`/users/${userId}`, { ...userData }, { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
-      onSuccess(response);
-    }
-    catch (err) {
-      onError(err);
-    }
-  };
-};
-
+  }
+}
