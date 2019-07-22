@@ -1,4 +1,6 @@
 #containerListMaraudes {
+    position: relative;
+
     .content-section.header {
         background-color: #ffc107;
     }
@@ -65,6 +67,12 @@
     td {
         text-align: center;
     }
+    .feature-intro {
+        margin-bottom: 0;
+    }
+    .p-datatable.p-component {
+        padding-top: 0;
+    }
 }
 
 
@@ -77,12 +85,11 @@ body .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
     font-weight: bold;
 }
 body .p-datatable .p-datatable-thead > tr > th {
-    background-color: #4E4E4E !important;
+    background-color: #20272a !important;
     color: white !important;
 }
 .p-datatable-header {
     background-color: transparent !important; 
-    padding-top: 30px !important;
     border: transparent !important;
 }
 .p-clearfix {

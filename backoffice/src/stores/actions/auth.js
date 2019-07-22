@@ -14,11 +14,11 @@ export function login(email, password) {
     }
     function onError(error) {
       dispatch({ type: LOG_IN_ERROR, error });
-      dispatch(errorMessage('Connexion échoué !'));
+      dispatch(errorMessage('Connexion échouée !'));
       return error;
     }
     try {
-      const response = await axios.post('/auth/signin', { email, password });
+      const response = await axios.post('/api/v1/auth/signin', { email, password });
       return onSuccess(response);
     }
     catch (err) {

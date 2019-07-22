@@ -1,14 +1,14 @@
 var express = require('express');
 var router = express.Router();
-// const passport = require('passport');
 const configsController = require('../controllers/configController');
 const faker = require('faker');
+const passport = require('passport');
+const configsController = require('../controllers/configController');
 
 /* GET maraudes listing. */
 // Use header "Authorization": "bearer token-generated-by-signin"
 router.get('/', configsController.index);
 /**
-
  * @api {Get} /Config 1. Get All configs
 
  * @apiName GetConfigs
@@ -71,7 +71,7 @@ router.get('/', configsController.index);
   *     Unauthorized
 
   */
-router.put('/', configsController.update);
+router.put('/', passport.authenticate('jwt', { session: false }), configsController.update);
 /**
 
  * @api {put} /configs/:id 2. Update Config by id

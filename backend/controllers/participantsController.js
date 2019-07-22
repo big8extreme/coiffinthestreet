@@ -4,7 +4,6 @@ const Maraude = models.Maraude;
 const User = models.User;
 const mailer = require('../mailer/mailer');
 
-
 module.exports = {
     index: function (req, res, next) {
         Participant.findAll({ include: 'maraude' })
@@ -28,6 +27,11 @@ module.exports = {
             isValidate: false
         })
             .then((participant) => {
+                Maraude.findByPk(participant.maraudeId, { include: 'author' })
+                    .then((maraude) => {
+                        mailer(participant.get(), maraude.author.email, 'participateMaraude');
+                    })
+                    .catch((error) => { console.log(error); });
                 res.json({ participant });
             })
             .catch((error) => {

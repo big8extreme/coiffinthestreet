@@ -2,8 +2,9 @@ var express = require('express');
 var router = express.Router();
 const participantsController = require('../controllers/participantsController');
 const faker = require('faker');
+const passport = require('passport');
 
-router.get('/', participantsController.index);
+router.get('/', passport.authenticate('jwt', { session: false }), participantsController.index);
 /**
 
  * @api {Get} /Participant 1. Get All participants
@@ -190,7 +191,7 @@ router.post('/', participantsController.create);
 
  */
 
-router.put('/:id', participantsController.update);
+router.put('/:id', passport.authenticate('jwt', { session: false }), participantsController.update);
 /**
 
  * @api {put} /participants/:id 4. Update Participant by id
@@ -254,7 +255,7 @@ router.put('/:id', participantsController.update);
 
   */
 
-router.delete('/:id', participantsController.delete);
+router.delete('/:id', passport.authenticate('jwt', { session: false }), participantsController.delete);
 /**
 
  * @api {delete} /participants/:id 5. Delete Participant by id

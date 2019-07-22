@@ -1,16 +1,15 @@
-import { FETCH_USER, FETCH_USERS, CREATE_USER, UPDATE_USER, DELETE_USER } from '../types/user';
+import { SET_USER_LOCATION} from '../types/user';
 
 const initialState = {
-users: []
+  location: {}
 };
 
-export default (state = initialState , { type,payload }) =>{
-switch (type) {
+export default (state = initialState, { type, payload }) => {
+  switch (type) {
 
-case FETCH_USERS :
-    return { ...state, users: [...payload] };
-
-default:
-    return state ;
-}
+    case SET_USER_LOCATION:
+      return { ...state, location: payload };
+    default:
+      return state;
+  }
 };

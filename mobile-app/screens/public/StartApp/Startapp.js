@@ -1,10 +1,8 @@
 //export default class Startapp extends Component {
 import React from 'react';
 import { connect } from 'react-redux'
-
 import { StyleSheet, View, Dimensions, Image, Linking, TouchableOpacity, ImageBackground } from 'react-native';
 import CustomButton from '../../../components/CustomButton';
-
 
 const config = {
   deviceWidth: Dimensions.get('window').width,
@@ -33,7 +31,7 @@ class Startapp extends React.Component {
         </View>
 
         <View style={stylestar.firstbutton}>
-          <CustomButton fontSize={22} colorfill='#06247D' label="JE CONNAIS DÉJÀ !" navigation={this.props.navigation} screen="Feed" />
+          <CustomButton fontSize={22} colorfill='#06247D' label="JE CONNAIS DÉJÀ !" navigation={this.props.navigation} screen="DrawerMenu" />
           <CustomButton fontSize={22} turn="177" colorfill='#A03002' label="DÉCOUVRÌR LE MOUVEMENT́" navigation={this.props.navigation} screen="Discover" />
         </View>
 

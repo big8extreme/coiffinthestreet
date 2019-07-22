@@ -28,6 +28,33 @@ export function fetchMaraudes(params) {
     }
 }
 
+export function fetchMaraudesByLoc(location = undefined) {
+    return async function (dispatch, getState) {
+        function onSuccess(response) {
+            dispatch({ type: FETCH_MARAUDES, payload: response.data.maraudes })
+
+        }
+        function onError(error) {
+            dispatch({ type: ERROR_ON_MARAUDES, payload: error })
+        }
+        try {
+            location = location ? location : getState().user.location
+            const response = await axios.get(`${baseUrlApi}/maraudes/search`, {
+                headers: { Authorization: `bearer ${getState().auth.user.token}` },
+                params: {
+                    lat: location.latitude,
+                    lng: location.longitude,
+                    limit: 20
+                }
+            })
+            onSuccess(response)
+        }
+        catch (err) {
+            onError(err)
+        }
+    }
+}
+
 export function fetchMaraudesByCity(city) {
     return async function (dispatch, getState) {
         function onSuccess(response) {
@@ -89,7 +116,7 @@ export function createMaraude(maraudeFields) {
             delete maraudeFields.startDate
 
 
-            const response = await axios.post(`${baseUrlApi}/maraudes/`, { ...maraudeFields }, {
+            const response = await axios.post(`${baseUrlApi}/maraudes`, { ...maraudeFields }, {
                 headers: { Authorization: `bearer ${getState().auth.user.token}` }
             })
             return onSuccess(response)
@@ -109,7 +136,7 @@ export function updateMaraude(maraudeId, maraudeFields) {
             dispatch({ type: ERROR_ON_UPDATE_MARAUDE, payload: error })
         }
         try {
-            const response = await axios.put(`${baseUrlApi}/maraudes/`, { ...maraudeFields }, {
+            const response = await axios.put(`${baseUrlApi}/maraudes`, { ...maraudeFields }, {
                 headers: { Authorization: `bearer ${getState().auth.user.token}` }
             })
             onSuccess(response)

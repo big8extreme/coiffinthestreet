@@ -18,12 +18,12 @@ export class MenuLeft extends React.Component {
           ]
         },
         {
-          label: 'Api',
+          label: 'API',
           items: [{ label: 'Documentation', icon: 'pi pi-fw pi-file', command: () => { props.history.push('/admin/docapi'); } }
           ]
         },
         {
-          label: 'Account',
+          label: 'Compte',
           items: [{ label: 'Configuration', icon: 'pi pi-fw pi-cog', command: () => { props.history.push('/admin/configs'); } },
           { label: 'Déconnexion', icon: 'pi pi-fw pi-power-off', command: () => { props.logout(); } }]
         },

@@ -1,8 +1,19 @@
 var express = require('express');
 var router = express.Router();
-// const passport = require('passport');
 const maraudesController = require('../controllers/maraudesController');
 const faker = require('faker');
+const passport = require('passport');
+// Require and setup uploader to keep files in uploads folder
+const multer = require('multer');
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/maraudes/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  }
+});
+const upload = multer({ storage: storage, limits: { fieldSize: 25 * 1024 * 1024 } });
 
 /* GET maraudes listing. */
 // Use header "Authorization": "bearer token-generated-by-signin"
@@ -249,8 +260,7 @@ router.get('/search', maraudesController.findByCoord);
 
  */
 
-router.post('/', maraudesController.create);
-
+router.post('/', passport.authenticate('jwt', { session: false }), maraudesController.create);
 /**
 
  * @api {post} /maraudes 3. Create Maraude
@@ -331,7 +341,7 @@ router.post('/', maraudesController.create);
 
  */
 
-router.put('/:id(\\d+)/', maraudesController.update);
+router.put('/:id(\\d+)/', passport.authenticate('jwt', { session: false }), maraudesController.update);
 /**
 
  * @api {put} /maraudes/:id 4. Update Maraude by id
@@ -413,7 +423,7 @@ router.put('/:id(\\d+)/', maraudesController.update);
 
  */
 
-router.delete('/:id(\\d+)/', maraudesController.delete);
+router.delete('/:id(\\d+)/', passport.authenticate('jwt', { session: false }), maraudesController.delete);
 /**
 
  * @api {delete} /maraudes/:id 5. Delete Maraude by id
@@ -455,6 +465,10 @@ router.delete('/:id(\\d+)/', maraudesController.delete);
  *     Unauthorized
 
  */
+
+router.put('/:id(\\d+)/pictures/', passport.authenticate('jwt', { session: false }), upload.single('pictures'), maraudesController.upload);
+
+
 
 
 module.exports = router;
