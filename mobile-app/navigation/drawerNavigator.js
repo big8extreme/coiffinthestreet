@@ -213,7 +213,7 @@ export default createDrawerNavigator({
               height: 100,
             }}>
             <Icon name="ios-close" size={30} style={{ color: "white", marginRight: 10, marginLeft: 10 }} />
-            <Text style={{ marginRight: 20, color: "white", fontWeight: 'bold' }}>Fermer</Text>
+            <Text style={{ marginRight: 20, color: "white" /*, fontWeight: 'bold' */ }}>Fermer</Text>
           </TouchableOpacity>
         }
       }
@@ -251,7 +251,7 @@ export default createDrawerNavigator({
 const styles = StyleSheet.create({
   text: {
     color: 'white',
-    fontWeight: 'bold',
+    // fontWeight: 'bold',
     fontSize: 15
   },
   flex: {
