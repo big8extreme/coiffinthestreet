@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-const configsController = require('../controllers/configController');
 const faker = require('faker');
 const passport = require('passport');
 const configsController = require('../controllers/configController');
