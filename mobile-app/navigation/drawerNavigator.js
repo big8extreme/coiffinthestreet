@@ -25,7 +25,7 @@ export default createDrawerNavigator({
         title: "Se connecter",
         drawerLabel: () => {
           return store.getState().auth.user && store.getState().auth.user.isConnected ?
-            <View style={styles.view}>
+            <View style={styles.viewConnection}>
               <TouchableOpacity onPress={() => {
                 store.dispatch(logout())
                 navigation.dispatch(DrawerActions.closeDrawer())
@@ -223,9 +223,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center'
     },
+  viewConnection: {
+    borderBottomColor: 'gray',
+    borderBottomWidth: 1,
+    height: Math.min(height) * 0.1,
+    flex: 1,
+    justifyContent: 'center',
+    },
   viewLegals: {
-    borderTopColor: 'gray',
-    borderTopWidth: 1,
     height: Math.min(height) * 0.1,
     flex: 1,
     justifyContent: 'center'

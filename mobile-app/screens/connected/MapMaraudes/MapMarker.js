@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { fetchMaraudes } from '../../../store/actions/maraude';
-import { StyleSheet, View } from 'react-native';
-import { Fab } from 'native-base';
+import { StyleSheet, View, Text } from 'react-native';
+import { Fab, Toast } from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons'
 import MapView, { Callout, Marker } from "react-native-maps";
 import { getCluster } from "../../../utils/MapUtils";
@@ -59,7 +59,9 @@ class MapMarker extends React.Component {
       coordLoaded: false,
       locationResult: null,
       loaded: false,
-      satelliteView: true
+      satelliteView: true,
+      active: false,
+      showToast: false
     };
   }
   //  geolocalisation
@@ -119,7 +121,6 @@ class MapMarker extends React.Component {
     const { region } = this.state;
     const allCoords = maraudesToMarkers(this.props.maraude.maraudes);
     const cluster = getCluster(allCoords, region);
-    console.log('jhgvjhvqsd', this.state.satelliteView)
     const satellite = this.state.satelliteView ? "stardard" : "satellite" ;
     return (
       <View style={Style.container}>
@@ -139,10 +140,10 @@ class MapMarker extends React.Component {
         </MapView>
         <Fab
           active={this.state.active}
-          style={{ backgroundColor: '#2D2D2D' }}
-          containerStyle={{position: 'absolute', top: 20, right: 10}}
+          style={{ backgroundColor: '#F5F5F5' }}
+          containerStyle={{position: 'absolute', top: 20, left: 10}}
           onPress={() => {this.setState({satelliteView: !this.state.satelliteView})}}>
-          <Icon name="ios-eye" />
+          <Icon name="ios-repeat" size={50} style={{color: 'black'}}/>
         </Fab>
         <View
           style={{
