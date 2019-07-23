@@ -73,25 +73,6 @@ export class index extends Component {
   }
   render() {
     return (
-      // <React.Fragment>
-      //   <Text style={{
-      //     alignSelf: 'center', 
-      //     fontFamily: "Sedgwick",
-      //     marginBottom: 10,
-      //     marginTop: 25,
-      //     fontWeight: 'bold',
-      //     fontSize: 40}}>
-      //       Créer une Maraude
-      //   </Text>
-      // <ScrollView>
-      // <View style={{width: '90%', alignSelf: 'center'}}>
-      //   <Content contentContainerStyle={{ justifyContent: 'center' }}>
-      //     <Form>
-      //       <Text style={style.inputText}>
-      //         Titre de la maraude : </Text>
-      //       <Item regular
-      //         style={{
-      //           borderColor: this.state.errors.includes('title') ? 'red' : '#FDC500',
       <Root>
         <ScrollView>
           <KeyboardAvoidingView behavior="padding" enabled>

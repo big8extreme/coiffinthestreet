@@ -55,7 +55,8 @@ export default createAppContainer(
       // App: AppStack,
       Auth: AuthStack,
       StartApp: StartApp,
-      DrawerMenu: DrawerMenu
+      DrawerMenu: DrawerMenu,
+      SignUp: SignUp
     },
     {
       // initialRouteName: "DrawerMenu" //TODO TEST BEFORE REMOVING
