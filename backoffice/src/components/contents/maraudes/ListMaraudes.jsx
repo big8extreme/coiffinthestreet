@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
-import { Button } from 'primereact/button';
-import { InputText } from 'primereact/inputtext';
-import { InputTextarea } from 'primereact/inputtextarea';
-import { Dialog } from 'primereact/dialog';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
+import { Button } from "primereact/button";
+import { InputText } from "primereact/inputtext";
+import { InputTextarea } from "primereact/inputtextarea";
+import { Dialog } from "primereact/dialog";
 import {
   fetchMaraudes,
   createMaraude,
   updateMaraude,
   deleteMaraude,
   deletePicture
-} from '../../../stores/actions/maraude';
-import { clearFieldValues } from '../../../utils/document';
-import './ListMaraudes.scss';
+} from "../../../stores/actions/maraude";
+import { clearFieldValues } from "../../../utils/document";
+import "./ListMaraudes.scss";
 import moment from 'moment';
 import 'moment/locale/fr'
 import {Calendar} from 'primereact/calendar';
@@ -133,15 +133,15 @@ class ListMaraudes extends Component {
 
   actionTemplate = (item) => {
     return <div>
-      <Button type="button" icon="pi pi-pencil" className="p-button-success" style={{ marginRight: '.5em' }}></Button>
-      <Button type="button" icon="pi pi-times" className="p-button-danger" onClick={(event) => {
-        event.preventDefault();
-        event.stopPropagation();
-        const confirm = window.confirm('Confirmez la suppression');
-        if (confirm) {
-          this.props.deleteMaraude(item.id);
-        }
-      }}></Button>
+        <Button type="button" icon="pi pi-pencil" className="p-button-success" style={{marginRight: '.5em'}}></Button>
+        <Button type="button" icon="pi pi-times" className="p-button-danger" onClick={(event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          const confirm = window.confirm('Confirmez la suppression')
+          if(confirm){
+            this.props.deleteMaraude(item.id)
+          }
+        }}></Button>
     </div>;
   }
 
@@ -167,43 +167,43 @@ endAtTemplateDate(item){
   )
 }
 
-  dialogFooter = () => {
-    const labelButton = this.state.onCreate ? 'Ajouter' : 'Modifier';
-    return (
-      <div className="ui-dialog-buttonpane p-clearfix">
-        <Button label={labelButton} icon="pi pi-check" className="p-button-warning" onClick={() => {
-          this.save();
-        }} />
-      </div>
-    );
-  }
+dialogFooter = () => {
+  const labelButton = this.state.onCreate ? "Ajouter" : "Modifier";
+  return (
+    <div className="ui-dialog-buttonpane p-clearfix">
+    <Button label={labelButton} icon="pi pi-check" className="p-button-warning" onClick={() => {
+      this.save()
+      }} />
+  </div>
+  )
+}
 
   render() {
     let header = (
-      <div className="p-clearfix" style={{ lineHeight: '2.97em', fontSize: '1.2em' }}>
-        <div className="row subtitle-maraude">
-          <div className="col-3 search-bar"><i className="pi pi-search search-bar"></i><InputText type="search" onInput={(e) => this.setState({ globalFilter: e.target.value })} placeholder="Recherche" size="20" /></div>
-          <div className="col-9 add-maraude">
-            <Button
-              style={{ float: 'left' }}
-              label="Ajouter une maraude"
-              icon="pi pi-plus"
-              onClick={this.addNew}
-              className="p-button-warning"
-            />
-          </div>
-        </div>
+      <div className="p-clearfix" style={{ lineHeight: "2.97em", fontSize:"1.2em" }}>
+      <div className="row subtitle-maraude">
+      <div className="col-3 search-bar"><i className="pi pi-search search-bar"></i><InputText  type="search" onInput={(e) => this.setState({globalFilter: e.target.value})} placeholder="Recherche" size="20"/></div>
+      <div className="col-9 add-maraude">
+      <Button
+      style={{ float: "left" }}
+      label="Ajouter une maraude"
+      icon="pi pi-plus"
+      onClick={this.addNew}
+      className="p-button-warning"
+    />
+    </div>
+      </div> 
       </div>
     );
 
     return (
       <div>
-        <div id="containerListMaraudes">
-          <div className="content-section header">
-            <div className="feature-intro">
-              <h3>Gérer les maraudes</h3>
-            </div>
+      <div id="containerListMaraudes">
+        <div className="content-section header">
+          <div className="feature-intro">
+            <h3>Gérer les maraudes</h3>
           </div>
+        </div>
 
         <div className="content-section implementation">
           <DataTable
@@ -380,16 +380,22 @@ endAtTemplateDate(item){
                             >
                               <button className="destroyer">&times;</button>
                             </div>
-                          );
-                        })}
-                      </div>
-                    )}
-                  </div>
+                            <img
+                              alt={`${this.state.maraude.title}-${idx}`}
+                              src={photo.url}
+                              width="100px"
+                            />
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
                 </div>
-              )}
-            </Dialog>
-          </div>
+              </div>
+            )}
+          </Dialog>
         </div>
+      </div>
       </div>
     );
   }
