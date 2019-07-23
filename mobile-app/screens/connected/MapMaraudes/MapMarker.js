@@ -60,7 +60,7 @@ class MapMarker extends React.Component {
       coordLoaded: false,
       locationResult: null,
       loaded: false,
-      // satelliteView: true,
+      satelliteView: true,
       active: false,
       showToast: false
     };
@@ -138,6 +138,8 @@ class MapMarker extends React.Component {
     const { region } = this.state;
     const allCoords = maraudesToMarkers(this.props.maraude.maraudes);
     const cluster = getCluster(allCoords, region);
+    const satellite = this.state.satelliteView ? "standard" : "satellite" ;
+
     return (
       <View style={Style.container}>
         <NavigationEvents
@@ -146,6 +148,7 @@ class MapMarker extends React.Component {
           }}
         />
         <MapView
+          mapType={satellite}
           showsUserLocation={true}
           showsCompass={true}
           showsScale={true}
@@ -161,7 +164,13 @@ class MapMarker extends React.Component {
           }}>
           {cluster.markers.map((marker, index) => this.renderMarker(marker, index))}
         </MapView>
-        
+         <Fab
+          active={this.state.active}
+          style={{ backgroundColor: '#F5F5F5' }}
+          containerStyle={{position: 'absolute', top: 20, left: 10}}
+          onPress={() => {this.setState({satelliteView: !this.state.satelliteView})}}>
+          <Icon name="ios-repeat" size={50} style={{color: 'black'}}/>
+        </Fab>
         <View
           style={{
             display: 'flex',
