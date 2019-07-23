@@ -94,11 +94,18 @@ export class index extends Component {
       //         style={{
       //           borderColor: this.state.errors.includes('title') ? 'red' : '#FDC500',
       <Root>
+        <Text style={{
+          alignSelf: 'center', 
+          fontFamily: "Sedgwick",
+          marginBottom: 10,
+          marginTop: 25,
+          fontWeight: 'bold',
+          fontSize: 40}}>
+            Créer une Maraude
+        </Text>
         <ScrollView>
           <KeyboardAvoidingView behavior="padding" enabled>
             <Form style={{ alignItems: 'center' }}>
-              <Text style={style.inputTitle}>
-                Créer une Maraude </Text>
               <Text style={style.inputText}>
                 Titre de la maraude : </Text>
               <Item regular

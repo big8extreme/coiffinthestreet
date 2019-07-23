@@ -35,7 +35,10 @@ class ClusterMarker extends React.Component {
             latitude: this.props.latitude,
             longitude: this.props.longitude
           }}
-          image={require('../../../assets/pin.png')}>
+          image={require('../../../assets/pin.png')}
+          onPress={() => {
+            this.toggleModal(true);
+          }}>
           <Badge style={{ paddingTop: 3 }}>
             <Text style={{ color: 'white' }}>{this.props.count}</Text>
           </Badge>
@@ -70,7 +73,6 @@ class ClusterMarker extends React.Component {
                           />
                           })}
             </ScrollView>
-            <Text style={{ fontFamily: "Sedgwick", fontWeight: 'bold', fontSize: 30, alignSelf: 'center', alignItems: 'center', justifyContent: 'center', color: 'white', marginBottom: 10 }}>Liste des maraudes</Text>
             <Button bordered light style={{ alignSelf: 'center', padding: 10, marginBottom: 30, marginTop: 10 }} onPress={() => { navigate('List'); this.toggleModal(!this.state.modalVisible) }}>
               <Text style={{ color: 'white' }}>Plus de détails</Text>
             </Button>

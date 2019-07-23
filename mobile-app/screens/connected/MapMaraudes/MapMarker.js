@@ -10,7 +10,6 @@ import MapView, { Callout, Marker } from "react-native-maps";
 import { getCluster } from "../../../utils/MapUtils";
 import MapToolTip from './MapToolTip';
 import ClusterMarker from './ClusterMarker';
-// import ButtonMapCreateMaraude from '../../../components/ButtonMapCreateMaraude';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 import Constants from 'expo-constants';
@@ -178,11 +177,6 @@ class MapMarker extends React.Component {
             position: 'absolute',
             bottom: 0,
           }}>
-          {/* {
-            this.props.auth.user.isConnected &&
-            <ButtonMapCreateMaraude navigation={this.props.navigation} label='Ajouter une maraude' />
-            left: -2,
-          }}> */}
           {
             this.props.auth.user.isConnected &&
             <CustomButton
