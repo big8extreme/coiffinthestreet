@@ -11,6 +11,11 @@ mysql > create database my_db_name;
 # Query OK, 1 row affected (0.00 sec)
 mysql > exit
 ```
+- Créer un fichier .env
+```shell
+cp .env.local .env
+```
+
 # Gestion utilisateurs
 ## Création du modèle et des migrations
 ```shell
