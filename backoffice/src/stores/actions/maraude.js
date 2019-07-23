@@ -13,7 +13,10 @@ export const fetchMaraudes = () => {
       console.log('ERROR WHILE FETCHING MARAUDES', err);
     }
     try {
-      const response = await axios.get('/api/v1/maraudes', { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
+      const response = await axios.get('/api/v1/maraudes', {
+        headers: { Authorization: `bearer ${getState().authentification.user.token}` },
+        params: { all: true }
+      });
       onSuccess(response);
     }
     catch (err) {

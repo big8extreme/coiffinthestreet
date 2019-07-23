@@ -18,14 +18,14 @@ const upload = multer({ storage: storage });
 // res.send('Hello wilders');
 //});
 
-router.get('/', passport.authenticate('jwt', { session: false }), userController.index);
+router.get('/', userController.index);
 
-router.get('/:id', passport.authenticate('jwt', { session: false }), userController.show);
+router.get('/:id', userController.show);
 
-router.post('/', passport.authenticate('jwt', { session: false }), upload.single('avatar'), userController.create);
+router.post('/', upload.single('avatar'), userController.create);
 
-router.put('/:id', passport.authenticate('jwt', { session: false }), userController.update);
+router.put('/:id', userController.update);
 
-router.delete('/:id', passport.authenticate('jwt', { session: false }), userController.delete);
+router.delete('/:id', userController.delete);
 
 module.exports = router;

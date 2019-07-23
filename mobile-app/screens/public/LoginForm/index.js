@@ -3,6 +3,7 @@ import { Toast, Root } from 'native-base';
 import { StyleSheet, Text, View, Image, TextInput, ScrollView, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux'
 import { login } from '../../../store/actions/auth'
+import GlobalFooter from '../../../components/GlobalFooter';
 import CustomButton from '../../../components/CustomButton';
 
 
@@ -83,8 +84,8 @@ class LoginForm extends Component {
             </View>
           </KeyboardAvoidingView>
         </ScrollView>
+        <GlobalFooter/>
       </Root>
-
     )
   }
 }

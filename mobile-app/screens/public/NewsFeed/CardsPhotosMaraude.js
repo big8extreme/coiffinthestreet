@@ -4,6 +4,7 @@ import { fetchMaraudes } from "../../../store/actions/maraude";
 import { connect } from "react-redux";
 import PhotoMaraude from './PhotoMaraude';
 import { Card, CardItem, Body } from 'native-base';
+import { NavigationEvents } from "react-navigation";
 import moment from "moment";
 
 
@@ -11,13 +12,14 @@ let deviceWidth = Dimensions.get('window').width
 
 class CardsPhotosMaraude extends Component {
 
-  componentDidMount() {
-    this.props.fetchMaraudes();
-  }
-
   render() {
     return (
       <ScrollView>
+        <NavigationEvents
+          onWillFocus={payload => {
+            this.props.fetchMaraudes({ passed: true });
+          }}
+        />
         {
           this.props.maraude.maraudes.map((maraude, idx) => {
             return <View
