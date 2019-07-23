@@ -187,6 +187,7 @@ class MyForm extends Component {
             screen="LoginForm"
             onPressFunc={this.submitForm}/>
         </ScrollView>
+        <GlobalFooter/>
       </Root>
     );
   }
