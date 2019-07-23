@@ -35,11 +35,12 @@ class HeaderListMaraudes extends Component {
       <View>
         <NavigationEvents
           onWillFocus={payload => {
-            if (!this.props.city && this.props.auth.user.isConnected) {
-              this.props.fetchMaraudes({ lastweek: true })
-            } else {
+            //FIXME add it when update on Maraude is OK
+            // if (!this.props.city && this.props.auth.user.isConnected) {
+            //   this.props.fetchMaraudes({ lastweek: true })
+            // } else {
               this.props.fetchMaraudes()
-            }
+            // }
           }}
         />
         <SearchBar
