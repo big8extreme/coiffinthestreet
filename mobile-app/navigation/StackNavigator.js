@@ -13,7 +13,7 @@ import Participant from '../screens/public/Participant';
 import forgetPassword from '../screens/public/LoginForm/forgetPassword/forgetPassword';
 import MaraudeForm from '../screens/connected/Maraudes/MaraudeCreationForm';
 import StartApp from '../screens/public/StartApp/Startapp';
-import SignupForm from '../screens/public/SignupForm/MyForm';
+import SignUp from '../screens/public/SignupForm/MyForm'
 
 const AppStack = createStackNavigator(
   {
@@ -29,6 +29,7 @@ const AppStack = createStackNavigator(
 const AuthStack = createStackNavigator(
   {
     Login: { screen: LoginForm },
+    SignUp: { screen: SignUp },
     forgetPassword: { screen: forgetPassword },
     Discover: { screen: Discover },
     Participant: { screen: Participant },
@@ -54,7 +55,7 @@ export default createAppContainer(
       Auth: AuthStack,
       StartApp: StartApp,
       DrawerMenu: DrawerMenu,
-      Signup: SignupForm
+      SignUp: SignUp
     },
     {
       // initialRouteName: "DrawerMenu" //TODO TEST BEFORE REMOVING

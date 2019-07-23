@@ -1,7 +1,8 @@
 //export default class Startapp extends Component {
 import React from 'react';
-import { StyleSheet, View, Dimensions, Image, Linking, TouchableOpacity, ScrollView } from 'react-native';
-import ProgressiveImage from './ProgressiveImage';
+import { connect } from 'react-redux'
+
+import { StyleSheet, View, Dimensions, Image, Linking, TouchableOpacity, ImageBackground } from 'react-native';
 import CustomButton from '../../../components/CustomButton';
 import { withNavigation } from 'react-navigation';
 
@@ -11,31 +12,31 @@ const config = {
   deviceHeight: Dimensions.get('window').height
 }
 
+class Startapp extends React.Component {
 
- class Startapp extends React.Component {
-  
+  componentDidMount() {
+    const { user } = this.props;
+    if (user.isConnected) {
+      this.props.navigation.navigate('DrawerMenu')
+    }
+  }
+
+
   render() {
-
     return (
       <View style={stylestar.backgroundApp}>
-        
-          <ProgressiveImage
-            thumbnailSource={require('../../../assets/FondStart.jpg')}
-            // source={require("../../../assets/FondStart.jpg")}
+        <View>
+          <ImageBackground
+            source={require("../../../assets/FondStart.jpg")}
             style={{ width: "100%", height: "100%" }}
             resizeMode="cover"
           />
-      
-        {/* <View style={stylestar.logoStyle}>
-          <Image
-            source={require('../../../assets/Logo_light.png')}
-          />
-        </View> */}
+        </View>
 
         <View style={stylestar.firstbutton}>
-             <CustomButton fontSize={22} turn="177" colorfill='#A03002' label="DÉCOUVRÌR LE MOUVEMENT"  navigation={this.props.navigation} screen="Discover"/>
-             {/* <CustomButton fontSize={22} colorfill='#06247D' label="JE CONNAIS DÉJÀ !" navigation={this.props.navigation} screen="Feed" /> */}
-          </View>
+          <CustomButton fontSize={22} colorfill='#06247D' label="JE CONNAIS DÉJÀ !" navigation={this.props.navigation} screen="Feed" />
+          <CustomButton fontSize={22} turn="177" colorfill='#A03002' label="DÉCOUVRÌR LE MOUVEMENT́" navigation={this.props.navigation} screen="Discover" />
+        </View>
 
         <View style={stylestar.iconeline}>
           <Image
@@ -52,17 +53,27 @@ const config = {
         </View>
 
         <View style={stylestar.iconTwo}>
-        <TouchableOpacity onPress={() => { Linking.openURL('https://www.instagram.com/coiffinthestreet_/') }}>
-          <Image
-            source={require('../../../assets/social/instagram.png')}
-          />
-               </TouchableOpacity>
+          <TouchableOpacity onPress={() => { Linking.openURL('https://www.instagram.com/coiffinthestreet_/') }}>
+            <Image
+              source={require('../../../assets/social/instagram.png')}
+            />
+          </TouchableOpacity>
         </View>
         
       </View>
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  user: state.auth.user
+})
+
+const mapDispatchToProps = {
+
+}
+export default withNavigation(connect(mapStateToProps, mapDispatchToProps)(Startapp))
+
 
 const stylestar = StyleSheet.create({
   container: {
@@ -86,7 +97,7 @@ const stylestar = StyleSheet.create({
     marginBottom: 20,
     position: "absolute",
     marginTop: 600,
- 
+
   },
   logoStyle: {
     marginBottom: 20,
@@ -100,7 +111,7 @@ const stylestar = StyleSheet.create({
     position: "absolute",
     paddingLeft: config.deviceWidth * 0.26,
     width: config.deviceWidth * 0.8,
-    
+
   },
   iconTwo: {
     backgroundColor: 'transparent',
@@ -108,8 +119,8 @@ const stylestar = StyleSheet.create({
     position: "absolute",
     paddingLeft: config.deviceWidth * 0.61,
     width: config.deviceWidth * 0.8,
-   
+
   },
 });
 
-export default withNavigation(Startapp);
+

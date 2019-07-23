@@ -34,17 +34,21 @@ module.exports = {
     })
       .then((newUser) => {
         const userDatas = {
+          id: newUser.id,
+          isAdmin: newUser.isAdmin,
           firstName: newUser.firstName,
           lastName: newUser.lastName,
-          compagny: 'Coiffinthestreet', //Todo add it to .env
-          adress_mail: 'Coiffla@hotmail.com' //Todo add it to .env
+          job: newUser.job,
+          city: newUser.city,
         };
         mailer(userDatas, newUser.email, 'welcome');
-        const token = jwt.sign(user, 'your_jwt_secret');
+        const token = jwt.sign(userDatas, 'your_jwt_secret');
         /* Return user and token in json response */
-        res.json({ user, token });
+        res.json({ user: userDatas, token });
       })
-      .catch((err) => res.send(err));
+      .catch((error) => {
+        res.status(500).json({ message: error.message, error });
+      });
   },
 
   forgetPassword: function (req, res, next) {

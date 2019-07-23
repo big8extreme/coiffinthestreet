@@ -31,7 +31,8 @@ export default class AvatarUpload extends Component {
                     rounded
                     icon={{ name: 'user', type: 'font-awesome' }}
                     showEditButton
-                    size="large"
+                    size={100}
+                    containerStyle={{alignSelf:'center', flex:1, marginTop:20}}
                     source={this.state.avatar}
                 />
             </View>

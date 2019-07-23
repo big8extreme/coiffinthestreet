@@ -9,7 +9,6 @@ export function fetchMaraudes(params) {
     }
     return async function (dispatch, getState) {
         function onSuccess(response) {
-            console.log(response.data.maraudes)
             dispatch({ type: FETCH_MARAUDES, payload: response.data.maraudes })
 
         }
@@ -71,12 +70,14 @@ export function showMaraude(maraudeId) {
 }
 
 export function createMaraude(maraudeFields) {
-    return async function (dispatch, getState) {
+    return async (dispatch, getState) => {
         function onSuccess(response) {
             dispatch({ type: CREATE_MARAUDE, payload: response.data.maraudes })
+            return { response, status: 'success' };
         }
         function onError(error) {
             dispatch({ type: ERROR_ON_CREATE_MARAUDE, payload: error })
+            return { error, status: 'error' };
         }
         try {
             maraudeFields.userId = getState().auth.user.id
@@ -91,11 +92,10 @@ export function createMaraude(maraudeFields) {
             const response = await axios.post(`${baseUrlApi}/maraudes/`, { ...maraudeFields }, {
                 headers: { Authorization: `bearer ${getState().auth.user.token}` }
             })
-            onSuccess(response)
+            return onSuccess(response)
         }
         catch (err) {
-            onError(err)
-            console.log('error', err)
+            return onError(err)
         }
     }
 }
