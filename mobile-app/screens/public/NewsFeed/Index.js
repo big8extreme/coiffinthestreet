@@ -27,23 +27,22 @@ export default class NewsFeed extends Component {
 }
 
 const style = {
-  text: {
-    color: '#FDC500',
-    fontFamily: 'TinosBoldItalic',
-    marginTop: 30,
-    marginBottom: 30,
-    textAlign: 'center',
-    fontSize: 17
-  },
-  background: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingTop: 20,
-
-  },
-  logo: {
-    alignSelf: 'center'
-  }
+    text: {
+        color: '#FDC500',
+        fontFamily: 'TinosBoldItalic',
+        marginTop: 30,
+        marginBottom: 30,
+        textAlign: 'center',
+        fontSize: 17
+    },
+    background: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: 20,
+    },
+    logo: {
+        alignSelf: 'center'
+    }
 }
 
 

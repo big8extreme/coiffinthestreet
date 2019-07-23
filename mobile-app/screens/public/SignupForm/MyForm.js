@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Text, ScrollView } from 'react-native';
+import { Text, ScrollView, View } from 'react-native';
 import { Form, Field } from 'react-native-validate-form';
 import InputField from './InputField';
 import AvatarUpload from './Avatar';
 import { signup } from '../../../store/actions/auth';
+import LoginForm from '../LoginForm';
+import GlobalFooter from '../../../components/GlobalFooter';
 import { Toast, Root } from 'native-base';
 
 import CustomButton from '../../../components/CustomButton';
@@ -178,40 +180,39 @@ class MyForm extends Component {
             </Root>
         );
     }
-}
+  }
 
 
 
 const style = {
-    field: {
-        borderColor: '#FDC500',
-        height: 50,
-        borderWidth: 1,
-        borderRadius: 5,
-        fontSize: 18
-    },
-    inputText: {
-        fontFamily: 'Tinos',
-        fontWeight: 'bold',
-        marginBottom: 5,
-        marginTop: 25
-
-    },
-    container: {
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        height: 50,
-    },
-    buttonText: {
-        marginTop: 82,
-        marginLeft: 120,
-        position: 'absolute',
-        fontFamily: 'Sedgwick',
-        fontSize: 80,
-        zIndex: 900,
-        color: '#FDC500'
-    }
+  field: {
+    borderColor: '#FDC500',
+    height: 50,
+    borderWidth: 1,
+    borderRadius: 5,
+    fontSize: 18
+  },
+  inputText: {
+    fontFamily: 'Tinos',
+    fontWeight: 'bold',
+    marginBottom: 5,
+    marginTop: 25
+  },
+  container: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: 50,
+  },
+  buttonText: {
+    marginTop: 82,
+    marginLeft: 120,
+    position: 'absolute',
+    fontFamily: 'Sedgwick',
+    fontSize: 80,
+    zIndex: 900,
+    color: '#FDC500'
+  }
 }
 
 
@@ -220,7 +221,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-    signup
+  signup
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyForm)

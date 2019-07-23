@@ -5,6 +5,7 @@ import Axios from 'axios';
 export const fetchConfigs = () => {
     return async function (dispatch, getState) {
         function onSucces(response) {
+
             dispatch({ type: FETCH_CONFIGS, payload: response.data.configs })
         }
         function onError(error) {

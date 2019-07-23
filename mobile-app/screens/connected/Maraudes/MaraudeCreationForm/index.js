@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
+import { Content, Form, Item, Input } from 'native-base';
 import { ScrollView, Text, StyleSheet, KeyboardAvoidingView } from 'react-native'
-import { Form, Item, Input } from 'native-base';
 import { connect } from 'react-redux'
 import DatePicker from '../../../../components/DatePicker'
 import TimePicker from '../../../../components/TimePicker'
 import { createMaraude } from '../../../../store/actions/maraude'
 import CitySearcher from './CitySearch';
+import GlobalFooter from '../../../../components/GlobalFooter';
+import ButtonCreate from '../../../../components/ButtonCreate';
 import { Toast, Root } from 'native-base';
 import CustomButton from '../../../../components/CustomButton';
 
@@ -27,7 +29,6 @@ const requiredFields = ['title', 'startAt', 'endAt', 'startDate', 'description',
 export class index extends Component {
   constructor(props) {
     super(props)
-
     this.state = {
       ...defaultMaraude
     }
@@ -55,7 +56,6 @@ export class index extends Component {
       }
     }
   }
-
   handleTextChange = (event) => {
     this.setState({ [event.name]: event.value })
     let { errors } = this.state;
@@ -72,9 +72,27 @@ export class index extends Component {
       city: position.display_name
     })
   }
-
   render() {
     return (
+      // <React.Fragment>
+      //   <Text style={{
+      //     alignSelf: 'center', 
+      //     fontFamily: "Sedgwick",
+      //     marginBottom: 10,
+      //     marginTop: 25,
+      //     fontWeight: 'bold',
+      //     fontSize: 40}}>
+      //       Créer une Maraude
+      //   </Text>
+      // <ScrollView>
+      // <View style={{width: '90%', alignSelf: 'center'}}>
+      //   <Content contentContainerStyle={{ justifyContent: 'center' }}>
+      //     <Form>
+      //       <Text style={style.inputText}>
+      //         Titre de la maraude : </Text>
+      //       <Item regular
+      //         style={{
+      //           borderColor: this.state.errors.includes('title') ? 'red' : '#FDC500',
       <Root>
         <ScrollView>
           <KeyboardAvoidingView behavior="padding" enabled>
@@ -105,7 +123,6 @@ export class index extends Component {
                 height: 60,
                 borderRadius: 5,
                 borderWidth: 1,
-                marginLeft: 10
               }}>
                 <Input
                   value={this.state.description}
@@ -123,6 +140,68 @@ export class index extends Component {
                 }}
                 onChange={(value) => this.handleTextChange({ name: 'startDate', value })}
               />
+            {/* </Item>
+            <Text style={style.inputText}>
+              Description de la maraude : </Text>
+            <Item regular style={{
+              borderColor: this.state.errors.includes('description') ? 'red' : '#FDC500',
+              height: 60,
+              borderRadius: 5,
+              borderWidth: 1,
+            }}>
+              <Input
+                value={this.state.description}
+                onChangeText={(value) => this.handleTextChange({ name: 'description', value })}
+              />
+            </Item>
+            <DatePicker
+              style={{
+                borderColor: this.state.errors.includes('startDate') ? 'red' : '#FDC500',
+                height: 60,
+                borderRadius: 5,
+                borderWidth: 1,
+              }}
+              onChange={(value) => this.handleTextChange({ name: 'startDate', value })}
+            />
+            <Text style={style.maraudeText}>Heure de fin de la Maraude</Text>
+            <TimePicker
+              style={{
+                borderColor: this.state.errors.includes('startAt') ? 'red' : '#FDC500',
+                height: 60,
+                borderRadius: 5,
+                borderWidth: 1,
+                alignSelf: 'center'
+              }}
+              onChange={(value) => this.handleTextChange({ name: 'startAt', value })}
+            />
+            <Text style={style.maraudeText}>Heure de fin de la Maraude</Text>
+            <TimePicker
+              style={{
+                borderColor: this.state.errors.includes('endAt') ? 'red' : '#FDC500',
+                height: 60,
+                borderRadius: 5,
+                borderWidth: 1,
+              }}
+              onChange={(value) => this.handleTextChange({ name: 'endAt', value })}
+            />
+            <Text style={style.maraudeText}>Lieu</Text>
+            <CitySearcher
+              handleCityChange={(value) => this.handleTextChange({ name: 'city', value })}
+              handlePositionSelect={this.handlePositionSelect}
+              city={this.state.city}
+              errors={this.state.errors}
+            />
+            {
+              //TODO This Button serves to test the connection between frontend and api
+              //It must be replace before production
+            }
+            <ButtonCreate label="Valider" submit={this.submitForm}/>
+          </Form>
+        </Content>
+      </View>
+      </ScrollView>
+      <GlobalFooter/>
+      </React.Fragment> */}
               <Text style={style.inputText}>Heure de début de la Maraude</Text>
               <TimePicker
                 style={{
@@ -161,6 +240,7 @@ export class index extends Component {
             </Form>
           </KeyboardAvoidingView>
         </ScrollView>
+        <GlobalFooter/>
       </Root>
     )
   }
@@ -173,31 +253,26 @@ const mapStateToProps = (state) => ({
 
 const style = StyleSheet.create({
   inputTitle: {
-    fontFamily: 'Roboto',
-    textAlign: 'left',
-    marginLeft: 10,
-    marginBottom: 5,
+    // marginBottom: 5,
+    alignSelf: 'center', 
+    fontFamily: "Sedgwick",
+    marginBottom: 10,
     marginTop: 25,
     fontWeight: 'bold',
-    fontSize: 30
+    fontSize: 40
   },
   inputText: {
-    fontFamily: 'Roboto',
-    textAlign: 'left',
-    marginLeft: 10,
     marginBottom: 5,
     marginTop: 25,
     fontWeight: 'bold'
   },
   maraudeText: {
-    textAlign: 'left',
-    marginLeft: 10,
     marginBottom: 5,
     marginTop: 25,
     fontWeight: 'bold'
   },
-  content: {
-    marginTop: 50
+  pickerTime: {
+    marginLeft: 8
   }
 })
 

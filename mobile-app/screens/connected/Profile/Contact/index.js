@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, ScrollView, Image, Text } from "react-native";
 import { Container, Content, Icon, Picker, Textarea, Toast, Root } from 'native-base';
 import { connect } from 'react-redux'
-
+import GlobalFooter from '../../../../components/GlobalFooter';
 import { contactAdmin } from '../../../../store/actions/config';
 import CustomButton from '../../../../components/CustomButton';
 
@@ -54,8 +54,8 @@ class Contact extends Component {
 
   render() {
     return (
-      <Root>
-        <ScrollView style={{ backgroundColor: '#2D2D2D', minHeight: '100%' }}>
+      <Root style={{flex: 1}}>
+        <ScrollView style={{ backgroundColor: '#2D2D2D'}}>
           <View style={styles.logo}>
             <Image source={require('../../../../assets/Logo_light.png')} />
           </View>
@@ -82,7 +82,6 @@ class Contact extends Component {
                     return <Picker.Item label={subject} value={subject} key={`subject-${idx}`} />
                   })
                 }
-
               </Picker>
             </Content>
           </View>
@@ -103,6 +102,7 @@ class Contact extends Component {
             colorfill="#FDC500"
             onPressFunc={() => this.sendMessage()} />
         </ScrollView>
+        <GlobalFooter/>
       </Root>
     );
   }

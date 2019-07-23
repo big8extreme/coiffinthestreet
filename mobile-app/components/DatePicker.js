@@ -3,8 +3,6 @@ import DateTimePicker from 'react-native-modal-datetime-picker';
 import { Text, TouchableOpacity, View } from 'react-native';
 import moment from 'moment';
 
-
-
 export default class DatePicker extends Component {
     constructor(props) {
         super(props);
@@ -53,7 +51,8 @@ export default class DatePicker extends Component {
             </View>
         )
     }
-}
+  }
+  
 
 const style = {
     datePicker: {
