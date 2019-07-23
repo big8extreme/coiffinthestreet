@@ -10,7 +10,6 @@ import MapView, { Callout, Marker } from "react-native-maps";
 import { getCluster } from "../../../utils/MapUtils";
 import MapToolTip from './MapToolTip';
 import ClusterMarker from './ClusterMarker';
-// import ButtonMapCreateMaraude from '../../../components/ButtonMapCreateMaraude';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 import Constants from 'expo-constants';
@@ -114,7 +113,7 @@ class MapMarker extends React.Component {
     const { navigate } = this.props.navigation;
     if (marker.properties.cluster) {
       return (
-        <ClusterMarker longitude={marker.geometry.coordinates[0]} latitude={marker.geometry.coordinates[1]} count={marker.properties.point_count} key={index} markers={marker.properties.data} />
+        <ClusterMarker navigation={this.props.navigation} longitude={marker.geometry.coordinates[0]} latitude={marker.geometry.coordinates[1]} count={marker.properties.point_count} key={index} markers={marker.properties.data} />
       );
     }
     const maraude = this.props.maraude.maraudes.filter((maraude) => {
@@ -130,7 +129,6 @@ class MapMarker extends React.Component {
         image={require('../../../assets/pin.png')}
       >
         <Callout tooltip style={{ width: 220 }} onPress={() => navigate('Participant', {city: maraude.city})}>
-        {/* <Callout tooltip style={{ width: 220 }} onPress={() => this.props.navigation.navigate('List', { city: maraude.city })}> */}
           <MapToolTip navigation={{ navigate }} maraude={maraude} />
         </Callout>
       </Marker>
@@ -140,7 +138,8 @@ class MapMarker extends React.Component {
     const { region } = this.state;
     const allCoords = maraudesToMarkers(this.props.maraude.maraudes);
     const cluster = getCluster(allCoords, region);
-    const satellite = this.state.satelliteView ? "stardard" : "satellite" ;
+    const satellite = this.state.satelliteView ? "standard" : "satellite" ;
+
     return (
       <View style={Style.container}>
         <NavigationEvents
@@ -165,7 +164,7 @@ class MapMarker extends React.Component {
           }}>
           {cluster.markers.map((marker, index) => this.renderMarker(marker, index))}
         </MapView>
-        <Fab
+         <Fab
           active={this.state.active}
           style={{ backgroundColor: '#F5F5F5' }}
           containerStyle={{position: 'absolute', top: 20, left: 10}}
@@ -178,11 +177,6 @@ class MapMarker extends React.Component {
             position: 'absolute',
             bottom: 0,
           }}>
-          {/* {
-            this.props.auth.user.isConnected &&
-            <ButtonMapCreateMaraude navigation={this.props.navigation} label='Ajouter une maraude' />
-            left: -2,
-          }}> */}
           {
             this.props.auth.user.isConnected &&
             <CustomButton
