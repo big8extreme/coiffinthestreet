@@ -4,6 +4,7 @@ import { fetchMaraudes } from "../../../store/actions/maraude";
 import { connect } from "react-redux";
 import PhotoMaraude from './PhotoMaraude';
 import { Card, CardItem, Body } from 'native-base';
+import { NavigationEvents } from "react-navigation";
 import moment from "moment";
 
 
@@ -11,14 +12,14 @@ let deviceWidth = Dimensions.get('window').width
 
 class CardsPhotosMaraude extends Component {
 
-  componentDidMount() {
-    this.props.fetchMaraudes();
-
-  }
-
   render() {
     return (
       <ScrollView>
+        <NavigationEvents
+          onWillFocus={payload => {
+            this.props.fetchMaraudes({ passed: true });
+          }}
+        />
         {
           this.props.maraude.maraudes.map((maraude, idx) => {
             return <View
@@ -48,7 +49,7 @@ class CardsPhotosMaraude extends Component {
                       })
                     }
                   </ScrollView>
-                  <CardItem style={{ paddingLeft: 5, paddingTop:15 }}>
+                  <CardItem style={{ paddingLeft: 5, paddingTop: 15 }}>
                     <Body>
                       <Text style={style.description}>{maraude.description}</Text>
                     </Body>
@@ -72,7 +73,7 @@ const style = StyleSheet.create({
   title: {
     fontFamily: 'Tinos_bold',
     fontSize: 23,
-    marginBottom:3
+    marginBottom: 3
   },
   card: {
     marginBottom: 60,
@@ -92,7 +93,7 @@ const style = StyleSheet.create({
   city: {
     fontFamily: 'Tinos_bold',
     fontSize: 17,
-    marginTop:3
+    marginTop: 3
 
   },
   body: {
@@ -101,12 +102,12 @@ const style = StyleSheet.create({
     alignItems: 'center'
   },
   avatar: {
-    width: 80, 
-    height: 80, 
-    borderRadius: 40, 
-    marginRight: 30, 
-    borderColor: 'black', 
-    borderWidth: 1 
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    marginRight: 30,
+    borderColor: 'black',
+    borderWidth: 1
   }
 })
 

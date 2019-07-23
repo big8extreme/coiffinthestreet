@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { LOGIN, LOGOUT, LOG_IN_ERROR, LOG_OUT_ERROR } from '../types/auth'
+import { LOGIN, LOGOUT, LOG_IN_ERROR, LOG_OUT_ERROR, FORGET_PASSWORD, FORGET_PASSWORD_ERROR } from '../types/auth'
 import { baseUrlApi } from '../../apiUrl'
 import { bindActionCreators } from 'redux'
 
@@ -44,16 +44,19 @@ export function signup(user) {
       axios.defaults.headers.common['Authorization'] = `bearer ${response.data.token}`;
 
       dispatch({ type: LOGIN, payload: response.data });
-
-      return { response, status: 'success' };
+      const res = { response, status: 'success' };
+      return res;
 
     }
 
     function onError(error) {
 
       dispatch({ type: LOG_IN_ERROR, error });
-
-      return { error, status: 'error' };
+      let status = "error";
+      if (error.response.data.message === "Invitation code is invalid") {
+        status = 'invalid_code'
+      }
+      return { error: error.response, status };
 
     }
 
@@ -94,3 +97,25 @@ export function signup(user) {
   };
 
 };
+
+
+export function reset(email) {
+  return async (dispatch, getState) => {
+      function onSuccess(response) {
+          dispatch({ type: FORGET_PASSWORD })
+          return { response, status: 'success' };
+      }
+      function onError(error) {
+          dispatch({ type: FORGET_PASSWORD_ERROR, payload: error })
+          return { error, status: 'error' };
+      }
+
+      try {
+          const response = await axios.post(`${baseUrlApi}/auth/reset`, { email : email })
+          return onSuccess(response)
+      }
+      catch (err) {
+          return onError(err)
+      }
+  }
+}

@@ -1,16 +1,21 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { fetchMaraudes } from '../../../store/actions/maraude';
-import { StyleSheet, View, Text } from 'react-native';
 import { Fab, Toast } from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons'
+import { fetchMaraudes, fetchMaraudesByLoc } from '../../../store/actions/maraude';
+import { NavigationEvents } from "react-navigation";
+import { setUserLocation } from '../../../store/actions/user';
+import { StyleSheet, View, Platform } from 'react-native';
 import MapView, { Callout, Marker } from "react-native-maps";
 import { getCluster } from "../../../utils/MapUtils";
 import MapToolTip from './MapToolTip';
 import ClusterMarker from './ClusterMarker';
-import ButtonMapCreateMaraude from '../../../components/ButtonMapCreateMaraude';
+// import ButtonMapCreateMaraude from '../../../components/ButtonMapCreateMaraude';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
+import Constants from 'expo-constants';
+import CustomButton from '../../../components/CustomButton';
+
 
 const Style = StyleSheet.create({
   container: {
@@ -20,7 +25,7 @@ const Style = StyleSheet.create({
     justifyContent: 'center',
   },
   map: {
-    ...StyleSheet.absoluteFill
+    ...StyleSheet.absoluteFillObject
   }
 });
 
@@ -76,17 +81,33 @@ class MapMarker extends React.Component {
     // Center the map on the location we just fetched.
     this.setState({ mapRegion: { latitude: location.coords.latitude, longitude: location.coords.longitude, latitudeDelta: 0.0922, longitudeDelta: 0.0421 }, coordLoaded: true });
   };
+  
   //  geolocalisation
-  componentDidMount() {
-    this.props.fetchMaraudes();
+  componentDidMount = async () => {
     maraudesToMarkers(this.props.maraude.maraudes)
-    this._getLocationAsync();
+    if (Platform.OS === 'android' && !Constants.isDevice) {
+      this.setState({
+        errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
+      });
+    } else {
+      await this._getLocationAsync();
+    }
+    this.props.setUserLocation(this.state.region)
+    this.props.fetchMaraudesByLoc();
   }
   componentDidUpdate(prevProps, prevState) {
     if (!this.state.loaded && this.state.coordLoaded) {
       const position = this.state.hasLocationPermissions ? this.state.mapRegion : INITIAL_POSITION
       this.setState({ region: position, loaded: true })
     }
+  }
+  
+  
+  fetchByLocAsync = (region) => {
+    clearTimeout(this.maraudesTimer);
+    this.maraudesTimer = setTimeout(() => {
+      this.props.fetchMaraudesByLoc(region);
+    }, 2000)
   }
   renderMarker = (marker, index) => {
     const key = index + marker.geometry.coordinates[0];
@@ -109,6 +130,7 @@ class MapMarker extends React.Component {
         image={require('../../../assets/pin.png')}
       >
         <Callout tooltip style={{ width: 220 }} onPress={() => navigate('Participant', {city: maraude.city})}>
+        {/* <Callout tooltip style={{ width: 220 }} onPress={() => this.props.navigation.navigate('List', { city: maraude.city })}> */}
           <MapToolTip navigation={{ navigate }} maraude={maraude} />
         </Callout>
       </Marker>
@@ -121,6 +143,11 @@ class MapMarker extends React.Component {
     const satellite = this.state.satelliteView ? "stardard" : "satellite" ;
     return (
       <View style={Style.container}>
+        <NavigationEvents
+          onWillFocus={payload => {
+            this.fetchByLocAsync(this.state.region)
+          }}
+        />
         <MapView
           mapType={satellite}
           showsUserLocation={true}
@@ -132,7 +159,10 @@ class MapMarker extends React.Component {
           loadingIndicatorColor={"#ffbbbb"}
           loadingBackgroundColor={"#ffbbbb"}
           region={region}
-          onRegionChangeComplete={region => this.setState({ region })}>
+          onRegionChangeComplete={region => {
+            this.setState({ region })
+            this.fetchByLocAsync(region)
+          }}>
           {cluster.markers.map((marker, index) => this.renderMarker(marker, index))}
         </MapView>
         <Fab
@@ -148,9 +178,18 @@ class MapMarker extends React.Component {
             position: 'absolute',
             bottom: 0,
           }}>
-          {
+          {/* {
             this.props.auth.user.isConnected &&
             <ButtonMapCreateMaraude navigation={this.props.navigation} label='Ajouter une maraude' />
+            left: -2,
+          }}> */}
+          {
+            this.props.auth.user.isConnected &&
+            <CustomButton
+              screen="MaraudeForm"
+              label="Ajouter une maraude"
+              fontSize={20}
+              colorfill="#0F2148" />
           }
         </View>
       </View>
@@ -163,7 +202,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  fetchMaraudes
+  fetchMaraudes,
+  setUserLocation,
+  fetchMaraudesByLoc
 };
 
 // @ts-ignore

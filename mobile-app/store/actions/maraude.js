@@ -9,7 +9,6 @@ export function fetchMaraudes(params) {
     }
     return async function (dispatch, getState) {
         function onSuccess(response) {
-            console.log(response.data.maraudes)
             dispatch({ type: FETCH_MARAUDES, payload: response.data.maraudes })
 
         }
@@ -20,6 +19,33 @@ export function fetchMaraudes(params) {
             const response = await axios.get(`${baseUrlApi}/maraudes`, {
                 headers: { Authorization: `bearer ${getState().auth.user.token}` },
                 params: params
+            })
+            onSuccess(response)
+        }
+        catch (err) {
+            onError(err)
+        }
+    }
+}
+
+export function fetchMaraudesByLoc(location = undefined) {
+    return async function (dispatch, getState) {
+        function onSuccess(response) {
+            dispatch({ type: FETCH_MARAUDES, payload: response.data.maraudes })
+
+        }
+        function onError(error) {
+            dispatch({ type: ERROR_ON_MARAUDES, payload: error })
+        }
+        try {
+            location = location ? location : getState().user.location
+            const response = await axios.get(`${baseUrlApi}/maraudes/search`, {
+                headers: { Authorization: `bearer ${getState().auth.user.token}` },
+                params: {
+                    lat: location.latitude,
+                    lng: location.longitude,
+                    limit: 20
+                }
             })
             onSuccess(response)
         }
@@ -71,12 +97,14 @@ export function showMaraude(maraudeId) {
 }
 
 export function createMaraude(maraudeFields) {
-    return async function (dispatch, getState) {
+    return async (dispatch, getState) => {
         function onSuccess(response) {
             dispatch({ type: CREATE_MARAUDE, payload: response.data.maraudes })
+            return { response, status: 'success' };
         }
         function onError(error) {
             dispatch({ type: ERROR_ON_CREATE_MARAUDE, payload: error })
+            return { error, status: 'error' };
         }
         try {
             maraudeFields.userId = getState().auth.user.id
@@ -88,14 +116,13 @@ export function createMaraude(maraudeFields) {
             delete maraudeFields.startDate
 
 
-            const response = await axios.post(`${baseUrlApi}/maraudes/`, { ...maraudeFields }, {
+            const response = await axios.post(`${baseUrlApi}/maraudes`, { ...maraudeFields }, {
                 headers: { Authorization: `bearer ${getState().auth.user.token}` }
             })
-            onSuccess(response)
+            return onSuccess(response)
         }
         catch (err) {
-            onError(err)
-            console.log('error', err)
+            return onError(err)
         }
     }
 }
@@ -109,7 +136,7 @@ export function updateMaraude(maraudeId, maraudeFields) {
             dispatch({ type: ERROR_ON_UPDATE_MARAUDE, payload: error })
         }
         try {
-            const response = await axios.put(`${baseUrlApi}/maraudes/`, { ...maraudeFields }, {
+            const response = await axios.put(`${baseUrlApi}/maraudes`, { ...maraudeFields }, {
                 headers: { Authorization: `bearer ${getState().auth.user.token}` }
             })
             onSuccess(response)

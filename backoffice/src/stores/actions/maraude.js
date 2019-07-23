@@ -9,10 +9,13 @@ export const fetchMaraudes = () => {
       dispatch({ type: FETCH_MARAUDES, payload: response.data.maraudes });
     }
     function onError(err) {
-      console.log('ERROR WHILE FETCHING USERS', err);
+      console.log('ERROR WHILE FETCHING MARAUDES', err);
     }
     try {
-      const response = await axios.get('/maraudes', { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
+      const response = await axios.get('/api/v1/maraudes', {
+        headers: { Authorization: `bearer ${getState().authentification.user.token}` },
+        params: { all: true }
+      });
       onSuccess(response);
     }
     catch (err) {
@@ -26,17 +29,17 @@ export const createMaraude = (maraudeData) => {
     function onSuccess(response) {
       dispatch({ type: CREATE_MARAUDE, payload: response.data.maraude });
       dispatch(fetchMaraudes());
-      dispatch(successMessage('Maraude ajoutée !'));
-      return response;
+      // dispatch(successMessage('Maraude ajoutée !'));
+      // return response;
     }
     function onError(err) {
       console.log('ERROR WHILE CREATE MARAUDE', err);
-      dispatch(errorMessage("L'ajout de la maraude a échoué !"));
-      return err;
+      // dispatch(errorMessage("L'ajout de la maraude a échoué !"));
+      // return err;
     }
     try {
       maraudeData.userId = getState().authentification.user.id;
-      const response = await axios.post('/maraudes', maraudeData, {
+      const response = await axios.post('/api/v1/maraudes', maraudeData, {
         headers: { Authorization: `bearer ${getState().authentification.user.token}` }
       });
       onSuccess(response);
@@ -63,7 +66,7 @@ export const updateMaraude = (maraudeFields, maraudeId) => {
       return err;
     }
     try {
-      const response = await axios.put(`/maraudes/${maraudeId}`, maraudeFields, { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
+      const response = await axios.put(`/api/v1/maraudes/${maraudeId}`, maraudeFields, { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
       onSuccess(response);
     }
     catch (err) {
@@ -88,7 +91,7 @@ export const deleteMaraude = (maraudeId) => {
       return err;
     }
     try {
-      const response = await axios.delete(`/maraudes/${maraudeId}`, { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
+      const response = await axios.delete(`/api/v1/maraudes/${maraudeId}`, { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
       onSuccess(response);
     }
     catch (err) {
@@ -112,7 +115,7 @@ export const deletePicture = (pictureId) => {
       return err;
     }
     try {
-      const response = await axios.delete(`/pictures/${pictureId}`, { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
+      const response = await axios.delete(`/api/v1/pictures/${pictureId}`, { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
       onSuccess(response);
     }
     catch (err) {

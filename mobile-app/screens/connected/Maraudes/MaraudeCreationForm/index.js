@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, StyleSheet, View } from 'react-native'
 import { Content, Form, Item, Input } from 'native-base';
+import { ScrollView, Text, StyleSheet, KeyboardAvoidingView } from 'react-native'
 import { connect } from 'react-redux'
 import DatePicker from '../../../../components/DatePicker'
 import TimePicker from '../../../../components/TimePicker'
 import { createMaraude } from '../../../../store/actions/maraude'
-import ValidateButton from '../../../../components/ValidateButton'
 import CitySearcher from './CitySearch';
 import GlobalFooter from '../../../../components/GlobalFooter';
 import ButtonCreate from '../../../../components/ButtonCreate';
+import { Toast, Root } from 'native-base';
+import CustomButton from '../../../../components/CustomButton';
 
 const defaultMaraude = {
   title: '',
@@ -32,17 +33,27 @@ export class index extends Component {
       ...defaultMaraude
     }
   }
-  submitForm = () => {
-    let errors = [];
+
+  submitForm = async () => {
+    let { errors } = this.state;
     requiredFields.forEach((field) => {
-      if (this.state[field].length === 0) {
+      if (this.state[field] && this.state[field].length === 0) {
         errors.push(field)
       }
     })
-    this.setState({ errors: errors });
-    if (errors.length === 0) {
-      this.props.createMaraude(this.state)
-      this.setState({ ...defaultMaraude })
+
+    this.setState({ errors: [...errors] });
+    if (errors && errors.length === 0) {
+      const response = await this.props.createMaraude(this.state)
+      if (response.status === 'success') {
+        this.props.navigation.navigate('BottomTab');
+      } else {
+        Toast.show({
+          text: 'Erreur lors de la création de maraude',
+          position: 'top',
+          type: 'danger',
+        })
+      }
     }
   }
   handleTextChange = (event) => {
@@ -55,42 +66,81 @@ export class index extends Component {
     }
   }
   handlePositionSelect = (position) => {
-      this.setState({ 
-        longitude: position.lon,
-        latitude: position.lat,
-        city: position.display_name
-      })
+    this.setState({
+      longitude: position.lon,
+      latitude: position.lat,
+      city: position.display_name
+    })
   }
   render() {
     return (
-      <React.Fragment>
-        <Text style={{
-          alignSelf: 'center', 
-          fontFamily: "Sedgwick",
-          marginBottom: 10,
-          marginTop: 25,
-          fontWeight: 'bold',
-          fontSize: 40}}>
-            Créer une Maraude
-        </Text>
-      <ScrollView>
-      <View style={{width: '90%', alignSelf: 'center'}}>
-        <Content contentContainerStyle={{ justifyContent: 'center' }}>
-          <Form>
-            <Text style={style.inputText}>
-              Titre de la maraude : </Text>
-            <Item regular
-              style={{
-                borderColor: this.state.errors.includes('title') ? 'red' : '#FDC500',
+      // <React.Fragment>
+      //   <Text style={{
+      //     alignSelf: 'center', 
+      //     fontFamily: "Sedgwick",
+      //     marginBottom: 10,
+      //     marginTop: 25,
+      //     fontWeight: 'bold',
+      //     fontSize: 40}}>
+      //       Créer une Maraude
+      //   </Text>
+      // <ScrollView>
+      // <View style={{width: '90%', alignSelf: 'center'}}>
+      //   <Content contentContainerStyle={{ justifyContent: 'center' }}>
+      //     <Form>
+      //       <Text style={style.inputText}>
+      //         Titre de la maraude : </Text>
+      //       <Item regular
+      //         style={{
+      //           borderColor: this.state.errors.includes('title') ? 'red' : '#FDC500',
+      <Root>
+        <ScrollView>
+          <KeyboardAvoidingView behavior="padding" enabled>
+            <Form style={{ alignItems: 'center' }}>
+              <Text style={style.inputTitle}>
+                Créer une Maraude </Text>
+              <Text style={style.inputText}>
+                Titre de la maraude : </Text>
+              <Item regular
+                style={{
+                  borderColor: this.state.errors.includes('title') ? 'red' : '#FDC500',
+                  width: 300,
+                  height: 60,
+                  borderRadius: 5,
+                  borderWidth: 1,
+                  marginLeft: 10
+                }}>
+                <Input
+                  value={this.state.title}
+                  onChangeText={(value) => this.handleTextChange({ name: 'title', value })}
+                />
+              </Item>
+              <Text style={style.inputText}>
+                Description de la maraude : </Text>
+              <Item regular style={{
+                borderColor: this.state.errors.includes('description') ? 'red' : '#FDC500',
+                width: 300,
                 height: 60,
                 borderRadius: 5,
                 borderWidth: 1,
               }}>
-              <Input
-                value={this.state.title}
-                onChangeText={(value) => this.handleTextChange({ name: 'title', value })}
+                <Input
+                  value={this.state.description}
+                  onChangeText={(value) => this.handleTextChange({ name: 'description', value })}
+                />
+              </Item>
+              <DatePicker
+                style={{
+                  borderColor: this.state.errors.includes('startDate') ? 'red' : '#FDC500',
+                  width: 300,
+                  height: 60,
+                  borderRadius: 5,
+                  borderWidth: 1,
+                  marginLeft: 10
+                }}
+                onChange={(value) => this.handleTextChange({ name: 'startDate', value })}
               />
-            </Item>
+            {/* </Item>
             <Text style={style.inputText}>
               Description de la maraude : </Text>
             <Item regular style={{
@@ -151,7 +201,47 @@ export class index extends Component {
       </View>
       </ScrollView>
       <GlobalFooter/>
-      </React.Fragment>
+      </React.Fragment> */}
+              <Text style={style.inputText}>Heure de début de la Maraude</Text>
+              <TimePicker
+                style={{
+                  borderColor: this.state.errors.includes('startAt') ? 'red' : '#FDC500',
+                  width: 300,
+                  height: 60,
+                  borderRadius: 5,
+                  borderWidth: 1,
+                  marginLeft: 10
+                }}
+                onChange={(value) => this.handleTextChange({ name: 'startAt', value })}
+              />
+              <Text style={style.inputText}>Heure de fin de la Maraude</Text>
+              <TimePicker
+                style={{
+                  borderColor: this.state.errors.includes('endAt') ? 'red' : '#FDC500',
+                  width: 300,
+                  height: 60,
+                  borderRadius: 5,
+                  borderWidth: 1,
+                  marginLeft: 10
+                }}
+                onChange={(value) => this.handleTextChange({ name: 'endAt', value })}
+              />
+              <CitySearcher
+                handleCityChange={(value) => this.handleTextChange({ name: 'city', value })}
+                handlePositionSelect={this.handlePositionSelect}
+                city={this.state.city}
+                errors={this.state.errors}
+              />
+              <CustomButton
+                label="Créer la Maraude"
+                fontSize={25}
+                colorfill="#FDC500"
+                onPressFunc={this.submitForm} />
+            </Form>
+          </KeyboardAvoidingView>
+        </ScrollView>
+        <GlobalFooter/>
+      </Root>
     )
   }
 }
@@ -163,10 +253,13 @@ const mapStateToProps = (state) => ({
 
 const style = StyleSheet.create({
   inputTitle: {
-    marginBottom: 5,
+    // marginBottom: 5,
+    alignSelf: 'center', 
+    fontFamily: "Sedgwick",
+    marginBottom: 10,
     marginTop: 25,
     fontWeight: 'bold',
-    fontSize: 30
+    fontSize: 40
   },
   inputText: {
     marginBottom: 5,

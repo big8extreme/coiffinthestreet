@@ -1,10 +1,11 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Platform } from "react-native";
 import { Text, View, Icon } from "native-base";
 import moment from "moment";
-import ValidateButton from "../../../components/ValidateButton";
-
-export default function CardMaraude({ maraude = {}, navigation = {} }) {
+import { TouchableOpacity } from "react-native-gesture-handler";
+import CustomButton from '../../../components/CustomButton'
+export default function CardMaraude({ maraude = {}, navigation = {}, currentUserId = null }) {
+  const marginButton = Platform.OS === 'ios' ? "3%" : -15
   return (
     <React.Fragment>
       <View style={styles.shadow}>
@@ -29,6 +30,15 @@ export default function CardMaraude({ maraude = {}, navigation = {} }) {
         >
           {maraude.title}
         </Text>
+        {
+          // if current user is author and maraude is passed, then currentUser can add photos
+          (maraude.author.id === currentUserId) && (new Date(maraude.endAt) < new Date()) &&
+          <TouchableOpacity
+            onPress={() => navigation.navigate("MaraudePictures", { maraudeId: maraude.id })}
+          >
+            <Text>Ajouter des photos</Text>
+          </TouchableOpacity>
+        }
         <Text style={{ paddingTop: 20, paddingBottom: 20, paddingLeft: 30 }}>
           <Text
             style={{
@@ -40,7 +50,7 @@ export default function CardMaraude({ maraude = {}, navigation = {} }) {
           >
             Le :
           </Text>{" "}
-          <Text style={{ fontWeight: "bold", fontSize: 15, fontFamily: 'Tinos_bold'}}>
+          <Text style={{ fontWeight: "bold", fontSize: 15, fontFamily: 'Tinos_bold' }}>
             {moment(maraude.startAt).format("DD/MM/YYYY")}
           </Text>{" "}
           <Text
@@ -53,7 +63,7 @@ export default function CardMaraude({ maraude = {}, navigation = {} }) {
           >
             à
           </Text>{" "}
-          <Text style={{ fontWeight: "bold", fontSize: 15, fontFamily: 'Tinos_bold'}}>
+          <Text style={{ fontWeight: "bold", fontSize: 15, fontFamily: 'Tinos_bold' }}>
             {moment(maraude.startAt).format("HH[h]mm")}
           </Text>
         </Text>
@@ -74,14 +84,13 @@ export default function CardMaraude({ maraude = {}, navigation = {} }) {
         </View>
       </View>
       <View
-        style={{ position: "absolute", marginTop: "50%", marginLeft: "5%" }}
+        style={{ position: "absolute", marginTop: "35%", marginLeft: marginButton }}
       >
-        <ValidateButton
+        <CustomButton
           label="Je souhaite participer"
-          onPress={() =>
-            navigation.navigate("Participant", { maraudeId: maraude.id })
-          }
-        />
+          fontSize={25}
+          colorfill="blue"
+          onPressFunc={() => navigation.navigate("Participant", { maraudeId: maraude.id })} />
       </View>
     </React.Fragment>
   );

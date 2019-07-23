@@ -7,6 +7,7 @@ import persistor from "./store/persistor";
 import StackNavigator from "./navigation/StackNavigator";
 import * as Font from 'expo-font'
 import { Ionicons } from "@expo/vector-icons";
+import { StatusBar, View } from "react-native";
 import { Text } from "native-base";
 import { SafeAreaView } from "react-navigation";
 
@@ -35,11 +36,14 @@ export default class App extends React.Component {
 
   render() {
     if (this.state.loading) {
-      return <Text>Loading ...</Text>;
+      return <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Chargement ...</Text>
+      </View>
     }
     return (
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
+          <StatusBar hidden />
           <SafeAreaView style={{ flex: 0, backgroundColor: '#FBFBFB' }} />
           <StackNavigator style={{ flex: 1, backgroundColor: 'red', height: 10 }} />
         </PersistGate>

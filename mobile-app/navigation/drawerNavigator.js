@@ -1,6 +1,6 @@
 import React from 'react'
 import { createDrawerNavigator, DrawerActions } from 'react-navigation'
-import { TouchableOpacity, Text, Dimensions, StyleSheet, View } from 'react-native'
+import { TouchableOpacity, Text, Dimensions, StyleSheet, View, Clipboard } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import BottomTabNavigator from './bottomTabNavigator'
 import LoginForm from '../screens/public/LoginForm'
@@ -198,6 +198,26 @@ export default createDrawerNavigator({
       }
     }
   },
+  Code: {
+    screen: BottomTabNavigator,
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: "",
+        drawerLabel: () => {
+          return store.getState().auth.user.isConnected ?
+            <View style={{ padding: 20 }}>
+              <TouchableOpacity onPress={() => {
+                Clipboard.setString(store.getState().auth.user.invitationCode)
+              }}>
+                <Text style={styles.text}>Mon code parrain : {store.getState().auth.user.invitationCode} (copier)</Text>
+              </TouchableOpacity>
+            </View>
+            :
+            null
+        }
+      }
+    }
+  }
 },
   {
     initialRouteName: 'BottomTab',
@@ -210,6 +230,7 @@ export default createDrawerNavigator({
 const styles = StyleSheet.create({
   text: {
     color: 'white',
+    // fontWeight: 'bold',
     fontSize: 15
   },
   flex: {

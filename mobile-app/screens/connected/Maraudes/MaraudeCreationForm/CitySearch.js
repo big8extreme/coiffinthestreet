@@ -9,14 +9,15 @@ const APIKEY = '75163db10930ab';
 export default class CitySearcher extends Component {
   constructor(props) {
     super(props)
+
     this.state = {
       cities: []
     }
   }
 
   handleTextChange = (value) => {
-    if(value.length < 1){
-      this.setState({cities: []})
+    if (value && value.length < 1) {
+      this.setState({ cities: [] })
     }
     this.props.handleCityChange(value)
     clearTimeout(this.requestTimer)
@@ -36,12 +37,16 @@ export default class CitySearcher extends Component {
   render() {
     return (
       <View>
+        <Text style={style.inputText}>
+          Lieu :</Text>
         <Item regular
           style={{
             borderColor: this.props.errors.includes('city') ? 'red' : '#FDC500',
+            width: 300,
             height: 60,
             borderRadius: 5,
             borderWidth: 1,
+            marginLeft: 10,
             marginBottom: 50
           }}>
           <Input
@@ -50,25 +55,26 @@ export default class CitySearcher extends Component {
             placeholder="Ville" />
         </Item>
         {
-          this.state.cities.length >= 1 &&
+          this.state.cities && this.state.cities.length >= 1 &&
           <View style={{
             borderWidth: 1,
             marginBottom: 20,
-            width: 300, 
-            marginLeft: 10,}}>
+            width: 300,
+            marginLeft: 10,
+          }}>
             <FlatList
               data={this.state.cities}
-              renderItem={({ item, index }) => <Text onPress={() =>     {
+              renderItem={({ item, index }) => <Text onPress={() => {
                 this.props.handlePositionSelect(item);
-                this.setState({cities: []})
-                }
-              } 
-              style={{
-              marginLeft: 10, 
-              marginTop: 8,
-              marginBottom: 8,
-            }}>
-              {item.display_name}
+                this.setState({ cities: [] })
+              }
+              }
+                style={{
+                  marginLeft: 10,
+                  marginTop: 8,
+                  marginBottom: 8,
+                }}>
+                {item.display_name}
               </Text>}
               keyExtractor={(item, index) => `${item.place_id}-${index}`}
             />
@@ -82,7 +88,7 @@ export default class CitySearcher extends Component {
 const style = StyleSheet.create({
   inputText: {
     fontFamily: 'Roboto',
-    textAlign: 'left',
+    textAlign: 'center',
     marginLeft: 10,
     marginBottom: 5,
     marginTop: 25,

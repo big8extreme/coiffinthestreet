@@ -6,17 +6,22 @@ import CardsPhotosMaraude from './CardsPhotosMaraude';
 export default class NewsFeed extends Component {
   render() {
     return (
+
       <LinearGradient
         colors={['#131517', '#2D2D2D', '#454545']}
-        style={style.background}>
+        style={style.background}
+      >
         <ScrollView >
           <View style={style.logo}>
-            <Image source={require('../../../assets/Logo_light.png')}/>
+            <Image source={require('../../../assets/Logo_light.png')} />
           </View>
           <Text style={style.text}>Retrouvez-nous avec #coiffinthestreet !</Text>
           <CardsPhotosMaraude />
         </ScrollView>
+
       </LinearGradient>
+
+
     );
   }
 }

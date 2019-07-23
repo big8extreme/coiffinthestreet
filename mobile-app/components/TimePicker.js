@@ -17,21 +17,22 @@ export default class TimePicker extends Component {
     this.setState({ isTimePickerVisible: false });
   };
   handlePicker = time => {
-    console.log("A date has been picked: ", time);
     this.setState({
-        isTimePickerVisible: false,
-        chosenTime: moment(time).format('hh:mm')
+      isTimePickerVisible: false,
+      chosenTime: moment(time).format('hh:mm')
     })
     this.props.onChange(time)
   };
   render() {
     return (
       <View>
-        <View style={{...style.timePicker, ...this.props.style}}>
+        <View style={{ ...style.timePicker, ...this.props.style }}>
           <TouchableOpacity onPress={this.showPicker}>
             <Text style={style.timeText}>{this.state.chosenTime}</Text>
           </TouchableOpacity>
+
         </View>
+
         <DateTimePicker
           isVisible={this.state.isTimePickerVisible}
           onConfirm={this.handlePicker}
@@ -46,13 +47,15 @@ export default class TimePicker extends Component {
 
 const style = {
   timePicker: {
-    width: '100%',
+    width: 300,
     height: 60,
     borderRadius: 5,
-    borderWidth: 1
+    borderWidth: 1,
+    marginLeft: 10
   },
   timeText: {
     fontSize: 18,
-    marginTop: 15
+    marginTop: 15,
+    marginLeft: 10
   }
 }
