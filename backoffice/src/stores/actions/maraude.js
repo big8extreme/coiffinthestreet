@@ -70,7 +70,7 @@ export const updateMaraude = (maraudeFields, maraudeId) => {
       maraudeFields.startAt = moment(new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate(), startAt.getHours(), startAt.getMinutes())).format('YYYY-MM-DD HH:mm:ss');
       maraudeFields.endAt = moment(new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate(), endAt.getHours(), endAt.getMinutes())).format('YYYY-MM-DD HH:mm:ss');
       delete maraudeFields.startDate
-      const response = await axios.put(`/maraudes/${maraudeId}`, maraudeFields, { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
+      const response = await axios.put(`/api/v1/maraudes/${maraudeId}`, maraudeFields, { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
       onSuccess(response);
     }
     catch (err) {

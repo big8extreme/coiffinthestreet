@@ -71,10 +71,12 @@ class ListMaraudes extends Component {
     if (this.state.onCreate) {
       this.props.createMaraude(maraude);
     } else {
+
       if(maraude.startDate === "" || maraude.startDate === undefined){
         maraude.startDate = maraude.startAt
       }
-            if(maraude.startDate === "" || maraude.startDate === undefined){
+      // FIX ME CONDTION IT'S THE SAME FIRST CONDITION 
+      if(maraude.startDate === "" || maraude.startDate === undefined){
         maraude.startDate = maraude.endAt
       }
       this.props.updateMaraude(maraude, maraude.id);
@@ -177,7 +179,6 @@ dialogFooter = () => {
 }
 
   render() {
-    console.log("FROM STATE", this.state)
     let header = (
       <div className="p-clearfix" style={{ lineHeight: "2.97em", fontSize:"1.2em" }}>
       <div className="row subtitle-maraude">
@@ -222,7 +223,7 @@ dialogFooter = () => {
             <Column field="description" header="Description" sortable={true} />
             <Column field="startAt" header="Date" sortable={true} body={this.startAtTemplateDate} />
             <Column field="startAt" header="Heure de début" sortable={true} body={this.startAtTemplate} />
-            <Column field="endAt" header="Heure de fin" sortable={true} body={this.startAtTemplate} />
+            <Column field="endAt" header="Heure de fin" sortable={true} body={this.endAtTemplate} />
             <Column field="city" header="Ville" sortable={true} />
             <Column field="longitude" header="Longitude" sortable={true} />
             <Column field="latitude" header="Latitude" sortable={true} />
@@ -305,7 +306,7 @@ dialogFooter = () => {
                 >
                   <label htmlFor="startAt">Heure de début</label>
                 </div>
-                  <Calendar className="col-8" value={new Date(this.state.maraude.startAt)} onChange={(e) => 
+                  <Calendar className="col-8" value={this.state.maraude.startAt ? new Date(this.state.maraude.startAt) : new Date()} onChange={(e) => 
                   this.updateProperty("startAt", e.value)                 
                   } timeOnly={true} hourFormat="24" />
                 <div
@@ -314,7 +315,7 @@ dialogFooter = () => {
                 >
                   <label htmlFor="startAt">Heure de fin</label>
                 </div>
-                  <Calendar className="col-8" value={new Date(this.state.maraude.endAt)} onChange={(e) => 
+                  <Calendar className="col-8" value={this.state.maraude.endAt ? new Date(this.state.maraude.endAt) : new Date()} onChange={(e) => 
                   this.updateProperty("endAt", e.value)                 
                   } timeOnly={true} hourFormat="24" />
                 <div
