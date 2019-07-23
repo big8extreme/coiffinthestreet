@@ -11,8 +11,6 @@ import ClusterMarker from './ClusterMarker';
 import ButtonMapCreateMaraude from '../../../components/ButtonMapCreateMaraude';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-
 
 const Style = StyleSheet.create({
   container: {
@@ -47,7 +45,6 @@ function maraudesToMarkers(maraudeArray) {
   })
   return markers
 }
-
 
 class MapMarker extends React.Component {
   constructor(props) {
