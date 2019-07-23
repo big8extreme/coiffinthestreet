@@ -7,7 +7,6 @@ import TimePicker from '../../../../components/TimePicker'
 import { createMaraude } from '../../../../store/actions/maraude'
 import CitySearcher from './CitySearch';
 import GlobalFooter from '../../../../components/GlobalFooter';
-import ButtonCreate from '../../../../components/ButtonCreate';
 import { Toast, Root } from 'native-base';
 import CustomButton from '../../../../components/CustomButton';
 
