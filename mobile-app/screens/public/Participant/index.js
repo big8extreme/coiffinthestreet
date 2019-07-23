@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, ScrollView } from 'react-native';
-import { showParticipant, createParticipant } from '../../../store/actions/participant'
+import { StyleSheet, ScrollView, View } from 'react-native';
+import { showParticipant, createParticipant } from '../../../store/actions/participant';
 import ParticipForm from './ParticipForm';
 import { connect } from 'react-redux';
+import {Root} from 'native-base';
+import GlobalFooter from '../../../components/GlobalFooter';
 
 export class Participant extends Component {
 
@@ -17,20 +19,14 @@ export class Participant extends Component {
         this.setState({ selectedMaraudeId: this.props.navigation.state.params.maraudeId })
     }
     render() {
-        return (
-            <ScrollView style={styles.main_container}>
-                <ParticipForm navigation={this.props.navigation} maraudeId={this.state.selectedMaraudeId} />
-            </ScrollView>
+        return ( 
+        <Root> 
+          <ParticipForm navigation={this.props.navigation} maraudeId={this.state.selectedMaraudeId} />
+          <GlobalFooter/>
+        </Root>
         )
     }
 }
-
-const styles = StyleSheet.create({
-    main_container: {
-        flex: 1,
-        backgroundColor: 'white',
-    },
-})
 
 const mapStateToProps = state => ({
     ...state
