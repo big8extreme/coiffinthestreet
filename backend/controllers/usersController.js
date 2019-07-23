@@ -47,7 +47,7 @@ module.exports = {
       lastName: req.body.lastName,
       email: req.body.email,
       password: req.body.password,
-      avatarUrl: `${getHost()}/${req.file.path}`,
+      avatarUrl: req.file ? `${getHost()}/${req.file.path}` : '' ,
       isAdmin: req.body.isAdmin,
       isActive: req.body.isActive,
       isBanned: req.body.isBanned,
