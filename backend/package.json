@@ -2,8 +2,15 @@
   "name": "coiff-in-the-street",
   "version": "0.0.0",
   "private": true,
-  "scripts": {
-    "start": "nodemon ./bin/www"
+ "scripts": {
+    "start": "nodemon ./bin/www",
+    "makedoc": "apidoc -i ./routes -o ./api-documentation"
+  },
+  "apidoc": {
+    "name": "Coiff In The Street Documentation",
+    "version": "1.0.0",
+    "title": "Wavager API documentation (v1)",
+    "url": "api/v1"
   },
   "dependencies": {
     "bcrypt": "^3.0.2",
