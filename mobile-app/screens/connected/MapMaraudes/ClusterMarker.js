@@ -25,7 +25,7 @@ class ClusterMarker extends React.Component {
     this.setState({ modalVisible: visible });
   }
   render() {
-    const { navigate } = this.props.navigation;
+    const { navigate } = this.props.navigation;    
     return (
       <View>
         <Marker
