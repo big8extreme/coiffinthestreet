@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT} from '../types/auth';
+import { LOGIN, LOGOUT, FORGET_PASSWORD, FORGET_PASSWORD_ERROR} from '../types/auth';
 
 const defaultStates = {
   user: {
@@ -14,8 +14,12 @@ export default function (state = defaultStates, action) {
     case LOGIN:
       return { ...state, user: { ...action.payload.user, token: action.payload.token, isConnected: true } };
     case LOGOUT:
-      return { ...state, user: defaultStates.user }; //TODO need to be tested
-    default:
+      return { ...state, user: defaultStates.user }; 
+    case FORGET_PASSWORD:
+      return state;
+    case FORGET_PASSWORD_ERROR:
+      return state;
+      default:
       return state;
   }
 };

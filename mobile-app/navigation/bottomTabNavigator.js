@@ -40,7 +40,7 @@ const TabNavFooter = createBottomTabNavigator({
       showLabel: false,
       style: {
         backgroundColor: "#2D2D2D",
-        padding: 10
+        height: 60
       }
     },
   },

@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { Toast, Root } from 'native-base';
-import { StyleSheet, Text, View, Image, TextInput, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, ScrollView, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux'
 import { login } from '../../../store/actions/auth'
-import ConnectButton from '../../../components/ConnectButton';
-import { LinearGradient } from 'expo-linear-gradient';
+import GlobalFooter from '../../../components/GlobalFooter';
+import CustomButton from '../../../components/CustomButton';
+
 
 class LoginForm extends Component {
   static navigationOptions = {
@@ -40,54 +41,51 @@ class LoginForm extends Component {
       }, 10)
     }
     return (
-      <LinearGradient
-      colors={['#131517', '#2D2D2D', '#454545']}
-      
-  >
-     
 
+      <Root>
         <ScrollView style={styles.backgroundApp}>
-          <View style={styles.flexCenterImg}>
-            <Image
-              source={require('./Logo_light.png')}
-            />
-          </View>
-          <View style={styles.flexCenter}>
-            <Text style={styles.whiteTextLabel}>Email :</Text>
-            <View style={styles.yellowBorder}>
-              <TextInput
-                onChangeText={(value) => this.setState({ email: value })}
-                placeholder='Entrez votre email'
-                placeholderTextColor={'#F1F0C7'}
-                PlaceholderText={20}
-                style={styles.textInput} />
+          <KeyboardAvoidingView behavior="padding" enabled>
+            <View style={styles.flexCenterImg}>
+              <Image
+                source={require('./Logo_light.png')}
+              />
+            </View>
+            <View style={styles.flexCenter}>
+              <Text style={styles.whiteTextLabel}>Email :</Text>
+              <View style={styles.yellowBorder}>
+                <TextInput
+                  onChangeText={(value) => this.setState({ email: value })}
+                  placeholder='Entrez votre email'
+                  placeholderTextColor={'#F1F0C7'}
+                  PlaceholderText={20}
+                  style={styles.textInput} />
+              </View>
+
+              <Text style={styles.whiteTextLabel}>Mot de passe :</Text>
+              <View style={styles.yellowBorder}>
+                <TextInput
+                  onChangeText={(value) => this.setState({ password: value })}
+                  placeholder='******'
+                  placeholderTextColor={'#F1F0C7'}
+                  secureTextEntry={true}
+                  style={styles.textInput} />
+              </View>
+              <TouchableOpacity onPress={() => navigate("forgetPassword")}>
+                <Text style={styles.whiteTextLabel} >Mot de passe oublié ?</Text>
+              </TouchableOpacity>
             </View>
 
-            <Text style={styles.whiteTextLabel}>Mot de passe :</Text>
-            <View style={styles.yellowBorder}>
-              <TextInput
-                onChangeText={(value) => this.setState({ password: value })}
-                placeholder='******'
-                placeholderTextColor={'#F1F0C7'}
-                secureTextEntry={true}
-                style={styles.textInput} />
+            <View style={styles.flexCenterImg}>
+              <CustomButton
+                label="Se connecter"
+                fontSize={25}
+                colorfill="#FDC500"
+                onPressFunc={() => this.loginUser()} />
             </View>
-            <TouchableOpacity onPress={() => navigate("forgetPassword")}>
-              <Text style={styles.whiteTextLabel} >Mot de passe oublié ?</Text>
-            </TouchableOpacity>
-          </View>
-
-          <View style={styles.flexCenterImg}>
-            <ConnectButton
-              label="Se connecter"
-              onPress={() => 
-                this.loginUser()}
-            />
-          </View>
+          </KeyboardAvoidingView>
         </ScrollView>
-
-     
-</LinearGradient>
+        <GlobalFooter/>
+      </Root>
     )
   }
 }

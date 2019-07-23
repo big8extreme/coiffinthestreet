@@ -23,7 +23,7 @@ export class Configs extends Component {
         this.save = this.save.bind(this);
     }
     save() {
-        this.growl.show({ severity: 'info', summary: 'Felicitation', detail: 'Données Mise à jour' });
+        this.growl.show({ severity: 'success', summary: 'Félicitations', detail: 'Données Mises à jour' });
     }
 
     componentDidMount = async () => {
@@ -40,21 +40,21 @@ export class Configs extends Component {
                 <div className="container-configs">
                     <div className="row top-page" >
                         <div className="col-6" >
-                            <p className="space-text">Condition général d'utilisation</p>
+                            <p className="space-text">Conditions Générales d'Utilisation</p>
                             <InputTextarea className="space-area" name="cgu" rows={10} cols={60} value={this.state.cgu} onChange={this.handleChange} />
                         </div>
                         <div className="col-6">
-                            <p className="space-text">Mention legal</p>
+                            <p className="space-text">Mentions legales</p>
                             <InputTextarea className="space-area" name="legalMention" rows={10} cols={60} value={this.state.legalMention} onChange={this.handleChange} />
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-6" >
-                            <p className="space-text">Charte</p>
+                            <p className="space-text">Charte d'une maraude</p>
                             <InputTextarea className="space-area" name="charte" rows={10} cols={60} value={this.state.charte} onChange={this.handleChange} />
                         </div>
                         <div className="col-6">
-                            <p className="space-text">Email Admin</p>
+                            <p className="space-text">Email</p>
                             <InputTextarea className="space-area" name="email" rows={10} cols={60} value={this.state.email} onChange={this.handleChange} />
                         </div>
                     </div>
@@ -64,12 +64,12 @@ export class Configs extends Component {
                             <InputTextarea className="space-area" name="videoGuidelines" rows={1} cols={60} value={this.state.videoGuidelines} onChange={this.handleChange} />
                         </div>
                         <div className="col-6" >
-                            <p className="space-text">Lien video Presentation</p>
+                            <p className="space-text">Lien vidéo présentation</p>
                             <InputTextarea className="space-area" name="videoPath" rows={1} cols={60} value={this.state.videoPath} onChange={this.handleChange} />
                         </div>
                     </div>
                     <Growl ref={(el) => this.growl = el}></Growl>
-                    <Button className="space-button"
+                    <Button className="space-button p-button-warning"
                         label="Mettre à jour"
                         icon="pi pi-upload"
                         iconPos="right"

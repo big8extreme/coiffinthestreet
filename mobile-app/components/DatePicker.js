@@ -3,8 +3,6 @@ import DateTimePicker from 'react-native-modal-datetime-picker';
 import { Text, TouchableOpacity, View } from 'react-native';
 import moment from 'moment';
 
-
-
 export default class DatePicker extends Component {
     constructor(props) {
         super(props);
@@ -38,11 +36,11 @@ export default class DatePicker extends Component {
         return (
             <View>
                 <Text style={style.birthText}>Date de la Maraude</Text>
-                <View style={{...style.datePicker, ...this.props.style}}>
+                <View style={{ ...style.datePicker, ...this.props.style }}>
                     <TouchableOpacity onPress={this.showPicker}>
                         <Text style={style.dateText}>{this.state.chosenDate}</Text>
                     </TouchableOpacity>
-                    
+
                 </View>
 
                 <DateTimePicker
@@ -53,7 +51,8 @@ export default class DatePicker extends Component {
             </View>
         )
     }
-}
+  }
+  
 
 const style = {
     datePicker: {
@@ -70,7 +69,8 @@ const style = {
         marginLeft: 10
     },
     birthText: {
-        textAlign: 'left',
+        fontFamily: 'Roboto',
+        textAlign: 'center',
         marginLeft: 10,
         marginBottom: 5,
         marginTop: 25,

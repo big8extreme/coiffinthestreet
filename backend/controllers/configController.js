@@ -34,7 +34,7 @@ module.exports = {
             subject: req.body.subject,
             message: req.body.message
         };
-        mailer(userDatas, userDatas.email, 'contactAdmin');
+        mailer(userDatas, process.env.MAIL_SENDER, 'contactAdmin');
         res.json({ message: userDatas });
     }
 

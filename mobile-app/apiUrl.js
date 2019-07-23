@@ -1,2 +1,7 @@
-export const baseUrl = 'http:// 192.168.1.76:5000';
+export const baseUrl = __DEV__
+  ?
+  'http://192.168.1.76:5000'
+  :
+  'https://api.coiffinthestreet.com';
+
 export const baseUrlApi = `${baseUrl}/api/v1`;

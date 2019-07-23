@@ -140,6 +140,8 @@ body .p-menu {
 .feature-intro {
   background-color: #ffc107;
   padding: 30px;
+  margin-bottom: 50px;
+  color: #000;
 }
 
 .p-datatable.p-component {
@@ -148,10 +150,6 @@ body .p-menu {
 
 button.p-button.p-component.p-button-warning.float-left.p-button-text-icon-left {
   margin-left: 20px;
-}
-
-.p-datatable.p-component {
-  margin-top: 0;
 }
 
 .p-menuitem-link:hover {
@@ -169,6 +167,26 @@ input.p-inputtext.p-component {
   font-size: .7em;
 }
 
-input.p-inputtext.p-component {
-  margin-left: 10px;
+.pi.pi-search.search-bar.user {
+  margin-right: 10px;
+}
+
+
+.wrapper {
+  background-color: #ffc107;
+  width: 500px;
+  height: 500px;
+  border-radius: 10% 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-form {
+  justify-content: center;
+}
+
+.label-form {
+  padding-bottom: 5px;
+  font-size: 0.8rem;
 }
