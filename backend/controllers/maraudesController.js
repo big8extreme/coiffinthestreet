@@ -46,7 +46,6 @@ module.exports = {
   },
 
   create: function (req, res, next) {
-    console.log('BEFORE CREATE', req.body);
     Maraude.create({
       userId: req.body.userId,
       title: req.body.title,
@@ -60,13 +59,11 @@ module.exports = {
     })
       .then((maraude) => { res.json({ maraude }); })
       .catch((error) => {
-        console.log('ERROR ON CREATE MARAUDE', error);
         res.status(500).json({ error });
       });
   },
 
   update: function (req, res, next) {
-    console.log("BODY", req.body)
     Maraude.findByPk(req.params.id)
       .then((maraude) => {
         maraude.update({
