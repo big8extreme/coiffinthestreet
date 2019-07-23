@@ -18,12 +18,9 @@ class MapToolTip extends React.Component {
             <Text style={{ fontSize: 14, color: "#FFF" }}>{moment(this.props.maraude.startAt).format("HH[h]mm")} </Text>
           </View>
         </View>
-        {
-            // FIXME pass currentUserId to component this.props.maraude.author !== currentUserId &&
         <Button bordered light style={{ alignSelf:'center', padding: 10, margin: 5}} >
           <Text style={{color: 'white'}}>Je souhaite participer</Text>
         </Button>
-        }
       </View>
     );
   }

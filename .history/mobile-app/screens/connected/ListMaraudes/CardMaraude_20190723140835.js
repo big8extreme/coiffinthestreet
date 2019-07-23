@@ -83,10 +83,6 @@ export default function CardMaraude({ maraude = {}, navigation = {}, currentUser
           </Text>
         </View>
       </View>
-
-      {
-          // if current user is author and maraude is passed, then currentUser can add photos
-          (maraude.author.id !== currentUserId) &&
       <View
         style={{ position: "absolute", marginTop: "35%", marginLeft: marginButton }}
       >
@@ -96,7 +92,6 @@ export default function CardMaraude({ maraude = {}, navigation = {}, currentUser
           colorfill="blue"
           onPressFunc={() => navigation.navigate("Participant", { maraudeId: maraude.id })} />
       </View>
-      }
     </React.Fragment>
   );
 }

@@ -87,6 +87,7 @@ export default function CardMaraude({ maraude = {}, navigation = {}, currentUser
       {
           // if current user is author and maraude is passed, then currentUser can add photos
           (maraude.author.id !== currentUserId) &&
+    
       <View
         style={{ position: "absolute", marginTop: "35%", marginLeft: marginButton }}
       >
