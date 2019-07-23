@@ -104,3 +104,15 @@ Les Controllers sont les fichiers qui doivent abriter les actions
 
 Exemple d'application
 [Route index users](./routes/users.js#L7) => [Action index users](./controllers/usersController.js#L4)
+
+# Documentation API
+### tl;dr `yarn makedoc`
+http://apidocjs.com/#example-basic
+`yarn makedoc` à la racine du projet exécutera le script défini dans package.json et génèrera un dossier api-documentation à la racine du projet. Si ce dossier existe déjà, la commande le mettra à jour.
+
+Dans ce dossier, ouvrir index.html dans le navigateur.
+
+Pour modifier cette documentation, la syntaxe à respecter dans les commentaires est décrite dans la doc ci-dessus; sinon s'inspirer de ./routes/users.js
+
+##### Important: seuls les commentaires présents dans le dossier `routes` seront pris en compte par `yarn makedoc`
+
