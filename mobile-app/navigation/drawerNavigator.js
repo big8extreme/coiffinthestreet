@@ -55,7 +55,7 @@ export default createDrawerNavigator({
         drawerLabel: () => {
           return <View style={styles.view}>
             <TouchableOpacity onPress={() => navigation.navigate('Map')} style={styles.flex}>
-            <Icon name="ios-globe" size={25} style={styles.icon} />
+              <Icon name="ios-globe" size={25} style={styles.icon} />
               <Text style={styles.text}>Maraudes</Text>
             </TouchableOpacity>
           </View>
@@ -243,19 +243,19 @@ const styles = StyleSheet.create({
     height: Math.min(height) * 0.1,
     flex: 1,
     justifyContent: 'center'
-    },
+  },
   viewConnection: {
     borderBottomColor: 'gray',
     borderBottomWidth: 1,
     height: Math.min(height) * 0.1,
     flex: 1,
     justifyContent: 'center',
-    },
+  },
   viewLegals: {
     height: Math.min(height) * 0.1,
     flex: 1,
     justifyContent: 'center'
-    },
+  },
   icon: {
     color: 'white',
     marginRight: 10,

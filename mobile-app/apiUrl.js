@@ -1,6 +1,6 @@
 export const baseUrl = __DEV__
   ?
-  'http://192.168.1.137:5000'
+  'http://192.168.1.60:5000'
   :
   'https://api.coiffinthestreet.com';
 
