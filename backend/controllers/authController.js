@@ -57,12 +57,12 @@ module.exports = {
   forgetPassword: function (req, res, next) {
     //Charger en base l'utilisateur concerné
     const generatePassword = () => {
-      let char = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!?@#$_=+';
+      let char = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
       let password = '';
-      for (i = 0; i < 10; i++) {
-        if (i < 9) k = Math.floor(Math.random() * 62);
-        else k = Math.floor(Math.random() * 8) + 62;
-        password += char[k];
+      let k;
+      for (let i = 0; i < 10; i++) {
+        const randomChar = char[Math.floor(Math.random() * char.length)];
+        password += randomChar;
       }
       return password;
     };
@@ -80,29 +80,24 @@ module.exports = {
         //Encrypter le mot de passe (bcrypt)
         //TODO Use other function than findAll to get only one result    
         const password = generatePassword();
-        bcrypt.genSalt(10, function (err, salt) {
-          bcrypt.hash(password, salt, function (err, hash) {
-            //Mettre à jour le mot de passe de l'utilisateur (avec la version chiffré)
-            user.update({
-              password: hash
-            })
-              .then((updatedUser) => {
-                const userDatas = {
-                  id: user.id,
-                  password: password //dans l'email on renvoi le mot de passe en clair
-                };
+        user.update({
+          password
+        })
+          .then((updatedUser) => {
+            const userDatas = {
+              id: user.id,
+              password: password //dans l'email on renvoi le mot de passe en clair
+            };
 
-                mailer(userDatas, user.email, 'resetPassword');
-                res.json({ updatedUser });
-              })
-              .catch((error) => {
-                res.status(500).json({ error })
-              });
+            mailer(userDatas, user.email, 'resetPassword');
+            res.json({ updatedUser });
+          })
+          .catch((error) => {
+            res.status(500).json({ error });
           });
-        });
       })
       .catch((error) => {
-        res.status(500).json({ error })
+        res.status(500).json({ error });
       });
   }
 };
