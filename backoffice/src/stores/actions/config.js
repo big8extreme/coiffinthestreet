@@ -31,7 +31,7 @@ export const updateConfig = (configFields) => {
         }
 
         try {
-            const response = await Axios.put('/api/v1/configs', { ...configFields });
+            const response = await Axios.put('/api/v1/configs', { ...configFields }, { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
             onSuccess(response);
         }
         catch (err) {

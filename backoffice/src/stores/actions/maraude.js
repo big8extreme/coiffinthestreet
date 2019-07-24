@@ -1,7 +1,7 @@
 import { FETCH_MARAUDES, FETCH_MARAUDE, CREATE_MARAUDE, UPDATE_MARAUDE, DELETE_MARAUDE } from '../types/maraude';
 import axios from 'axios';
 import { successMessage, errorMessage } from './app';
-import moment from 'moment'
+import moment from 'moment';
 
 export const fetchMaraudes = () => {
   return async function (dispatch, getState) {
@@ -67,12 +67,12 @@ export const updateMaraude = (maraudeFields, maraudeId) => {
       return err;
     }
     try {
-      const startDate = new Date(maraudeFields.startDate)
-      const startAt = new Date(maraudeFields.startAt)
-      const endAt = new Date(maraudeFields.endAt)
+      const startDate = new Date(maraudeFields.startDate);
+      const startAt = new Date(maraudeFields.startAt);
+      const endAt = new Date(maraudeFields.endAt);
       maraudeFields.startAt = moment(new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate(), startAt.getHours(), startAt.getMinutes())).format('YYYY-MM-DD HH:mm:ss');
       maraudeFields.endAt = moment(new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate(), endAt.getHours(), endAt.getMinutes())).format('YYYY-MM-DD HH:mm:ss');
-      delete maraudeFields.startDate
+      delete maraudeFields.startDate;
       const response = await axios.put(`/api/v1/maraudes/${maraudeId}`, maraudeFields, { headers: { Authorization: `bearer ${getState().authentification.user.token}` } });
       onSuccess(response);
     }
