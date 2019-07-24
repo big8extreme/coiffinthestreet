@@ -109,7 +109,7 @@ export default createDrawerNavigator({
             :
             <View style={styles.view}>
               <TouchableOpacity onPress={() => navigation.navigate('SignupForm')} style={styles.flex}>
-                <Icon name="ios-mail" size={25} style={styles.icon} />
+                <Icon name="ios-log-in" size={25} style={styles.icon} />
                 <Text style={styles.text}>S'inscrire</Text>
               </TouchableOpacity>
             </View>
