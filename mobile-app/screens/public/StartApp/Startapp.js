@@ -57,7 +57,7 @@ class Startapp extends React.Component {
             />
           </TouchableOpacity>
         </View>
-        
+
       </View>
     );
   }
@@ -82,7 +82,7 @@ const stylestar = StyleSheet.create({
   backgroundApp: {
     backgroundColor: '#2D2D2D',
     flex: 1,
-    height:'100%'
+    height: '100%'
   },
   firstbutton: {
     alignSelf: 'center',

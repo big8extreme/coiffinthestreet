@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Content, Form, Item, Input } from 'native-base';
-import { ScrollView, Text, StyleSheet, KeyboardAvoidingView } from 'react-native'
+import { ScrollView, Text, StyleSheet, KeyboardAvoidingView, View } from 'react-native'
 import { connect } from 'react-redux'
 import DatePicker from '../../../../components/DatePicker'
 import TimePicker from '../../../../components/TimePicker'
@@ -32,7 +32,6 @@ export class index extends Component {
       ...defaultMaraude
     }
   }
-
   submitForm = async () => {
     let { errors } = this.state;
     requiredFields.forEach((field) => {
@@ -40,7 +39,6 @@ export class index extends Component {
         errors.push(field)
       }
     })
-
     this.setState({ errors: [...errors] });
     if (errors && errors.length === 0) {
       const response = await this.props.createMaraude(this.state)
@@ -74,65 +72,41 @@ export class index extends Component {
   render() {
     return (
       <Root>
-        <Text style={{
-          alignSelf: 'center', 
-          fontFamily: "Sedgwick",
-          marginBottom: 10,
-          marginTop: 25,
-          fontWeight: 'bold',
-          fontSize: 40}}>
-            Créer une Maraude
-        </Text>
-        <ScrollView>
-          <KeyboardAvoidingView behavior="padding" enabled>
-            <Form style={{ alignItems: 'center' }}>
-              <Text style={style.inputText}>
-                Titre de la maraude : </Text>
-              <Item regular
-                style={{
-                  borderColor: this.state.errors.includes('title') ? 'red' : '#FDC500',
-                  width: 300,
-                  height: 60,
-                  borderRadius: 5,
-                  borderWidth: 1,
-                  marginLeft: 10
-                }}>
-                <Input
-                  value={this.state.title}
-                  onChangeText={(value) => this.handleTextChange({ name: 'title', value })}
-                />
-              </Item>
-              <Text style={style.inputText}>
-                Description de la maraude : </Text>
-              <Item regular style={{
-                borderColor: this.state.errors.includes('description') ? 'red' : '#FDC500',
-                width: 300,
-                height: 60,
-                borderRadius: 5,
-                borderWidth: 1,
-              }}>
-                <Input
-                  value={this.state.description}
-                  onChangeText={(value) => this.handleTextChange({ name: 'description', value })}
-                />
-              </Item>
-              <DatePicker
-                style={{
-                  borderColor: this.state.errors.includes('startDate') ? 'red' : '#FDC500',
-                  width: 300,
-                  height: 60,
-                  borderRadius: 5,
-                  borderWidth: 1,
-                  marginLeft: 10
-                }}
-                onChange={(value) => this.handleTextChange({ name: 'startDate', value })}
-              />
-            {/* </Item>
+        <View style={{alignSelf: 'center', backgroundColor: '#2D2D2D', width: '100%'}}>
+          <Text style={{
+            color: 'white',
+            alignSelf: 'center', 
+            fontFamily: "Sedgwick",
+            marginBottom: 10,
+            marginTop: 25,
+            fontWeight: 'bold',
+            fontSize: 40}}>
+              Créer une maraude
+          </Text>
+        </View>
+        <KeyboardAvoidingView behavior="padding" enabled >
+        <ScrollView style={{backgroundColor: '#2D2D2D'}}>
+            <Form style={{ alignSelf: 'center', width: '90%' }}>
             <Text style={style.inputText}>
-              Description de la maraude : </Text>
+              Titre</Text>
+            <Item regular style={{
+              borderColor: this.state.errors.includes('title') ? 'red' : '#FDC500',
+              height: 60,
+              backgroundColor: 'white',
+              borderRadius: 5,
+              borderWidth: 1,
+            }}>
+              <Input
+                value={this.state.title}
+                onChangeText={(value) => this.handleTextChange({ name: 'title', value })}
+              />
+            </Item>
+            <Text style={style.inputText}>
+              Description</Text>
             <Item regular style={{
               borderColor: this.state.errors.includes('description') ? 'red' : '#FDC500',
               height: 60,
+              backgroundColor: 'white',
               borderRadius: 5,
               borderWidth: 1,
             }}>
@@ -141,92 +115,37 @@ export class index extends Component {
                 onChangeText={(value) => this.handleTextChange({ name: 'description', value })}
               />
             </Item>
-            <DatePicker
-              style={{
-                borderColor: this.state.errors.includes('startDate') ? 'red' : '#FDC500',
-                height: 60,
-                borderRadius: 5,
-                borderWidth: 1,
-              }}
+            <Text style={style.inputText}>
+              Date</Text>
+              <DatePicker
               onChange={(value) => this.handleTextChange({ name: 'startDate', value })}
             />
-            <Text style={style.maraudeText}>Heure de fin de la Maraude</Text>
+            <Text style={style.inputText}>Heure de début</Text>
             <TimePicker
-              style={{
-                borderColor: this.state.errors.includes('startAt') ? 'red' : '#FDC500',
-                height: 60,
-                borderRadius: 5,
-                borderWidth: 1,
-                alignSelf: 'center'
-              }}
               onChange={(value) => this.handleTextChange({ name: 'startAt', value })}
             />
-            <Text style={style.maraudeText}>Heure de fin de la Maraude</Text>
+            <Text style={style.inputText}>Heure de fin</Text>
             <TimePicker
-              style={{
-                borderColor: this.state.errors.includes('endAt') ? 'red' : '#FDC500',
-                height: 60,
-                borderRadius: 5,
-                borderWidth: 1,
-              }}
               onChange={(value) => this.handleTextChange({ name: 'endAt', value })}
             />
-            <Text style={style.maraudeText}>Lieu</Text>
-            <CitySearcher
-              handleCityChange={(value) => this.handleTextChange({ name: 'city', value })}
-              handlePositionSelect={this.handlePositionSelect}
-              city={this.state.city}
-              errors={this.state.errors}
-            />
-            {
-              //TODO This Button serves to test the connection between frontend and api
-              //It must be replace before production
-            }
-            <ButtonCreate label="Valider" submit={this.submitForm}/>
-          </Form>
-        </Content>
-      </View>
-      </ScrollView>
-      <GlobalFooter/>
-      </React.Fragment> */}
-              <Text style={style.inputText}>Heure de début de la Maraude</Text>
-              <TimePicker
-                style={{
-                  borderColor: this.state.errors.includes('startAt') ? 'red' : '#FDC500',
-                  width: 300,
-                  height: 60,
-                  borderRadius: 5,
-                  borderWidth: 1,
-                  marginLeft: 10
-                }}
-                onChange={(value) => this.handleTextChange({ name: 'startAt', value })}
-              />
-              <Text style={style.inputText}>Heure de fin de la Maraude</Text>
-              <TimePicker
-                style={{
-                  borderColor: this.state.errors.includes('endAt') ? 'red' : '#FDC500',
-                  width: 300,
-                  height: 60,
-                  borderRadius: 5,
-                  borderWidth: 1,
-                  marginLeft: 10
-                }}
-                onChange={(value) => this.handleTextChange({ name: 'endAt', value })}
-              />
+            <Text style={style.inputText}>
+              Lieu</Text>
               <CitySearcher
                 handleCityChange={(value) => this.handleTextChange({ name: 'city', value })}
                 handlePositionSelect={this.handlePositionSelect}
                 city={this.state.city}
                 errors={this.state.errors}
               />
+              <View style={{marginBottom: 200, marginTop: -20}}>
               <CustomButton
                 label="Créer la Maraude"
                 fontSize={25}
                 colorfill="#FDC500"
                 onPressFunc={this.submitForm} />
+              </View>
             </Form>
+            </ScrollView>
           </KeyboardAvoidingView>
-        </ScrollView>
         <GlobalFooter/>
       </Root>
     )
@@ -249,18 +168,21 @@ const style = StyleSheet.create({
     fontSize: 40
   },
   inputText: {
+    fontSize: 18,
+    color: 'white',
     marginBottom: 5,
     marginTop: 25,
-    fontWeight: 'bold'
+    fontFamily: 'Tinos_bold',
+    alignSelf: 'flex-start', 
+
+
   },
   maraudeText: {
     marginBottom: 5,
     marginTop: 25,
     fontWeight: 'bold'
   },
-  pickerTime: {
-    marginLeft: 8
-  }
+  
 })
 
 const mapDispatchToProps = {

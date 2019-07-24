@@ -4,7 +4,6 @@ import { Input, Picker, Form, Item } from 'native-base';
 import { connect } from 'react-redux';
 import { createParticipant } from '../../../store/actions/participant';
 import CustomButton from '../../../components/CustomButton'
-import { Toast, Root } from 'native-base';
 
 const requiredFields = ['email', 'city', 'lastName', 'firstName', 'job']
 
@@ -34,15 +33,12 @@ export class ParticipForm extends Component {
       errors: [],
     }
   }
-
   _keyExtractor = (item, index) => item.key;
-
   componentDidMount() {
     if (this.props.auth.user.isConnected) {
       this.setState({ ...this.state, participant: { ...this.state.participant, ...this.props.auth.user } })
     }
   }
-
   submitForm = () => {
     let errors = [];
     requiredFields.forEach((field) => {
@@ -59,7 +55,6 @@ export class ParticipForm extends Component {
       this.props.navigation.navigate('Map')
     }
   }
-
   resetError(field) {
     let { errors } = this.state;
     if (errors.includes(field)) {
@@ -68,68 +63,90 @@ export class ParticipForm extends Component {
       this.setState({ errors })
     }
   }
-
   GetItem(item) {
     this.setState({ ...this.state, participant: { ...this.state.participant, job: item } })
     this.resetError('job')
     Alert.alert("Vous avez sélectionné la profession " + `"${item}"`);
   }
-
   render() {
     return (
       <View>
+        <View style={{alignSelf: 'center', backgroundColor: '#2D2D2D', width: '100%'}}>
+          <Text style={{
+            color: 'white',
+            alignSelf: 'center', 
+            fontFamily: "Sedgwick",
+            marginBottom: 10,
+            marginTop: 25,
+            fontWeight: 'bold',
+            fontSize: 40}}>
+              Participation
+          </Text>
+        </View>
         <KeyboardAvoidingView behavior="padding" enabled>
-          <ScrollView>
+          <ScrollView style={{backgroundColor: '#2D2D2D'}}>
             <Form
-              style={{ marginTop: 30, justifyContent: 'center' }}
-            >
-              <Text style={styles.title}>Inscription en tant que participant</Text>
-              <Text style={styles.text}>Nom *</Text>
-              <Item regular style={{ borderColor: 'white' }}>
+              style={{ alignSelf: 'center', width: '90%'}}>
+              <Text style={styles.inputText}>Nom</Text>
+              <Item regular style={{
+              borderColor: this.state.errors.includes('lastName') ? 'red' : '#FDC500',
+              height: 60,
+              borderRadius: 5,
+              borderWidth: 1,
+              backgroundColor: 'white'
+            }}>
                 <Input
                   value={this.state.participant.lastName}
                   onChangeText={(value) => {
                     this.setState({ ...this.state, participant: { ...this.state.participant, lastName: value } })
                     this.resetError('lastName')
                   }}
-                  style={this.state.errors.includes("lastName") ? styles.erronedField : styles.field}
-                  placeholder="Nom du participant"
                 />
               </Item>
-              <Text style={styles.text}>Prénom *</Text>
-              <Item regular style={{ borderColor: 'white' }}>
+              <Text style={styles.inputText}>Prénom</Text>
+              <Item regular style={{
+              borderColor: this.state.errors.includes('firstName') ? 'red' : '#FDC500',
+              height: 60,
+              borderRadius: 5,
+              borderWidth: 1,
+              backgroundColor: 'white'
+            }}>
                 <Input
                   value={this.state.participant.firstName}
                   onChangeText={(value) => {
                     this.setState({ ...this.state, participant: { ...this.state.participant, firstName: value } })
                     this.resetError('firstName')
                   }}
-                  style={this.state.errors.includes("firstName") ? styles.erronedField : styles.field}
-                  placeholder="Prénom du participant"
                 />
               </Item>
-
-              <Text style={styles.text}>E-mail *</Text>
-              <Item regular style={{ borderColor: 'white' }}>
+              <Text style={styles.inputText}>E-mail</Text>
+              <Item regular style={{
+              borderColor: this.state.errors.includes('email') ? 'red' : '#FDC500',
+              height: 60,
+              borderRadius: 5,
+              borderWidth: 1,
+              backgroundColor: 'white'
+            }}>
                 <Input
                   value={this.state.participant.email}
                   onChangeText={(value) => {
                     this.setState({ ...this.state, participant: { ...this.state.participant, email: value } })
                     this.resetError('email')
                   }}
-                  style={this.state.errors.includes("email") ? styles.erronedField : styles.field}
-                  placeholder="Adresse mail du participant"
                 />
               </Item>
-              <Text style={styles.text}>Profession *</Text>
-              <Item regular style={{ borderColor: 'white' }}>
+              <Text style={styles.inputText}>Profession</Text>
+              <Item regular style={{
+              borderColor: this.state.errors.includes('job') ? 'red' : '#FDC500',
+              height: 60,
+              borderRadius: 5,
+              borderWidth: 1,
+              backgroundColor: 'white',
+            }}>
                 <Picker
                   selectedValue={this.state.participant.job}
-                  style={{ ...styles.field, width: '98%' }}
                   mode="dropdown"
-                  placeholder="Votre profession"
-                  placeholderStyle={{ paddingLeft: 10, color: '#666666', fontFamily: 'Tinos', fontSize: 18, }}
-                  textStyle={{ color: 'black', paddingLeft: 10, fontSize: 18, fontFamily: 'Tinos', fontWeight: 'bold' }}
+                  placeholder={'voqcvqxgqfgq'}
                   onValueChange={(itemValue, itemIndex) => {
                     return (
                       this.setState({
@@ -148,24 +165,32 @@ export class ParticipForm extends Component {
                   }
                 </Picker>
               </Item>
-              <Text style={styles.text}>Ville*</Text>
-              <Item regular style={{ borderColor: 'white' }}>
+              <Text style={styles.inputText}>Ville</Text>
+              <Item regular style={{
+              borderColor: this.state.errors.includes('city') ? 'red' : '#FDC500',
+              height: 60,
+              borderRadius: 5,
+              borderWidth: 1,
+              backgroundColor: 'white'
+            }}>
                 <Input
                   value={this.state.participant.city}
                   onChangeText={(value) => {
                     this.setState({ ...this.state, participant: { ...this.state.participant, city: value } })
                     this.resetError('city')
                   }}
-                  style={this.state.errors.includes("city") ? styles.erronedField : styles.field}
-                  placeholder="Ville du participant"
+                  placeholder="Ville"
+                  placeholderTextColor='black'
                 />
               </Item>
+              <View style={{marginBottom: 280}}>
+                <CustomButton
+                  label="Créer la Maraude"
+                  fontSize={25}
+                  colorfill="#FDC500"
+                  onPressFunc={this.submitForm} />
+              </View>
             </Form>
-            <CustomButton
-              label="Valider"
-              fontSize={25}
-              colorfill="#FDC500"
-              onPressFunc={this.submitForm} />
           </ScrollView>
         </KeyboardAvoidingView>
       </View>
@@ -174,57 +199,13 @@ export class ParticipForm extends Component {
 }
 
 const styles = StyleSheet.create({
-  title: {
-    fontSize: 25,
-    textAlign: 'center',
-    fontWeight: 'bold'
-  },
-  field: {
-    borderColor: '#FDC500',
-    height: 60,
-    borderWidth: 2,
-    width: '90%',
-    borderRadius: 10,
-    padding: 5,
+  inputText: {
     fontSize: 18,
-    marginLeft: 11,
-    marginRight: 11
-  },
-  erronedField: {
-    borderColor: 'red',
-    height: 60,
-    borderWidth: 2,
-    width: '90%',
-    borderRadius: 10,
-    padding: 5,
-    fontSize: 18,
-    marginLeft: 11,
-    marginRight: 11
-  },
-  text: {
-    fontFamily: 'Tinos',
-    fontWeight: 'bold',
-    alignItems: 'center',
+    color: 'white',
     marginBottom: 5,
-    marginLeft: 11,
-    marginTop: 25
-  },
-  container: {
-    display: 'flex',
-    flexDirection: 'row',
-    height: 110
-  },
-  flatListContainer: {
-    backgroundColor: 'white',
-    borderWidth: 2,
-    borderColor: '#FDC500',
-    borderRadius: 10,
-    width: '70%',
-    marginLeft: 11,
-  },
-  item: {
-    padding: 8,
-    fontSize: 15
+    marginTop: 25,
+    fontFamily: 'Tinos_bold',
+    alignSelf: 'flex-start'
   }
 });
 const mapStateToProps = (state) => ({

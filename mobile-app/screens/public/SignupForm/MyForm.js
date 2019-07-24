@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Text, ScrollView, View } from 'react-native';
+import { Text, ScrollView, View, KeyboardAvoidingView } from 'react-native';
 import { Form, Field } from 'react-native-validate-form';
 import InputField from './InputField';
 import AvatarUpload from './Avatar';
@@ -90,16 +90,20 @@ class MyForm extends Component {
 
     return (
       <Root>
-        <Text style={{
-          alignSelf: 'center',
-          fontFamily: 'Sedgwick',
-          marginTop: 25,
-          fontWeight: 'bold',
-          fontSize: 40
-        }}>
-          Inscription
-       </Text>
-        <ScrollView style={{ margin: 30 }}>
+        <View style={{alignSelf: 'center', backgroundColor: '#2D2D2D', width: '100%'}}>
+          <Text style={{
+            color: 'white',
+            alignSelf: 'center', 
+            fontFamily: "Sedgwick",
+            marginBottom: 10,
+            marginTop: 25,
+            fontWeight: 'bold',
+            fontSize: 40}}>
+              Inscription
+          </Text>
+        </View>
+        <KeyboardAvoidingView behavior="padding" enabled >
+        <ScrollView style={{backgroundColor: '#2D2D2D'}}>
 
           <AvatarUpload
             resetError={this.resetError}
@@ -107,12 +111,13 @@ class MyForm extends Component {
             onSelected={(file) => this.setState({ avatar: file })} />
 
           <Form
+            style={{ alignSelf: 'center', width: '90%' }}
             ref={(ref) => this.myForm = ref}
             validate={true}
             errors={this.state.errors}
 
           >
-            <Text style={style.inputText}>Nom *</Text>
+            <Text style={style.inputText}>Nom</Text>
             <Field
               component={InputField}
               name="name"
@@ -121,11 +126,11 @@ class MyForm extends Component {
               customStyle={style.field}
             />
 
-            <Text style={style.inputText}>Prénom *</Text>
+            <Text style={style.inputText}>Prénom</Text>
             <Field
               component={InputField}
-              name="firstname"
-              value={this.state.firstname}
+              name="firstName"
+              value={this.state.firstName}
               onChangeText={(val) => this.handleTextChange('firstName', val)}
               customStyle={style.field}
             />
@@ -139,7 +144,7 @@ class MyForm extends Component {
               customStyle={style.field}
             />
 
-            <Text style={style.inputText}>E-mail *</Text>
+            <Text style={style.inputText}>E-mail</Text>
             <Field
               component={InputField}
               name="email"
@@ -148,7 +153,7 @@ class MyForm extends Component {
               customStyle={style.field}
             />
 
-            <Text style={style.inputText}>Mot de passe *</Text>
+            <Text style={style.inputText}>Mot de passe</Text>
             <Field
               secureTextEntry
               component={InputField}
@@ -159,7 +164,7 @@ class MyForm extends Component {
               customStyle={style.field}
             />
 
-            <Text style={style.inputText}>Confirmer le mot de passe *</Text>
+            <Text style={style.inputText}>Confirmer le mot de passe</Text>
             <Field
               secureTextEntry
               component={InputField}
@@ -170,7 +175,7 @@ class MyForm extends Component {
               customStyle={style.field}
             />
 
-            <Text style={style.inputText}>Entrez votre code de parrainage *</Text>
+            <Text style={style.inputText}>Entrez votre code de parrainage</Text>
             <Field
               component={InputField}
               name="invitationCode"
@@ -180,13 +185,15 @@ class MyForm extends Component {
               customStyle={style.field}
             />
           </Form>
-          <CustomButton
-            disabled={this.state.loading}
-            label="Valider"
-            navigation={this.props.navigation}
-            screen="LoginForm"
-            onPressFunc={this.submitForm}/>
+          <View style={{marginBottom: 200}}>
+              <CustomButton
+                label="Créer la Maraude"
+                fontSize={25}
+                colorfill="#FDC500"
+                onPressFunc={this.submitForm} />
+              </View>
         </ScrollView>
+        </KeyboardAvoidingView>
         <GlobalFooter/>
       </Root>
     );
@@ -198,15 +205,18 @@ class MyForm extends Component {
 const style = {
   field: {
     borderColor: '#FDC500',
-    height: 50,
+    height: 60,
     borderWidth: 1,
     borderRadius: 5,
-    fontSize: 18
+    fontSize: 18,
+    backgroundColor: 'white'
   },
   inputText: {
     fontFamily: 'Tinos_bold',
     marginBottom: 5,
-    marginTop: 25
+    marginTop: 25,
+    color: 'white',
+    fontSize: 18
   },
   container: {
     display: 'flex',
