@@ -2,7 +2,7 @@
   "name": "coiff-in-the-street",
   "version": "0.0.0",
   "private": true,
- "scripts": {
+  "scripts": {
     "start": "nodemon ./bin/www",
     "makedoc": "apidoc -i ./routes -o ./api-documentation"
   },
@@ -13,6 +13,7 @@
     "url": "api/v1"
   },
   "dependencies": {
+    "apidoc": "^0.17.7",
     "bcrypt": "^3.0.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",

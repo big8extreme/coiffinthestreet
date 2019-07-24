@@ -2,7 +2,6 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
 var usersRouter = require('./routes/users');
 var maraudesRouter = require('./routes/maraudes');
 var authRouter = require('./routes/auth');
@@ -13,7 +12,6 @@ var picturesRouter = require('./routes/pictures');
 const passport = require('passport');
 const { localAuthStrategy } = require('./routes/strategies/local');
 const { jwtAuthStrategy } = require('./routes/strategies/jwt');
-
 
 var app = express();
 
@@ -35,6 +33,11 @@ app.use('/api/v1/maraudes', maraudesRouter);
 app.use('/api/v1/participants', participantsRouter);
 app.use('/api/v1/configs', configsRouter);
 app.use('/api/v1/pictures', picturesRouter);
+
+app.use(express.static(path.join(__dirname, 'api-documentation')));
+app.get('/documentation', function (req, res) {
+  res.sendFile(path.join(__dirname, 'api-documentation', 'index.html'));
+});
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, 'client')));
