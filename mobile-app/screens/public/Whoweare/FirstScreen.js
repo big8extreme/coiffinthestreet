@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { View, StyleSheet,  Linking  } from 'react-native';
 import { Card,ListItem } from 'react-native-elements'
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default class FirstScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = { valx: 0 };
   }
-
   render() {
     const list = [
       {
@@ -34,12 +34,8 @@ export default class FirstScreen extends React.Component {
     ]
     return (
       <React.Fragment>
-
-
         <View style={styles.container}>
-
           <Card >
-
             <ListItem
               leftAvatar={{ source: { uri: 'https://img.aws.la-croix.com/2018/10/25/1200978629/kevinortegaok_0_729_731.jpg' } }}
               title='Kevin Ortega'
@@ -49,7 +45,6 @@ export default class FirstScreen extends React.Component {
             />
           </Card>
         </View>
-
         <View style={styles.container}>
           <Card title="Bénévoles" >
             {
@@ -73,7 +68,7 @@ export default class FirstScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#4E4E4E',
+    backgroundColor: '#2D2D2D',
   },
   paragraph: {
     margin: 24,
@@ -82,6 +77,4 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
-
-
 });

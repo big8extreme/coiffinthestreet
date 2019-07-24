@@ -93,7 +93,7 @@ export default function CardMaraude({ maraude = {}, navigation = {}, currentUser
         <CustomButton
           label="Je souhaite participer"
           fontSize={25}
-          colorfill="blue"
+          colorfill="#0F2148"
           onPressFunc={() => navigation.navigate("Participant", { maraudeId: maraude.id })} />
       </View>
       }

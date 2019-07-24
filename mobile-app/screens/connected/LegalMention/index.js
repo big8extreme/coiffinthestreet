@@ -21,7 +21,7 @@ class LegalMentions extends Component {
     return (
       <Provider store={store}>
         <View style={styles.backgroundApp}>
-          <Text style={styles.Titletext}>MENTIONS LEGALES</Text>
+          <Text style={styles.Titletext}>Mentions légales</Text>
           <ScrollView>
             <Text style={styles.textLegal}>{this.props.config.legalMention}</Text>
           </ScrollView>
@@ -44,7 +44,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(LegalMentions);
 
 const styles = StyleSheet.create({
   backgroundApp: {
-    backgroundColor: '#4E4E4E', flex: 1,
+    backgroundColor: '#2D2D2D', flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
