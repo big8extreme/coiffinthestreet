@@ -183,6 +183,25 @@ export default createDrawerNavigator({
       }
     }
   },
+  ChangePassword: {
+    screen: ChangePassword,
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: "",
+        drawerLabel: () => {
+          return store.getState().auth.user.isConnected ?
+            <View style={styles.view}>
+              <TouchableOpacity style={styles.flex} onPress={() => navigation.navigate('ChangePassword')}>
+                <Icon name="ios-lock" size={25} style={styles.icon} />
+                <Text style={styles.text}>Modifier mon mot de passe</Text>
+              </TouchableOpacity>
+            </View>
+            :
+            null
+        }
+      }
+    }
+  },
   LegalMention: {
     screen: LegalMention,
     navigationOptions: ({ navigation }) => {
@@ -195,24 +214,6 @@ export default createDrawerNavigator({
               <Text style={styles.text}>Mentions légales</Text>
             </TouchableOpacity>
           </View>
-        }
-      }
-    }
-  },
-  ChangePassword: {
-    screen: ChangePassword,
-    navigationOptions: ({ navigation }) => {
-      return {
-        title: "",
-        drawerLabel: () => {
-          return store.getState().auth.user.isConnected ?
-            <View style={{ padding: 20 }}>
-              <TouchableOpacity onPress={() => navigation.navigate('ChangePassword')}>
-                <Text style={styles.text}>Modifier mon mot de passe</Text>
-              </TouchableOpacity>
-            </View>
-            :
-            null
         }
       }
     }
@@ -239,7 +240,7 @@ export default createDrawerNavigator({
   }
 },
   {
-    initialRouteName: 'ChangePassword',
+    initialRouteName: 'BottomTab',
     drawerPosition: 'right',
     drawerBackgroundColor: "#2D2D2D",
     drawerWidth: Math.min(width) * 0.8,
