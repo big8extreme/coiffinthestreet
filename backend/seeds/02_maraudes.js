@@ -155,25 +155,6 @@ Maraude.create({
   .catch((error) => { console.log(error); });
 
 Maraude.create({
-  userId: 4,
-  title: "Maraude du parc",
-  startAt: new Date('2019-06-15T8:00:00'),
-  endAt: new Date('2019-06-15T17:30:00'),
-  description: "Très belle maraude, les participants étaient au top !",
-  city: 'Arles',
-  isPublished: true,
-  longitude: '4.633333',
-  latitude: '43.666667',
-  photos: [
-    { url: `${getHost()}/uploads/maraudes/IMG_25.jpg` },
-    { url: `${getHost()}/uploads/maraudes/IMG_26.jpg` },
-    { url: `${getHost()}/uploads/maraudes/IMG_27.jpg` },
-  ]
-}, { include: ['photos'] })
-  .then((maraude) => { console.log(maraude); })
-  .catch((error) => { console.log(error); });
-
-Maraude.create({
   userId: 3,
   title: 'Maraude au quartier est',
   startAt: new Date('2019-06-16T07:00:00'),
@@ -184,9 +165,9 @@ Maraude.create({
   longitude: '4.35',
   latitude: '43.8333',
   photos: [
-    { url: `${getHost()}/uploads/maraudes/IMG_28.jpg` },
-    { url: `${getHost()}/uploads/maraudes/IMG_29.jpg` },
-    { url: `${getHost()}/uploads/maraudes/IMG_30.jpg` },
+    { url: `${getHost()}/uploads/maraudes/IMG_25.jpg` },
+    { url: `${getHost()}/uploads/maraudes/IMG_26.jpg` },
+    { url: `${getHost()}/uploads/maraudes/IMG_27.jpg` },
   ]
 }, { include: ['photos'] })
   .then((maraude) => { console.log(maraude); })
@@ -200,12 +181,12 @@ Maraude.create({
   description: 'Un super couché de soleil et un moment riche en émotion ... A refaire vite !',
   city: 'Aix-en-provence',
   isPublished: true,
-  longitude: '5.41259',
-  latitude: '43.337499',
+  longitude: '4.35',
+  latitude: '43.8333',
   photos: [
-    { url: `${getHost()}/uploads/maraudes/IMG_31.jpg` },
-    { url: `${getHost()}/uploads/maraudes/IMG_32.jpg` },
-    { url: `${getHost()}/uploads/maraudes/IMG_33.jpg` },
+    { url: `${getHost()}/uploads/maraudes/IMG_28.jpg` },
+    { url: `${getHost()}/uploads/maraudes/IMG_29.jpg` },
+    { url: `${getHost()}/uploads/maraudes/IMG_30.jpg` },
   ]
 }, { include: ['photos'] })
   .then((maraude) => { console.log(maraude); })
@@ -214,8 +195,8 @@ Maraude.create({
 Maraude.create({
   userId: 1,
   title: 'Maraude Niçoise',
-  startAt: new Date('2019-07-12T14:30:00'),
-  endAt: new Date('2019-07-12T19:30:00'),
+  startAt: new Date('2019-08-12T14:30:00'),
+  endAt: new Date('2019-08-12T19:30:00'),
   description: "Mauvais temps prévu ce jour là. Participants, n'hésitez pas à sortir couverts !",
   city: 'Nice',
   isPublished: true,
@@ -229,8 +210,8 @@ Maraude.create({
 Maraude.create({
   userId: 2,
   title: 'Maraude en centre ville',
-  startAt: new Date('2019-07-13T12:30:00'),
-  endAt: new Date('2019-07-13T18:15:00'),
+  startAt: new Date('2019-08-13T12:30:00'),
+  endAt: new Date('2019-08-13T18:15:00'),
   description: 'Déja un photographe et deux coiffeurs prévus. Un esthéticien serait le bienvenue.',
   city: 'Marseille',
   isPublished: true,
@@ -244,8 +225,8 @@ Maraude.create({
 Maraude.create({
   userId: 4,
   title: 'Maraude du Sud',
-  startAt: new Date('2019-07-14T08:30:00'),
-  endAt: new Date('2019-07-14T13:15:00'),
+  startAt: new Date('2019-08-14T08:30:00'),
+  endAt: new Date('2019-08-14T13:15:00'),
   description: 'Belle maraude dans une belle ville.',
   city: 'Arles',
   isPublished: true,
@@ -259,8 +240,8 @@ Maraude.create({
 Maraude.create({
   userId: 5,
   title: 'La bienveillance avant tout !',
-  startAt: new Date('2019-07-15T07:30:00'),
-  endAt: new Date('2019-07-15T12:15:00'),
+  startAt: new Date('2019-08-15T07:30:00'),
+  endAt: new Date('2019-08-15T12:15:00'),
   description: "Besoin d'un esthéticien pour une maraude à notre-dame-de-Beauvoir",
   city: 'Istres',
   isPublished: true,
@@ -274,28 +255,13 @@ Maraude.create({
 Maraude.create({
   userId: 6,
   title: 'Maraude des arènes',
-  startAt: new Date('2019-07-16T07:30:00'),
-  endAt: new Date('2019-07-16T12:15:00'),
+  startAt: new Date('2019-08-16T07:30:00'),
+  endAt: new Date('2019-08-16T12:15:00'),
   description: "Je commence la maraude aux arènes de Nîmes et la maraude se fera sur tout le centre ville et plus si on a encore le temps.",
   city: 'Nîmes',
   isPublished: true,
   longitude: '4.35',
   latitude: '43.8333',
-  photos: []
-}, { include: ['photos'] })
-  .then((maraude) => { console.log(maraude); })
-  .catch((error) => { console.log(error); });
-
-Maraude.create({
-  userId: 2,
-  title: "Maraude de l'extreme",
-  startAt: new Date('2019-07-17T8:00:00'),
-  endAt: new Date('2019-07-17T17:30:00'),
-  description: "Envie de faire une longue maraude ? J'en organise une ! 8h pour les plus endurants ! comptez 8h45 en totalité pour la pause repas",
-  city: 'Nice',
-  isPublished: true,
-  longitude: '7.25',
-  latitude: '43.7',
   photos: []
 }, { include: ['photos'] })
   .then((maraude) => { console.log(maraude); })
