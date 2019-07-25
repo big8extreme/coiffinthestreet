@@ -5,6 +5,7 @@ import Axios from 'axios';
 export const fetchConfigs = () => {
     return async function (dispatch, getState) {
         function onSucces(response) {
+
             dispatch({ type: FETCH_CONFIGS, payload: response.data.configs })
         }
         function onError(error) {
@@ -31,17 +32,8 @@ export function contactAdmin(fields) {
             dispatch({ type: ERROR_ON_CONTACT, payload: error })
             return { error, status: 'error' };
         }
-
-        const message = {
-            ...fields,
-            email: getState().auth.user.email,
-            firstName: getState().auth.user.firstName,
-            lastName: getState().auth.user.lastName,
-        }
         try {
-            const response = await Axios.post(`${baseUrlApi}/configs/contact`, { ...message }, {
-                headers: { Authorization: `bearer ${getState().auth.user.token}` }
-            })
+            const response = await Axios.post(`${baseUrlApi}/configs/contact`, { ...fields })
             return onSuccess(response)
         }
         catch (err) {

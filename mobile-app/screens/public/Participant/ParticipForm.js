@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, KeyboardAvoidingView, Alert, ScrollView } from 'react-native';
+import { StyleSheet, Text, KeyboardAvoidingView, Alert, ScrollView, View } from 'react-native';
 import { Input, Picker, Form, Item } from 'native-base';
 import { connect } from 'react-redux';
 import { createParticipant } from '../../../store/actions/participant';
@@ -77,7 +77,7 @@ export class ParticipForm extends Component {
 
   render() {
     return (
-      <Root>
+      <View>
         <KeyboardAvoidingView behavior="padding" enabled>
           <ScrollView>
             <Form
@@ -168,7 +168,7 @@ export class ParticipForm extends Component {
               onPressFunc={this.submitForm} />
           </ScrollView>
         </KeyboardAvoidingView>
-      </Root >
+      </View>
     );
   }
 }

@@ -1,0 +1,1 @@
+{  "name": "Coiff In The Street Documentation",  "version": "1.0.0",  "title": "Wavager API documentation (v1)",  "url": "api/v1",  "description": "",  "sampleUrl": false,  "defaultVersion": "0.0.0",  "apidoc": "0.3.0",  "generator": {    "name": "apidoc",    "time": "2019-07-24T15:04:19.634Z",    "url": "http://apidocjs.com",    "version": "0.17.7"  }}

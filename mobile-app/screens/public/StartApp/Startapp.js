@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { StyleSheet, View, Dimensions, Image, Linking, TouchableOpacity, ImageBackground } from 'react-native';
 import CustomButton from '../../../components/CustomButton';
+import { withNavigation } from 'react-navigation';
 
 const config = {
   deviceWidth: Dimensions.get('window').width,
@@ -69,8 +70,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
 
 }
+export default withNavigation(connect(mapStateToProps, mapDispatchToProps)(Startapp))
 
-export default connect(mapStateToProps, mapDispatchToProps)(Startapp)
 
 const stylestar = StyleSheet.create({
   container: {
@@ -81,12 +82,13 @@ const stylestar = StyleSheet.create({
   backgroundApp: {
     backgroundColor: '#2D2D2D',
     flex: 1,
+    height: '100%'
   },
   firstbutton: {
     alignSelf: 'center',
     marginBottom: 20,
     position: "absolute",
-    marginTop: 250,
+    marginTop: 200,
   },
   iconeline: {
     alignSelf: 'center',
@@ -118,3 +120,5 @@ const stylestar = StyleSheet.create({
 
   },
 });
+
+

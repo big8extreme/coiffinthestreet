@@ -30,6 +30,7 @@ module.exports = {
       password: req.body.password,
       avatarUrl: req.file ? `${getHost()}/${req.file.path}` : null,
       isAdmin: req.body.isAdmin || false,
+      isActive: true,
       invitationCode: generateRandomString(8),
       godFatherId: req.inviter.id
     })
@@ -53,16 +54,47 @@ module.exports = {
         res.status(500).json({ message: error.message, error });
       });
   },
-
+  deleteAccount: function (req, res, next) {
+    User.findOne({ where: { email: req.body.email } })
+      .then((user) => {
+        if (user) {
+          user.update({ isActive: false }) // dont really destroy to keep userId on maraude
+            .then((deletedUser) => { res.json({ user: deletedUser }); })
+            .catch((error) => { res.status(500).json({ error }); });
+        } else {
+          res.status(404).json({ message: 'User not found' });
+        }
+      })
+      .catch((error) => { res.status(500).json({ error }); });
+  },
+  changePassword: function (req, res, next) {
+    User.findOne({ where: { email: req.body.email } })
+      .then((user) => {
+        if (user) {
+          bcrypt.compare(req.body.oldPassword, user.dataValues.password, function (err, result) {
+            if (result) {
+              user.update({ password: req.body.password })
+                .then((updatedUser) => { res.json({ user: updatedUser }); })
+                .catch((error) => { res.status(500).json({ error }); });
+            } else {
+              res.status(401).json({ message: 'Invalid password' });
+            }
+          });
+        } else {
+          res.status(404).json({ message: 'User not found' });
+        }
+      })
+      .catch((error) => { res.status(500).json({ error }); });
+  },
   forgetPassword: function (req, res, next) {
     //Charger en base l'utilisateur concerné
     const generatePassword = () => {
-      let char = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!?@#$_=+';
+      let char = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
       let password = '';
-      for (i = 0; i < 10; i++) {
-        if (i < 9) k = Math.floor(Math.random() * 62);
-        else k = Math.floor(Math.random() * 8) + 62;
-        password += char[k];
+      let k;
+      for (let i = 0; i < 10; i++) {
+        const randomChar = char[Math.floor(Math.random() * char.length)];
+        password += randomChar;
       }
       return password;
     };
@@ -80,29 +112,24 @@ module.exports = {
         //Encrypter le mot de passe (bcrypt)
         //TODO Use other function than findAll to get only one result    
         const password = generatePassword();
-        bcrypt.genSalt(10, function (err, salt) {
-          bcrypt.hash(password, salt, function (err, hash) {
-            //Mettre à jour le mot de passe de l'utilisateur (avec la version chiffré)
-            user.update({
-              password: hash
-            })
-              .then((updatedUser) => {
-                const userDatas = {
-                  id: user.id,
-                  password: password //dans l'email on renvoi le mot de passe en clair
-                };
+        user.update({
+          password
+        })
+          .then((updatedUser) => {
+            const userDatas = {
+              id: user.id,
+              password: password //dans l'email on renvoi le mot de passe en clair
+            };
 
-                mailer(userDatas, user.email, 'resetPassword');
-                res.json({ updatedUser });
-              })
-              .catch((error) => {
-                res.status(500).json({ error })
-              });
+            mailer(userDatas, user.email, 'resetPassword');
+            res.json({ updatedUser });
+          })
+          .catch((error) => {
+            res.status(500).json({ error });
           });
-        });
       })
       .catch((error) => {
-        res.status(500).json({ error })
+        res.status(500).json({ error });
       });
   }
 };

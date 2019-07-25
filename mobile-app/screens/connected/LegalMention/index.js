@@ -5,8 +5,9 @@ import { Provider } from 'react-redux';
 import store from '../../../store';
 import { connect } from 'react-redux'
 import { fetchConfigs } from '../../../store/actions/config'
+import GlobalFooter from '../../../components/GlobalFooter';
 
-export class LegalMentions extends Component {
+class LegalMentions extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,9 +16,7 @@ export class LegalMentions extends Component {
   }
   componentDidMount() {
     this.props.fetchConfigs();
-
   }
-
   render() {
     return (
       <Provider store={store}>
@@ -27,6 +26,7 @@ export class LegalMentions extends Component {
             <Text style={styles.textLegal}>{this.props.config.legalMention}</Text>
           </ScrollView>
         </View>
+        <GlobalFooter/>
       </Provider>
     );
   }
@@ -38,7 +38,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   fetchConfigs
-
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LegalMentions);

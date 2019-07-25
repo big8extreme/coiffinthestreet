@@ -25,7 +25,7 @@ class ClusterMarker extends React.Component {
     this.setState({ modalVisible: visible });
   }
   render() {
-    const { navigate } = this.props.navigation;
+    const { navigate } = this.props.navigation;    
     return (
       <View>
         <Marker
@@ -35,7 +35,10 @@ class ClusterMarker extends React.Component {
             latitude: this.props.latitude,
             longitude: this.props.longitude
           }}
-          image={require('../../../assets/pin.png')}>
+          image={require('../../../assets/pin.png')}
+          onPress={() => {
+            this.toggleModal(true);
+          }}>
           <Badge style={{ paddingTop: 3 }}>
             <Text style={{ color: 'white' }}>{this.props.count}</Text>
           </Badge>
@@ -54,7 +57,22 @@ class ClusterMarker extends React.Component {
                 <Text style={{ color: 'white', fontSize: 15 }}>X</Text>
               </TouchableHighlight>
             </View>
-            <Text style={{ fontFamily: "Sedgwick", fontWeight: 'bold', fontSize: 30, alignSelf: 'center', alignItems: 'center', justifyContent: 'center', color: 'white', marginBottom: 10 }}>Liste des maraudes</Text>
+            <Text style={{fontFamily: "Sedgwick", fontWeight: 'bold', fontSize: 30, alignSelf: 'center', alignItems: 'center', justifyContent: 'center', color: 'white', marginBottom: 10}}>Liste des maraudes</Text>
+            <ScrollView>
+                {this.props.markers.map((marker, index) => {
+                  return  <ListItem
+                            containerStyle={{ backgroundColor: 'rgba(0, 0, 0, 0)', width: '90%', alignSelf: 'center'}}
+                            key={index}
+                            leftAvatar={{ source: { uri: marker.author.avatarUrl} }}
+                            title={marker.title}
+                            titleStyle={{color: '#FFF'}}
+                            subtitle={<Text style={{color: '#C0C0C0'}}>{marker.description}</Text>}
+                            rightIcon={<TouchableOpacity onPress={() => {navigate('Participant', {selectedMaraudeId : marker.id}); this.toggleModal(!this.state.modalVisible) }}>
+                                        <Icon name="ios-log-in" size={30} style={{color: '#FFF'}}  />
+                                      </TouchableOpacity>}
+                          />
+                          })}
+            </ScrollView>
             <Button bordered light style={{ alignSelf: 'center', padding: 10, marginBottom: 30, marginTop: 10 }} onPress={() => { navigate('List'); this.toggleModal(!this.state.modalVisible) }}>
               <Text style={{ color: 'white' }}>Plus de détails</Text>
             </Button>

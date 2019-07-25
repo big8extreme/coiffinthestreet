@@ -10,15 +10,12 @@ export default class TimePicker extends Component {
       isTimePickerVisible: false
     };
   }
-
   showPicker = () => {
     this.setState({ isTimePickerVisible: true });
   };
-
   hidePicker = () => {
     this.setState({ isTimePickerVisible: false });
   };
-
   handlePicker = time => {
     this.setState({
       isTimePickerVisible: false,
@@ -26,7 +23,6 @@ export default class TimePicker extends Component {
     })
     this.props.onChange(time)
   };
-
   render() {
     return (
       <View>

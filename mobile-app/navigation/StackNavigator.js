@@ -16,16 +16,6 @@ import StartApp from '../screens/public/StartApp/Startapp';
 import SignUp from '../screens/public/SignupForm/MyForm'
 import MaraudePictures from "../screens/connected/MaraudeEdit/MaraudePictures";
 
-// const AppStack = createStackNavigator(
-//   {
-//     Profile: { screen: Profile },
-//   },
-//   {
-//     initialRouteName: "Profile",
-//     navigationOptions: { header: null },
-//   },
-// );
-
 const AuthStack = createStackNavigator(
   {
     Login: { screen: LoginForm },
@@ -39,11 +29,11 @@ const AuthStack = createStackNavigator(
   },
   {
     initialRouteName: "BottomTabNav",
-
     headerMode: 'none',
     navigationOptions: {
       // @ts-ignore
       headerVisible: false,
+      header: null
     }
   }
 );
@@ -52,7 +42,6 @@ export default createAppContainer(
   createSwitchNavigator(
     {
       Tab: BottomTabNav,
-      // App: AppStack,
       Auth: AuthStack,
       StartApp: StartApp,
       DrawerMenu: DrawerMenu

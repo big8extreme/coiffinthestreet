@@ -99,8 +99,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(forgetPassword)
 
 const styles = StyleSheet.create({
     backgroundApp: {
-        backgroundColor: '#4E4E4E', flex: 1,
-        paddingTop: 200,
+        backgroundColor: '#2D2D2D', flex: 1,
     },
     flexCenter: {
         flexDirection: 'column',
@@ -108,9 +107,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     flexCenterImg: {
-        flexDirection: 'row',
-        justifyContent: 'center',
+        alignSelf: 'center',
         marginBottom: 30,
+        marginTop: 30,
+        paddingBottom: 100,
     },
     whiteText: {
         color: 'white',
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
         fontSize: 23,
     },
     greenBorder: {
-        borderBottomColor: '#54B256',
+        borderBottomColor: '#FDC500',
         borderBottomWidth: 3,
         marginBottom: 30,
     },

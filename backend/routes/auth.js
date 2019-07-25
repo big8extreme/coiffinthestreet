@@ -23,6 +23,10 @@ router.post('/signin', passport.authenticate('local', { session: false }), authC
 // TODO fix validationCode before avatar upload
 router.post('/signup', upload.single('avatar'), checkValidInvitationCode, authController.signUp);
 
+router.put('/change-password', passport.authenticate('jwt', { session: false }), authController.changePassword);
+
+router.delete('/delete-account', passport.authenticate('jwt', { session: false }), authController.deleteAccount);
+
 router.post('/reset', authController.forgetPassword);
 
 module.exports = router;
