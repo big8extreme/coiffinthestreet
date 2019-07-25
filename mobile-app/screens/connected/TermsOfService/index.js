@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
-import { StyleSheet, ScrollView, View, Text } from 'react-native';
-import Axios from 'axios';
-import { Provider } from 'react-redux';
-import store from '../../../store';
 import { connect } from 'react-redux'
+import { StyleSheet, ScrollView, View, Text, SafeAreaView } from 'react-native';
 import { fetchConfigs } from '../../../store/actions/config'
 import GlobalFooter from '../../../components/GlobalFooter';
 
@@ -20,15 +17,14 @@ export class TermsOfService extends Component {
 
   render() {
     return (
-      <Provider store={store}>
-        <View style={styles.backgroundApp}>
-          <Text style={styles.Titletext}>CONDITIONS GENERALES D'UTILISATION</Text>
-          <ScrollView>
-            <Text style={styles.textCgu}>{this.props.config.cgu}</Text>
-          </ScrollView>
-        </View>
-        <GlobalFooter/>
-      </Provider>
+      <View style={styles.backgroundApp}>
+        <SafeAreaView style={{ flex: 0, backgroundColor: 'transparent' }} />
+        <Text style={styles.Titletext}>CONDITIONS GENERALES D'UTILISATION</Text>
+        <ScrollView>
+          <Text style={styles.textCgu}>{this.props.config.cgu}</Text>
+        </ScrollView>
+        <GlobalFooter />
+      </View>
     );
   }
 }

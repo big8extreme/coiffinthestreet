@@ -250,8 +250,8 @@ export default createDrawerNavigator({
 const styles = StyleSheet.create({
   text: {
     color: 'white',
-    // fontWeight: 'bold',
-    fontSize: 15
+    fontSize: 15,
+    fontFamily: 'Tinos_bold'
   },
   flex: {
     flexDirection: 'row',

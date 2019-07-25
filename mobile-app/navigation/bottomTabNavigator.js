@@ -39,7 +39,7 @@ const TabNavFooter = createBottomTabNavigator({
       activeTintColor: "#FDC500",
       showLabel: false,
       style: {
-        backgroundColor: "#2D2D2D",
+        backgroundColor: "black",
         height: 60
       }
     },

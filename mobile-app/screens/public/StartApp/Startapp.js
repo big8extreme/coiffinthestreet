@@ -1,7 +1,7 @@
 //export default class Startapp extends Component {
 import React from 'react';
 import { connect } from 'react-redux'
-import { StyleSheet, View, Dimensions, Image, Linking, TouchableOpacity, ImageBackground } from 'react-native';
+import { StyleSheet, SafeAreaView, View, Dimensions, Image, Linking, TouchableOpacity, ImageBackground } from 'react-native';
 import CustomButton from '../../../components/CustomButton';
 import { withNavigation } from 'react-navigation';
 
@@ -23,6 +23,7 @@ class Startapp extends React.Component {
   render() {
     return (
       <View style={stylestar.backgroundApp}>
+        <SafeAreaView style={{ flex: 0, backgroundColor: 'white' }} />
         <View>
           <ImageBackground
             source={require("../../../assets/FondStart.jpg")}

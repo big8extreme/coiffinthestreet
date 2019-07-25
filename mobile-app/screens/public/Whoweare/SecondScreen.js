@@ -20,9 +20,7 @@ export default class SecondScreen extends React.Component {
         subtitle: 'Vice Chairman',
         icon: 'mail'
       },
-
     ]
-
     return (
       <View style={styles.container}>
         <Card  >
@@ -46,7 +44,7 @@ export default class SecondScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#4E4E4E',
+    backgroundColor: '#2D2D2D',
   },
   paragraph: {
     margin: 24,
@@ -55,6 +53,4 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
-
-
 });

@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { StyleSheet, ScrollView, View, Image, TouchableOpacity } from 'react-native';
 import { Text } from 'react-native';
-import { Video } from 'expo-av'
+import { Video } from 'expo-av';
+import {withNavigation} from 'react-navigation';
 
-export default class Discover extends Component {
+class Discover extends Component {
     render() {
         const { navigate } = this.props.navigation;
         return (
@@ -20,14 +21,13 @@ export default class Discover extends Component {
                             <Text style={styles.yellowText}> MOBILISENT</Text>
                             < Text style={styles.whiteTextTitle}> !</Text>
                         </View>
-                        <Text style={{ fontSize: 18, marginTop: 30, color: 'white', fontWeight: 'bold' }}>COMPRENDRE NOTRE ACTION</Text>
+                        <Text style={{ fontSize: 18, marginTop: 30, color: 'white', fontFamily: 'Tinos_bold' }}>COMPRENDRE NOTRE ACTION</Text>
                         <Image style={{ width: 30, height: 60, marginTop: 30 }}
                             source={require('./ImagesVideo/_ionicons_svg_md-arrow-down.png')}
                         />
                         <Text style={styles.whiteTextTitle}>La Vidéo :</Text>
                         <View style={{ borderWidth: 2, borderColor: 'black', }}>
                             <Video
-
                                 source={require('./ImagesVideo/Video.mp4')}
                                 rate={1.0}
                                 volume={1.0}
@@ -38,7 +38,7 @@ export default class Discover extends Component {
                                 useNativeControls={true}
                             />
                         </View>
-                        <Text style={{ fontSize: 18, marginTop: 30, color: 'white', fontWeight: 'bold' }}>ÇA M'INTÈRESSE</Text>
+                        <Text style={{ fontSize: 18, marginTop: 30, color: 'white', fontFamily: 'Tinos_bold' }}>Ça m'intéresse</Text>
                         <Image style={{ width: 30, height: 60 }}
                             source={require('./ImagesVideo/_ionicons_svg_md-arrow-down.png')}
                         />
@@ -46,7 +46,6 @@ export default class Discover extends Component {
                             <Image style={{ marginTop: 30 }}
                                 source={require('./ImagesVideo/Btn_Coiffeur.png')} />
                         </TouchableOpacity>
-
                         <TouchableOpacity onPress={() => navigate("Feed")}>
                             <Image style={{ marginTop: 30, marginBottom: 30 }}
                                 source={require('./ImagesVideo/Btn_interesting.png')} />
@@ -60,13 +59,13 @@ export default class Discover extends Component {
 
 const styles = StyleSheet.create({
     backgroundApp: {
-        backgroundColor: '#4E4E4E', flex: 1,
+        backgroundColor: '#2D2D2D', flex: 1,
     },
-
     flexCenterImg: {
         flexDirection: 'row',
         justifyContent: 'center',
         marginBottom: 30,
+        marginTop: 20
     },
     flexCenter: {
         flexDirection: 'column',
@@ -85,7 +84,8 @@ const styles = StyleSheet.create({
         color: '#FDC500',
         fontSize: 23,
         fontFamily: "Sedgwick",
-
     },
-
 });
+
+
+export default withNavigation(Discover);

@@ -10,6 +10,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { StatusBar, View } from "react-native";
 import { Text } from "native-base";
 import { SafeAreaView } from "react-navigation";
+import Constants from 'expo-constants';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -35,6 +36,7 @@ export default class App extends React.Component {
   }
 
   render() {
+    console.log("LAALLALAL", Constants.platform)
     if (this.state.loading) {
       return <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Text>Chargement ...</Text>
@@ -44,8 +46,7 @@ export default class App extends React.Component {
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <StatusBar hidden />
-          <SafeAreaView style={{ flex: 0, backgroundColor: '#FBFBFB' }} />
-          <StackNavigator style={{ flex: 1, backgroundColor: 'red', height: 10 }} />
+          <StackNavigator style={{ flex: 1 }} />
         </PersistGate>
       </Provider>
     );

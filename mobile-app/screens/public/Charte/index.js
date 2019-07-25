@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Text, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, SafeAreaView } from 'react-native';
 import { connect } from 'react-redux'
 import { fetchConfigs } from '../../../store/actions/config'
 import GlobalFooter from '../../../components/GlobalFooter';
@@ -16,12 +16,13 @@ export class Charte extends Component {
   }
   render() {
     return (
-      <View style={{flex: 1, backgroundColor: '#2D2D2D'}} >
+      <View style={{ flex: 1, backgroundColor: '#2D2D2D' }} >
+        <SafeAreaView style={{ flex: 0, backgroundColor: 'transparent' }} />
         <ScrollView>
-            <Text style={styles.Titletext}>Charte d'utilisateur</Text>
-            <Text style={styles.textCharte}>{this.props.config.charte}</Text>
+          <Text style={styles.Titletext}>Charte d'utilisateur</Text>
+          <Text style={styles.textCharte}>{this.props.config.charte}</Text>
         </ScrollView>
-        <GlobalFooter/>
+        <GlobalFooter />
       </View>
     );
   }

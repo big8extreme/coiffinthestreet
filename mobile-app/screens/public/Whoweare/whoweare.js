@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
 import FirstScreen from './FirstScreen';
 import SecondScreen from './SecondScreen';
 import ThirdScreen from './ThirdScreen';
 import GlobalFooter from '../../../components/GlobalFooter';
 import TabNavFooter from '../../../navigation/bottomTabNavigator';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default class Whoweare extends React.Component {
   constructor(props) {
@@ -23,6 +24,7 @@ export default class Whoweare extends React.Component {
   render() {
     return (
       <React.Fragment>
+        <SafeAreaView style={{ flex: 0, backgroundColor: '#2D2D2D' }} />
         <View style={styles.container}>
           <Text style={styles.Titletext}>Qui Sommes Nous</Text>
           <View style={{ flexDirection: 'row' }}>
@@ -31,29 +33,27 @@ export default class Whoweare extends React.Component {
               onPress={() => this.setState({ val: 1 })}>
               <Text style={{ color: '#ffffff' }}>L' Equipe</Text>
             </TouchableOpacity>
-
             <TouchableOpacity
               style={styles.button}
               onPress={() => this.setState({ val: 2 })}>
               <Text style={{ color: '#ffffff' }}>Coiffeurs</Text>
             </TouchableOpacity>
-
             <TouchableOpacity
               style={styles.button}
               onPress={() => this.setState({ val: 3 })}>
               <Text style={{ color: '#ffffff' }}>Développeurs</Text>
             </TouchableOpacity>
           </View>
-
           <Text style={styles.paragraph}>
-            LE DON DE SOI N'A PAS DE PRIX
+            Le don de soi n'a pas de prix
         </Text>
-
-          <View style={{ backgroundColor: '#ffffff' }}>
-            {this.renderElement()}
-          </View>
+          <ScrollView>
+            <View style={{ backgroundColor: '#ffffff', marginBottom: 100 }}>
+              {this.renderElement()}
+            </View>
+          </ScrollView>
         </View>
-        <GlobalFooter/>
+        <GlobalFooter />
       </React.Fragment>
     );
   }
@@ -62,12 +62,13 @@ export default class Whoweare extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#4E4E4E',
-    padding: 8,
-    marginTop: 30,
+    backgroundColor: '#2D2D2D',
+    padding: 10
   },
   paragraph: {
     margin: 24,
+    color: 'white',
+    fontFamily: 'Tinos_bold',
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
@@ -80,6 +81,8 @@ const styles = StyleSheet.create({
     margin: 2,
   },
   Titletext: {
+    paddingTop: 20,
+    paddingBottom: 30,
     color: 'white',
     fontSize: 35,
     fontFamily: "Sedgwick",

@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, ScrollView, Text } from 'react-native';
-import Axios from 'axios';
-import { Provider } from 'react-redux';
-import store from '../../../store';
 import { connect } from 'react-redux'
+import { StyleSheet, View, ScrollView, Text, SafeAreaView } from 'react-native';
 import { fetchConfigs } from '../../../store/actions/config'
 import GlobalFooter from '../../../components/GlobalFooter';
 
@@ -19,15 +16,14 @@ class LegalMentions extends Component {
   }
   render() {
     return (
-      <Provider store={store}>
-        <View style={styles.backgroundApp}>
-          <Text style={styles.Titletext}>MENTIONS LEGALES</Text>
-          <ScrollView>
-            <Text style={styles.textLegal}>{this.props.config.legalMention}</Text>
-          </ScrollView>
-        </View>
-        <GlobalFooter/>
-      </Provider>
+      <View style={styles.backgroundApp}>
+        <SafeAreaView style={{ flex: 0, backgroundColor: 'transparent' }} />
+        <Text style={styles.Titletext}>Mentions légales</Text>
+        <ScrollView>
+          <Text style={styles.textLegal}>{this.props.config.legalMention}</Text>
+        </ScrollView>
+        <GlobalFooter />
+      </View>
     );
   }
 }
@@ -44,7 +40,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(LegalMentions);
 
 const styles = StyleSheet.create({
   backgroundApp: {
-    backgroundColor: '#4E4E4E', flex: 1,
+    backgroundColor: '#2D2D2D', flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',

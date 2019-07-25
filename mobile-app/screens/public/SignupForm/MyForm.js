@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Text, ScrollView, View } from 'react-native';
+import { Text, ScrollView, View, KeyboardAvoidingView, SafeAreaView } from 'react-native';
 import { Form, Field } from 'react-native-validate-form';
 import InputField from './InputField';
 import AvatarUpload from './Avatar';
@@ -90,104 +90,113 @@ class MyForm extends Component {
 
     return (
       <Root>
-        <Text style={{
-          alignSelf: 'center',
-          fontFamily: 'Sedgwick',
-          marginTop: 25,
-          fontWeight: 'bold',
-          fontSize: 40
-        }}>
-          Inscription
-       </Text>
-        <ScrollView style={{ margin: 30 }}>
+        <View style={{ alignSelf: 'center', backgroundColor: '#2D2D2D', width: '100%' }}>
+          <SafeAreaView style={{ flex: 0, backgroundColor: 'transparent' }} />
+          <Text style={{
+            color: 'white',
+            alignSelf: 'center',
+            fontFamily: "Sedgwick",
+            marginBottom: 10,
+            marginTop: 25,
+            fontWeight: 'bold',
+            fontSize: 40
+          }}>
+            Inscription
+          </Text>
+        </View>
+        <KeyboardAvoidingView behavior="padding" enabled >
+          <ScrollView style={{ backgroundColor: '#2D2D2D' }}>
 
-          <AvatarUpload
-            resetError={this.resetError}
-            erroned={this.state.errors.map(err => err.field).includes('avatar')}
-            onSelected={(file) => this.setState({ avatar: file })} />
+            <AvatarUpload
+              resetError={this.resetError}
+              erroned={this.state.errors.map(err => err.field).includes('avatar')}
+              onSelected={(file) => this.setState({ avatar: file })} />
 
-          <Form
-            ref={(ref) => this.myForm = ref}
-            validate={true}
-            errors={this.state.errors}
+            <Form
+              style={{ alignSelf: 'center', width: '90%' }}
+              ref={(ref) => this.myForm = ref}
+              validate={true}
+              errors={this.state.errors}
 
-          >
-            <Text style={style.inputText}>Nom *</Text>
-            <Field
-              component={InputField}
-              name="name"
-              value={this.state.name}
-              onChangeText={(val) => this.handleTextChange('name', val)}
-              customStyle={style.field}
-            />
+            >
+              <Text style={style.inputText}>Nom</Text>
+              <Field
+                component={InputField}
+                name="name"
+                value={this.state.name}
+                onChangeText={(val) => this.handleTextChange('name', val)}
+                customStyle={style.field}
+              />
 
-            <Text style={style.inputText}>Prénom *</Text>
-            <Field
-              component={InputField}
-              name="firstname"
-              value={this.state.firstname}
-              onChangeText={(val) => this.handleTextChange('firstName', val)}
-              customStyle={style.field}
-            />
+              <Text style={style.inputText}>Prénom</Text>
+              <Field
+                component={InputField}
+                name="firstName"
+                value={this.state.firstName}
+                onChangeText={(val) => this.handleTextChange('firstName', val)}
+                customStyle={style.field}
+              />
 
-            <Text style={style.inputText}>Pseudo</Text>
-            <Field
-              component={InputField}
-              name="pseudo"
-              value={this.state.pseudo}
-              onChangeText={(val) => this.handleTextChange('pseudo', val)}
-              customStyle={style.field}
-            />
+              <Text style={style.inputText}>Pseudo</Text>
+              <Field
+                component={InputField}
+                name="pseudo"
+                value={this.state.pseudo}
+                onChangeText={(val) => this.handleTextChange('pseudo', val)}
+                customStyle={style.field}
+              />
 
-            <Text style={style.inputText}>E-mail *</Text>
-            <Field
-              component={InputField}
-              name="email"
-              value={this.state.email}
-              onChangeText={(val) => this.handleTextChange('email', val)}
-              customStyle={style.field}
-            />
+              <Text style={style.inputText}>E-mail</Text>
+              <Field
+                component={InputField}
+                name="email"
+                value={this.state.email}
+                onChangeText={(val) => this.handleTextChange('email', val)}
+                customStyle={style.field}
+              />
 
-            <Text style={style.inputText}>Mot de passe *</Text>
-            <Field
-              secureTextEntry
-              component={InputField}
-              name="password"
-              secureTextEntry={true}
-              value={this.state.password}
-              onChangeText={(val) => this.handleTextChange('password', val)}
-              customStyle={style.field}
-            />
+              <Text style={style.inputText}>Mot de passe</Text>
+              <Field
+                secureTextEntry
+                component={InputField}
+                name="password"
+                secureTextEntry={true}
+                value={this.state.password}
+                onChangeText={(val) => this.handleTextChange('password', val)}
+                customStyle={style.field}
+              />
 
-            <Text style={style.inputText}>Confirmer le mot de passe *</Text>
-            <Field
-              secureTextEntry
-              component={InputField}
-              name="confirmPassword"
-              secureTextEntry={true}
-              value={this.state.confirmPassword}
-              onChangeText={(val) => this.handleTextChange('confirmPassword', val)}
-              customStyle={style.field}
-            />
+              <Text style={style.inputText}>Confirmer le mot de passe</Text>
+              <Field
+                secureTextEntry
+                component={InputField}
+                name="confirmPassword"
+                secureTextEntry={true}
+                value={this.state.confirmPassword}
+                onChangeText={(val) => this.handleTextChange('confirmPassword', val)}
+                customStyle={style.field}
+              />
 
-            <Text style={style.inputText}>Entrez votre code de parrainage *</Text>
-            <Field
-              component={InputField}
-              name="invitationCode"
-              value={this.state.code}
-              secureTextEntry={true}
-              onChangeText={(val) => this.handleTextChange('invitationCode', val)}
-              customStyle={style.field}
-            />
-          </Form>
-          <CustomButton
-            disabled={this.state.loading}
-            label="Valider"
-            navigation={this.props.navigation}
-            screen="LoginForm"
-            onPressFunc={this.submitForm}/>
-        </ScrollView>
-        <GlobalFooter/>
+              <Text style={style.inputText}>Entrez votre code de parrainage</Text>
+              <Field
+                component={InputField}
+                name="invitationCode"
+                value={this.state.code}
+                secureTextEntry={true}
+                onChangeText={(val) => this.handleTextChange('invitationCode', val)}
+                customStyle={style.field}
+              />
+            </Form>
+            <View style={{ marginBottom: 200 }}>
+              <CustomButton
+                label="Créer la Maraude"
+                fontSize={25}
+                colorfill="#FDC500"
+                onPressFunc={this.submitForm} />
+            </View>
+          </ScrollView>
+        </KeyboardAvoidingView>
+        <GlobalFooter />
       </Root>
     );
   }
@@ -198,15 +207,18 @@ class MyForm extends Component {
 const style = {
   field: {
     borderColor: '#FDC500',
-    height: 50,
+    height: 60,
     borderWidth: 1,
     borderRadius: 5,
-    fontSize: 18
+    fontSize: 18,
+    backgroundColor: 'white'
   },
   inputText: {
     fontFamily: 'Tinos_bold',
     marginBottom: 5,
-    marginTop: 25
+    marginTop: 25,
+    color: 'white',
+    fontSize: 18
   },
   container: {
     display: 'flex',

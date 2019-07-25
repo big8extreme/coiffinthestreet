@@ -57,12 +57,10 @@ export default class ThirdScreen extends React.Component {
         subtitle: "Développer web fullstack JS",
         icon: 'mail'
       }
-
     ];
-
     return (
+      <React.Fragment>
       <View style={styles.container}>
-        <ScrollView >
           {
             <Card >
               {
@@ -81,14 +79,13 @@ export default class ThirdScreen extends React.Component {
               }
             </Card>
           }
-        </ScrollView>
       </View>
+      </React.Fragment>
     );
   }
 }
 const styles = StyleSheet.create({
   container: {
-    height: 500,
-    backgroundColor: '#4E4E4E',
+    backgroundColor: '#2D2D2D',
   },
 });

@@ -37,30 +37,28 @@ export default class CitySearcher extends Component {
   render() {
     return (
       <View>
-        <Text style={style.inputText}>
-          Lieu :</Text>
         <Item regular
           style={{
             borderColor: this.props.errors.includes('city') ? 'red' : '#FDC500',
-            width: 300,
+            backgroundColor: 'white',
             height: 60,
             borderRadius: 5,
             borderWidth: 1,
-            marginLeft: 10,
             marginBottom: 50
           }}>
           <Input
             value={this.props.city}
             onChangeText={(value) => this.handleTextChange(value)}
-            placeholder="Ville" />
+            placeholder="Ville" 
+          />
         </Item>
         {
           this.state.cities && this.state.cities.length >= 1 &&
           <View style={{
             borderWidth: 1,
             marginBottom: 20,
-            width: 300,
-            marginLeft: 10,
+            borderColor: 'white',
+            borderRadius: 5
           }}>
             <FlatList
               data={this.state.cities}
@@ -70,9 +68,10 @@ export default class CitySearcher extends Component {
               }
               }
                 style={{
-                  marginLeft: 10,
                   marginTop: 8,
                   marginBottom: 8,
+                  color: 'white',
+                  padding: 10,
                 }}>
                 {item.display_name}
               </Text>}
@@ -87,11 +86,9 @@ export default class CitySearcher extends Component {
 // Increase the number of decimals in database  for precision
 const style = StyleSheet.create({
   inputText: {
-    fontFamily: 'Roboto',
+    fontFamily: 'Tinos_bold',
     textAlign: 'center',
-    marginLeft: 10,
     marginBottom: 5,
-    marginTop: 25,
-    fontWeight: 'bold'
+    marginTop: 25
   }
 })

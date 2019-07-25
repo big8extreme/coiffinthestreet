@@ -3,7 +3,7 @@ import { SearchBar } from "react-native-elements";
 import { fetchMaraudesByCity, fetchMaraudes } from "../../../store/actions/maraude";
 import { NavigationEvents } from "react-navigation";
 import { connect } from "react-redux";
-import { View, Text } from "react-native";
+import { View, SafeAreaView } from "react-native";
 
 class HeaderListMaraudes extends Component {
   static navigationOptions = {
@@ -33,6 +33,7 @@ class HeaderListMaraudes extends Component {
   render() {
     return (
       <View>
+        <SafeAreaView style={{ flex: 0, backgroundColor: 'transparent' }} />
         <NavigationEvents
           onWillFocus={payload => {
             //FIXME add it when update on Maraude is OK
