@@ -21,7 +21,7 @@ class MapToolTip extends React.Component {
         {
             // FIXME pass currentUserId to component this.props.maraude.author !== currentUserId &&
         <Button bordered light style={{ alignSelf:'center', padding: 10, margin: 5}} >
-          <Text style={{color: 'white'}}>Je souhaite participer</Text>
+          <Text style={{color: 'white'}}>Participer</Text>
         </Button>
         }
       </View>

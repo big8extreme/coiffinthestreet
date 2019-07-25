@@ -72,8 +72,10 @@ const style = StyleSheet.create({
   },
   title: {
     fontFamily: 'Tinos_bold',
-    fontSize: 23,
-    marginBottom: 3
+    fontSize: 24,
+    marginBottom: 3,
+    flexWrap: 'wrap',
+    width: '90%'
   },
   card: {
     marginBottom: 60,
@@ -94,7 +96,6 @@ const style = StyleSheet.create({
     fontFamily: 'Tinos_bold',
     fontSize: 17,
     marginTop: 3
-
   },
   body: {
     display: 'flex',
@@ -106,9 +107,7 @@ const style = StyleSheet.create({
     height: 80,
     borderRadius: 40,
     marginRight: 30,
-    borderColor: 'black',
-    borderWidth: 1
-  }
+  },
 })
 
 

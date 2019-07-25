@@ -27,7 +27,7 @@ class Contact extends Component {
   sendMessage = async () => {
     if (this.state.message === '') {
       return Toast.show({
-        text: "Veuillez tapper votre message.",
+        text: "Veuillez taper votre message.",
         type: 'danger',
         buttonText: 'Ok'
       })
@@ -63,15 +63,18 @@ class Contact extends Component {
             <Content >
               <Picker
                 mode="dropdown"
-                iosIcon={<Icon name="arrow-down" style={{ color: 'rgb(253,197,0)', marginLeft: 0 }} />}
+                iosIcon={<Icon name="arrow-down" style={{ color: 'rgb(253,197,0)', marginLeft: -50}} />}
                 placeholder="Objet"
-                placeholderStyle={{ fontWeight: 'bold', paddingLeft: 14 }}
+                placeholderStyle={{ fontWeight: 'bold'}}
                 textStyle={{ color: 'rgb(253,197,0)' }}
                 itemStyle={{
                   backgroundColor: "white",
                   marginLeft: 0,
                   paddingLeft: 10,
                 }}
+                headerTitleStyle={{color: "white"}}
+                headerStyle={{backgroundColor: '#2D2D2D'}}
+                headerBackButtonText={<Icon name="arrow-dropleft" style={{ color: 'white'}} />}
                 itemTextStyle={{ color: 'black' }}
                 selectedValue={this.state.subject}
                 onValueChange={(val) => this.setState({ subject: val })}
@@ -84,9 +87,10 @@ class Contact extends Component {
                 }
               </Picker>
             </Content>
-          </View>
-          <View>
-            <Text style={styles.contactTextTitle}>Message :</Text>
+            <View style={{width: '90%', alignSelf: 'center', marginBottom: 10 }}>
+              <Text style={styles.contactTextTitle}>Message :</Text>
+            </View>
+            
             <Container style={styles.form}>
               <Content >
                 <Textarea
@@ -115,8 +119,8 @@ const styles = StyleSheet.create({
     marginBottom: 30
   },
   form: {
-    width: 300,
     height: 200,
+    width: '90%',
     alignSelf: 'center',
     borderWidth: 2,
     borderColor: 'rgb(253,197,0)',
@@ -127,22 +131,17 @@ const styles = StyleSheet.create({
   contactTextTitle: {
     fontSize: 20,
     color: 'rgb(241,240,199)',
-    margin: 22,
     fontFamily: 'Tinos_bold'
   },
   dropdown: {
-    width: 300,
-    color: 'rgb(241,240,199)',
     borderWidth: 2,
     borderColor: 'rgb(241,240,199)',
     alignSelf: 'center',
     marginTop: 50,
     marginBottom: 30,
-    fontSize: 18,
-    fontFamily: 'Tinos_bold',
+    width: '90%'
   }
 })
-
 
 const mapStateToProps = (state) => ({
 

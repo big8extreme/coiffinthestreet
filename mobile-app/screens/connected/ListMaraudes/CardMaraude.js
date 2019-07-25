@@ -5,7 +5,7 @@ import moment from "moment";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import CustomButton from '../../../components/CustomButton'
 export default function CardMaraude({ maraude = {}, navigation = {}, currentUserId = null }) {
-  const marginButton = Platform.OS === 'ios' ? "3%" : -15
+  const marginButton = Platform.OS === 'ios' ? "2%" : -15
   return (
     <React.Fragment>
       <View style={styles.shadow}>
@@ -88,10 +88,10 @@ export default function CardMaraude({ maraude = {}, navigation = {}, currentUser
           // if current user is author and maraude is passed, then currentUser can add photos
           (maraude.author.id !== currentUserId) &&
       <View
-        style={{ position: "absolute", marginTop: "35%", marginLeft: marginButton }}
+        style={{ position: "absolute", marginTop: "30%", marginLeft: marginButton }}
       >
         <CustomButton
-          label="Je souhaite participer"
+          label="Participer"
           fontSize={25}
           colorfill="#0F2148"
           onPressFunc={() => navigation.navigate("Participant", { maraudeId: maraude.id })} />

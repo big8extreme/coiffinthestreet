@@ -183,9 +183,9 @@ export class ParticipForm extends Component {
                   placeholderTextColor='black'
                 />
               </Item>
-              <View style={{marginBottom: 280}}>
+              <View style={{marginBottom: 280, marginTop: 20}}>
                 <CustomButton
-                  label="Créer la Maraude"
+                  label="Valider"
                   fontSize={25}
                   colorfill="#FDC500"
                   onPressFunc={this.submitForm} />
@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
   inputText: {
     fontSize: 18,
     color: 'white',
-    marginBottom: 5,
+    marginBottom: 10,
     marginTop: 25,
     fontFamily: 'Tinos_bold',
     alignSelf: 'flex-start'

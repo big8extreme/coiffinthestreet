@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { Fab, Toast } from 'native-base';
-import Icon from 'react-native-vector-icons/Ionicons'
 import { fetchMaraudes, fetchMaraudesByLoc } from '../../../store/actions/maraude';
 import { NavigationEvents } from "react-navigation";
 import { setUserLocation } from '../../../store/actions/user';
@@ -14,6 +13,7 @@ import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 import Constants from 'expo-constants';
 import CustomButton from '../../../components/CustomButton';
+import { Icon } from 'react-native-elements';
 
 
 const Style = StyleSheet.create({
@@ -80,7 +80,6 @@ class MapMarker extends React.Component {
     // Center the map on the location we just fetched.
     this.setState({ mapRegion: { latitude: location.coords.latitude, longitude: location.coords.longitude, latitudeDelta: 0.0922, longitudeDelta: 0.0421 }, coordLoaded: true });
   };
-  
   //  geolocalisation
   componentDidMount = async () => {
     maraudesToMarkers(this.props.maraude.maraudes)
@@ -91,7 +90,7 @@ class MapMarker extends React.Component {
     } else {
       await this._getLocationAsync();
     }
-    // this.props.setUserLocation(this.state.region)
+    this.props.setUserLocation(this.state.region)
     this.props.fetchMaraudesByLoc();
   }
   componentDidUpdate(prevProps, prevState) {
@@ -100,7 +99,6 @@ class MapMarker extends React.Component {
       this.setState({ region: position, loaded: true })
     }
   }
-  
   
   fetchByLocAsync = (region) => {
     clearTimeout(this.maraudesTimer);
@@ -164,12 +162,17 @@ class MapMarker extends React.Component {
           }}>
           {cluster.markers.map((marker, index) => this.renderMarker(marker, index))}
         </MapView>
-         <Fab
+        <Fab
           active={this.state.active}
-          style={{ backgroundColor: '#F5F5F5' }}
+          style={{ backgroundColor: 'transparent', borderWidth: 1, borderColor: 'black' }}
           containerStyle={{position: 'absolute', top: 20, left: 10}}
           onPress={() => {this.setState({satelliteView: !this.state.satelliteView})}}>
-          <Icon name="ios-repeat" size={50} style={{color: 'black'}}/>
+            <Icon
+            name='binoculars'
+            type='font-awesome'
+            color='black'
+            size={25}
+            />
         </Fab>
         <View
           style={{

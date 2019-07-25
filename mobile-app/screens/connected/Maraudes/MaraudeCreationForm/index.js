@@ -138,7 +138,7 @@ export class index extends Component {
               />
               <View style={{marginBottom: 200, marginTop: -20}}>
               <CustomButton
-                label="Créer la Maraude"
+                label="Valider"
                 fontSize={25}
                 colorfill="#FDC500"
                 onPressFunc={this.submitForm} />
