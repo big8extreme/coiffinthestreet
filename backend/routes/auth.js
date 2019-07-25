@@ -25,6 +25,8 @@ router.post('/signup', upload.single('avatar'), checkValidInvitationCode, authCo
 
 router.put('/change-password', authController.changePassword);
 
+router.delete('/delete-account', authController.deleteAccount);
+
 router.post('/reset', authController.forgetPassword);
 
 module.exports = router;

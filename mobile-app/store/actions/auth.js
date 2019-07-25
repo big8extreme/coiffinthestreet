@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { LOGIN, LOGOUT, LOG_IN_ERROR, CHANGE_PASSWORD, FORGET_PASSWORD, CHANGE_PASSWORD_ERROR, FORGET_PASSWORD_ERROR } from '../types/auth'
+import { LOGIN, LOGOUT, LOG_IN_ERROR, CHANGE_PASSWORD, FORGET_PASSWORD, CHANGE_PASSWORD_ERROR, FORGET_PASSWORD_ERROR, DELETE_ACCOUNT, DELETE_ACCOUNT_ERROR } from '../types/auth'
 import { baseUrlApi } from '../../apiUrl'
 
 export function login(email, password) {
@@ -113,6 +113,32 @@ export function changePassword(oldPassword, password) {
       const response = await axios.put(`${baseUrlApi}/auth/change-password`,
         { email: getState().auth.user.email, oldPassword, password },
         { headers: { Authorization: `bearer ${getState().auth.user.token}` } }
+      )
+      return onSuccess(response)
+    }
+    catch (err) {
+      return onError(err)
+    }
+  }
+}
+
+export function deleteAccount() {
+  return async (dispatch, getState) => {
+    function onSuccess(response) {
+      dispatch({ type: DELETE_ACCOUNT })
+      return { response, status: 'success' };
+    }
+    function onError(error) {
+      dispatch({ type: DELETE_ACCOUNT_ERROR, payload: error })
+      return { error, status: 'error' };
+    }
+
+    try {
+      const response = await axios.delete(`${baseUrlApi}/auth/delete-account`,
+        {
+          headers: { Authorization: `bearer ${getState().auth.user.token}` },
+          data: { email: getState().auth.user.email }
+        }
       )
       return onSuccess(response)
     }

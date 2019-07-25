@@ -9,15 +9,19 @@ const localAuthStrategy = passport.use(new LocalStrategy({
   session: false,
 },
   function (email, password, done) {
-    User.findAll({ where: { email: email } })
+    User.findOne({ where: { email: email } })
       .then((user) => {
-        bcrypt.compare(password, user[0].dataValues.password, function (err, res) {
-          if (res) {
-            return done(null, user[0].dataValues);
-          } else {
-            return done(null, false);
-          }
-        });
+        if (user && user.isActive) { // dont loggin user if is not active
+          bcrypt.compare(password, user.dataValues.password, function (err, res) {
+            if (res) {
+              return done(null, user.dataValues);
+            } else {
+              return done(null, false);
+            }
+          });
+        } else {
+          return done(null, false);
+        }
       })
       .catch(err => done(null, false));
   }

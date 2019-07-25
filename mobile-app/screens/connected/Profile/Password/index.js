@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { changePassword } from '../../../../store/actions/auth'
-import { StyleSheet, View, ScrollView, Image } from 'react-native';
+import { changePassword, deleteAccount } from '../../../../store/actions/auth'
+import { StyleSheet, View, ScrollView, Image, Alert } from 'react-native';
 import { Form, Textarea } from 'native-base';
 import CustomButton from '../../../../components/CustomButton';
 import { Toast, Root } from 'native-base';
@@ -52,6 +52,25 @@ class ChangePassword extends Component {
       }
     }
   }
+  deleteAccount = () => {
+    Alert.alert(
+      'Suppression de compte',
+      'Êtes vous sûr de vouloir supprimer votre compte ?',
+      [
+        {
+          text: 'Annuler',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {
+          text: 'Oui', onPress: () => {
+            this.props.deleteAccount()
+          }
+        },
+      ],
+      { cancelable: false },
+    );
+  }
   handleChange = (field, value) => {
     this.setState({ [field]: value })
   }
@@ -81,10 +100,20 @@ class ChangePassword extends Component {
           </View>
           <CustomButton
             onPressFunc={() => this.changePassword()}
-            label="Envoyer"
+            label="Modifier"
             style={{ color: 'yellow' }}
 
           />
+          <View>
+            <CustomButton
+              onPressFunc={() => this.deleteAccount()}
+              label="Supprimer mon compte"
+              turn="177"
+              fontSize={20}
+              colorfill="red"
+
+            />
+          </View>
         </ScrollView>
       </Root>
     );
@@ -137,7 +166,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  changePassword
+  changePassword,
+  deleteAccount
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChangePassword)

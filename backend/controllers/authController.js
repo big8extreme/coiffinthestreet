@@ -30,6 +30,7 @@ module.exports = {
       password: req.body.password,
       avatarUrl: req.file ? `${getHost()}/${req.file.path}` : null,
       isAdmin: req.body.isAdmin || false,
+      isActive: true,
       invitationCode: generateRandomString(8),
       godFatherId: req.inviter.id
     })
@@ -52,6 +53,19 @@ module.exports = {
       .catch((error) => {
         res.status(500).json({ message: error.message, error });
       });
+  },
+  deleteAccount: function (req, res, next) {
+    User.findOne({ where: { email: req.body.email } })
+      .then((user) => {
+        if (user) {
+          user.update({ isActive: false }) // dont really destroy to keep userId on maraude
+            .then((deletedUser) => { res.json({ user: deletedUser }); })
+            .catch((error) => { res.status(500).json({ error }); });
+        } else {
+          res.status(404).json({ message: 'User not found' });
+        }
+      })
+      .catch((error) => { res.status(500).json({ error }); });
   },
   changePassword: function (req, res, next) {
     User.findOne({ where: { email: req.body.email } })
