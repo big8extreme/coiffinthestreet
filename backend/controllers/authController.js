@@ -53,7 +53,25 @@ module.exports = {
         res.status(500).json({ message: error.message, error });
       });
   },
-
+  changePassword: function (req, res, next) {
+    User.findOne({ where: { email: req.body.email } })
+      .then((user) => {
+        if (user) {
+          bcrypt.compare(req.body.oldPassword, user.dataValues.password, function (err, result) {
+            if (result) {
+              user.update({ password: req.body.password })
+                .then((updatedUser) => { res.json({ user: updatedUser }); })
+                .catch((error) => { res.status(500).json({ error }); });
+            } else {
+              res.status(401).json({ message: 'Invalid password' });
+            }
+          });
+        } else {
+          res.status(404).json({ message: 'User not found' });
+        }
+      })
+      .catch((error) => { res.status(500).json({ error }); });
+  },
   forgetPassword: function (req, res, next) {
     //Charger en base l'utilisateur concerné
     const generatePassword = () => {

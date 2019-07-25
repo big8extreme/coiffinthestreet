@@ -7,6 +7,7 @@ import LoginForm from '../screens/public/LoginForm'
 import store from '../store'
 import Charte from '../screens/public/Charte'
 import Contact from '../screens/connected/Profile/Contact'
+import ChangePassword from '../screens/connected/Profile/Password'
 import TermsOfService from '../screens/connected/TermsOfService/index'
 import LegalMention from '../screens/connected/LegalMention';
 import Whoweare from '../screens/public/Whoweare/whoweare';
@@ -198,6 +199,24 @@ export default createDrawerNavigator({
       }
     }
   },
+  ChangePassword: {
+    screen: ChangePassword,
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: "",
+        drawerLabel: () => {
+          return store.getState().auth.user.isConnected ?
+            <View style={{ padding: 20 }}>
+              <TouchableOpacity onPress={() => navigation.navigate('ChangePassword')}>
+                <Text style={styles.text}>Modifier mon mot de passe</Text>
+              </TouchableOpacity>
+            </View>
+            :
+            null
+        }
+      }
+    }
+  },
   Code: {
     screen: BottomTabNavigator,
     navigationOptions: ({ navigation }) => {
@@ -220,7 +239,7 @@ export default createDrawerNavigator({
   }
 },
   {
-    initialRouteName: 'BottomTab',
+    initialRouteName: 'ChangePassword',
     drawerPosition: 'right',
     drawerBackgroundColor: "#2D2D2D",
     drawerWidth: Math.min(width) * 0.8,

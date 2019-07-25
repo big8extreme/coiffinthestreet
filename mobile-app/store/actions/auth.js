@@ -1,7 +1,6 @@
 import axios from 'axios';
-import { LOGIN, LOGOUT, LOG_IN_ERROR, LOG_OUT_ERROR, FORGET_PASSWORD, FORGET_PASSWORD_ERROR } from '../types/auth'
+import { LOGIN, LOGOUT, LOG_IN_ERROR, CHANGE_PASSWORD, FORGET_PASSWORD, CHANGE_PASSWORD_ERROR, FORGET_PASSWORD_ERROR } from '../types/auth'
 import { baseUrlApi } from '../../apiUrl'
-import { bindActionCreators } from 'redux'
 
 export function login(email, password) {
   return async dispatch => {
@@ -99,23 +98,47 @@ export function signup(user) {
 };
 
 
-export function reset(email) {
+export function changePassword(oldPassword, password) {
   return async (dispatch, getState) => {
-      function onSuccess(response) {
-          dispatch({ type: FORGET_PASSWORD })
-          return { response, status: 'success' };
-      }
-      function onError(error) {
-          dispatch({ type: FORGET_PASSWORD_ERROR, payload: error })
-          return { error, status: 'error' };
-      }
+    function onSuccess(response) {
+      dispatch({ type: CHANGE_PASSWORD })
+      return { response, status: 'success' };
+    }
+    function onError(error) {
+      dispatch({ type: CHANGE_PASSWORD_ERROR, payload: error })
+      return { error, status: 'error' };
+    }
 
-      try {
-          const response = await axios.post(`${baseUrlApi}/auth/reset`, { email : email })
-          return onSuccess(response)
-      }
-      catch (err) {
-          return onError(err)
-      }
+    try {
+      const response = await axios.put(`${baseUrlApi}/auth/change-password`,
+        { email: getState().auth.user.email, oldPassword, password },
+        { headers: { Authorization: `bearer ${getState().auth.user.token}` } }
+      )
+      return onSuccess(response)
+    }
+    catch (err) {
+      return onError(err)
+    }
+  }
+}
+
+export function reset(email) { // used for reset password
+  return async (dispatch, getState) => {
+    function onSuccess(response) {
+      dispatch({ type: FORGET_PASSWORD })
+      return { response, status: 'success' };
+    }
+    function onError(error) {
+      dispatch({ type: FORGET_PASSWORD_ERROR, payload: error })
+      return { error, status: 'error' };
+    }
+
+    try {
+      const response = await axios.post(`${baseUrlApi}/auth/reset`, { email: email })
+      return onSuccess(response)
+    }
+    catch (err) {
+      return onError(err)
+    }
   }
 }

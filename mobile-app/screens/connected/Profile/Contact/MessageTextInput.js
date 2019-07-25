@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Image, TouchableOpacity, Alert, Text } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import { Container, Content, Form, Textarea } from 'native-base';
 export default class MessageTextInput extends Component {
   onValueChange(field, value) {
