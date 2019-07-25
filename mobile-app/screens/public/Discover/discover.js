@@ -21,7 +21,7 @@ class Discover extends Component {
                             <Text style={styles.yellowText}> MOBILISENT</Text>
                             < Text style={styles.whiteTextTitle}> !</Text>
                         </View>
-                        <Text style={{ fontSize: 18, marginTop: 30, color: 'white', fontWeight: 'bold' }}>COMPRENDRE NOTRE ACTION</Text>
+                        <Text style={{ fontSize: 18, marginTop: 30, color: 'white', fontFamily: 'Tinos_bold' }}>COMPRENDRE NOTRE ACTION</Text>
                         <Image style={{ width: 30, height: 60, marginTop: 30 }}
                             source={require('./ImagesVideo/_ionicons_svg_md-arrow-down.png')}
                         />
@@ -38,7 +38,7 @@ class Discover extends Component {
                                 useNativeControls={true}
                             />
                         </View>
-                        <Text style={{ fontSize: 18, marginTop: 30, color: 'white', fontWeight: 'bold' }}>Ça m'intéresse</Text>
+                        <Text style={{ fontSize: 18, marginTop: 30, color: 'white', fontFamily: 'Tinos_bold' }}>Ça m'intéresse</Text>
                         <Image style={{ width: 30, height: 60 }}
                             source={require('./ImagesVideo/_ionicons_svg_md-arrow-down.png')}
                         />
