@@ -165,9 +165,9 @@ Maraude.create({
   longitude: '4.35',
   latitude: '43.8333',
   photos: [
-    { url: `${getHost()}/uploads/maraudes/IMG_28.jpg` },
-    { url: `${getHost()}/uploads/maraudes/IMG_29.jpg` },
-    { url: `${getHost()}/uploads/maraudes/IMG_30.jpg` },
+    { url: `${getHost()}/uploads/maraudes/IMG_25.jpg` },
+    { url: `${getHost()}/uploads/maraudes/IMG_26.jpg` },
+    { url: `${getHost()}/uploads/maraudes/IMG_27.jpg` },
   ]
 }, { include: ['photos'] })
   .then((maraude) => { console.log(maraude); })
@@ -184,9 +184,9 @@ Maraude.create({
   longitude: '5.41259',
   latitude: '43.337499',
   photos: [
-    { url: `${getHost()}/uploads/maraudes/IMG_31.jpg` },
-    { url: `${getHost()}/uploads/maraudes/IMG_32.jpg` },
-    { url: `${getHost()}/uploads/maraudes/IMG_33.jpg` },
+    { url: `${getHost()}/uploads/maraudes/IMG_28.jpg` },
+    { url: `${getHost()}/uploads/maraudes/IMG_29.jpg` },
+    { url: `${getHost()}/uploads/maraudes/IMG_30.jpg` },
   ]
 }, { include: ['photos'] })
   .then((maraude) => { console.log(maraude); })
