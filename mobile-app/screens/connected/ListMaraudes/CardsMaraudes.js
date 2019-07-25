@@ -20,6 +20,7 @@ class CardsMaraudes extends Component {
             :
             <Text style={{ fontStyle: 'italic', padding: 10 }}>Désolé il n'y a pas de maraude dans cette ville</Text>
         }
+        <View style={{ height: 200 }}></View>
       </ScrollView>
     );
   }

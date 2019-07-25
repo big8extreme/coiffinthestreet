@@ -80,7 +80,7 @@ class MapMarker extends React.Component {
     // Center the map on the location we just fetched.
     this.setState({ mapRegion: { latitude: location.coords.latitude, longitude: location.coords.longitude, latitudeDelta: 0.0922, longitudeDelta: 0.0421 }, coordLoaded: true });
   };
-  
+
   //  geolocalisation
   componentDidMount = async () => {
     maraudesToMarkers(this.props.maraude.maraudes)
@@ -100,13 +100,13 @@ class MapMarker extends React.Component {
       this.setState({ region: position, loaded: true })
     }
   }
-  
-  
+
+
   fetchByLocAsync = (region) => {
     clearTimeout(this.maraudesTimer);
     this.maraudesTimer = setTimeout(() => {
       this.props.fetchMaraudesByLoc(region);
-    }, 2000)
+    }, 3000)
   }
   renderMarker = (marker, index) => {
     const key = index + marker.geometry.coordinates[0];
@@ -128,7 +128,7 @@ class MapMarker extends React.Component {
         }}
         image={require('../../../assets/pin.png')}
       >
-        <Callout tooltip style={{ width: 220 }} onPress={() => navigate('Participant', {city: maraude.city})}>
+        <Callout tooltip style={{ width: 220 }} onPress={() => navigate('Participant', { city: maraude.city })}>
           <MapToolTip navigation={{ navigate }} maraude={maraude} />
         </Callout>
       </Marker>
@@ -138,13 +138,17 @@ class MapMarker extends React.Component {
     const { region } = this.state;
     const allCoords = maraudesToMarkers(this.props.maraude.maraudes);
     const cluster = getCluster(allCoords, region);
-    const satellite = this.state.satelliteView ? "standard" : "satellite" ;
+    const satellite = this.state.satelliteView ? "standard" : "satellite";
 
     return (
       <View style={Style.container}>
         <NavigationEvents
           onWillFocus={payload => {
             this.fetchByLocAsync(this.state.region)
+          }}
+          onWillBlur={payload => {
+            console.log("WILL BLUR", payload)
+            clearTimeout(this.maraudesTimer);
           }}
         />
         <MapView
@@ -164,12 +168,12 @@ class MapMarker extends React.Component {
           }}>
           {cluster.markers.map((marker, index) => this.renderMarker(marker, index))}
         </MapView>
-         <Fab
+        <Fab
           active={this.state.active}
           style={{ backgroundColor: '#F5F5F5' }}
-          containerStyle={{position: 'absolute', top: 20, left: 10}}
-          onPress={() => {this.setState({satelliteView: !this.state.satelliteView})}}>
-          <Icon name="ios-repeat" size={50} style={{color: 'black'}}/>
+          containerStyle={{ position: 'absolute', top: 20, left: 10 }}
+          onPress={() => { this.setState({ satelliteView: !this.state.satelliteView }) }}>
+          <Icon name="ios-repeat" size={50} style={{ color: 'black' }} />
         </Fab>
         <View
           style={{
