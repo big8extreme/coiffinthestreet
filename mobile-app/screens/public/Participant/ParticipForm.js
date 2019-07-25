@@ -146,7 +146,6 @@ export class ParticipForm extends Component {
                 <Picker
                   selectedValue={this.state.participant.job}
                   mode="dropdown"
-                  placeholder={'Profession'}
                   onValueChange={(itemValue, itemIndex) => {
                     return (
                       this.setState({
