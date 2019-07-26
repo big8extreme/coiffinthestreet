@@ -88,7 +88,7 @@ class UserNew extends Component {
                 </div>
                 <div className="p-col-4 p-md-4">
                   <div className="p-inputgroup">
-                    <InputText placeholder="RE Mot de passe" name="passwordConfirmation" type="text" onChange={(event) => this.handleUserStateChange('passwordConfirmation', event.target.value)} />
+                    <InputText placeholder="Confirmer le mot de passe" name="passwordConfirmation" type="text" onChange={(event) => this.handleUserStateChange('passwordConfirmation', event.target.value)} />
                   </div>
                 </div>
               </div>
@@ -105,14 +105,14 @@ class UserNew extends Component {
                 </div>
                 <div className="p-col-4 p-md-4">
                   <div className="p-inputgroup">
-                    <Dropdown value={this.state.user.job} name="job" options={jobSelectItems} onChange={(event) => this.handleUserStateChange('job', event.target.value)} placeholder="Select a Job" />
+                    <Dropdown value={this.state.user.job} name="job" options={jobSelectItems} onChange={(event) => this.handleUserStateChange('job', event.target.value)} placeholder="Profession" />
                   </div></div>
               </div>
 
               <div className="p-grid p-fluid">
                 <div className="p-col-6 p-md-4">
                   <div className="p-inputgroup">
-                    <InputText placeholder="Parrain" name="godFatherId" onChange={(event) => this.handleUserStateChange('godFatherId', event.target.value)} />
+                    <InputText placeholder="Code Invitation" name="godFatherId" onChange={(event) => this.handleUserStateChange('godFatherId', event.target.value)} />
                   </div>
                 </div>
                 <div className="p-col-6 p-md-4">
@@ -124,11 +124,11 @@ class UserNew extends Component {
               </div>
               <div className="p-grid p-fluid">
                 <div className="p-col-4 p-md-4">
-                  <p>isAdmin</p>
+                  <p>Administrateur</p>
                   <InputSwitch name="isAdmin" value={this.state.user.isAdmin} checked={this.state.user.isAdmin} onChange={(event) => this.handleUserStateChange('isAdmin', event.target.value)} />
                 </div>
                 <div className="p-col-4 p-md-4">
-                  <p>isActive</p>
+                  <p>Activer</p>
                   <InputSwitch name="isActive" value={this.state.user.isActive} checked={this.state.user.isActive} onChange={(event) => this.handleUserStateChange('isActive', event.target.value)} />
                 </div>
               </div>

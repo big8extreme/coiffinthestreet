@@ -32,7 +32,7 @@ export default class SecondScreen extends React.Component {
                 title={l.name}
                 subtitle={l.subtitle}
                 rightIcon={{ name: l.icon }}
-                onPress={() => Linking.openURL("mailto:support@example.com")}
+                onPress={() => Linking.openURL("contact@coiffinthestreet.com")}
               />
             ))
           }

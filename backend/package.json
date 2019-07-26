@@ -9,7 +9,7 @@
   "apidoc": {
     "name": "Coiff In The Street Documentation",
     "version": "1.0.0",
-    "title": "Wavager API documentation (v1)",
+    "title": "CoiffInTheStreet API documentation (v1)",
     "url": "api/v1"
   },
   "dependencies": {

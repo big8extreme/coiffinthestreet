@@ -15,21 +15,24 @@ export default class FirstScreen extends React.Component {
         avatar_url: 'https://media.licdn.com/dms/image/C4D03AQELNqIkI5N2DQ/profile-displayphoto-shrink_800_800/0?e=1567641600&v=beta&t=YSygg38Mv0YIfMUIldkIhjm4gMiYPPxTqVh276m7XD4',
         titled: 'membre bienfaiteur',
         subtitle: 'Co fondateur ZeDayt',
-        icon: 'mail'
+        icon: 'mail',
+        mail: 'contact@coiffinthestreet.com'
       },
       {
         name: 'Aurelien Mutin',
         avatar_url: 'https://media.licdn.com/dms/image/C5603AQH86uUJaxHYoA/profile-displayphoto-shrink_800_800/0?e=1567641600&v=beta&t=_e0nLaVwQGVQbfqkZGDdSVNlQ9l-Vfr_3rMh27fKsIY',
         titled: 'membre bienfaiteur',
         subtitle: 'Co fondateur ZeDayt',
-        icon: 'mail'
+        icon: 'mail',
+        mail: 'contact@coiffinthestreet.com'
       },
       {
         name: 'Hugo Averty',
         avatar_url: 'https://media.licdn.com/dms/image/C5103AQG2UhyJGhHB8w/profile-displayphoto-shrink_800_800/0?e=1567641600&v=beta&t=tPmwZf_UzgM5x86cY85y31GlNfCypdjTzKLAKF4MX3M',
         titled: 'membre bienfaiteur',
         subtitle: 'Co fondateur ZeDayt',
-        icon: 'mail'
+        icon: 'mail',
+        mail: 'contact@coiffinthestreet.com'
       },
     ]
     return (
@@ -41,7 +44,7 @@ export default class FirstScreen extends React.Component {
               title='Kevin Ortega'
               subtitle='President Fondateur'
               rightIcon={{ name: 'mail' }}
-              onPress={() => Linking.openURL("mailto:support@example.com")}
+              onPress={() => Linking.openURL("mailto:contact@coiffinthestreet.com")}
             />
           </Card>
         </View>
@@ -55,7 +58,8 @@ export default class FirstScreen extends React.Component {
                   title={l.name}
                   subtitle={l.titled}
                   rightIcon={{ name: l.icon }}
-                  onPress={() => Linking.openURL("mailto:support@example.com")}
+                  onPress={() => Linking.openURL(`mailto:${l.mail}`)}
+              
                 />
               ))
             }
