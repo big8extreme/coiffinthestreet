@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { View, StyleSheet,  Linking  } from 'react-native';
-import { Card,ListItem } from 'react-native-elements'
-import { ScrollView } from 'react-native-gesture-handler';
+import { View, StyleSheet, Linking } from 'react-native';
+import { Card, ListItem } from 'react-native-elements'
+import Hanna from '../../../assets/avatars/Hanna.png'
+import Silvia from '../../../assets/avatars/Silvia.png'
 
 export default class FirstScreen extends React.Component {
   constructor(props) {
@@ -16,7 +17,8 @@ export default class FirstScreen extends React.Component {
         titled: 'membre bienfaiteur',
         subtitle: 'Co fondateur ZeDayt',
         icon: 'mail',
-        mail: 'contact@coiffinthestreet.com'
+        mail: 'contact@coiffinthestreet.com',
+        localImage: false
       },
       {
         name: 'Aurelien Mutin',
@@ -24,7 +26,8 @@ export default class FirstScreen extends React.Component {
         titled: 'membre bienfaiteur',
         subtitle: 'Co fondateur ZeDayt',
         icon: 'mail',
-        mail: 'contact@coiffinthestreet.com'
+        mail: 'contact@coiffinthestreet.com',
+        localImage: false
       },
       {
         name: 'Hugo Averty',
@@ -32,7 +35,26 @@ export default class FirstScreen extends React.Component {
         titled: 'membre bienfaiteur',
         subtitle: 'Co fondateur ZeDayt',
         icon: 'mail',
-        mail: 'contact@coiffinthestreet.com'
+        mail: 'contact@coiffinthestreet.com',
+        localImage: false
+      },
+      {
+        name: 'Hanna REZAIGUIA',
+        avatar_url: Hanna,
+        titled: 'membre bienfaiteur',
+        subtitle: 'Lawyer at EOS Avocats',
+        icon: 'mail',
+        mail: 'contact@coiffinthestreet.com',
+        localImage: true
+      },
+      {
+        name: 'Silvia VERSIGLIA',
+        avatar_url: Silvia,
+        titled: 'membre bienfaiteur',
+        subtitle: 'Lawyer at EOS Avocats',
+        icon: 'mail',
+        mail: 'contact@coiffinthestreet.com',
+        localImage: true
       },
     ]
     return (
@@ -54,12 +76,12 @@ export default class FirstScreen extends React.Component {
               list.map((l, i) => (
                 <ListItem
                   key={i}
-                  leftAvatar={{ source: { uri: l.avatar_url } }}
+                  leftAvatar={{ source: l.localImage ? l.avatar_url : { uri: l.avatar_url } }}
                   title={l.name}
-                  subtitle={l.titled}
+                  subtitle={l.subtitle}
                   rightIcon={{ name: l.icon }}
                   onPress={() => Linking.openURL(`mailto:${l.mail}`)}
-              
+
                 />
               ))
             }

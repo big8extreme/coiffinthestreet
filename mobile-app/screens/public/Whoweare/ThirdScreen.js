@@ -11,52 +11,59 @@ export default class ThirdScreen extends React.Component {
   render() {
     const list = [
       {
+        name: "David MARIE",
+        avatar_url: "https://media.licdn.com/dms/image/C5603AQHuGDd5FQt73A/profile-displayphoto-shrink_200_200/0?e=1569456000&v=beta&t=2BKUPuVF37nU8TvYSOyu5JsMhqAxzUSPNodlZJA-IRs",
+        subtitle: "Lead developer",
+        icon: linkedinLogo,
+        uri: 'https://www.linkedin.com/in/david-marie-71a260136/'
+      },
+      {
         name: "Radouane BOUKERCHE",
         avatar_url: "http://res.cloudinary.com/david-wcs/image/upload/v1557754105/ah89cp0vsrxtgioukxrm.png",
-        subtitle: "Développer web fullstack JS",
+        subtitle: "Web developer fullstack JS",
         icon: linkedinLogo,
         uri: 'https://www.linkedin.com/in/radouane-boukerche/'
       },
       {
         name: "Djamel AMMOUR",
         avatar_url: "http://res.cloudinary.com/david-wcs/image/upload/v1556907444/vcz3fxawxwxscmu7t7gl.png",
-        subtitle: "Développer web fullstack JS",
+        subtitle: "Web developer fullstack JS",
         uri: 'https://www.linkedin.com/in/djamelammour/'
       },
       {
         name: "Hafid BENAMAR",
         avatar_url: "http://res.cloudinary.com/david-wcs/image/upload/v1557927153/auyjgpekylappihrymnt.png",
-        subtitle: "Développer web fullstack JS",
+        subtitle: "Web developer fullstack JS",
         uri: 'https://www.linkedin.com/in/hafid-benamar/'
       },
       {
         name: "Stephane URTH ",
         avatar_url: "http://res.cloudinary.com/david-wcs/image/upload/v1557925944/om4hgftns6vld2try9a1.png",
-        subtitle: "Développer web fullstack JS",
+        subtitle: "Web developer fullstack JS",
         uri: 'https://www.linkedin.com/in/stephaneurth/'
       },
       {
         name: "Bastien ALESSANDRI",
         avatar_url: "http://res.cloudinary.com/david-wcs/image/upload/v1557849649/ddtt2fdh7tyzlkngfqax.png",
-        subtitle: "Développer web fullstack JS",
+        subtitle: "Web developer fullstack JS",
         uri: 'https://www.linkedin.com/in/bastienalessandri/'
       },
       {
         name: "Damien CASTELLO",
         avatar_url: "http://res.cloudinary.com/david-wcs/image/upload/v1557993798/glspwtmqdnpjtdigv0mm.png",
-        subtitle: "Développer web fullstack JS",
+        subtitle: "Web developer fullstack JS",
         uri: 'https://www.linkedin.com/in/castello-damien/'
       },
       {
         name: "Jérémy ORTUNO",
         avatar_url: "https://avatars2.githubusercontent.com/u/45937038?s=400&v=4",
-        subtitle: "Développer web fullstack JS",
+        subtitle: "Web developer fullstack JS",
         uri: 'https://www.linkedin.com/in/jeremy-ortuno/'
       },
       {
         name: "Sarah CABRAL",
         avatar_url: "http://res.cloudinary.com/david-wcs/image/upload/v1557861070/qg6tzvbictdcdp1zu16h.png",
-        subtitle: "Développer web fullstack JS",
+        subtitle: "Web developer fullstack JS",
         uri: 'https://www.linkedin.com/in/sarahcabral13/'
       }
 
@@ -64,7 +71,7 @@ export default class ThirdScreen extends React.Component {
     ];
     return (
       <React.Fragment>
-      <View style={styles.container}>
+        <View style={styles.container}>
           {
             <Card >
               {
@@ -84,7 +91,7 @@ export default class ThirdScreen extends React.Component {
               }
             </Card>
           }
-      </View>
+        </View>
       </React.Fragment>
     );
   }

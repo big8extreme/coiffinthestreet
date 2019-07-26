@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
 import FirstScreen from './FirstScreen';
-import SecondScreen from './SecondScreen';
+// import SecondScreen from './SecondScreen';
 import ThirdScreen from './ThirdScreen';
 import GlobalFooter from '../../../components/GlobalFooter';
-import TabNavFooter from '../../../navigation/bottomTabNavigator';
 import { ScrollView } from 'react-native-gesture-handler';
 
 export default class Whoweare extends React.Component {
@@ -15,9 +14,11 @@ export default class Whoweare extends React.Component {
   renderElement() {
     if (this.state.val === 1) {
       return <FirstScreen />;
-    } else if (this.state.val === 2) {
-      return <SecondScreen />;
-    } else {
+    }
+    // else if (this.state.val === 2) {
+    //   return <SecondScreen />;
+    // } 
+    else {
       return <ThirdScreen />;
     }
   }
@@ -33,11 +34,11 @@ export default class Whoweare extends React.Component {
               onPress={() => this.setState({ val: 1 })}>
               <Text style={{ color: '#ffffff' }}>L' Equipe</Text>
             </TouchableOpacity>
-            <TouchableOpacity
+            {/* <TouchableOpacity
               style={styles.button}
               onPress={() => this.setState({ val: 2 })}>
               <Text style={{ color: '#ffffff' }}>Coiffeurs</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <TouchableOpacity
               style={styles.button}
               onPress={() => this.setState({ val: 3 })}>
