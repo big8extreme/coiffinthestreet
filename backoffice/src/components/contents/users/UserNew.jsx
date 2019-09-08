@@ -20,6 +20,7 @@ const defaultUser = {
   isActive: false,
   isBanned: false,
   job: '',
+  invitationCode: '',
   value: '',
   avatar: {}
 };
@@ -112,7 +113,7 @@ class UserNew extends Component {
               <div className="p-grid p-fluid">
                 <div className="p-col-6 p-md-4">
                   <div className="p-inputgroup">
-                    <InputText placeholder="Code Invitation" name="godFatherId" onChange={(event) => this.handleUserStateChange('godFatherId', event.target.value)} />
+                    <InputText placeholder="Code Invitation" name="invitationCode" onChange={(event) => this.handleUserStateChange('invitationCode', event.target.value)} />
                   </div>
                 </div>
                 <div className="p-col-6 p-md-4">

@@ -189,7 +189,7 @@ class MyForm extends Component {
             </Form>
             <View style={{ marginBottom: 200 }}>
               <CustomButton
-                label="Créer la Maraude"
+                label="Valider"
                 fontSize={25}
                 colorfill="#FDC500"
                 onPressFunc={this.submitForm} />

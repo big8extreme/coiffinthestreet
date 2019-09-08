@@ -5,6 +5,9 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "eject": "expo eject",
+    "publish": "expo publish",
+    "build:android": "expo build:android -t app-bundle",
+    "build:ios": "expo build:ios",
     "proxy": "http://127.0.0.1:3000"
   },
   "dependencies": {
