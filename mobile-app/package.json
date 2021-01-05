@@ -11,7 +11,7 @@
     "proxy": "http://127.0.0.1:3000"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "expo": "^33.0.0",
     "expo-av": "~5.0.2",
     "expo-cli": "^2.19.5",
