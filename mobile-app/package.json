@@ -14,7 +14,7 @@
     "axios": "^0.18.0",
     "expo": "^33.0.0",
     "expo-av": "~5.0.2",
-    "expo-cli": "^2.19.5",
+    "expo-cli": "^6.0.8",
     "expo-constants": "~5.0.1",
     "expo-font": "~5.0.1",
     "expo-image-picker": "~5.0.2",
